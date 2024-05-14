@@ -1,0 +1,628 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9B3D10322BF21698009AD6F2 /* FellasLoadedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3D10312BF21698009AD6F2 /* FellasLoadedApp.swift */; };
+		9B3D10342BF21698009AD6F2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3D10332BF21698009AD6F2 /* ContentView.swift */; };
+		9B3D10362BF21699009AD6F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B3D10352BF21699009AD6F2 /* Assets.xcassets */; };
+		9B3D103A2BF21699009AD6F2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B3D10392BF21699009AD6F2 /* Preview Assets.xcassets */; };
+		9B3D10412BF2177E009AD6F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3D10402BF2177D009AD6F2 /* AppDelegate.swift */; };
+		9B3D10432BF218FB009AD6F2 /* WelcomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3D10422BF218FB009AD6F2 /* WelcomeScreen.swift */; };
+		9B3D10472BF22AF3009AD6F2 /* FLColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3D10462BF22AF3009AD6F2 /* FLColor.swift */; };
+		9B3D10552BF22E84009AD6F2 /* FLFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3D10542BF22E84009AD6F2 /* FLFont.swift */; };
+		9B3D10582BF22F7C009AD6F2 /* FLButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3D10572BF22F7C009AD6F2 /* FLButton.swift */; };
+		9B3D105C2BF253CF009AD6F2 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3D105B2BF253CF009AD6F2 /* RegistrationView.swift */; };
+		9B3D105E2BF270ED009AD6F2 /* CreatePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3D105D2BF270ED009AD6F2 /* CreatePasswordView.swift */; };
+		9B3D10602BF27D51009AD6F2 /* FLTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3D105F2BF27D51009AD6F2 /* FLTextField.swift */; };
+		9BC6B7FA2BF34D2800E684AD /* CheckEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6B7F92BF34D2800E684AD /* CheckEmailView.swift */; };
+		9BC6B7FC2BF3508500E684AD /* DisplayNameAndImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6B7FB2BF3508500E684AD /* DisplayNameAndImageView.swift */; };
+		9BC6B7FE2BF3530D00E684AD /* SubscribeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6B7FD2BF3530D00E684AD /* SubscribeView.swift */; };
+		9BC6B8012BF35E4C00E684AD /* EmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6B8002BF35E4C00E684AD /* EmailView.swift */; };
+		9BC6B8032BF3607800E684AD /* PasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6B8022BF3607800E684AD /* PasswordView.swift */; };
+		9BC6B8062BF364BB00E684AD /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6B8052BF364BB00E684AD /* ForgotPasswordView.swift */; };
+		9BC6B8082BF368D800E684AD /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6B8072BF368D800E684AD /* ResetPasswordView.swift */; };
+		9BC6B80A2BF36A3A00E684AD /* NewPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6B8092BF36A3A00E684AD /* NewPasswordView.swift */; };
+		9BC6B8182BF37AE700E684AD /* Barlow-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9BC6B8142BF37AE700E684AD /* Barlow-Regular.ttf */; };
+		9BC6B8192BF37AE700E684AD /* Barlow-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9BC6B8152BF37AE700E684AD /* Barlow-Medium.ttf */; };
+		9BC6B81A2BF37AE700E684AD /* Barlow-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9BC6B8162BF37AE700E684AD /* Barlow-SemiBold.ttf */; };
+		9BC6B81B2BF37AE700E684AD /* Barlow-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9BC6B8172BF37AE700E684AD /* Barlow-Bold.ttf */; };
+		9BC6B81E2BF3878900E684AD /* Tabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6B81D2BF3878900E684AD /* Tabbar.swift */; };
+		9BC6B8202BF3928300E684AD /* CustomTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6B81F2BF3928300E684AD /* CustomTabbar.swift */; };
+		9BC6B8262BF3A76300E684AD /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6B8252BF3A76200E684AD /* SettingsView.swift */; };
+		9BC6B8282BF3AE3300E684AD /* SettingsNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6B8272BF3AE3300E684AD /* SettingsNavigatorView.swift */; };
+		9BC6B82B2BF3B59E00E684AD /* LogOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6B82A2BF3B59E00E684AD /* LogOutView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		9B3D102E2BF21698009AD6F2 /* FellasLoaded.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FellasLoaded.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B3D10312BF21698009AD6F2 /* FellasLoadedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FellasLoadedApp.swift; sourceTree = "<group>"; };
+		9B3D10332BF21698009AD6F2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		9B3D10352BF21699009AD6F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9B3D10372BF21699009AD6F2 /* FellasLoaded.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FellasLoaded.entitlements; sourceTree = "<group>"; };
+		9B3D10392BF21699009AD6F2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		9B3D10402BF2177D009AD6F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9B3D10422BF218FB009AD6F2 /* WelcomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreen.swift; sourceTree = "<group>"; };
+		9B3D10462BF22AF3009AD6F2 /* FLColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLColor.swift; sourceTree = "<group>"; };
+		9B3D10532BF22DD3009AD6F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		9B3D10542BF22E84009AD6F2 /* FLFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLFont.swift; sourceTree = "<group>"; };
+		9B3D10572BF22F7C009AD6F2 /* FLButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLButton.swift; sourceTree = "<group>"; };
+		9B3D105B2BF253CF009AD6F2 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		9B3D105D2BF270ED009AD6F2 /* CreatePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePasswordView.swift; sourceTree = "<group>"; };
+		9B3D105F2BF27D51009AD6F2 /* FLTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLTextField.swift; sourceTree = "<group>"; };
+		9BC6B7F92BF34D2800E684AD /* CheckEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckEmailView.swift; sourceTree = "<group>"; };
+		9BC6B7FB2BF3508500E684AD /* DisplayNameAndImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayNameAndImageView.swift; sourceTree = "<group>"; };
+		9BC6B7FD2BF3530D00E684AD /* SubscribeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeView.swift; sourceTree = "<group>"; };
+		9BC6B8002BF35E4C00E684AD /* EmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailView.swift; sourceTree = "<group>"; };
+		9BC6B8022BF3607800E684AD /* PasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordView.swift; sourceTree = "<group>"; };
+		9BC6B8052BF364BB00E684AD /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		9BC6B8072BF368D800E684AD /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
+		9BC6B8092BF36A3A00E684AD /* NewPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordView.swift; sourceTree = "<group>"; };
+		9BC6B80F2BF37AAB00E684AD /* Barlow-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-Regular.ttf"; path = "../../../Downloads/Barlow/Barlow-Regular.ttf"; sourceTree = "<group>"; };
+		9BC6B8102BF37AAB00E684AD /* Barlow-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-SemiBold.ttf"; path = "../../../Downloads/Barlow/Barlow-SemiBold.ttf"; sourceTree = "<group>"; };
+		9BC6B8112BF37AAB00E684AD /* Barlow-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-Medium.ttf"; path = "../../../Downloads/Barlow/Barlow-Medium.ttf"; sourceTree = "<group>"; };
+		9BC6B8122BF37AAB00E684AD /* Barlow-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-Bold.ttf"; path = "../../../Downloads/Barlow/Barlow-Bold.ttf"; sourceTree = "<group>"; };
+		9BC6B8142BF37AE700E684AD /* Barlow-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-Regular.ttf"; path = "../../../../../../../Downloads/Barlow/Barlow-Regular.ttf"; sourceTree = "<group>"; };
+		9BC6B8152BF37AE700E684AD /* Barlow-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-Medium.ttf"; path = "../../../../../../../Downloads/Barlow/Barlow-Medium.ttf"; sourceTree = "<group>"; };
+		9BC6B8162BF37AE700E684AD /* Barlow-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-SemiBold.ttf"; path = "../../../../../../../Downloads/Barlow/Barlow-SemiBold.ttf"; sourceTree = "<group>"; };
+		9BC6B8172BF37AE700E684AD /* Barlow-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-Bold.ttf"; path = "../../../../../../../Downloads/Barlow/Barlow-Bold.ttf"; sourceTree = "<group>"; };
+		9BC6B81D2BF3878900E684AD /* Tabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabbar.swift; sourceTree = "<group>"; };
+		9BC6B81F2BF3928300E684AD /* CustomTabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabbar.swift; sourceTree = "<group>"; };
+		9BC6B8252BF3A76200E684AD /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		9BC6B8272BF3AE3300E684AD /* SettingsNavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNavigatorView.swift; sourceTree = "<group>"; };
+		9BC6B82A2BF3B59E00E684AD /* LogOutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9B3D102B2BF21698009AD6F2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9B3D10252BF21697009AD6F2 = {
+			isa = PBXGroup;
+			children = (
+				9B3D10302BF21698009AD6F2 /* FellasLoaded */,
+				9B3D102F2BF21698009AD6F2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9B3D102F2BF21698009AD6F2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9B3D102E2BF21698009AD6F2 /* FellasLoaded.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9B3D10302BF21698009AD6F2 /* FellasLoaded */ = {
+			isa = PBXGroup;
+			children = (
+				9BC6B80B2BF3792700E684AD /* Extras & Extension */,
+				9B3D10562BF22F0C009AD6F2 /* FLReusable Components */,
+				9BC6B80E2BF37A8400E684AD /* Module */,
+				9B3D10532BF22DD3009AD6F2 /* Info.plist */,
+				9B3D10312BF21698009AD6F2 /* FellasLoadedApp.swift */,
+				9B3D10332BF21698009AD6F2 /* ContentView.swift */,
+				9B3D10402BF2177D009AD6F2 /* AppDelegate.swift */,
+				9B3D10352BF21699009AD6F2 /* Assets.xcassets */,
+				9B3D10372BF21699009AD6F2 /* FellasLoaded.entitlements */,
+				9B3D10382BF21699009AD6F2 /* Preview Content */,
+			);
+			path = FellasLoaded;
+			sourceTree = "<group>";
+		};
+		9B3D10382BF21699009AD6F2 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				9BC6B8122BF37AAB00E684AD /* Barlow-Bold.ttf */,
+				9BC6B8112BF37AAB00E684AD /* Barlow-Medium.ttf */,
+				9BC6B80F2BF37AAB00E684AD /* Barlow-Regular.ttf */,
+				9BC6B8102BF37AAB00E684AD /* Barlow-SemiBold.ttf */,
+				9B3D10392BF21699009AD6F2 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		9B3D10442BF21907009AD6F2 /* WelcomScreen */ = {
+			isa = PBXGroup;
+			children = (
+				9B3D10422BF218FB009AD6F2 /* WelcomeScreen.swift */,
+			);
+			path = WelcomScreen;
+			sourceTree = "<group>";
+		};
+		9B3D10452BF229A3009AD6F2 /* FLColor */ = {
+			isa = PBXGroup;
+			children = (
+				9B3D10462BF22AF3009AD6F2 /* FLColor.swift */,
+			);
+			path = FLColor;
+			sourceTree = "<group>";
+		};
+		9B3D10482BF22D61009AD6F2 /* FLFont */ = {
+			isa = PBXGroup;
+			children = (
+				9B3D10542BF22E84009AD6F2 /* FLFont.swift */,
+			);
+			path = FLFont;
+			sourceTree = "<group>";
+		};
+		9B3D10562BF22F0C009AD6F2 /* FLReusable Components */ = {
+			isa = PBXGroup;
+			children = (
+				9B3D10572BF22F7C009AD6F2 /* FLButton.swift */,
+				9B3D105F2BF27D51009AD6F2 /* FLTextField.swift */,
+				9BC6B8272BF3AE3300E684AD /* SettingsNavigatorView.swift */,
+			);
+			path = "FLReusable Components";
+			sourceTree = "<group>";
+		};
+		9B3D10592BF2535D009AD6F2 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				9B3D105A2BF25368009AD6F2 /* Registration */,
+				9BC6B7FF2BF35E3500E684AD /* Login */,
+				9BC6B8042BF363C100E684AD /* ForgotPassword */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		9B3D105A2BF25368009AD6F2 /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				9B3D105B2BF253CF009AD6F2 /* RegistrationView.swift */,
+				9B3D105D2BF270ED009AD6F2 /* CreatePasswordView.swift */,
+				9BC6B7F92BF34D2800E684AD /* CheckEmailView.swift */,
+				9BC6B7FB2BF3508500E684AD /* DisplayNameAndImageView.swift */,
+				9BC6B7FD2BF3530D00E684AD /* SubscribeView.swift */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		9BC6B7FF2BF35E3500E684AD /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				9BC6B8002BF35E4C00E684AD /* EmailView.swift */,
+				9BC6B8022BF3607800E684AD /* PasswordView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		9BC6B8042BF363C100E684AD /* ForgotPassword */ = {
+			isa = PBXGroup;
+			children = (
+				9BC6B8052BF364BB00E684AD /* ForgotPasswordView.swift */,
+				9BC6B8072BF368D800E684AD /* ResetPasswordView.swift */,
+				9BC6B8092BF36A3A00E684AD /* NewPasswordView.swift */,
+			);
+			path = ForgotPassword;
+			sourceTree = "<group>";
+		};
+		9BC6B80B2BF3792700E684AD /* Extras & Extension */ = {
+			isa = PBXGroup;
+			children = (
+				9BC6B80D2BF3794800E684AD /* Extensions */,
+				9BC6B80C2BF3793B00E684AD /* Extras */,
+			);
+			path = "Extras & Extension";
+			sourceTree = "<group>";
+		};
+		9BC6B80C2BF3793B00E684AD /* Extras */ = {
+			isa = PBXGroup;
+			children = (
+				9BC6B8132BF37ACD00E684AD /* Fonts */,
+				9B3D10452BF229A3009AD6F2 /* FLColor */,
+				9B3D10482BF22D61009AD6F2 /* FLFont */,
+			);
+			path = Extras;
+			sourceTree = "<group>";
+		};
+		9BC6B80D2BF3794800E684AD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9BC6B80E2BF37A8400E684AD /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				9B3D10442BF21907009AD6F2 /* WelcomScreen */,
+				9BC6B81C2BF3877300E684AD /* Tabbar */,
+				9B3D10592BF2535D009AD6F2 /* Authentication */,
+				9BC6B8212BF3A6E300E684AD /* Feed */,
+				9BC6B8222BF3A6E900E684AD /* Vault */,
+				9BC6B8232BF3A6F300E684AD /* Profile */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		9BC6B8132BF37ACD00E684AD /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				9BC6B8172BF37AE700E684AD /* Barlow-Bold.ttf */,
+				9BC6B8152BF37AE700E684AD /* Barlow-Medium.ttf */,
+				9BC6B8142BF37AE700E684AD /* Barlow-Regular.ttf */,
+				9BC6B8162BF37AE700E684AD /* Barlow-SemiBold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		9BC6B81C2BF3877300E684AD /* Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				9BC6B81D2BF3878900E684AD /* Tabbar.swift */,
+				9BC6B81F2BF3928300E684AD /* CustomTabbar.swift */,
+			);
+			path = Tabbar;
+			sourceTree = "<group>";
+		};
+		9BC6B8212BF3A6E300E684AD /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		9BC6B8222BF3A6E900E684AD /* Vault */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Vault;
+			sourceTree = "<group>";
+		};
+		9BC6B8232BF3A6F300E684AD /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				9BC6B8242BF3A75200E684AD /* SettingsView */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		9BC6B8242BF3A75200E684AD /* SettingsView */ = {
+			isa = PBXGroup;
+			children = (
+				9BC6B8252BF3A76200E684AD /* SettingsView.swift */,
+				9BC6B8292BF3B58500E684AD /* LogOutView */,
+			);
+			path = SettingsView;
+			sourceTree = "<group>";
+		};
+		9BC6B8292BF3B58500E684AD /* LogOutView */ = {
+			isa = PBXGroup;
+			children = (
+				9BC6B82A2BF3B59E00E684AD /* LogOutView.swift */,
+			);
+			path = LogOutView;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9B3D102D2BF21698009AD6F2 /* FellasLoaded */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9B3D103D2BF21699009AD6F2 /* Build configuration list for PBXNativeTarget "FellasLoaded" */;
+			buildPhases = (
+				9B3D102A2BF21698009AD6F2 /* Sources */,
+				9B3D102B2BF21698009AD6F2 /* Frameworks */,
+				9B3D102C2BF21698009AD6F2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FellasLoaded;
+			productName = FellasLoaded;
+			productReference = 9B3D102E2BF21698009AD6F2 /* FellasLoaded.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9B3D10262BF21697009AD6F2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1530;
+				LastUpgradeCheck = 1530;
+				TargetAttributes = {
+					9B3D102D2BF21698009AD6F2 = {
+						CreatedOnToolsVersion = 15.3;
+					};
+				};
+			};
+			buildConfigurationList = 9B3D10292BF21698009AD6F2 /* Build configuration list for PBXProject "FellasLoaded" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9B3D10252BF21697009AD6F2;
+			productRefGroup = 9B3D102F2BF21698009AD6F2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9B3D102D2BF21698009AD6F2 /* FellasLoaded */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9B3D102C2BF21698009AD6F2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9BC6B81A2BF37AE700E684AD /* Barlow-SemiBold.ttf in Resources */,
+				9B3D103A2BF21699009AD6F2 /* Preview Assets.xcassets in Resources */,
+				9BC6B81B2BF37AE700E684AD /* Barlow-Bold.ttf in Resources */,
+				9BC6B8182BF37AE700E684AD /* Barlow-Regular.ttf in Resources */,
+				9BC6B8192BF37AE700E684AD /* Barlow-Medium.ttf in Resources */,
+				9B3D10362BF21699009AD6F2 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9B3D102A2BF21698009AD6F2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9BC6B8262BF3A76300E684AD /* SettingsView.swift in Sources */,
+				9BC6B80A2BF36A3A00E684AD /* NewPasswordView.swift in Sources */,
+				9BC6B82B2BF3B59E00E684AD /* LogOutView.swift in Sources */,
+				9B3D10552BF22E84009AD6F2 /* FLFont.swift in Sources */,
+				9B3D10412BF2177E009AD6F2 /* AppDelegate.swift in Sources */,
+				9BC6B7FE2BF3530D00E684AD /* SubscribeView.swift in Sources */,
+				9BC6B8282BF3AE3300E684AD /* SettingsNavigatorView.swift in Sources */,
+				9BC6B8062BF364BB00E684AD /* ForgotPasswordView.swift in Sources */,
+				9BC6B8012BF35E4C00E684AD /* EmailView.swift in Sources */,
+				9B3D10342BF21698009AD6F2 /* ContentView.swift in Sources */,
+				9B3D105E2BF270ED009AD6F2 /* CreatePasswordView.swift in Sources */,
+				9B3D10432BF218FB009AD6F2 /* WelcomeScreen.swift in Sources */,
+				9B3D10602BF27D51009AD6F2 /* FLTextField.swift in Sources */,
+				9B3D105C2BF253CF009AD6F2 /* RegistrationView.swift in Sources */,
+				9BC6B81E2BF3878900E684AD /* Tabbar.swift in Sources */,
+				9BC6B7FA2BF34D2800E684AD /* CheckEmailView.swift in Sources */,
+				9BC6B8032BF3607800E684AD /* PasswordView.swift in Sources */,
+				9BC6B7FC2BF3508500E684AD /* DisplayNameAndImageView.swift in Sources */,
+				9B3D10582BF22F7C009AD6F2 /* FLButton.swift in Sources */,
+				9BC6B8202BF3928300E684AD /* CustomTabbar.swift in Sources */,
+				9B3D10472BF22AF3009AD6F2 /* FLColor.swift in Sources */,
+				9B3D10322BF21698009AD6F2 /* FellasLoadedApp.swift in Sources */,
+				9BC6B8082BF368D800E684AD /* ResetPasswordView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		9B3D103B2BF21699009AD6F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		9B3D103C2BF21699009AD6F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		9B3D103E2BF21699009AD6F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = FellasLoaded/FellasLoaded.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"FellasLoaded/Preview Content\"";
+				DEVELOPMENT_TEAM = HSRNF79TMD;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FellasLoaded/Info.plist;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Phebsoft.FellasLoaded;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9B3D103F2BF21699009AD6F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = FellasLoaded/FellasLoaded.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"FellasLoaded/Preview Content\"";
+				DEVELOPMENT_TEAM = HSRNF79TMD;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FellasLoaded/Info.plist;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Phebsoft.FellasLoaded;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9B3D10292BF21698009AD6F2 /* Build configuration list for PBXProject "FellasLoaded" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9B3D103B2BF21699009AD6F2 /* Debug */,
+				9B3D103C2BF21699009AD6F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9B3D103D2BF21699009AD6F2 /* Build configuration list for PBXNativeTarget "FellasLoaded" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9B3D103E2BF21699009AD6F2 /* Debug */,
+				9B3D103F2BF21699009AD6F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9B3D10262BF21697009AD6F2 /* Project object */;
+}
