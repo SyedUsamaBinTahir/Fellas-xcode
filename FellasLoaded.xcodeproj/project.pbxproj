@@ -32,10 +32,18 @@
 		9BC6B81A2BF37AE700E684AD /* Barlow-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9BC6B8162BF37AE700E684AD /* Barlow-SemiBold.ttf */; };
 		9BC6B81B2BF37AE700E684AD /* Barlow-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9BC6B8172BF37AE700E684AD /* Barlow-Bold.ttf */; };
 		9BC6B81E2BF3878900E684AD /* Tabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6B81D2BF3878900E684AD /* Tabbar.swift */; };
-		9BC6B8202BF3928300E684AD /* CustomTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6B81F2BF3928300E684AD /* CustomTabbar.swift */; };
 		9BC6B8262BF3A76300E684AD /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6B8252BF3A76200E684AD /* SettingsView.swift */; };
 		9BC6B8282BF3AE3300E684AD /* SettingsNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6B8272BF3AE3300E684AD /* SettingsNavigatorView.swift */; };
 		9BC6B82B2BF3B59E00E684AD /* LogOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6B82A2BF3B59E00E684AD /* LogOutView.swift */; };
+		9BC6B82E2BF3C44E00E684AD /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6B82D2BF3C44E00E684AD /* AccountView.swift */; };
+		9BC6B8302BF3C60D00E684AD /* DeleteAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6B82F2BF3C60D00E684AD /* DeleteAccountView.swift */; };
+		9BCED20C2BF49A19007D02B3 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCED20B2BF49A19007D02B3 /* ChangePasswordView.swift */; };
+		9BCED20E2BF4B17A007D02B3 /* CustomTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCED20D2BF4B17A007D02B3 /* CustomTabbar.swift */; };
+		9BCED2112BF4C6EA007D02B3 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCED2102BF4C6EA007D02B3 /* ProfileView.swift */; };
+		9BCED2132BF4D3C6007D02B3 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCED2122BF4D3C6007D02B3 /* FeedView.swift */; };
+		9BCED2152BF4DCB5007D02B3 /* FeedSwiperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCED2142BF4DCB5007D02B3 /* FeedSwiperView.swift */; };
+		9BCED2172BF4EF66007D02B3 /* VaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCED2162BF4EF65007D02B3 /* VaultView.swift */; };
+		9BCED2192BF5085B007D02B3 /* ContinueWatchingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCED2182BF5085B007D02B3 /* ContinueWatchingDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,10 +79,18 @@
 		9BC6B8162BF37AE700E684AD /* Barlow-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-SemiBold.ttf"; path = "../../../../../../../Downloads/Barlow/Barlow-SemiBold.ttf"; sourceTree = "<group>"; };
 		9BC6B8172BF37AE700E684AD /* Barlow-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-Bold.ttf"; path = "../../../../../../../Downloads/Barlow/Barlow-Bold.ttf"; sourceTree = "<group>"; };
 		9BC6B81D2BF3878900E684AD /* Tabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabbar.swift; sourceTree = "<group>"; };
-		9BC6B81F2BF3928300E684AD /* CustomTabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabbar.swift; sourceTree = "<group>"; };
 		9BC6B8252BF3A76200E684AD /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9BC6B8272BF3AE3300E684AD /* SettingsNavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNavigatorView.swift; sourceTree = "<group>"; };
 		9BC6B82A2BF3B59E00E684AD /* LogOutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutView.swift; sourceTree = "<group>"; };
+		9BC6B82D2BF3C44E00E684AD /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		9BC6B82F2BF3C60D00E684AD /* DeleteAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountView.swift; sourceTree = "<group>"; };
+		9BCED20B2BF49A19007D02B3 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
+		9BCED20D2BF4B17A007D02B3 /* CustomTabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabbar.swift; sourceTree = "<group>"; };
+		9BCED2102BF4C6EA007D02B3 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		9BCED2122BF4D3C6007D02B3 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
+		9BCED2142BF4DCB5007D02B3 /* FeedSwiperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSwiperView.swift; sourceTree = "<group>"; };
+		9BCED2162BF4EF65007D02B3 /* VaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultView.swift; sourceTree = "<group>"; };
+		9BCED2182BF5085B007D02B3 /* ContinueWatchingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueWatchingDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -262,7 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				9BC6B81D2BF3878900E684AD /* Tabbar.swift */,
-				9BC6B81F2BF3928300E684AD /* CustomTabbar.swift */,
+				9BCED20D2BF4B17A007D02B3 /* CustomTabbar.swift */,
 			);
 			path = Tabbar;
 			sourceTree = "<group>";
@@ -270,6 +286,9 @@
 		9BC6B8212BF3A6E300E684AD /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				9BCED2122BF4D3C6007D02B3 /* FeedView.swift */,
+				9BCED2182BF5085B007D02B3 /* ContinueWatchingDetailView.swift */,
+				9BCED2142BF4DCB5007D02B3 /* FeedSwiperView.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -277,6 +296,7 @@
 		9BC6B8222BF3A6E900E684AD /* Vault */ = {
 			isa = PBXGroup;
 			children = (
+				9BCED2162BF4EF65007D02B3 /* VaultView.swift */,
 			);
 			path = Vault;
 			sourceTree = "<group>";
@@ -284,6 +304,7 @@
 		9BC6B8232BF3A6F300E684AD /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				9BCED20F2BF4C6E0007D02B3 /* ProfileView */,
 				9BC6B8242BF3A75200E684AD /* SettingsView */,
 			);
 			path = Profile;
@@ -292,6 +313,7 @@
 		9BC6B8242BF3A75200E684AD /* SettingsView */ = {
 			isa = PBXGroup;
 			children = (
+				9BC6B82C2BF3C44100E684AD /* AccountView */,
 				9BC6B8252BF3A76200E684AD /* SettingsView.swift */,
 				9BC6B8292BF3B58500E684AD /* LogOutView */,
 			);
@@ -304,6 +326,24 @@
 				9BC6B82A2BF3B59E00E684AD /* LogOutView.swift */,
 			);
 			path = LogOutView;
+			sourceTree = "<group>";
+		};
+		9BC6B82C2BF3C44100E684AD /* AccountView */ = {
+			isa = PBXGroup;
+			children = (
+				9BC6B82D2BF3C44E00E684AD /* AccountView.swift */,
+				9BC6B82F2BF3C60D00E684AD /* DeleteAccountView.swift */,
+				9BCED20B2BF49A19007D02B3 /* ChangePasswordView.swift */,
+			);
+			path = AccountView;
+			sourceTree = "<group>";
+		};
+		9BCED20F2BF4C6E0007D02B3 /* ProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				9BCED2102BF4C6EA007D02B3 /* ProfileView.swift */,
+			);
+			path = ProfileView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -380,26 +420,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BCED2132BF4D3C6007D02B3 /* FeedView.swift in Sources */,
 				9BC6B8262BF3A76300E684AD /* SettingsView.swift in Sources */,
+				9BCED2112BF4C6EA007D02B3 /* ProfileView.swift in Sources */,
 				9BC6B80A2BF36A3A00E684AD /* NewPasswordView.swift in Sources */,
 				9BC6B82B2BF3B59E00E684AD /* LogOutView.swift in Sources */,
 				9B3D10552BF22E84009AD6F2 /* FLFont.swift in Sources */,
 				9B3D10412BF2177E009AD6F2 /* AppDelegate.swift in Sources */,
 				9BC6B7FE2BF3530D00E684AD /* SubscribeView.swift in Sources */,
+				9BC6B8302BF3C60D00E684AD /* DeleteAccountView.swift in Sources */,
 				9BC6B8282BF3AE3300E684AD /* SettingsNavigatorView.swift in Sources */,
 				9BC6B8062BF364BB00E684AD /* ForgotPasswordView.swift in Sources */,
 				9BC6B8012BF35E4C00E684AD /* EmailView.swift in Sources */,
+				9BCED20E2BF4B17A007D02B3 /* CustomTabbar.swift in Sources */,
+				9BCED2192BF5085B007D02B3 /* ContinueWatchingDetailView.swift in Sources */,
 				9B3D10342BF21698009AD6F2 /* ContentView.swift in Sources */,
 				9B3D105E2BF270ED009AD6F2 /* CreatePasswordView.swift in Sources */,
 				9B3D10432BF218FB009AD6F2 /* WelcomeScreen.swift in Sources */,
+				9BCED2152BF4DCB5007D02B3 /* FeedSwiperView.swift in Sources */,
+				9BC6B82E2BF3C44E00E684AD /* AccountView.swift in Sources */,
 				9B3D10602BF27D51009AD6F2 /* FLTextField.swift in Sources */,
 				9B3D105C2BF253CF009AD6F2 /* RegistrationView.swift in Sources */,
 				9BC6B81E2BF3878900E684AD /* Tabbar.swift in Sources */,
+				9BCED2172BF4EF66007D02B3 /* VaultView.swift in Sources */,
 				9BC6B7FA2BF34D2800E684AD /* CheckEmailView.swift in Sources */,
 				9BC6B8032BF3607800E684AD /* PasswordView.swift in Sources */,
+				9BCED20C2BF49A19007D02B3 /* ChangePasswordView.swift in Sources */,
 				9BC6B7FC2BF3508500E684AD /* DisplayNameAndImageView.swift in Sources */,
 				9B3D10582BF22F7C009AD6F2 /* FLButton.swift in Sources */,
-				9BC6B8202BF3928300E684AD /* CustomTabbar.swift in Sources */,
 				9B3D10472BF22AF3009AD6F2 /* FLColor.swift in Sources */,
 				9B3D10322BF21698009AD6F2 /* FellasLoadedApp.swift in Sources */,
 				9BC6B8082BF368D800E684AD /* ResetPasswordView.swift in Sources */,

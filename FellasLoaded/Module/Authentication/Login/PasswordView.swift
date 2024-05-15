@@ -12,6 +12,7 @@ struct PasswordView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var email: String = ""
     @State private var redirectToForgotPassword = false
+    @State private var redirectTabbarView = false
     
     var body: some View {
         VStack {
@@ -82,7 +83,7 @@ struct PasswordView: View {
                         .cornerRadius(10)
                         
                         FLButton(action: {
-                            
+                            redirectTabbarView = true
                         }, title: "LOG IN", background: Color.white, foreground: Color.black)
                         
                         Button {
@@ -98,15 +99,15 @@ struct PasswordView: View {
                 }
                 .frame(width: horizontalSizeClass == .regular ? 472 : nil)
                 .padding(horizontalSizeClass == .regular ? 140 : 20)
-//                .navigationDestination(isPresented: $redirectToCreatepassword) {
-//                    CreatePasswordView()
-//                        .navigationBarBackButtonHidden(true)
-//                }
-                .navigationDestination(isPresented: $redirectToForgotPassword) {
-                    ForgotPasswordView().navigationBarBackButtonHidden(true)
-                }
                 
                 Spacer()
+            }
+            .navigationDestination(isPresented: $redirectTabbarView) {
+                Tabbar()
+                    .navigationBarBackButtonHidden(true)
+            }
+            .navigationDestination(isPresented: $redirectToForgotPassword) {
+                ForgotPasswordView().navigationBarBackButtonHidden(true)
             }
         }
         .background {

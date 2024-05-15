@@ -1,16 +1,17 @@
 //
-//  NewPasswordView.swift
+//  ChangePasswordView.swift
 //  FellasLoaded
 //
-//  Created by Phebsoft on 14/05/2024.
+//  Created by Phebsoft on 15/05/2024.
 //
 
 import SwiftUI
 
-struct NewPasswordView: View {
+struct ChangePasswordView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.presentationMode) var presentationMode
     @State private var email: String = ""
+    @State private var regirectForgotPassword = false
     
     var body: some View {
         VStack {
@@ -31,50 +32,24 @@ struct NewPasswordView: View {
                 }
                 .padding(.top, 50)
                 
-                if horizontalSizeClass != .regular {
-                    Rectangle()
-                        .fill(Color.theme.appGrayColor.opacity(0.6))
-                        .frame(maxWidth: .infinity, maxHeight: 2)
-                }
-                
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 25) {
                     
                     VStack(alignment: .leading, spacing: 10) {
                         
-                        Text("Change your password")
+                        Text("Set new password")
                             .font(.custom(Font.semiBold, size: 32))
                             .foregroundStyle(Color.white)
+                        
+                        Text("Once you tap ‘Change password’, you’ll be logged out and asked to log in with your new password.")
+                            .font(.custom(Font.Medium, size: 14))
+                            .foregroundStyle(Color.theme.textGrayColor)
                     }
                     
                     VStack(alignment: .leading, spacing: 30) {
-                        VStack(alignment: .leading, spacing: 18) {
+                        VStack(alignment: .leading, spacing: 10) {
                             HStack {
                                 VStack(alignment: .leading) {
-                                    Text("Current password")
-                                        .font(.custom(Font.regular, size: 11))
-                                        .foregroundStyle(Color.theme.textGrayColor)
-                                    SecureField("", text: $email)
-                                        .font(.custom(Font.regular, size: 16))
-                                        .foregroundStyle(Color.white)
-                                }
-                                
-                                Button {
-                                    
-                                } label: {
-                                    Image("eye-icon")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 24, height: 24)
-                                }
-                            }
-                            .padding(.horizontal, 10)
-                            .frame(height: 48)
-                            .background(Color.theme.appGrayColor)
-                            .cornerRadius(10)
-                            
-                            HStack {
-                                VStack(alignment: .leading) {
-                                    Text("New password")
+                                    Text("Password")
                                         .font(.custom(Font.regular, size: 11))
                                         .foregroundStyle(Color.theme.textGrayColor)
                                     SecureField("", text: $email)
@@ -127,12 +102,24 @@ struct NewPasswordView: View {
                             .cornerRadius(10)
                             
                             FLButton(action: {
-                            }, title: "CHANGE PASSWORD", background: Color.white, foreground: Color.black)
+                            }, title: "SET NEW PASSWORD", background: Color.white, foreground: Color.black)
+                            
+                            Button {
+                                regirectForgotPassword = true
+                            } label: {
+                                Text("Forgot password?")
+                                    .font(.custom(Font.bold, size: 16))
+                                    .foregroundStyle(Color.white)
+                                    .padding(.top)
+                            }
                         }
                     }
                 }
                 .frame(width: horizontalSizeClass == .regular ? 472 : nil)
                 .padding(horizontalSizeClass == .regular ? 140 : 20)
+                .navigationDestination(isPresented: $regirectForgotPassword) {
+                    ForgotPasswordView().navigationBarBackButtonHidden(true)
+                }
                 
                 Spacer()
             }
@@ -145,5 +132,5 @@ struct NewPasswordView: View {
 }
 
 #Preview {
-    NewPasswordView()
+    ChangePasswordView()
 }

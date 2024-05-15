@@ -8,42 +8,20 @@
 import SwiftUI
 
 struct Tabbar: View {
-    init() {
-        UITabBar.appearance().backgroundColor = UIColor(Color.theme.tabbarColor)
-        UITabBar.appearance().unselectedItemTintColor = UIColor(Color.white)
-    }
+    @State private var selectedTab: Tab = .home
     
     var body: some View {
-        TabView {
-            WelcomeScreen()
-                .tabItem {
-                    VStack {
-                        Image("home-icon")
-                        Text("Home")
-                        Rectangle()
-                            .fill(Color.red)
-                            .frame(width: 114, height: 5)
-                    }
-                }
-            EmailView()
-                .tabItem {
-                    Image("vault-icon")
-                    Text("Home")
-                    Rectangle()
-                        .fill(Color.red)
-                        .frame(width: 114, height: 5)
-                }
-            SettingsView()
-                .tabItem {
-                    Image(systemName: "person.crop.circle")
-                        .foregroundStyle(.white)
-                    Text("Home")
-                    Rectangle()
-                        .fill(Color.red)
-                        .frame(width: 114, height: 5)
-                }
+        VStack(spacing: 0) {
+            if selectedTab == .home {
+                FeedView()
+            } else if selectedTab == .vault {
+                VaultView()
+            } else if selectedTab == .profile {
+                ProfileView()
+            }
+                        
+            CustomTabbar(selectedTab: $selectedTab)
         }
-        .tint(Color.white)
     }
 }
 

@@ -31,6 +31,7 @@ struct SettingsNavigatorView: View {
                             Text(description)
                                 .font(.custom(Font.Medium, size: 14))
                                 .foregroundStyle(Color.theme.textGrayColor)
+                                .multilineTextAlignment(.leading)
                         }
                     }
                     Spacer()

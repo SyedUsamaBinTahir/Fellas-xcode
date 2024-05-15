@@ -2,12 +2,12 @@
 //  CustomTabbar.swift
 //  FellasLoaded
 //
-//  Created by Phebsoft on 14/05/2024.
+//  Created by Phebsoft on 15/05/2024.
 //
 
 import SwiftUI
 
-enum Tab: String, CaseIterable {
+enum  Tab: String, CaseIterable {
     case home
     case vault
     case profile
@@ -16,38 +16,34 @@ enum Tab: String, CaseIterable {
 struct CustomTabbar: View {
     @Binding var selectedTab: Tab
     private var selectedImage: String {
-        selectedTab.rawValue + "Selected"
+        selectedTab.rawValue
     }
     
-    
     var body: some View {
-        VStack {
-            HStack {
-                ForEach(Tab.allCases, id: \.rawValue) { tab in
-                    Spacer()
-                    VStack(spacing: 5) {
-                        Image(selectedTab == tab ? selectedImage : tab.rawValue)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 24, height: 24, alignment: .center)
-                        Text(tab.rawValue.capitalized)
-                            .font(.custom(Font.Medium, size: 14))
-                            .foregroundStyle(Color.white)
-                        Rectangle()
-                            .fill(Color.red)
-                            .frame(width: 14, height: 2)
-                            .cornerRadius(10)
-                    }
-                    .onTapGesture {
-                        withAnimation(.easeIn(duration: 0.1)) {
-                            selectedTab = tab
-                        }
-                    }
-                    Spacer()
+        HStack{
+            ForEach (Tab.allCases, id: \.rawValue) { tab in
+                Spacer()
+                VStack(spacing: 0) {
+                    Image(selectedTab == tab ? selectedImage : tab.rawValue)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 24, height: 24)
+                    
+                    Text(tab.rawValue.capitalized)
+                        .font(.caption)
+                        .foregroundColor(.white)
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(Color.red)
+                        .frame(width: 16, height: 3)
                 }
+                .onTapGesture {
+                        selectedTab = tab
+                }
+                Spacer()
             }
-            .background(Color.theme.tabbarColor)
         }
+        .frame(width: UIScreen.main.bounds.width, height: 60)
+        .background(Color.theme.tabbarColor)
     }
 }
 
