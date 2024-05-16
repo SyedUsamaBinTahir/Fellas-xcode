@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9B3B8FC32BF60C0500DC5838 /* SeriesDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3B8FC22BF60C0500DC5838 /* SeriesDetailView.swift */; };
+		9B3B8FC32BF60C0500DC5838 /* ShowAllSeriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3B8FC22BF60C0500DC5838 /* ShowAllSeriesView.swift */; };
 		9B3D10322BF21698009AD6F2 /* FellasLoadedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3D10312BF21698009AD6F2 /* FellasLoadedApp.swift */; };
 		9B3D10342BF21698009AD6F2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3D10332BF21698009AD6F2 /* ContentView.swift */; };
 		9B3D10362BF21699009AD6F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B3D10352BF21699009AD6F2 /* Assets.xcassets */; };
@@ -20,6 +20,10 @@
 		9B3D105C2BF253CF009AD6F2 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3D105B2BF253CF009AD6F2 /* RegistrationView.swift */; };
 		9B3D105E2BF270ED009AD6F2 /* CreatePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3D105D2BF270ED009AD6F2 /* CreatePasswordView.swift */; };
 		9B3D10602BF27D51009AD6F2 /* FLTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3D105F2BF27D51009AD6F2 /* FLTextField.swift */; };
+		9B6D9D9E2BF6271600365CE6 /* CarousalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6D9D9D2BF6271600365CE6 /* CarousalView.swift */; };
+		9B6D9DA12BF6374900365CE6 /* ACarousel in Frameworks */ = {isa = PBXBuildFile; productRef = 9B6D9DA02BF6374900365CE6 /* ACarousel */; };
+		9B6D9DA32BF63FC100365CE6 /* EpisodesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6D9DA22BF63FC100365CE6 /* EpisodesView.swift */; };
+		9B6D9DA52BF64A1B00365CE6 /* EpisodeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6D9DA42BF64A1B00365CE6 /* EpisodeDetailView.swift */; };
 		9BC6B7FA2BF34D2800E684AD /* CheckEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6B7F92BF34D2800E684AD /* CheckEmailView.swift */; };
 		9BC6B7FC2BF3508500E684AD /* DisplayNameAndImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6B7FB2BF3508500E684AD /* DisplayNameAndImageView.swift */; };
 		9BC6B7FE2BF3530D00E684AD /* SubscribeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6B7FD2BF3530D00E684AD /* SubscribeView.swift */; };
@@ -48,7 +52,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9B3B8FC22BF60C0500DC5838 /* SeriesDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesDetailView.swift; sourceTree = "<group>"; };
+		9B3B8FC22BF60C0500DC5838 /* ShowAllSeriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAllSeriesView.swift; sourceTree = "<group>"; };
 		9B3D102E2BF21698009AD6F2 /* FellasLoaded.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FellasLoaded.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B3D10312BF21698009AD6F2 /* FellasLoadedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FellasLoadedApp.swift; sourceTree = "<group>"; };
 		9B3D10332BF21698009AD6F2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -64,6 +68,9 @@
 		9B3D105B2BF253CF009AD6F2 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		9B3D105D2BF270ED009AD6F2 /* CreatePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePasswordView.swift; sourceTree = "<group>"; };
 		9B3D105F2BF27D51009AD6F2 /* FLTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLTextField.swift; sourceTree = "<group>"; };
+		9B6D9D9D2BF6271600365CE6 /* CarousalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarousalView.swift; sourceTree = "<group>"; };
+		9B6D9DA22BF63FC100365CE6 /* EpisodesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesView.swift; sourceTree = "<group>"; };
+		9B6D9DA42BF64A1B00365CE6 /* EpisodeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailView.swift; sourceTree = "<group>"; };
 		9BC6B7F92BF34D2800E684AD /* CheckEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckEmailView.swift; sourceTree = "<group>"; };
 		9BC6B7FB2BF3508500E684AD /* DisplayNameAndImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayNameAndImageView.swift; sourceTree = "<group>"; };
 		9BC6B7FD2BF3530D00E684AD /* SubscribeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeView.swift; sourceTree = "<group>"; };
@@ -100,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B6D9DA12BF6374900365CE6 /* ACarousel in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,6 +215,22 @@
 			path = Registration;
 			sourceTree = "<group>";
 		};
+		9B6D9D982BF6267D00365CE6 /* CarousalView */ = {
+			isa = PBXGroup;
+			children = (
+				9B6D9D9C2BF6270900365CE6 /* CarousalView */,
+			);
+			path = CarousalView;
+			sourceTree = "<group>";
+		};
+		9B6D9D9C2BF6270900365CE6 /* CarousalView */ = {
+			isa = PBXGroup;
+			children = (
+				9B6D9D9D2BF6271600365CE6 /* CarousalView.swift */,
+			);
+			path = CarousalView;
+			sourceTree = "<group>";
+		};
 		9BC6B7FF2BF35E3500E684AD /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,9 +312,12 @@
 		9BC6B8212BF3A6E300E684AD /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				9B6D9D982BF6267D00365CE6 /* CarousalView */,
 				9BCED2122BF4D3C6007D02B3 /* FeedView.swift */,
-				9B3B8FC22BF60C0500DC5838 /* SeriesDetailView.swift */,
+				9B3B8FC22BF60C0500DC5838 /* ShowAllSeriesView.swift */,
 				9BCED2182BF5085B007D02B3 /* ContinueWatchingDetailView.swift */,
+				9B6D9DA42BF64A1B00365CE6 /* EpisodeDetailView.swift */,
+				9B6D9DA22BF63FC100365CE6 /* EpisodesView.swift */,
 				9BCED2142BF4DCB5007D02B3 /* FeedSwiperView.swift */,
 			);
 			path = Feed;
@@ -365,6 +392,9 @@
 			dependencies = (
 			);
 			name = FellasLoaded;
+			packageProductDependencies = (
+				9B6D9DA02BF6374900365CE6 /* ACarousel */,
+			);
 			productName = FellasLoaded;
 			productReference = 9B3D102E2BF21698009AD6F2 /* FellasLoaded.app */;
 			productType = "com.apple.product-type.application";
@@ -393,6 +423,9 @@
 				Base,
 			);
 			mainGroup = 9B3D10252BF21697009AD6F2;
+			packageReferences = (
+				9B6D9D9F2BF6374900365CE6 /* XCRemoteSwiftPackageReference "ACarousel" */,
+			);
 			productRefGroup = 9B3D102F2BF21698009AD6F2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -425,6 +458,8 @@
 			files = (
 				9BCED2132BF4D3C6007D02B3 /* FeedView.swift in Sources */,
 				9BC6B8262BF3A76300E684AD /* SettingsView.swift in Sources */,
+				9B6D9D9E2BF6271600365CE6 /* CarousalView.swift in Sources */,
+				9B6D9DA52BF64A1B00365CE6 /* EpisodeDetailView.swift in Sources */,
 				9BCED2112BF4C6EA007D02B3 /* ProfileView.swift in Sources */,
 				9BC6B80A2BF36A3A00E684AD /* NewPasswordView.swift in Sources */,
 				9BC6B82B2BF3B59E00E684AD /* LogOutView.swift in Sources */,
@@ -433,11 +468,12 @@
 				9BC6B7FE2BF3530D00E684AD /* SubscribeView.swift in Sources */,
 				9BC6B8302BF3C60D00E684AD /* DeleteAccountView.swift in Sources */,
 				9BC6B8282BF3AE3300E684AD /* SettingsNavigatorView.swift in Sources */,
-				9B3B8FC32BF60C0500DC5838 /* SeriesDetailView.swift in Sources */,
+				9B3B8FC32BF60C0500DC5838 /* ShowAllSeriesView.swift in Sources */,
 				9BC6B8062BF364BB00E684AD /* ForgotPasswordView.swift in Sources */,
 				9BC6B8012BF35E4C00E684AD /* EmailView.swift in Sources */,
 				9BCED20E2BF4B17A007D02B3 /* CustomTabbar.swift in Sources */,
 				9BCED2192BF5085B007D02B3 /* ContinueWatchingDetailView.swift in Sources */,
+				9B6D9DA32BF63FC100365CE6 /* EpisodesView.swift in Sources */,
 				9B3D10342BF21698009AD6F2 /* ContentView.swift in Sources */,
 				9B3D105E2BF270ED009AD6F2 /* CreatePasswordView.swift in Sources */,
 				9B3D10432BF218FB009AD6F2 /* WelcomeScreen.swift in Sources */,
@@ -675,6 +711,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9B6D9D9F2BF6374900365CE6 /* XCRemoteSwiftPackageReference "ACarousel" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JWAutumn/ACarousel";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9B6D9DA02BF6374900365CE6 /* ACarousel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9B6D9D9F2BF6374900365CE6 /* XCRemoteSwiftPackageReference "ACarousel" */;
+			productName = ACarousel;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9B3D10262BF21697009AD6F2 /* Project object */;
 }

@@ -15,6 +15,7 @@ struct FeedSwiperView: View {
     var height: CGFloat
     var progressBarValue: CGFloat?
     @State var action: () ->  Void = {}
+    @State var imageAction: () -> Void
     
     var body: some View {
         VStack (alignment: .leading, spacing: 10) {
@@ -38,11 +39,13 @@ struct FeedSwiperView: View {
                     ForEach(0...5, id: \.self)  { image in
                         VStack(alignment: .leading, spacing: 10) {
                             ZStack(alignment: .bottom) {
-                                Image("\(feedImage)")
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: width, height: height)
-                                    .cornerRadius(8)
+                                Button(action: imageAction) {
+                                    Image("\(feedImage)")
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: width, height: height)
+                                        .cornerRadius(8)
+                                }
                                 if let progressBarValue = progressBarValue {
                                     ProgressView(value: progressBarValue, total: 10)
                                         .tint(Color.theme.appRedColor)
@@ -66,5 +69,5 @@ struct FeedSwiperView: View {
 }
 
 #Preview {
-    FeedSwiperView(width: 114, height: 171)
+    FeedSwiperView(width: 114, height: 171, imageAction: {})
 }
