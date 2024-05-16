@@ -51,7 +51,7 @@ struct SettingsView: View {
                             }
                             
                             VStack(spacing: 26) {
-                                SettingsNavigatorView(icon: "person.crop.circle", title: "Edit Profile", description: nil, forwardIcon: "chevron-icon") { }
+                                SettingsNavigatorView(icon: nil, title: "Edit Profile", description: nil, forwardIcon: "chevron-icon") { }
                                 SettingsNavigatorView(icon: "account", title: "Account", description: "Subscription renews on Aug 26, 2024  ", forwardIcon: "chevron-icon") { redirectAccount = true }
                                 SettingsNavigatorView(icon: "video-player-controls", title: "Video playback", description: nil, forwardIcon: "chevron-icon") { }
                                 SettingsNavigatorView(icon: "download", title: "Downloads", description: nil, forwardIcon: "chevron-icon") { }

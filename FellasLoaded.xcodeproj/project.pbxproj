@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B3B8FC32BF60C0500DC5838 /* SeriesDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3B8FC22BF60C0500DC5838 /* SeriesDetailView.swift */; };
 		9B3D10322BF21698009AD6F2 /* FellasLoadedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3D10312BF21698009AD6F2 /* FellasLoadedApp.swift */; };
 		9B3D10342BF21698009AD6F2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3D10332BF21698009AD6F2 /* ContentView.swift */; };
 		9B3D10362BF21699009AD6F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B3D10352BF21699009AD6F2 /* Assets.xcassets */; };
@@ -47,6 +48,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9B3B8FC22BF60C0500DC5838 /* SeriesDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesDetailView.swift; sourceTree = "<group>"; };
 		9B3D102E2BF21698009AD6F2 /* FellasLoaded.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FellasLoaded.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B3D10312BF21698009AD6F2 /* FellasLoadedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FellasLoadedApp.swift; sourceTree = "<group>"; };
 		9B3D10332BF21698009AD6F2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				9BCED2122BF4D3C6007D02B3 /* FeedView.swift */,
+				9B3B8FC22BF60C0500DC5838 /* SeriesDetailView.swift */,
 				9BCED2182BF5085B007D02B3 /* ContinueWatchingDetailView.swift */,
 				9BCED2142BF4DCB5007D02B3 /* FeedSwiperView.swift */,
 			);
@@ -430,6 +433,7 @@
 				9BC6B7FE2BF3530D00E684AD /* SubscribeView.swift in Sources */,
 				9BC6B8302BF3C60D00E684AD /* DeleteAccountView.swift in Sources */,
 				9BC6B8282BF3AE3300E684AD /* SettingsNavigatorView.swift in Sources */,
+				9B3B8FC32BF60C0500DC5838 /* SeriesDetailView.swift in Sources */,
 				9BC6B8062BF364BB00E684AD /* ForgotPasswordView.swift in Sources */,
 				9BC6B8012BF35E4C00E684AD /* EmailView.swift in Sources */,
 				9BCED20E2BF4B17A007D02B3 /* CustomTabbar.swift in Sources */,
