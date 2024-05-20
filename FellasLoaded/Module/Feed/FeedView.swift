@@ -12,15 +12,21 @@ struct FeedView: View {
     @State private var redirectContinueWatchingDetail = false
     @State private var redirectSeriesDetail = false
     @State private var redirectEpisodeDetail = false
+    @State private var redirectSearch = false
+    @State private var redirectVideoPlayer = false
     
     var body: some View {
         VStack {
             VStack {
                 HStack(alignment: .center) {
-                    Image("search-icon")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 24, height: 24)
+                    Button {
+                        redirectSearch = true
+                    } label: {
+                        Image("search-icon")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 24, height: 24)
+                    }
                     Spacer()
                     Image("fellas-loaded-logo")
                         .resizable()
@@ -28,10 +34,14 @@ struct FeedView: View {
                         .frame(width: 98, height: 42, alignment: .center)
                         .clipped()
                     Spacer()
-                    Image("notifications")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 24, height: 24)
+                    Button {
+                        
+                    } label: {
+                        Image("notifications")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 24, height: 24)
+                    }
                 }
                 .padding()
                 ScrollView {
@@ -46,12 +56,12 @@ struct FeedView: View {
                         FeedSwiperView(title: "Recently added", feedImage: "series-image", description: "The Fellas & W2S Get Drunk in Amsterdam Holland" ,width: horizontalSizeClass == .regular ? 523 : 277, height: horizontalSizeClass == .regular ? 294 : 155, action: {
                             redirectContinueWatchingDetail = true
                         }, imageAction: {
-                            
+                            redirectVideoPlayer = true
                         })
                         FeedSwiperView(title: "Continue watching", feedImage: "series-image", description: "The Fellas & W2S Get Drunk in Amsterdam Holland" ,width: horizontalSizeClass == .regular ? 523 : 277, height: horizontalSizeClass == .regular ? 294 : 155, action: {
                             redirectContinueWatchingDetail = true
                         }, imageAction: {
-                            
+                            redirectVideoPlayer = true
                         })
                         FeedSwiperView(title: "Series", feedImage: "series-image", width: horizontalSizeClass == .regular ? 304 : 155, height: horizontalSizeClass == .regular ? 456 : 232, action:  {
                             redirectSeriesDetail = true
@@ -71,7 +81,7 @@ struct FeedView: View {
                         FeedSwiperView(title: "Most Popular", feedImage: "series-image", description: "The Fellas & W2S Get Drunk in Amsterdam Holland" ,width: horizontalSizeClass == .regular ? 523 : 277, height: horizontalSizeClass == .regular ? 294 : 155, action: {
                             redirectContinueWatchingDetail = true
                         }, imageAction: {
-                            
+                            redirectVideoPlayer = true
                         })
                     }
                     .padding()
@@ -88,6 +98,12 @@ struct FeedView: View {
             }
             .navigationDestination(isPresented: $redirectEpisodeDetail) {
                 EpisodeDetailView().navigationBarBackButtonHidden(true)
+            }
+            .navigationDestination(isPresented: $redirectSearch) {
+                SearchView().navigationBarBackButtonHidden(true)
+            }
+            .navigationDestination(isPresented: $redirectVideoPlayer) {
+                VideoPlayerView().navigationBarBackButtonHidden(true)
             }
             
         }

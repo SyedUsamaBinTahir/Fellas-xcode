@@ -13,6 +13,7 @@ struct AccountView: View {
     @State private var email: String = ""
     @State private var redirectDeleteAccount = false
     @State private var redirectChangePassword = false
+    @State private var redirectManageSubscriptions = false
     @State private var dismissLogout = false
     
     var body: some View {
@@ -55,8 +56,8 @@ struct AccountView: View {
                                 SettingsNavigatorView(icon: nil, title: "Email", description: "user@gmail.com", forwardIcon: nil) { }
                                 SettingsNavigatorView(icon: nil, title: "Change you password", description: "", forwardIcon: "chevron-icon") { redirectChangePassword = true
                                 }
-                                SettingsNavigatorView(icon: nil, title: "Manage Subscription", description: "View details, or end subscription", forwardIcon: "chevron-icon") { }
-                                SettingsNavigatorView(icon: nil, title: "Delete your account", description: "Permanently delete your account.", forwardIcon: "chevron-icon") { 
+                                SettingsNavigatorView(icon: nil, title: "Manage Subscription", description: "View details, or end subscription", forwardIcon: "chevron-icon") { redirectManageSubscriptions = true }
+                                SettingsNavigatorView(icon: nil, title: "Delete your account", description: "Permanently delete your account.", forwardIcon: "chevron-icon") {
                                     redirectDeleteAccount = true
                                 }
                             }
@@ -80,6 +81,9 @@ struct AccountView: View {
             }
             .navigationDestination(isPresented: $redirectChangePassword) {
                 ChangePasswordView().navigationBarBackButtonHidden(true)
+            }
+            .navigationDestination(isPresented: $redirectManageSubscriptions) {
+                ManageSubscriptionsView().navigationBarBackButtonHidden(true)
             }
         }
         .background {

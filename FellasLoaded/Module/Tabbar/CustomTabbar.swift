@@ -32,9 +32,15 @@ struct CustomTabbar: View {
                     Text(tab.rawValue.capitalized)
                         .font(.caption)
                         .foregroundColor(.white)
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.red)
-                        .frame(width: 16, height: 3)
+                    if selectedTab == tab {
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color.red)
+                            .frame(width: 16, height: 3)
+                    } else {
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color.clear)
+                            .frame(width: 16, height: 3)
+                    }
                 }
                 .onTapGesture {
                         selectedTab = tab

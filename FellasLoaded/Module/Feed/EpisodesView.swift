@@ -13,6 +13,7 @@ struct EpisodesView: View {
     var episode: String = ""
     var title: String = ""
     var description: String = ""
+    var icon: String = ""
     
     var body: some View {
         HStack(spacing: 16) {
@@ -39,7 +40,7 @@ struct EpisodesView: View {
                 }
             }
             Spacer()
-            Image("download")
+            Image("\(icon)")
                 .resizable()
                 .scaledToFit()
                 .frame(width: 24, height: 23)
@@ -48,5 +49,5 @@ struct EpisodesView: View {
 }
 
 #Preview {
-    EpisodesView(seriesImage: "series-image", episode: "S1:E1", title: "The Fellas & W2S Get Drunk in Amsterdam The Fellas & W2S Get Drunk in Amsterdam", description: "The Fellas head to the city of Amsterdam for some absolute CARNAGE! 24 hours was more than enough and you'll see why")
+    EpisodesView(seriesImage: "series-image", episode: "S1:E1", title: "The Fellas & W2S Get Drunk in Amsterdam The Fellas & W2S Get Drunk in Amsterdam", description: "The Fellas head to the city of Amsterdam for some absolute CARNAGE! 24 hours was more than enough and you'll see why", icon: "download")
 }

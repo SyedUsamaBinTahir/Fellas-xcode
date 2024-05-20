@@ -9,6 +9,8 @@ import SwiftUI
 
 struct VaultView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @State private var expandDescription = false
+    @State private var redirectComment = false
     
     var body: some View {
         VStack {
@@ -30,13 +32,16 @@ struct VaultView: View {
                     
                     VStack(alignment: .leading, spacing: 20) {
                         VStack(alignment: .leading) {
-                            Text("The Fellas head to the city of Amsterdam for some absolute CARNAGE! 24 hours was more than enough and you'll see why")
+                            Text("The Fellas head to the city of Amsterdam for some absolute CARNAGE! 24 hours was more than enough and you'll see why The Fellas head to the city of Amsterdam for some absolute CARNAGE! 24 hours was more than enough and you'll see wh")
                                 .font(.custom(Font.regular, size: 14))
                                 .foregroundStyle(.white)
-                                .lineLimit(2)
-                            Text("more")
+                                .lineLimit(expandDescription ? nil : 2)
+                            Text(expandDescription ? "show less" : "more")
                                 .font(.custom(Font.bold, size: 14))
                                 .foregroundStyle(.white)
+                                .onTapGesture {
+                                    expandDescription.toggle()
+                                }
                         }
                         
                         HStack {
@@ -106,6 +111,12 @@ struct VaultView: View {
                         .frame(maxWidth: .infinity)
                         .background(Color.theme.tabbarColor)
                         .cornerRadius(10)
+                        .onTapGesture {
+                            redirectComment = true
+                        }
+                        .sheet(isPresented: $redirectComment, content: {
+                            CommentView()
+                        })
                         
                     }
                     .padding(horizontalSizeClass == .regular ? 0 : 10)
