@@ -115,7 +115,7 @@ struct VaultView: View {
                             redirectComment = true
                         }
                         .sheet(isPresented: $redirectComment, content: {
-                            CommentView()
+                            CommentView(dismissSheet: $redirectComment)
                         })
                         
                     }

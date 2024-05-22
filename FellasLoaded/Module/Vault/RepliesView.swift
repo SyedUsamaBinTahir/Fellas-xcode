@@ -16,6 +16,7 @@ struct RepliesView: View {
     @State private var showReportComment = false
     @State private var addComment: String = ""
     @State private var redirectReply = false
+    @Binding var dismissSheet: Bool
     
     var body: some View {
         VStack(spacing: 0) {
@@ -44,7 +45,7 @@ struct RepliesView: View {
                         Spacer()
                         
                         Button(action: {
-                            
+                            dismissSheet = false
                         }, label: {
                             Image("xmark-icon")
                                 .resizable()
@@ -107,5 +108,5 @@ struct RepliesView: View {
 }
 
 #Preview {
-    RepliesView()
+    RepliesView(dismissSheet: .constant(false))
 }

@@ -6,13 +6,13 @@
 //
 
 import SwiftUI
-
-import SwiftUI
 import AVKit
 
 struct VideoPlayer: View {
+    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     var size: CGSize
-    var safeArea: EdgeInsets
+    var safeArea: EdgeInsets?
     @State private var player = AVPlayer(url: URL(string: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")!)
     @State private var showPlayerControlls: Bool = false
     @State private var isPlaying: Bool = false
@@ -29,12 +29,16 @@ struct VideoPlayer: View {
     /// Rotation Properties
     @State private var isRotated: Bool = false
     
+    @State private var expandDescription = false
+    @State private var redirectComment = false
+    @State private var selectedTab: SegmentsTab = .EPISODES
+    
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             let videoPlayerSize: CGSize = .init(width: isRotated ? size.height : size.width, height: isRotated ? size.width : (size.height / 3.5))
             
             // Custom Video Player
-            ZStack {
+            ZStack(alignment: .topLeading) {
                     CustomVideoPlayer(player: player)
                     .overlay {
                         Rectangle()
@@ -71,13 +75,37 @@ struct VideoPlayer: View {
                         }
                     }
                     .overlay(alignment: .bottom) {
-                        videoSeekerView(videoPlayerSize)
+                        if showPlayerControlls {
+                            videoSeekerView(videoPlayerSize)
+                        }
                     }
+                
+                HStack {
+                    Button {
+                        presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Image("back-icon")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 32, height: 32)
+                            .opacity(0.8)
+                    }
+                    
+                    Spacer()
+                    if showPlayerControlls {
+                        HStack {
+                            AirPlayView()
+                                .frame(width: 32, height: 32)
+                        }
+                    }
+                }
+                .padding(10)
+
             }
             .background(content: {
                 Rectangle()
                     .fill(.black)
-                    .padding(.trailing, isRotated ? -safeArea.bottom : 0)
+                    .padding(.trailing, isRotated ? -safeArea!.bottom : 0)
             })
             .gesture(
                 DragGesture()
@@ -97,12 +125,137 @@ struct VideoPlayer: View {
             .frame(width: videoPlayerSize.width, height: videoPlayerSize.height)
             /// To avoid other view expansion set it's native view height
             .frame(width: size.width, height: size.height / 3, alignment: .bottomLeading)
-            .offset(y: isRotated ? -((size.width / 2) + safeArea.bottom) : 0)
+            .offset(y: isRotated ? -((size.width / 2) + safeArea!.bottom) : 0)
             .rotationEffect(.init(degrees: isRotated ? 90 : 0), anchor: .topLeading)
             /// Making it top view
             .zIndex(10000)
+            
+            ScrollView(showsIndicators: false) {
+                VStack(alignment: .leading) {
+                    Text("The Fellas Try KSI's Workout Routine?!")
+                        .font(.custom(Font.semiBold, size: 24))
+                        .foregroundStyle(.white)
+                    
+                    VStack(alignment: .leading, spacing: 16) {
+                        HStack(spacing: 16) {
+                            Button {
+                                
+                            } label: {
+                                Image("add-to-watchlist-icon")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 40, height: 40)
+                            }
+                            
+                            Button {
+                                
+                            } label: {
+                                Image("download-icon")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 40, height: 40)
+                            }
+                        }
+                        
+                        Rectangle()
+                            .fill(Color.theme.appGrayColor.opacity(0.4))
+                            .frame(maxWidth: .infinity, maxHeight: 2)
+                    }
+                    
+                    VStack(alignment: .leading, spacing: 14) {
+                        Text("S1: E22 • 2022")
+                            .font(.custom(Font.Medium, size: 11))
+                            .foregroundStyle(Color.theme.textGrayColor)
+                        
+                        VStack(alignment: .leading) {
+                            Text("The Fellas head to the city of Amsterdam for some absolute CARNAGE! 24 hours was more than enough and you'll see why The Fellas head to the city of Amsterdam for some absolute CARNAGE! 24 hours was more than enough and you'll see wh")
+                                .font(.custom(Font.regular, size: 14))
+                                .foregroundStyle(.white)
+                                .lineLimit(expandDescription ? nil : 2)
+                            Text(expandDescription ? "show less" : "more")
+                                .font(.custom(Font.bold, size: 14))
+                                .foregroundStyle(.white)
+                                .onTapGesture {
+                                    expandDescription.toggle()
+                                }
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 4) {
+                            HStack(spacing: 0) {
+                                Text("Host: ")
+                                Text("Cal, and Chip")
+                            }
+                            .font(.custom(Font.Medium, size: 14))
+                            .foregroundStyle(Color.theme.textGrayColor)
+                            
+                            HStack(spacing: 0) {
+                                Text("Host: ")
+                                Text("Stormzy")
+                            }
+                            .font(.custom(Font.Medium, size: 14))
+                            .foregroundStyle(Color.theme.textGrayColor)
+                        }
+                        
+                        VStack(alignment: .leading) {
+                            HStack {
+                               Text("COMMENTS")
+                                    .font(.custom(Font.semiBold, size: 14))
+                                    .foregroundStyle(.white)
+                                Text("217")
+                                    .font(.custom(Font.regular, size: 14))
+                                    .foregroundStyle(Color.theme.textGrayColor)
+                            }
+                            
+                            HStack {
+                                Image("profile")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 24, height: 24, alignment: .center)
+                                Text("I swear this pod turned into cal bragging to chip about things chip wasn’t invited to 😂 ")
+                                    .font(.custom(Font.regular, size: 14))
+                                    .foregroundStyle(.white)
+                                
+                                Spacer()
+                                
+                                Image("expand-arrow-icon")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 18, height: 18, alignment: .center)
+                            }
+                        }
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.theme.tabbarColor)
+                        .cornerRadius(10)
+                        .onTapGesture {
+                            redirectComment = true
+                        }
+                        .sheet(isPresented: $redirectComment, content: {
+                            CommentView(dismissSheet: $redirectComment)
+                        })
+                    }
+                    .padding(.top, 5)
+                    
+                    VStack(alignment: .leading, spacing: 20) {
+                        Segments(selectedTab: $selectedTab)
+                        
+                        if selectedTab == .EPISODES {
+                            ForEach(1...5, id: \.self) { _ in
+                                EpisodesView(seriesImage: "series-image", episode: "S1:E1", title: "The Fellas & W2S Get Drunk in Amsterdam The Fellas & W2S Get Drunk in Amsterdam", description: "The Fellas head to the city of Amsterdam for some absolute CARNAGE! 24 hours was more than enough and you'll see why")
+                            }
+                        } else if selectedTab == .RECOMMENDED {
+                            ForEach(1...5, id: \.self) { _ in
+                                EpisodesView(seriesImage: "series-image", episode: "S1:E1", title: "The Fellas & W2S Get Drunk", description: "The Fellas head to the city of Amsterdam for some absolute CARNAGE! 24 hours was more than enough and you'll see why")
+                            }
+                        }
+                    }
+                    .padding(.top)
+                }
+                .padding()
+            }
         }
-        .padding(.top, safeArea.top)
+        .padding(.top, isRotated ? safeArea!.top : 20)
+        .padding(.leading, isRotated ? 32 : 0)
         .onAppear {
             guard !isObservedAdded else { return }
             /// Adding observer to update seeker when the video is playing
@@ -128,6 +281,10 @@ struct VideoPlayer: View {
             
             isObservedAdded = true
         }
+        .background {
+            LinearGradient(gradient: Gradient(colors: [Color.black, Color.theme.appColor, Color.black]), startPoint: .topLeading, endPoint: .bottomTrailing)
+        }
+        .ignoresSafeArea()
     }
     
     @ViewBuilder
@@ -286,4 +443,8 @@ struct VideoPlayer: View {
             DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: timeoutTask)
         }
     }
+}
+
+#Preview {
+    VideoPlayerView()
 }

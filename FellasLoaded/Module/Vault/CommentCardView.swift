@@ -91,7 +91,7 @@ struct CommentCardView: View {
                         }
                     }
                     .navigationDestination(isPresented: $redirectReply) {
-                        RepliesView().navigationBarBackButtonHidden(true)
+                        RepliesView(dismissSheet: $redirectReply).navigationBarBackButtonHidden(true)
                     }
                     
                 }
