@@ -40,7 +40,7 @@ struct WelcomeScreen: View {
                     
                     
                     VStack(spacing: 14) {
-                        FLButton(action: {
+                        AuthButtonView(action: {
                             redirectSignUp = true
                         }, title: "SIGN UP", background: Color.white, foreground: Color.black)
                         
@@ -56,11 +56,11 @@ struct WelcomeScreen: View {
                         .frame(maxWidth: .infinity, maxHeight: 2)
                     
                     VStack(spacing: 16) {
-                        FLButton(action: {
+                        AuthButtonView(action: {
                             redirectLogin = true
                         }, title: "LOG IN", background: Color.theme.appGrayColor, foreground: Color.white)
                         
-                        FLButton(action: {
+                        AuthButtonView(action: {
                             redirectExplore = true
                         }, title: "EXPLORE CONTENT", background: Color.theme.appGrayColor, foreground: Color.white)
                     }

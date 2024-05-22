@@ -1,0 +1,39 @@
+//
+//  AddCommentView.swift
+//  FellasLoaded
+//
+//  Created by Phebsoft on 22/05/2024.
+//
+
+import SwiftUI
+
+struct AddCommentView: View {
+    @Binding var addComment: String
+    @State var action: () -> Void
+    
+    var body: some View {
+        HStack {
+            Image("profile")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 24, height: 24)
+            
+                TextField("Add a comment", text: $addComment)
+                    .font(.custom(Font.regular, size: 16))
+                    .padding(5)
+                    .background(Color.theme.appGrayColor)
+                    .foregroundColor(.white)
+                    .cornerRadius(5)
+            
+            Button(action: action) {
+                Image("send-comment-icon")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 40, height: 40)
+            }
+        }
+        .padding()
+        .background(Color.theme.tabbarColor)
+        .padding(.bottom)
+    }
+}

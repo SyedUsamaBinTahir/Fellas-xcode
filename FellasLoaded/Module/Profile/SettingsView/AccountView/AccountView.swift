@@ -19,29 +19,7 @@ struct AccountView: View {
     var body: some View {
         VStack {
             VStack(alignment: horizontalSizeClass == .regular ? .center : .leading) {
-                ZStack {
-                    HStack {
-                        Button(action: {
-                            presentationMode.wrappedValue.dismiss()
-                        }, label: {
-                            Image("back-icon")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 32, height: 32)
-                        }).padding(.leading)
-                        
-                        Spacer()
-                    }
-                    
-                    if horizontalSizeClass != .regular {
-                        HStack {
-                            Text("Account")
-                                .font(.custom(Font.semiBold, size: 24))
-                                .foregroundStyle(Color.white)
-                        }
-                    }
-                }
-                .padding(.top, 50)
+                SettingsHeaderView(title: .constant("Account"))
                 
                 VStack(alignment: .leading) {
                     ScrollView {
