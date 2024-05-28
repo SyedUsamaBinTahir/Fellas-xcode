@@ -6,36 +6,61 @@
 //
 
 import SwiftUI
+import ExytePopupView
 
 struct PasswordView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.presentationMode) var presentationMode
-    @State private var password: String = ""
+    @Binding var password: String
+    @Binding var email: String
     @State private var redirectToForgotPassword = false
     @State private var redirectTabbarView = false
+    @EnvironmentObject var viewModel: AuthenticationViewModel
     
     var body: some View {
         VStack {
-            VStack(alignment: horizontalSizeClass == .regular ? .center : .leading) {
-                EmailHeaderView()
-                
-                VStack(alignment: .leading, spacing: 30) {
+            ZStack {
+                VStack(alignment: horizontalSizeClass == .regular ? .center : .leading) {
+                    EmailHeaderView()
                     
-                    PasswordLablesView()
+                    VStack(alignment: .leading, spacing: 30) {
+                        
+                        PasswordLablesView()
+                        
+                        PasswordFieldAndButtonView(password: $password, redirectTabbarView: $viewModel.redirectTabbarView, redirectToForgotPassword: $redirectToForgotPassword, isValidPassword: .constant(password.count < 8 ? true : false), isDisabled: .constant(password.count < 8 ? true : false), setOpacity: .constant(password.count < 8 ? 0.6 : 1)) {
+                            viewModel.showLoader = true
+                            viewModel.getAccessToken(email: email, password: password)
+                        }
+                    }
+                    .frame(width: horizontalSizeClass == .regular ? 472 : nil)
+                    .padding(horizontalSizeClass == .regular ? 140 : 20)
                     
-                    PasswordFieldAndButtonView(password: $password, redirectTabbarView: $redirectTabbarView, redirectToForgotPassword: $redirectToForgotPassword)
+                    Spacer()
                 }
-                .frame(width: horizontalSizeClass == .regular ? 472 : nil)
-                .padding(horizontalSizeClass == .regular ? 140 : 20)
+                .popup(isPresented: $viewModel.showAlert) {
+                    FLToastAlert(image: .constant(""), message: .constant(viewModel.alertMessage))
+                } customize: {
+                    $0
+                        .type(.floater(useSafeAreaInset: true))
+                        .position(.top)
+                        .animation(.spring())
+                        .closeOnTapOutside(true)
+                        .backgroundColor(.black.opacity(0.5))
+                        .autohideIn(3)
+                        .appearFrom(.top)
+                }
                 
-                Spacer()
-            }
-            .navigationDestination(isPresented: $redirectTabbarView) {
-                Tabbar()
-                    .navigationBarBackButtonHidden(true)
-            }
-            .navigationDestination(isPresented: $redirectToForgotPassword) {
-                ForgotPasswordView().navigationBarBackButtonHidden(true)
+                .navigationDestination(isPresented: $viewModel.redirectTabbarView) {
+                    Tabbar()
+                        .navigationBarBackButtonHidden(true)
+                }
+                .navigationDestination(isPresented: $redirectToForgotPassword) {
+                    ForgotPasswordView().navigationBarBackButtonHidden(true)
+                }
+                
+                if viewModel.showLoader {
+                    FLLoader()
+                }
             }
         }
         .background {
@@ -46,5 +71,5 @@ struct PasswordView: View {
 }
 
 #Preview {
-    PasswordView()
+    PasswordView(password: .constant(""), email: .constant(""))
 }

@@ -17,33 +17,35 @@ struct VaultView: View {
             VaultHeaderView()
             
             ScrollView {
-                VStack {
-                    TabView {
-                        ForEach(1...3, id: \.self) { images in
-                            VaultMainImageView(images: .constant("vault-main-image"))
+                ForEach(1...5, id: \.self) { _ in
+                    VStack {
+                        TabView {
+                            ForEach(1...3, id: \.self) { images in
+                                VaultMainImageView(images: .constant("vault-main-image"))
+                            }
                         }
-                    }
-                    .tabViewStyle(.page)
-                    .frame(width: horizontalSizeClass == .regular ? 634 : UIScreen.main.bounds.width, height: horizontalSizeClass == .regular ? 634 : 390)
-                    
-                    VStack(alignment: .leading, spacing: 20) {
-                        VaultDescriptionView(expandDescription: $expandDescription)
+                        .tabViewStyle(.page)
+                        .frame(width: horizontalSizeClass == .regular ? 634 : UIScreen.main.bounds.width, height: horizontalSizeClass == .regular ? 634 : 390)
                         
-                        VaultLikeAndShareButtonView(shareAction: {},
-                                                    likeAction: {})
-                        
-                        VaultCommentsCardView(numberOfComments: .constant("217"), profileImage: .constant("profile"), comment: .constant("I swear this pod turned into cal bragging to chip about things chip wasn’t invited to 😂 "))
-                        .onTapGesture {
-                            redirectComment = true
+                        VStack(alignment: .leading, spacing: 20) {
+                            VaultDescriptionView(expandDescription: $expandDescription)
+                            
+                            VaultLikeAndShareButtonView(shareAction: {},
+                                                        likeAction: {})
+                            
+                            VaultCommentsCardView(numberOfComments: .constant("217"), profileImage: .constant("profile"), comment: .constant("I swear this pod turned into cal bragging to chip about things chip wasn’t invited to 😂 "))
+                            .onTapGesture {
+                                redirectComment = true
+                            }
+                            .sheet(isPresented: $redirectComment, content: {
+                                CommentView(dismissSheet: $redirectComment)
+                            })
+                            
                         }
-                        .sheet(isPresented: $redirectComment, content: {
-                            CommentView(dismissSheet: $redirectComment)
-                        })
-                        
+                        .padding(horizontalSizeClass == .regular ? 0 : 10)
                     }
-                    .padding(horizontalSizeClass == .regular ? 0 : 10)
+                    .frame(width: horizontalSizeClass == .regular ? 634 : nil)
                 }
-                .frame(width: horizontalSizeClass == .regular ? 634 : nil)
             }
         }
         .frame(maxWidth: .infinity)

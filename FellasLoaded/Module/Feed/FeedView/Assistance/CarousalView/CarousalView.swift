@@ -10,6 +10,7 @@ import ACarousel
 
 struct CarousalView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @Binding var redirectVideoPlayer: Bool
     let items: [Item] = roles.map { Item(image: Image($0)) }
         
         var body: some View {
@@ -28,13 +29,16 @@ struct CarousalView: View {
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(Color.white, lineWidth: 0.3)
                     }
+                    .onTapGesture {
+                        redirectVideoPlayer = true
+                    }
             }
             .frame(height: horizontalSizeClass == .regular ? UIScreen.main.bounds.height * 0.32 : UIScreen.main.bounds.height * 0.22)
         }
 }
 
 #Preview {
-    CarousalView()
+    CarousalView(redirectVideoPlayer: .constant(false))
 }
 
 struct Item: Identifiable {

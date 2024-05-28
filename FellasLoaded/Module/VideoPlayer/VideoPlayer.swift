@@ -7,6 +7,19 @@
 
 import SwiftUI
 import AVKit
+import GoogleCast
+
+struct CastButtonRepresentable: UIViewRepresentable {
+    func makeUIView(context: Context) -> GCKUICastButton {
+        let castButton = GCKUICastButton(frame: .zero)
+        castButton.tintColor = UIColor.gray
+        return castButton
+    }
+
+    func updateUIView(_ uiView: GCKUICastButton, context: Context) {
+        // Update the view if needed
+    }
+}
 
 struct VideoPlayer: View {
     @Environment(\.presentationMode) var presentationMode
@@ -96,6 +109,9 @@ struct VideoPlayer: View {
                         HStack {
                             AirPlayView()
                                 .frame(width: 32, height: 32)
+                            CastButtonRepresentable()
+                                .frame(width: 32, height: 32)
+                                .foregroundColor(.white)
                         }
                     }
                 }
@@ -254,8 +270,8 @@ struct VideoPlayer: View {
                 .padding()
             }
         }
-        .padding(.top, isRotated ? safeArea!.top : 20)
-        .padding(.leading, isRotated ? 32 : 0)
+        .padding(.top, isRotated ? safeArea!.top : (horizontalSizeClass == .regular ? 0 : 20))
+        .padding(.leading, isRotated ? (horizontalSizeClass == .regular ? -44 : 32) : 0)
         .onAppear {
             guard !isObservedAdded else { return }
             /// Adding observer to update seeker when the video is playing

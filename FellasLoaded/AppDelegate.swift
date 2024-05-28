@@ -7,11 +7,29 @@
 
 import Foundation
 import AVKit
+import IQKeyboardManager
+import GoogleCast
 
-class AppDelegate: NSObject, UIApplicationDelegate {
+class AppDelegate: NSObject, UIApplicationDelegate, GCKLoggerDelegate
+{
+    let kReceiverAppID = kGCKDefaultMediaReceiverApplicationID
+    let kDebugLoggingEnabled = true
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
+        // MARK: - Googel Cast
+        let criteria = GCKDiscoveryCriteria(applicationID: kReceiverAppID)
+        let options = GCKCastOptions(discoveryCriteria: criteria)
+        GCKCastContext.setSharedInstanceWith(options)
+        GCKLogger.sharedInstance().delegate = self
+        
+        // MARK: - IQKeyboardManager
+        IQKeyboardManager.shared().isEnabled = true
+        IQKeyboardManager.shared().shouldResignOnTouchOutside = true
+        IQKeyboardManager.shared().isEnableAutoToolbar = true
+        IQKeyboardManager.shared().keyboardDistanceFromTextField = 10
+        
+        // MARK: - AVKit
         let audioSession = AVAudioSession.sharedInstance()
         
         do {

@@ -1,16 +1,42 @@
 PODS:
-  - IQKeyboardManagerSwift (6.5.11)
+  - ExytePopupView (2.9.2):
+    - SwiftUIIntrospect
+  - google-cast-sdk (4.8.1.2):
+    - Protobuf (~> 3.13)
+  - IQKeyboardManager (6.5.19)
+  - Protobuf (3.26.1)
+  - SDWebImage (5.19.2):
+    - SDWebImage/Core (= 5.19.2)
+  - SDWebImage/Core (5.19.2)
+  - SPIndicator (1.6.4)
+  - SwiftUIIntrospect (1.1.4)
 
 DEPENDENCIES:
-  - IQKeyboardManagerSwift
+  - ExytePopupView
+  - google-cast-sdk (~> 4.8.1)
+  - IQKeyboardManager
+  - SDWebImage
+  - SPIndicator
 
 SPEC REPOS:
   trunk:
-    - IQKeyboardManagerSwift
+    - ExytePopupView
+    - google-cast-sdk
+    - IQKeyboardManager
+    - Protobuf
+    - SDWebImage
+    - SPIndicator
+    - SwiftUIIntrospect
 
 SPEC CHECKSUMS:
-  IQKeyboardManagerSwift: c7955c0bdbf7b2eb29bb7daaa44e3d90f55a9a85
+  ExytePopupView: 2b3878a1446b835eae09e744542cfff347ffcc6e
+  google-cast-sdk: 3f5305b8d65b609bb09364c05aef1c8be3cae7ec
+  IQKeyboardManager: c8665b3396bd0b79402b4c573eac345a31c7d485
+  Protobuf: a53f5173a603075b3522a5c50be63a67a5f3353a
+  SDWebImage: dfe95b2466a9823cf9f0c6d01217c06550d7b29a
+  SPIndicator: 93e0a4fb23de51294ac48e874c0f081a5e293e4f
+  SwiftUIIntrospect: 434b406dc6f5e30744bb6e180f90343f6a8eba8c
 
-PODFILE CHECKSUM: 1ab3f2dca024e3c992354ac19b84d2d9e47a920e
+PODFILE CHECKSUM: 55a7978b2e7bfcde6c98b89003fdcaa3bacf9401
 
 COCOAPODS: 1.15.2

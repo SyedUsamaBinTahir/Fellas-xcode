@@ -23,7 +23,7 @@ struct FeedView: View {
                 FeedHeaderView(redirectSearch: $redirectSearch, redirectNotifications: $redirectNotifications)
                 
                 ScrollView {
-                    CarousalView()
+                    CarousalView(redirectVideoPlayer: $redirectVideoPlayer)
                     
                     VStack(spacing: 20) {
                         FeedSwiperView(title: "Specials", feedImage: "series-image", width: horizontalSizeClass == .regular ? 304 : 155, height: horizontalSizeClass == .regular ? 456 : 232, action:  {
@@ -41,17 +41,17 @@ struct FeedView: View {
                         }, imageAction: {
                             redirectVideoPlayer = true
                         })
-                        FeedSwiperView(title: "Series", feedImage: "series-image", width: horizontalSizeClass == .regular ? 304 : 155, height: horizontalSizeClass == .regular ? 456 : 232, action:  {
+                        FeedSwiperView(title: "Series", feedImage: "series-image", width: horizontalSizeClass == .regular ? 195 : 114, height: horizontalSizeClass == .regular ? 292 : 171, action:  {
                             redirectSeriesDetail = true
                         }, imageAction: {
                             redirectEpisodeDetail = true
                         })
-                        FeedSwiperView(title: "Bonus Content", feedImage: "series-image", width: horizontalSizeClass == .regular ? 304 : 155, height: horizontalSizeClass == .regular ? 456 : 232, action:  {
+                        FeedSwiperView(title: "Bonus Content", feedImage: "series-image", width: horizontalSizeClass == .regular ? 195 : 114, height: horizontalSizeClass == .regular ? 292 : 171, action:  {
                             redirectSeriesDetail = true
                         }, imageAction: {
                             redirectEpisodeDetail = true
                         })
-                        FeedSwiperView(title: "Podcasts", feedImage: "series-image", width: horizontalSizeClass == .regular ? 304 : 155, height: horizontalSizeClass == .regular ? 456 : 232, action:  {
+                        FeedSwiperView(title: "Podcasts", feedImage: "series-image", width: horizontalSizeClass == .regular ? 195 : 114, height: horizontalSizeClass == .regular ? 292 : 171, action:  {
                             redirectSeriesDetail = true
                         }, imageAction: {
                             redirectEpisodeDetail = true
@@ -79,9 +79,6 @@ struct FeedView: View {
             }
             .navigationDestination(isPresented: $redirectSearch) {
                 SearchView().navigationBarBackButtonHidden(true)
-            }
-            .navigationDestination(isPresented: $redirectNotifications) {
-                
             }
             .navigationDestination(isPresented: $redirectVideoPlayer) {
                 VideoPlayerView().navigationBarBackButtonHidden(true)

@@ -10,7 +10,7 @@ import SwiftUI
 struct ShowAllSeriesView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.presentationMode) var presentationMode
-    
+    @State private var redirectDetailPage = false
     
     var body: some View {
         let gridColomn = [
@@ -36,12 +36,18 @@ struct ShowAllSeriesView: View {
                                     .frame(width: horizontalSizeClass == .regular ? geometry.size.width * 0.32 : geometry.size.width * 0.48, height: horizontalSizeClass == .regular ? geometry.size.height * 0.37 : geometry.size.height * 0.35)
                                     .clipped()
                                     .cornerRadius(10)
+                                    .onTapGesture {
+                                        redirectDetailPage = true
+                                    }
                             }
                         }
                     }
                 })
             }
             .padding()
+            .navigationDestination(isPresented: $redirectDetailPage) {
+                EpisodeDetailView()
+            }
         }
         .background {
             LinearGradient(gradient: Gradient(colors: [Color.black, Color.theme.appColor, Color.black]), startPoint: .topLeading, endPoint: .bottomTrailing)

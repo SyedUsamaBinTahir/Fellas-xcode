@@ -114,14 +114,36 @@
 		9BCED2152BF4DCB5007D02B3 /* FeedSwiperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCED2142BF4DCB5007D02B3 /* FeedSwiperView.swift */; };
 		9BCED2172BF4EF66007D02B3 /* VaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCED2162BF4EF65007D02B3 /* VaultView.swift */; };
 		9BCED2192BF5085B007D02B3 /* ContinueWatchingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCED2182BF5085B007D02B3 /* ContinueWatchingDetailView.swift */; };
+		9BE13A3B2C05CADB00D69B66 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE13A3A2C05CADB00D69B66 /* String+.swift */; };
+		9BE13A3E2C05CD3100D69B66 /* FLAuthTextFieldError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE13A3D2C05CD3100D69B66 /* FLAuthTextFieldError.swift */; };
+		9BE13A412C05CEA800D69B66 /* FLAuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE13A402C05CEA800D69B66 /* FLAuthError.swift */; };
+		9BE13A442C0614CA00D69B66 /* FLEmailValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE13A432C0614CA00D69B66 /* FLEmailValidator.swift */; };
+		9BE13A472C06275000D69B66 /* AuthLoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE13A462C06275000D69B66 /* AuthLoginRequest.swift */; };
+		9BE13A4A2C06313D00D69B66 /* AuthRegistraionAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE13A492C06313D00D69B66 /* AuthRegistraionAPIService.swift */; };
+		9BE13A4D2C0631A200D69B66 /* AuthRegistrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE13A4C2C0631A200D69B66 /* AuthRegistrationModel.swift */; };
+		9BE13A502C06320C00D69B66 /* AuthRegistrationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE13A4F2C06320C00D69B66 /* AuthRegistrationRequest.swift */; };
+		9BEC0A832C049D1C00BDE169 /* Dictionary+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC0A822C049D1C00BDE169 /* Dictionary+.swift */; };
+		9BEC0A862C049DF200BDE169 /* Data+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC0A852C049DF200BDE169 /* Data+.swift */; };
+		9BEC0A892C04D15900BDE169 /* FLLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC0A882C04D15900BDE169 /* FLLoader.swift */; };
+		9BEC0A8C2C04E5F300BDE169 /* FLToastAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC0A8B2C04E5F300BDE169 /* FLToastAlert.swift */; };
 		9BEE716B2BFC993E0055760C /* CMTime+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEE716A2BFC993E0055760C /* CMTime+.swift */; };
 		9BEE716D2BFCD2CA0055760C /* Segments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEE716C2BFCD2CA0055760C /* Segments.swift */; };
 		9BEE71702BFCF2CF0055760C /* AirPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEE716F2BFCF2CF0055760C /* AirPlayView.swift */; };
-		F7DF9891C68CEE117EDBDFDC /* Pods_FellasLoaded.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3267BA8B940E9FD8DB18BBC /* Pods_FellasLoaded.framework */; };
+		9BF226572C0082CD00149850 /* WatchlistAndShareButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF226562C0082CD00149850 /* WatchlistAndShareButtonView.swift */; };
+		9BF2265D2C00ACA800149850 /* FLAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF2265C2C00ACA800149850 /* FLAPIService.swift */; };
+		9BF226602C00AFA200149850 /* FLApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF2265F2C00AFA200149850 /* FLApiError.swift */; };
+		9BF226632C00B1E500149850 /* FLUserJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF226622C00B1E500149850 /* FLUserJourney.swift */; };
+		9BF226662C00B35F00149850 /* FLUserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF226652C00B35F00149850 /* FLUserDefaultKeys.swift */; };
+		9BF226692C00B4F400149850 /* AuthLoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF226682C00B4F400149850 /* AuthLoginModel.swift */; };
+		9BF2266B2C00BC8A00149850 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF2266A2C00BC8A00149850 /* AuthenticationViewModel.swift */; };
+		9BF2266E2C00BFF600149850 /* SystemReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF2266D2C00BFF600149850 /* SystemReachability.swift */; };
+		9BF226712C00C05200149850 /* FLViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF226702C00C05200149850 /* FLViewModelProtocol.swift */; };
+		F46F763C8C1C75CF968387DD /* Pods_FellasLoaded.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 959029D06F70831162C77BD0 /* Pods_FellasLoaded.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3D92E249ACAE15DA55181ABF /* Pods-FellasLoaded.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FellasLoaded.debug.xcconfig"; path = "Target Support Files/Pods-FellasLoaded/Pods-FellasLoaded.debug.xcconfig"; sourceTree = "<group>"; };
+		26944833114E4BB884AA0446 /* Pods-FellasLoaded.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FellasLoaded.release.xcconfig"; path = "Target Support Files/Pods-FellasLoaded/Pods-FellasLoaded.release.xcconfig"; sourceTree = "<group>"; };
+		959029D06F70831162C77BD0 /* Pods_FellasLoaded.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FellasLoaded.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B10F8572BFDF2CD005914BD /* AuthHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHeaderView.swift; sourceTree = "<group>"; };
 		9B17F6812BFB48B500F861CA /* PushNotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationsView.swift; sourceTree = "<group>"; };
 		9B3B8FC22BF60C0500DC5838 /* ShowAllSeriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAllSeriesView.swift; sourceTree = "<group>"; };
@@ -235,11 +257,31 @@
 		9BCED2142BF4DCB5007D02B3 /* FeedSwiperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSwiperView.swift; sourceTree = "<group>"; };
 		9BCED2162BF4EF65007D02B3 /* VaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultView.swift; sourceTree = "<group>"; };
 		9BCED2182BF5085B007D02B3 /* ContinueWatchingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueWatchingDetailView.swift; sourceTree = "<group>"; };
+		9BE13A3A2C05CADB00D69B66 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		9BE13A3D2C05CD3100D69B66 /* FLAuthTextFieldError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLAuthTextFieldError.swift; sourceTree = "<group>"; };
+		9BE13A402C05CEA800D69B66 /* FLAuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLAuthError.swift; sourceTree = "<group>"; };
+		9BE13A432C0614CA00D69B66 /* FLEmailValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLEmailValidator.swift; sourceTree = "<group>"; };
+		9BE13A462C06275000D69B66 /* AuthLoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthLoginRequest.swift; sourceTree = "<group>"; };
+		9BE13A492C06313D00D69B66 /* AuthRegistraionAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRegistraionAPIService.swift; sourceTree = "<group>"; };
+		9BE13A4C2C0631A200D69B66 /* AuthRegistrationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRegistrationModel.swift; sourceTree = "<group>"; };
+		9BE13A4F2C06320C00D69B66 /* AuthRegistrationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRegistrationRequest.swift; sourceTree = "<group>"; };
+		9BEC0A822C049D1C00BDE169 /* Dictionary+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+.swift"; sourceTree = "<group>"; };
+		9BEC0A852C049DF200BDE169 /* Data+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+.swift"; sourceTree = "<group>"; };
+		9BEC0A882C04D15900BDE169 /* FLLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLLoader.swift; sourceTree = "<group>"; };
+		9BEC0A8B2C04E5F300BDE169 /* FLToastAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLToastAlert.swift; sourceTree = "<group>"; };
 		9BEE716A2BFC993E0055760C /* CMTime+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CMTime+.swift"; sourceTree = "<group>"; };
 		9BEE716C2BFCD2CA0055760C /* Segments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segments.swift; sourceTree = "<group>"; };
 		9BEE716F2BFCF2CF0055760C /* AirPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirPlayView.swift; sourceTree = "<group>"; };
-		AF44270EEAE038A375EC7EE3 /* Pods-FellasLoaded.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FellasLoaded.release.xcconfig"; path = "Target Support Files/Pods-FellasLoaded/Pods-FellasLoaded.release.xcconfig"; sourceTree = "<group>"; };
-		D3267BA8B940E9FD8DB18BBC /* Pods_FellasLoaded.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FellasLoaded.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BF226562C0082CD00149850 /* WatchlistAndShareButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistAndShareButtonView.swift; sourceTree = "<group>"; };
+		9BF2265C2C00ACA800149850 /* FLAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLAPIService.swift; sourceTree = "<group>"; };
+		9BF2265F2C00AFA200149850 /* FLApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLApiError.swift; sourceTree = "<group>"; };
+		9BF226622C00B1E500149850 /* FLUserJourney.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLUserJourney.swift; sourceTree = "<group>"; };
+		9BF226652C00B35F00149850 /* FLUserDefaultKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLUserDefaultKeys.swift; sourceTree = "<group>"; };
+		9BF226682C00B4F400149850 /* AuthLoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthLoginModel.swift; sourceTree = "<group>"; };
+		9BF2266A2C00BC8A00149850 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
+		9BF2266D2C00BFF600149850 /* SystemReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemReachability.swift; sourceTree = "<group>"; };
+		9BF226702C00C05200149850 /* FLViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLViewModelProtocol.swift; sourceTree = "<group>"; };
+		EF71056354E0A6652D9196A8 /* Pods-FellasLoaded.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FellasLoaded.debug.xcconfig"; path = "Target Support Files/Pods-FellasLoaded/Pods-FellasLoaded.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,7 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B6D9DA12BF6374900365CE6 /* ACarousel in Frameworks */,
-				F7DF9891C68CEE117EDBDFDC /* Pods_FellasLoaded.framework in Frameworks */,
+				F46F763C8C1C75CF968387DD /* Pods_FellasLoaded.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,8 +384,8 @@
 			children = (
 				9B3D10302BF21698009AD6F2 /* FellasLoaded */,
 				9B3D102F2BF21698009AD6F2 /* Products */,
-				9C087F4701FBA4F1936260D1 /* Pods */,
-				F7E781733384FEB246187FB2 /* Frameworks */,
+				F3EF78B2BC1269D93A2C9089 /* Pods */,
+				C8FE1EB845B2D494BED0E133 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -410,7 +452,9 @@
 		9B3D10592BF2535D009AD6F2 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				9BF226582C00AC3A00149850 /* Model */,
 				9B10F8512BFDEFCC005914BD /* View */,
+				9BF226592C00AC4000149850 /* ViewModel */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -614,6 +658,7 @@
 		9B454B8C2BFE4685000786B6 /* Assistance */ = {
 			isa = PBXGroup;
 			children = (
+				9BF226552C0082A900149850 /* WatchlistAndShareButtonView */,
 				9B454B9B2BFE4A4F000786B6 /* EpisodesDetailDescriptionView */,
 				9B454B982BFE4951000786B6 /* PlayButtonView */,
 				9B454B952BFE48DA000786B6 /* EpisodesDetailLogoView */,
@@ -1289,6 +1334,15 @@
 		9BC6B80C2BF3793B00E684AD /* Extras */ = {
 			isa = PBXGroup;
 			children = (
+				9BE13A422C0614AF00D69B66 /* FLEmailValidator */,
+				9BE13A3C2C05CD1900D69B66 /* FLAuthTextFieldError */,
+				9BEC0A8A2C04E5CB00BDE169 /* FLToastAlert */,
+				9BEC0A872C04D14700BDE169 /* FLLoader */,
+				9BF2266C2C00BFCF00149850 /* SystemReachability */,
+				9BF226642C00B34A00149850 /* FLUserDefaultKeys */,
+				9BF226612C00B1D600149850 /* FLUserJourney */,
+				9BF2265E2C00AF7F00149850 /* FLApiError */,
+				9BF2265B2C00AC8C00149850 /* FLAPIService */,
 				9BC6B8132BF37ACD00E684AD /* Fonts */,
 				9B3D10452BF229A3009AD6F2 /* FLColor */,
 				9B3D10482BF22D61009AD6F2 /* FLFont */,
@@ -1299,6 +1353,9 @@
 		9BC6B80D2BF3794800E684AD /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				9BE13A392C05CAC200D69B66 /* String+ */,
+				9BEC0A842C049DE800BDE169 /* Data+ */,
+				9BEC0A812C049D0500BDE169 /* Disctionary+ */,
 				9BEE71692BFC99150055760C /* CMTime+ */,
 			);
 			path = Extensions;
@@ -1427,6 +1484,102 @@
 			path = ProfileView;
 			sourceTree = "<group>";
 		};
+		9BE13A392C05CAC200D69B66 /* String+ */ = {
+			isa = PBXGroup;
+			children = (
+				9BE13A3A2C05CADB00D69B66 /* String+.swift */,
+			);
+			path = "String+";
+			sourceTree = "<group>";
+		};
+		9BE13A3C2C05CD1900D69B66 /* FLAuthTextFieldError */ = {
+			isa = PBXGroup;
+			children = (
+				9BE13A3D2C05CD3100D69B66 /* FLAuthTextFieldError.swift */,
+			);
+			path = FLAuthTextFieldError;
+			sourceTree = "<group>";
+		};
+		9BE13A3F2C05CE9000D69B66 /* FLAuthError */ = {
+			isa = PBXGroup;
+			children = (
+				9BE13A402C05CEA800D69B66 /* FLAuthError.swift */,
+			);
+			path = FLAuthError;
+			sourceTree = "<group>";
+		};
+		9BE13A422C0614AF00D69B66 /* FLEmailValidator */ = {
+			isa = PBXGroup;
+			children = (
+				9BE13A432C0614CA00D69B66 /* FLEmailValidator.swift */,
+			);
+			path = FLEmailValidator;
+			sourceTree = "<group>";
+		};
+		9BE13A452C06271C00D69B66 /* AuthLoginRequest */ = {
+			isa = PBXGroup;
+			children = (
+				9BE13A462C06275000D69B66 /* AuthLoginRequest.swift */,
+			);
+			path = AuthLoginRequest;
+			sourceTree = "<group>";
+		};
+		9BE13A482C0630F400D69B66 /* AuthRegistratoinService */ = {
+			isa = PBXGroup;
+			children = (
+				9BE13A492C06313D00D69B66 /* AuthRegistraionAPIService.swift */,
+			);
+			path = AuthRegistratoinService;
+			sourceTree = "<group>";
+		};
+		9BE13A4B2C06314100D69B66 /* AuthRegistrationAPIModel */ = {
+			isa = PBXGroup;
+			children = (
+				9BE13A4C2C0631A200D69B66 /* AuthRegistrationModel.swift */,
+			);
+			path = AuthRegistrationAPIModel;
+			sourceTree = "<group>";
+		};
+		9BE13A4E2C0631F700D69B66 /* AuthRegistrationRequest */ = {
+			isa = PBXGroup;
+			children = (
+				9BE13A4F2C06320C00D69B66 /* AuthRegistrationRequest.swift */,
+			);
+			path = AuthRegistrationRequest;
+			sourceTree = "<group>";
+		};
+		9BEC0A812C049D0500BDE169 /* Disctionary+ */ = {
+			isa = PBXGroup;
+			children = (
+				9BEC0A822C049D1C00BDE169 /* Dictionary+.swift */,
+			);
+			path = "Disctionary+";
+			sourceTree = "<group>";
+		};
+		9BEC0A842C049DE800BDE169 /* Data+ */ = {
+			isa = PBXGroup;
+			children = (
+				9BEC0A852C049DF200BDE169 /* Data+.swift */,
+			);
+			path = "Data+";
+			sourceTree = "<group>";
+		};
+		9BEC0A872C04D14700BDE169 /* FLLoader */ = {
+			isa = PBXGroup;
+			children = (
+				9BEC0A882C04D15900BDE169 /* FLLoader.swift */,
+			);
+			path = FLLoader;
+			sourceTree = "<group>";
+		};
+		9BEC0A8A2C04E5CB00BDE169 /* FLToastAlert */ = {
+			isa = PBXGroup;
+			children = (
+				9BEC0A8B2C04E5F300BDE169 /* FLToastAlert.swift */,
+			);
+			path = FLToastAlert;
+			sourceTree = "<group>";
+		};
 		9BEE71692BFC99150055760C /* CMTime+ */ = {
 			isa = PBXGroup;
 			children = (
@@ -1443,21 +1596,107 @@
 			path = AirPlayView;
 			sourceTree = "<group>";
 		};
-		9C087F4701FBA4F1936260D1 /* Pods */ = {
+		9BF226552C0082A900149850 /* WatchlistAndShareButtonView */ = {
 			isa = PBXGroup;
 			children = (
-				3D92E249ACAE15DA55181ABF /* Pods-FellasLoaded.debug.xcconfig */,
-				AF44270EEAE038A375EC7EE3 /* Pods-FellasLoaded.release.xcconfig */,
+				9BF226562C0082CD00149850 /* WatchlistAndShareButtonView.swift */,
 			);
-			path = Pods;
+			path = WatchlistAndShareButtonView;
 			sourceTree = "<group>";
 		};
-		F7E781733384FEB246187FB2 /* Frameworks */ = {
+		9BF226582C00AC3A00149850 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D3267BA8B940E9FD8DB18BBC /* Pods_FellasLoaded.framework */,
+				9BE13A4E2C0631F700D69B66 /* AuthRegistrationRequest */,
+				9BE13A4B2C06314100D69B66 /* AuthRegistrationAPIModel */,
+				9BE13A482C0630F400D69B66 /* AuthRegistratoinService */,
+				9BE13A452C06271C00D69B66 /* AuthLoginRequest */,
+				9BE13A3F2C05CE9000D69B66 /* FLAuthError */,
+				9BF226672C00B4E500149850 /* AuthLoginModel */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9BF226592C00AC4000149850 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9BF2266F2C00C03A00149850 /* FLViewModelProtocol */,
+				9BF2266A2C00BC8A00149850 /* AuthenticationViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9BF2265B2C00AC8C00149850 /* FLAPIService */ = {
+			isa = PBXGroup;
+			children = (
+				9BF2265C2C00ACA800149850 /* FLAPIService.swift */,
+			);
+			path = FLAPIService;
+			sourceTree = "<group>";
+		};
+		9BF2265E2C00AF7F00149850 /* FLApiError */ = {
+			isa = PBXGroup;
+			children = (
+				9BF2265F2C00AFA200149850 /* FLApiError.swift */,
+			);
+			path = FLApiError;
+			sourceTree = "<group>";
+		};
+		9BF226612C00B1D600149850 /* FLUserJourney */ = {
+			isa = PBXGroup;
+			children = (
+				9BF226622C00B1E500149850 /* FLUserJourney.swift */,
+			);
+			path = FLUserJourney;
+			sourceTree = "<group>";
+		};
+		9BF226642C00B34A00149850 /* FLUserDefaultKeys */ = {
+			isa = PBXGroup;
+			children = (
+				9BF226652C00B35F00149850 /* FLUserDefaultKeys.swift */,
+			);
+			path = FLUserDefaultKeys;
+			sourceTree = "<group>";
+		};
+		9BF226672C00B4E500149850 /* AuthLoginModel */ = {
+			isa = PBXGroup;
+			children = (
+				9BF226682C00B4F400149850 /* AuthLoginModel.swift */,
+			);
+			path = AuthLoginModel;
+			sourceTree = "<group>";
+		};
+		9BF2266C2C00BFCF00149850 /* SystemReachability */ = {
+			isa = PBXGroup;
+			children = (
+				9BF2266D2C00BFF600149850 /* SystemReachability.swift */,
+			);
+			path = SystemReachability;
+			sourceTree = "<group>";
+		};
+		9BF2266F2C00C03A00149850 /* FLViewModelProtocol */ = {
+			isa = PBXGroup;
+			children = (
+				9BF226702C00C05200149850 /* FLViewModelProtocol.swift */,
+			);
+			path = FLViewModelProtocol;
+			sourceTree = "<group>";
+		};
+		C8FE1EB845B2D494BED0E133 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				959029D06F70831162C77BD0 /* Pods_FellasLoaded.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F3EF78B2BC1269D93A2C9089 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EF71056354E0A6652D9196A8 /* Pods-FellasLoaded.debug.xcconfig */,
+				26944833114E4BB884AA0446 /* Pods-FellasLoaded.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1467,11 +1706,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9B3D103D2BF21699009AD6F2 /* Build configuration list for PBXNativeTarget "FellasLoaded" */;
 			buildPhases = (
-				F87614EFBB65D5BA34FD0F28 /* [CP] Check Pods Manifest.lock */,
+				B6C974DB250E51A3BFC8F20E /* [CP] Check Pods Manifest.lock */,
 				9B3D102A2BF21698009AD6F2 /* Sources */,
 				9B3D102B2BF21698009AD6F2 /* Frameworks */,
 				9B3D102C2BF21698009AD6F2 /* Resources */,
-				50F82C8EEA1DFCD07BA30122 /* [CP] Embed Pods Frameworks */,
+				D21C7DE40EDEA6C3D7FCFE2D /* [CP] Embed Pods Frameworks */,
+				23D0D72DF36C4C1F1D2A764F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1538,24 +1778,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		50F82C8EEA1DFCD07BA30122 /* [CP] Embed Pods Frameworks */ = {
+		23D0D72DF36C4C1F1D2A764F /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FellasLoaded/Pods-FellasLoaded-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-FellasLoaded/Pods-FellasLoaded-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FellasLoaded/Pods-FellasLoaded-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-FellasLoaded/Pods-FellasLoaded-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FellasLoaded/Pods-FellasLoaded-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FellasLoaded/Pods-FellasLoaded-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F87614EFBB65D5BA34FD0F28 /* [CP] Check Pods Manifest.lock */ = {
+		B6C974DB250E51A3BFC8F20E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1577,6 +1817,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D21C7DE40EDEA6C3D7FCFE2D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FellasLoaded/Pods-FellasLoaded-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FellasLoaded/Pods-FellasLoaded-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FellasLoaded/Pods-FellasLoaded-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1589,6 +1846,7 @@
 				9B72891B2BFE068000EB1A90 /* DisplayNameAndImageLablesView.swift in Sources */,
 				9BC9F1EC2BF7AB2000B0EE8E /* WatchlistView.swift in Sources */,
 				9BC6B8262BF3A76300E684AD /* SettingsView.swift in Sources */,
+				9BF226602C00AFA200149850 /* FLApiError.swift in Sources */,
 				9B6D9D9E2BF6271600365CE6 /* CarousalView.swift in Sources */,
 				9B8A18322BFB666000CF9FF1 /* ManageSubscriptionsView.swift in Sources */,
 				9B7289062BFE010F00EB1A90 /* AuthPasswordTextFieldView.swift in Sources */,
@@ -1597,18 +1855,23 @@
 				9B454B972BFE48F3000786B6 /* EpisodesDetailLogoView.swift in Sources */,
 				9B7289442BFE113800EB1A90 /* ForgotPasswordLablesView.swift in Sources */,
 				9B7289622BFE188500EB1A90 /* MembershipCardView.swift in Sources */,
+				9BE13A472C06275000D69B66 /* AuthLoginRequest.swift in Sources */,
 				9B8A183C2BFB78A000CF9FF1 /* DoubleTapSeek.swift in Sources */,
 				9BC9F1EE2BF7B32700B0EE8E /* CommentCardView.swift in Sources */,
 				9B6D9DA52BF64A1B00365CE6 /* EpisodeDetailView.swift in Sources */,
 				9B7289002BFDFE5800EB1A90 /* RegistrationLablesView.swift in Sources */,
 				9B454B7A2BFE42B4000786B6 /* SearchTextFieldView.swift in Sources */,
 				9B7289032BFDFF2400EB1A90 /* RegistrationTextFieldAndButtonView.swift in Sources */,
+				9BF226712C00C05200149850 /* FLViewModelProtocol.swift in Sources */,
 				9B454B6F2BFE37AA000786B6 /* VaultCommentsCardView.swift in Sources */,
 				9BC9F1DF2BF76ECF00B0EE8E /* CommentView.swift in Sources */,
+				9BE13A4D2C0631A200D69B66 /* AuthRegistrationModel.swift in Sources */,
+				9BEC0A832C049D1C00BDE169 /* Dictionary+.swift in Sources */,
 				9BCED2112BF4C6EA007D02B3 /* ProfileView.swift in Sources */,
 				9BC6B80A2BF36A3A00E684AD /* NewPasswordView.swift in Sources */,
 				9B7289312BFE0A4F00EB1A90 /* EmailLablesView.swift in Sources */,
 				9B7289342BFE0A8A00EB1A90 /* EmailFieldAndButtonView.swift in Sources */,
+				9BF2266B2C00BC8A00149850 /* AuthenticationViewModel.swift in Sources */,
 				9B454B7D2BFE436F000786B6 /* SearchResultAndRecommentdTextView.swift in Sources */,
 				9B72896A2BFE1BF400EB1A90 /* SettingsHeaderView.swift in Sources */,
 				9B7289292BFE08BF00EB1A90 /* SubscribeFieldAndButtonView.swift in Sources */,
@@ -1620,14 +1883,17 @@
 				9B454B592BFE3152000786B6 /* AddCommentView.swift in Sources */,
 				9B10F8582BFDF2CD005914BD /* AuthHeaderView.swift in Sources */,
 				9B3D10552BF22E84009AD6F2 /* FLFont.swift in Sources */,
+				9BE13A502C06320C00D69B66 /* AuthRegistrationRequest.swift in Sources */,
 				9B3D10412BF2177E009AD6F2 /* AppDelegate.swift in Sources */,
 				9B7289522BFE125200EB1A90 /* ResetPasswordFieldAndButtonView.swift in Sources */,
 				9BEE716D2BFCD2CA0055760C /* Segments.swift in Sources */,
 				9BEE716B2BFC993E0055760C /* CMTime+.swift in Sources */,
+				9BE13A3E2C05CD3100D69B66 /* FLAuthTextFieldError.swift in Sources */,
 				9BC6B7FE2BF3530D00E684AD /* SubscribeView.swift in Sources */,
 				9B454B662BFE3546000786B6 /* VaultMainImageView.swift in Sources */,
 				9BC6B8302BF3C60D00E684AD /* DeleteAccountView.swift in Sources */,
 				9BC6B8282BF3AE3300E684AD /* SettingsNavigatorView.swift in Sources */,
+				9BF226572C0082CD00149850 /* WatchlistAndShareButtonView.swift in Sources */,
 				9B3B8FC32BF60C0500DC5838 /* ShowAllSeriesView.swift in Sources */,
 				9B72895F2BFE183D00EB1A90 /* ProfileImageView.swift in Sources */,
 				9B7289572BFE12B700EB1A90 /* NewPasswordHeaderView.swift in Sources */,
@@ -1637,15 +1903,21 @@
 				9BC6B8012BF35E4C00E684AD /* EmailView.swift in Sources */,
 				9BCED20E2BF4B17A007D02B3 /* CustomTabbar.swift in Sources */,
 				9B454B822BFE4416000786B6 /* ShowAllSeriesHeaderView.swift in Sources */,
+				9BEC0A8C2C04E5F300BDE169 /* FLToastAlert.swift in Sources */,
 				9BCED2192BF5085B007D02B3 /* ContinueWatchingDetailView.swift in Sources */,
 				9B72895C2BFE17CD00EB1A90 /* SettingsButtonView.swift in Sources */,
 				9B7289212BFE07A000EB1A90 /* DisplayNameAndImageFieldAndButtonsView.swift in Sources */,
 				9B6D9DA32BF63FC100365CE6 /* EpisodesView.swift in Sources */,
 				9B72890A2BFE026C00EB1A90 /* CreatedPasswordLablesView.swift in Sources */,
+				9BF226662C00B35F00149850 /* FLUserDefaultKeys.swift in Sources */,
 				9B3D10342BF21698009AD6F2 /* ContentView.swift in Sources */,
+				9BF226692C00B4F400149850 /* AuthLoginModel.swift in Sources */,
 				9B3D105E2BF270ED009AD6F2 /* CreatePasswordView.swift in Sources */,
 				9B72892E2BFE09E600EB1A90 /* EmailHeaderView.swift in Sources */,
+				9BE13A412C05CEA800D69B66 /* FLAuthError.swift in Sources */,
 				9B7289652BFE19CF00EB1A90 /* ConfesstionBoxButtonView.swift in Sources */,
+				9BEC0A862C049DF200BDE169 /* Data+.swift in Sources */,
+				9BE13A442C0614CA00D69B66 /* FLEmailValidator.swift in Sources */,
 				9BC9F1E22BF78F5900B0EE8E /* RepliesView.swift in Sources */,
 				9B454B912BFE4805000786B6 /* EpisodesDetailImageView.swift in Sources */,
 				9B3D10432BF218FB009AD6F2 /* WelcomeScreen.swift in Sources */,
@@ -1655,6 +1927,7 @@
 				9BCED2152BF4DCB5007D02B3 /* FeedSwiperView.swift in Sources */,
 				9BC6B82E2BF3C44E00E684AD /* AccountView.swift in Sources */,
 				9B3D10602BF27D51009AD6F2 /* AuthTestFieldView.swift in Sources */,
+				9BF226632C00B1E500149850 /* FLUserJourney.swift in Sources */,
 				9B3D105C2BF253CF009AD6F2 /* RegistrationView.swift in Sources */,
 				9BC6B81E2BF3878900E684AD /* Tabbar.swift in Sources */,
 				9B7289262BFE087200EB1A90 /* SubscribeLablesView.swift in Sources */,
@@ -1668,7 +1941,10 @@
 				9BC6B8032BF3607800E684AD /* PasswordView.swift in Sources */,
 				9BCED20C2BF49A19007D02B3 /* ChangePasswordView.swift in Sources */,
 				9B72894F2BFE122100EB1A90 /* ResetPasswordLablesView.swift in Sources */,
+				9BE13A3B2C05CADB00D69B66 /* String+.swift in Sources */,
+				9BF2266E2C00BFF600149850 /* SystemReachability.swift in Sources */,
 				9B8A18392BFB788200CF9FF1 /* CustomVideoPlayer.swift in Sources */,
+				9BF2265D2C00ACA800149850 /* FLAPIService.swift in Sources */,
 				9B454B6C2BFE366A000786B6 /* VaultLikeAndShareButtonView.swift in Sources */,
 				9B454B692BFE35F0000786B6 /* VaultDescriptionView.swift in Sources */,
 				9B7289162BFE053700EB1A90 /* CheckEmailFieldAndButtonView.swift in Sources */,
@@ -1679,6 +1955,7 @@
 				9B17F6822BFB48B600F861CA /* PushNotificationsView.swift in Sources */,
 				9B8A18302BFB654D00CF9FF1 /* VideoPlaybackView.swift in Sources */,
 				9BC9F1EA2BF7A9A500B0EE8E /* DownloadsView.swift in Sources */,
+				9BE13A4A2C06313D00D69B66 /* AuthRegistraionAPIService.swift in Sources */,
 				9B3D10472BF22AF3009AD6F2 /* FLColor.swift in Sources */,
 				9B3D10322BF21698009AD6F2 /* FellasLoadedApp.swift in Sources */,
 				9B454B9A2BFE495B000786B6 /* PlayButtonView.swift in Sources */,
@@ -1687,6 +1964,7 @@
 				9B454B5F2BFE32CC000786B6 /* CommentsHeaderView.swift in Sources */,
 				9BC6B8082BF368D800E684AD /* ResetPasswordView.swift in Sources */,
 				9B8A18352BFB783600CF9FF1 /* VideoPlayer.swift in Sources */,
+				9BEC0A892C04D15900BDE169 /* FLLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1809,14 +2087,14 @@
 		};
 		9B3D103E2BF21699009AD6F2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3D92E249ACAE15DA55181ABF /* Pods-FellasLoaded.debug.xcconfig */;
+			baseConfigurationReference = EF71056354E0A6652D9196A8 /* Pods-FellasLoaded.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = FellasLoaded/FellasLoaded.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"FellasLoaded/Preview Content\"";
 				DEVELOPMENT_TEAM = HAG8AD6Y2K;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1851,14 +2129,14 @@
 		};
 		9B3D103F2BF21699009AD6F2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AF44270EEAE038A375EC7EE3 /* Pods-FellasLoaded.release.xcconfig */;
+			baseConfigurationReference = 26944833114E4BB884AA0446 /* Pods-FellasLoaded.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = FellasLoaded/FellasLoaded.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"FellasLoaded/Preview Content\"";
 				DEVELOPMENT_TEAM = HAG8AD6Y2K;
 				ENABLE_HARDENED_RUNTIME = YES;

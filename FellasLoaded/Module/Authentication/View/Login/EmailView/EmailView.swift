@@ -11,7 +11,10 @@ struct EmailView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.presentationMode) var presentationMode
     @State private var email: String = ""
+    @State private var password: String = ""
     @State private var redirectToPasswordView = false
+    @State private var isDisabled = false
+    @StateObject var viewModel = AuthenticationViewModel()
     
     var body: some View {
         VStack {
@@ -22,12 +25,13 @@ struct EmailView: View {
                     
                     EmailLablesView()
                     
-                    EmailFieldAndButtonView(email: $email, redirectToPasswordView: $redirectToPasswordView)
+                    EmailFieldAndButtonView(email: $email, redirectToPasswordView: $redirectToPasswordView, isDisabled: .constant(FLEmailValidator().isValidEmail(self.email) ? false : true), setOpacity: .constant(FLEmailValidator().isValidEmail(self.email) ? 1 : 0.6))                    
                 }
                 .frame(width: horizontalSizeClass == .regular ? 472 : nil)
                 .padding(horizontalSizeClass == .regular ? 140 : 20)
                 .navigationDestination(isPresented: $redirectToPasswordView) {
-                    PasswordView()
+                    PasswordView(password: $password, email: $email)
+                        .environmentObject(viewModel)
                         .navigationBarBackButtonHidden(true)
                 }
                 

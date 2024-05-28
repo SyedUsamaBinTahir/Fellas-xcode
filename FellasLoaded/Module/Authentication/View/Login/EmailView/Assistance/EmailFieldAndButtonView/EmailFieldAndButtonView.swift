@@ -10,6 +10,8 @@ import SwiftUI
 struct EmailFieldAndButtonView: View {
     @Binding var email: String
     @Binding var redirectToPasswordView: Bool
+    @Binding var isDisabled: Bool
+    @Binding var setOpacity: Double
     
     var body: some View {
         VStack(spacing: 20) {
@@ -20,6 +22,8 @@ struct EmailFieldAndButtonView: View {
             AuthButtonView(action: {
                 redirectToPasswordView = true
             }, title: "CONTINUE", background: Color.white, foreground: Color.black)
+            .disabled(isDisabled)
+            .opacity(setOpacity)
         }
     }
 }

@@ -12,26 +12,36 @@ struct RegistrationView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var email: String = ""
     @State private var redirectToCreatepassword = false
+    @StateObject var viewModel = AuthenticationViewModel()
     
     var body: some View {
         VStack {
-            VStack(alignment: horizontalSizeClass == .regular ? .center : .leading) {
-                AuthHeaderView(step: .constant("STEP 1 OF 5"))
-                
-                VStack(alignment: .leading) {
+            ZStack {
+                VStack(alignment: horizontalSizeClass == .regular ? .center : .leading) {
+                    AuthHeaderView(step: .constant("STEP 1 OF 5"))
                     
-                    RegistrationLablesView()
+                    VStack(alignment: .leading) {
+                        
+                        RegistrationLablesView()
+                        
+                        RegistrationTextFieldAndButtonView(email: $email, redirectToCreatepassword: $redirectToCreatepassword) {
+                            viewModel.showLoader = true
+                            viewModel.registerUser(email: email, password: "121312312")
+                        }
+                    }
+                    .frame(width: horizontalSizeClass == .regular ? 472 : nil)
+                    .padding(horizontalSizeClass == .regular ? 140 : 20)
+                    .navigationDestination(isPresented: $viewModel.redirectToCreatepassword) {
+                        CreatePasswordView()
+                            .navigationBarBackButtonHidden(true)
+                    }
                     
-                    RegistrationTextFieldAndButtonView(email: $email, redirectToCreatepassword: $redirectToCreatepassword)
-                }
-                .frame(width: horizontalSizeClass == .regular ? 472 : nil)
-                .padding(horizontalSizeClass == .regular ? 140 : 20)
-                .navigationDestination(isPresented: $redirectToCreatepassword) {
-                    CreatePasswordView()
-                        .navigationBarBackButtonHidden(true)
+                    Spacer()
                 }
                 
-                Spacer()
+                if viewModel.showLoader {
+                    FLLoader()
+                }
             }
         }
         .background {

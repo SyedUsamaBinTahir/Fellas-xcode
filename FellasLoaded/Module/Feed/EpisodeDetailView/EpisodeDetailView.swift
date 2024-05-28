@@ -64,6 +64,8 @@ struct EpisodeDetailView: View {
                             .cornerRadius(10)
                         }
                         
+                        WatchlistAndShareButtonView(watchlistAction: {}, shareAction: {})
+                        
                         EpisodesDetailDescriptionView(seasonNumber: .constant("S1: E22.2022"), desctiption: .constant("Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis p"), host: .constant("Cal, and Chip"))
                     }
                     
