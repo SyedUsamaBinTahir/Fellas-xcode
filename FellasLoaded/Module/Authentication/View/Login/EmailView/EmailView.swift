@@ -25,7 +25,7 @@ struct EmailView: View {
                     
                     EmailLablesView()
                     
-                    EmailFieldAndButtonView(email: $email, redirectToPasswordView: $redirectToPasswordView, isDisabled: .constant(FLEmailValidator().isValidEmail(self.email) ? false : true), setOpacity: .constant(FLEmailValidator().isValidEmail(self.email) ? 1 : 0.6))                    
+                    EmailFieldAndButtonView(email: $email, redirectToPasswordView: $redirectToPasswordView, isDisabled: .constant(email.isValidEmail() ? false : true), setOpacity: .constant(email.isValidEmail() ? 1 : 0.6))
                 }
                 .frame(width: horizontalSizeClass == .regular ? 472 : nil)
                 .padding(horizontalSizeClass == .regular ? 140 : 20)

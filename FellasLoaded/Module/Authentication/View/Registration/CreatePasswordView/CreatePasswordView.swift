@@ -6,32 +6,68 @@
 //
 
 import SwiftUI
+import ExytePopupView
 
 struct CreatePasswordView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.presentationMode) var presentationMode
-    @State private var password: String = ""
+    @EnvironmentObject var viewModel: AuthenticationViewModel
+    @Binding var email: String
+    @Binding var password: String
     @State private var retypePassword: String = ""
+    @State private var isDisabled = false
+    @State private var setOpacity: Double = 0.6
     @State private var redirectToCheckEmailView = false
     
     var body: some View {
         VStack {
-            VStack(alignment: horizontalSizeClass == .regular ? .center : .leading) {
-                AuthHeaderView(step: .constant("STEP 2 OF 5"))
-                
-                VStack(alignment: .leading) {
+            ZStack {
+                VStack(alignment: horizontalSizeClass == .regular ? .center : .leading) {
+                    AuthHeaderView(step: .constant("STEP 2 OF 5"))
                     
-                    CreatePasswordLablesView()
+                    VStack(alignment: .leading) {
+                        
+                        CreatePasswordLablesView()
+                        
+                        CreatePasswordFieldsAndButtonView(password: $password, retypePassword: $retypePassword, isDisabled: $isDisabled, setOpacity: $setOpacity) {
+                            viewModel.showLoader = true
+                            viewModel.registerUser(email: email, password: password)
+                        }
+                    }
+                    .frame(width: horizontalSizeClass == .regular ? 472 : nil)
+                    .padding(horizontalSizeClass == .regular ? 140 : 20)
                     
-                    CreatePasswordFieldsAndButtonView(password: $password, retypePassword: $retypePassword, redirectToCheckEmailView: $redirectToCheckEmailView)
+                    Spacer()
                 }
-                .frame(width: horizontalSizeClass == .regular ? 472 : nil)
-                .padding(horizontalSizeClass == .regular ? 140 : 20)
+                .onChange(of: password) { _ in
+                    if password.isPasswordValid() {
+                        isDisabled = false
+                        setOpacity = 1
+                    } else {
+                        isDisabled = true
+                        setOpacity = 0.6
+                    }
+                }
+                .popup(isPresented: $viewModel.showAlert) {
+                    FLToastAlert(image: .constant(""), message: .constant(viewModel.alertMessage))
+                } customize: {
+                    $0
+                        .type(.floater(useSafeAreaInset: true))
+                        .position(.top)
+                        .animation(.spring())
+                        .closeOnTapOutside(true)
+                        .backgroundColor(.black.opacity(0.5))
+                        .autohideIn(3)
+                        .appearFrom(.top)
+                }
                 .navigationDestination(isPresented: $redirectToCheckEmailView) {
                     CheckEmailView().navigationBarBackButtonHidden(true)
                 }
                 
-                Spacer()
+                if viewModel.showLoader {
+                    FLLoader()
+                }
+                
             }
         }
         .background {
@@ -42,5 +78,5 @@ struct CreatePasswordView: View {
 }
 
 #Preview {
-    CreatePasswordView()
+    CreatePasswordView(email: .constant(""), password: .constant(""))
 }

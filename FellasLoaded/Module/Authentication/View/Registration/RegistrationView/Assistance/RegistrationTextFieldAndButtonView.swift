@@ -10,7 +10,8 @@ import SwiftUI
 struct RegistrationTextFieldAndButtonView: View {
     @Binding var email: String
     @Binding var redirectToCreatepassword: Bool
-    @State var action: () -> Void
+    @Binding var isDisabled: Bool
+    @Binding var setOpacity: Double
     
     var body: some View {
         VStack(spacing: 20) {
@@ -18,8 +19,10 @@ struct RegistrationTextFieldAndButtonView: View {
             }
             
             AuthButtonView(action: {
-                action()
+                redirectToCreatepassword = true
             }, title: "CONTINUE", background: Color.white, foreground: Color.black)
+            .disabled(isDisabled)
+            .opacity(setOpacity)
         }
         .padding(.top, 30)
     }

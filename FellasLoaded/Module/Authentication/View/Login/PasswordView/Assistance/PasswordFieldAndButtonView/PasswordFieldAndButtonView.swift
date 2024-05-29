@@ -20,7 +20,7 @@ struct PasswordFieldAndButtonView: View {
         VStack(spacing: 20) {
             AuthPasswordTextFieldView(placeholder: .constant("password"), field: $password)
             if isValidPassword {
-                Text("Password must have atleast minimum of 8 characters")
+                Text("Password must be atleast 8 symbols and capital latter with special character")
                     .font(.custom(Font.regular, size: 14))
                     .foregroundStyle(Color.theme.appRedColor)
             }
@@ -39,9 +39,6 @@ struct PasswordFieldAndButtonView: View {
                     .padding(.top)
             }
 
-        }
-        .onAppear {
-            isValidPassword = false
         }
     }
 }

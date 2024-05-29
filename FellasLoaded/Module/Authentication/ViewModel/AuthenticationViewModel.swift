@@ -12,7 +12,7 @@ class AuthenticationViewModel: ObservableObject, FLViewModelProtocol {
     var subscriptions = Set<AnyCancellable>()
     @Published var authError: FLAuthError? = nil
     @Published var redirectTabbarView = false
-    @Published var redirectToCreatepassword = false
+    @Published var redirectToCheckEmailView = false
     @Published var showLoader = false
     @Published var showAlert = false
     @Published var alertMessage = ""
@@ -58,7 +58,7 @@ class AuthenticationViewModel: ObservableObject, FLViewModelProtocol {
                 case .finished:
                     print("success")
                     self?.showLoader = false
-                    self?.redirectToCreatepassword = true
+                    self?.redirectToCheckEmailView = true
                 }
             } receiveValue: { _ in
                 

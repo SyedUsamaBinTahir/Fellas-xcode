@@ -11,6 +11,7 @@ struct RegistrationView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.presentationMode) var presentationMode
     @State private var email: String = ""
+    @State private var password: String = ""
     @State private var redirectToCreatepassword = false
     @StateObject var viewModel = AuthenticationViewModel()
     
@@ -24,23 +25,17 @@ struct RegistrationView: View {
                         
                         RegistrationLablesView()
                         
-                        RegistrationTextFieldAndButtonView(email: $email, redirectToCreatepassword: $redirectToCreatepassword) {
-                            viewModel.showLoader = true
-                            viewModel.registerUser(email: email, password: "121312312")
-                        }
+                        RegistrationTextFieldAndButtonView(email: $email, redirectToCreatepassword: $redirectToCreatepassword, isDisabled: .constant(email.isValidEmail() ? false : true), setOpacity: .constant(email.isValidEmail() ? 1: 0.6))
                     }
                     .frame(width: horizontalSizeClass == .regular ? 472 : nil)
                     .padding(horizontalSizeClass == .regular ? 140 : 20)
-                    .navigationDestination(isPresented: $viewModel.redirectToCreatepassword) {
-                        CreatePasswordView()
+                    .navigationDestination(isPresented: $redirectToCreatepassword) {
+                        CreatePasswordView(email: $email, password: $password)
+                            .environmentObject(viewModel)
                             .navigationBarBackButtonHidden(true)
                     }
                     
                     Spacer()
-                }
-                
-                if viewModel.showLoader {
-                    FLLoader()
                 }
             }
         }

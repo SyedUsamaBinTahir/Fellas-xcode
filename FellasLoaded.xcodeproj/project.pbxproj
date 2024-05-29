@@ -117,7 +117,6 @@
 		9BE13A3B2C05CADB00D69B66 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE13A3A2C05CADB00D69B66 /* String+.swift */; };
 		9BE13A3E2C05CD3100D69B66 /* FLAuthTextFieldError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE13A3D2C05CD3100D69B66 /* FLAuthTextFieldError.swift */; };
 		9BE13A412C05CEA800D69B66 /* FLAuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE13A402C05CEA800D69B66 /* FLAuthError.swift */; };
-		9BE13A442C0614CA00D69B66 /* FLEmailValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE13A432C0614CA00D69B66 /* FLEmailValidator.swift */; };
 		9BE13A472C06275000D69B66 /* AuthLoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE13A462C06275000D69B66 /* AuthLoginRequest.swift */; };
 		9BE13A4A2C06313D00D69B66 /* AuthRegistraionAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE13A492C06313D00D69B66 /* AuthRegistraionAPIService.swift */; };
 		9BE13A4D2C0631A200D69B66 /* AuthRegistrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE13A4C2C0631A200D69B66 /* AuthRegistrationModel.swift */; };
@@ -260,7 +259,6 @@
 		9BE13A3A2C05CADB00D69B66 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		9BE13A3D2C05CD3100D69B66 /* FLAuthTextFieldError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLAuthTextFieldError.swift; sourceTree = "<group>"; };
 		9BE13A402C05CEA800D69B66 /* FLAuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLAuthError.swift; sourceTree = "<group>"; };
-		9BE13A432C0614CA00D69B66 /* FLEmailValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLEmailValidator.swift; sourceTree = "<group>"; };
 		9BE13A462C06275000D69B66 /* AuthLoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthLoginRequest.swift; sourceTree = "<group>"; };
 		9BE13A492C06313D00D69B66 /* AuthRegistraionAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRegistraionAPIService.swift; sourceTree = "<group>"; };
 		9BE13A4C2C0631A200D69B66 /* AuthRegistrationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRegistrationModel.swift; sourceTree = "<group>"; };
@@ -1334,7 +1332,6 @@
 		9BC6B80C2BF3793B00E684AD /* Extras */ = {
 			isa = PBXGroup;
 			children = (
-				9BE13A422C0614AF00D69B66 /* FLEmailValidator */,
 				9BE13A3C2C05CD1900D69B66 /* FLAuthTextFieldError */,
 				9BEC0A8A2C04E5CB00BDE169 /* FLToastAlert */,
 				9BEC0A872C04D14700BDE169 /* FLLoader */,
@@ -1506,14 +1503,6 @@
 				9BE13A402C05CEA800D69B66 /* FLAuthError.swift */,
 			);
 			path = FLAuthError;
-			sourceTree = "<group>";
-		};
-		9BE13A422C0614AF00D69B66 /* FLEmailValidator */ = {
-			isa = PBXGroup;
-			children = (
-				9BE13A432C0614CA00D69B66 /* FLEmailValidator.swift */,
-			);
-			path = FLEmailValidator;
 			sourceTree = "<group>";
 		};
 		9BE13A452C06271C00D69B66 /* AuthLoginRequest */ = {
@@ -1917,7 +1906,6 @@
 				9BE13A412C05CEA800D69B66 /* FLAuthError.swift in Sources */,
 				9B7289652BFE19CF00EB1A90 /* ConfesstionBoxButtonView.swift in Sources */,
 				9BEC0A862C049DF200BDE169 /* Data+.swift in Sources */,
-				9BE13A442C0614CA00D69B66 /* FLEmailValidator.swift in Sources */,
 				9BC9F1E22BF78F5900B0EE8E /* RepliesView.swift in Sources */,
 				9B454B912BFE4805000786B6 /* EpisodesDetailImageView.swift in Sources */,
 				9B3D10432BF218FB009AD6F2 /* WelcomeScreen.swift in Sources */,

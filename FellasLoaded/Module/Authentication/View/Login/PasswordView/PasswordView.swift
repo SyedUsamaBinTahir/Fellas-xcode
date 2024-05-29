@@ -11,11 +11,14 @@ import ExytePopupView
 struct PasswordView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var viewModel: AuthenticationViewModel
     @Binding var password: String
     @Binding var email: String
     @State private var redirectToForgotPassword = false
     @State private var redirectTabbarView = false
-    @EnvironmentObject var viewModel: AuthenticationViewModel
+    @State private var isValidPassword = false
+    @State private var isDisabled = false
+    @State private var setOpacity: Double = 0.6
     
     var body: some View {
         VStack {
@@ -27,7 +30,7 @@ struct PasswordView: View {
                         
                         PasswordLablesView()
                         
-                        PasswordFieldAndButtonView(password: $password, redirectTabbarView: $viewModel.redirectTabbarView, redirectToForgotPassword: $redirectToForgotPassword, isValidPassword: .constant(password.count < 8 ? true : false), isDisabled: .constant(password.count < 8 ? true : false), setOpacity: .constant(password.count < 8 ? 0.6 : 1)) {
+                        PasswordFieldAndButtonView(password: $password, redirectTabbarView: $viewModel.redirectTabbarView, redirectToForgotPassword: $redirectToForgotPassword, isValidPassword: $isValidPassword, isDisabled: $isDisabled, setOpacity: $setOpacity) {
                             viewModel.showLoader = true
                             viewModel.getAccessToken(email: email, password: password)
                         }
@@ -36,6 +39,17 @@ struct PasswordView: View {
                     .padding(horizontalSizeClass == .regular ? 140 : 20)
                     
                     Spacer()
+                }
+                .onChange(of: password) { _ in
+                    if password.isPasswordValid() {
+                        isDisabled = false
+                        isValidPassword = false
+                        setOpacity = 1
+                    } else {
+                        isDisabled = true
+                        isValidPassword = true
+                        setOpacity = 0.6
+                    }
                 }
                 .popup(isPresented: $viewModel.showAlert) {
                     FLToastAlert(image: .constant(""), message: .constant(viewModel.alertMessage))

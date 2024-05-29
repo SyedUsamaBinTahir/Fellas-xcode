@@ -10,7 +10,10 @@ import SwiftUI
 struct CreatePasswordFieldsAndButtonView: View {
     @Binding var password: String
     @Binding var retypePassword: String
-    @Binding var redirectToCheckEmailView: Bool
+//    @Binding var isvalidPassword: Bool
+    @Binding var isDisabled: Bool
+    @Binding var setOpacity: Double
+    @State var action: () -> Void
     
     var body: some View {
         VStack(alignment: .leading, spacing: 30) {
@@ -26,8 +29,10 @@ struct CreatePasswordFieldsAndButtonView: View {
                 AuthPasswordTextFieldView(placeholder: .constant("Retype password"), field: $retypePassword)
                 
                 AuthButtonView(action: {
-                    redirectToCheckEmailView = true
+                    action()
                 }, title: "CONTINUE", background: Color.white, foreground: Color.black)
+                .disabled(isDisabled)
+                .opacity(setOpacity)
             }
         }
         .padding(.top, 20)
