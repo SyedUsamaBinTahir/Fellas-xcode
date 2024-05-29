@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct DisplayNameAndImageImageView: View {
-    @Binding var name: String
+    @Binding var image: Image?
+    @State var action: () -> Void
+    
     var body: some View {
-        Image(name)
-            .resizable()
-            .scaledToFit()
-            .frame(width: 108, height: 108, alignment: .center)
+        Button (action: action) {
+            image?
+                .resizable()
+                .scaledToFit()
+                .frame(width: 108, height: 108, alignment: .center)
+        }  
     }
 }

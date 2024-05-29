@@ -11,4 +11,5 @@ public enum FLUserDefaultKeys: String, CaseIterable {
     case loggedIn = "FLLoggedIn"
     case Accesstoken = "AuthAccessToken"
     case refreshToken = "refreshToken"
+    case registrationToken = "AuthRegistrationToken"
 }

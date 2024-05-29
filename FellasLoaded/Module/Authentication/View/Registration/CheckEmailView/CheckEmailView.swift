@@ -10,28 +10,42 @@ import SwiftUI
 struct CheckEmailView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.presentationMode) var presentationMode
+    @StateObject var viewModel = AuthenticationViewModel()
+    @Binding var email: String
     @State private var code: String = ""
     @State private var redirectToDisplayNameAndImageView = false
     
     var body: some View {
         VStack {
-            VStack(alignment: horizontalSizeClass == .regular ? .center : .leading) {
-                AuthHeaderView(step: .constant("STEP 3 OF 5"))
-                
-                VStack(alignment: .leading) {
+            ZStack {
+                VStack(alignment: horizontalSizeClass == .regular ? .center : .leading) {
+                    AuthHeaderView(step: .constant("STEP 3 OF 5"))
                     
-                    CheckEmailLablesView()
+                    VStack(alignment: .leading) {
+                        
+                        CheckEmailLablesView()
+                        
+                        CheckEmailFieldAndButtonView(code: $code, redirectToDisplayNameAndImageView: $redirectToDisplayNameAndImageView) {
+                            viewModel.showLoader = true
+                            viewModel.checkEamilResendCode(email: email)
+                        } verifyEmailAction: {
+                            viewModel.showLoader = true
+                            viewModel.verifyEmailRequest(email: email, code: code)
+                        }
+                    }
+                    .frame(width: horizontalSizeClass == .regular ? 472 : nil)
+                    .padding(horizontalSizeClass == .regular ? 140 : 20)
+                    .navigationDestination(isPresented: $viewModel.redirectToDisplayNameAndImageView) {
+                        DisplayNameAndImageView()
+                            .navigationBarBackButtonHidden(true)
+                    }
                     
-                    CheckEmailFieldAndButtonView(code: $code, redirectToDisplayNameAndImageView: $redirectToDisplayNameAndImageView)
-                }
-                .frame(width: horizontalSizeClass == .regular ? 472 : nil)
-                .padding(horizontalSizeClass == .regular ? 140 : 20)
-                .navigationDestination(isPresented: $redirectToDisplayNameAndImageView) {
-                    DisplayNameAndImageView()
-                        .navigationBarBackButtonHidden(true)
+                    Spacer()
                 }
                 
-                Spacer()
+                if viewModel.showLoader {
+                    FLLoader()
+                }
             }
         }
         .background {
@@ -42,5 +56,5 @@ struct CheckEmailView: View {
 }
 
 #Preview {
-    CheckEmailView()
+    CheckEmailView(email: .constant(""))
 }

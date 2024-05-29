@@ -10,8 +10,10 @@ import SwiftUI
 struct DisplayNameAndImageView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.presentationMode) var presentationMode
-    @State private var code: String = ""
+    @State private var name: String = ""
     @State private var redirectToSubscribeView = false
+    @State private var showImagePicker: Bool = false
+    @State private var selectedImage: Image? = Image(systemName: "person.fill")
     
     var body: some View {
         VStack {
@@ -22,18 +24,25 @@ struct DisplayNameAndImageView: View {
                     
                     DisplayNameAndImageLablesView()
                     
-                    DisplayNameAndImageImageView(name: .constant("default-profile-icon"))
+                    DisplayNameAndImageImageView(image: $selectedImage) {
+                        showImagePicker.toggle()
+                    }
                     
-                    DisplayNameAndImageFieldAndButtonsView(code: $code, redirectToSubscribeView: $redirectToSubscribeView)
+                    DisplayNameAndImageFieldAndButtonsView(name: $name, redirectToSubscribeView: $redirectToSubscribeView) {
+                        DisplayNameAndImageAPIService.shared.updateRequest(selectedImage: selectedImage, name: name)
+                    }
                 }
                 .frame(width: horizontalSizeClass == .regular ? 472 : nil)
                 .padding(horizontalSizeClass == .regular ? 140 : 20)
-                .navigationDestination(isPresented: $redirectToSubscribeView) {
-                    SubscribeView()
-                        .navigationBarBackButtonHidden(true)
-                }
                 
                 Spacer()
+            }
+            .sheet(isPresented: $showImagePicker, content: {
+                ImagePicker(image: $selectedImage)
+            })
+            .navigationDestination(isPresented: $redirectToSubscribeView) {
+                SubscribeView()
+                    .navigationBarBackButtonHidden(true)
             }
         }
         .background {

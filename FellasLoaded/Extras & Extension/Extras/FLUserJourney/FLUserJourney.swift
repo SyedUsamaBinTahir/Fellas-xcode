@@ -11,5 +11,6 @@ public final class FLUserJourney {
     static let shared = FLUserJourney()
 
     var authToken: String?
+    var authRegistrationToken: String?
 }
 

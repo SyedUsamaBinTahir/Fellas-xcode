@@ -8,17 +8,18 @@
 import SwiftUI
 
 struct DisplayNameAndImageFieldAndButtonsView: View {
-    @Binding var code: String
+    @Binding var name: String
     @Binding var redirectToSubscribeView: Bool
+    @State var action: () -> Void
     
     var body: some View {
         VStack(spacing: 20) {
-            AuthTestFieldView(field: $code, title: "Display Name", placeHolder: "") {
+            AuthTestFieldView(field: $name, title: "Display Name", placeHolder: "") {
                 
             }
             
             AuthButtonView(action: {
-                redirectToSubscribeView = true
+                action()
             }, title: "CREATE AN ACCOUNT", background: Color.white, foreground: Color.black)
         }
     }

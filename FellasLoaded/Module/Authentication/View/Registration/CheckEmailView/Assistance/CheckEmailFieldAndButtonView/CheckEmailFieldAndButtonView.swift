@@ -10,6 +10,8 @@ import SwiftUI
 struct CheckEmailFieldAndButtonView: View {
     @Binding var code: String
     @Binding var redirectToDisplayNameAndImageView: Bool
+    @State var resentEmailAction: () -> Void
+    @State var verifyEmailAction: () -> Void
     
     var body: some View {
         VStack(spacing: 20) {
@@ -18,7 +20,7 @@ struct CheckEmailFieldAndButtonView: View {
             }
             
             Button {
-                
+                resentEmailAction()
             } label: {
                 Text("RESEND EMAIL")
                     .font(.custom(Font.bold, size: 16))
@@ -27,7 +29,7 @@ struct CheckEmailFieldAndButtonView: View {
             }
 
             AuthButtonView(action: {
-                redirectToDisplayNameAndImageView = true
+                verifyEmailAction()
             }, title: "CONTINUE", background: Color.white, foreground: Color.black)
         }
         .padding(.top, 30)

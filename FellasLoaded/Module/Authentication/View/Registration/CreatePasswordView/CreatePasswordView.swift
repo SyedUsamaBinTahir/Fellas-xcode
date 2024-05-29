@@ -60,14 +60,13 @@ struct CreatePasswordView: View {
                         .autohideIn(3)
                         .appearFrom(.top)
                 }
-                .navigationDestination(isPresented: $redirectToCheckEmailView) {
-                    CheckEmailView().navigationBarBackButtonHidden(true)
+                .navigationDestination(isPresented: $viewModel.redirectToCheckEmailView) {
+                    CheckEmailView(email: $email).navigationBarBackButtonHidden(true)
                 }
                 
                 if viewModel.showLoader {
                     FLLoader()
                 }
-                
             }
         }
         .background {

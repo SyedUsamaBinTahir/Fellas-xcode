@@ -13,6 +13,7 @@ class AuthenticationViewModel: ObservableObject, FLViewModelProtocol {
     @Published var authError: FLAuthError? = nil
     @Published var redirectTabbarView = false
     @Published var redirectToCheckEmailView = false
+    @Published var redirectToDisplayNameAndImageView = false
     @Published var showLoader = false
     @Published var showAlert = false
     @Published var alertMessage = ""
@@ -59,6 +60,52 @@ class AuthenticationViewModel: ObservableObject, FLViewModelProtocol {
                     print("success")
                     self?.showLoader = false
                     self?.redirectToCheckEmailView = true
+                }
+            } receiveValue: { _ in
+                
+            }
+            .store(in: &self.subscriptions)
+    }
+    
+    func checkEamilResendCode(email: String) {
+        print("EMAIL -->",email)
+        CheckEmailAPIService.shared.registerRequest(email: email)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completion in
+                switch completion {
+                case .failure(let  error):
+                    DispatchQueue.main.async {
+                        print(error)
+                        self?.alertMessage = error.localizedDescription
+                        self?.showAlert = true
+                        self?.showLoader = false
+                    }
+                case .finished:
+                    print("success")
+                    self?.showLoader = false
+                }
+            } receiveValue: { _ in
+                
+            }
+            .store(in: &self.subscriptions)
+    }
+    
+    func verifyEmailRequest(email: String, code: String) {
+        AuthVerfiyEmailAPIService.shared.registerRequest(email: email, code: code)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completion in
+                switch completion {
+                case .failure(let  error):
+                    DispatchQueue.main.async {
+                        print(error)
+                        self?.alertMessage = error.localizedDescription
+                        self?.showAlert = true
+                        self?.showLoader = false
+                    }
+                case .finished:
+                    print("success")
+                    self?.showLoader = false
+                    self?.redirectToDisplayNameAndImageView = true
                 }
             } receiveValue: { _ in
                 

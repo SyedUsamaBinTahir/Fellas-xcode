@@ -1,45 +1,42 @@
 //
-//  AuthRegistraionAPIService.swift
+//  CheckEmailAPiService.swift
 //  FellasLoaded
 //
-//  Created by Phebsoft on 28/05/2024.
+//  Created by Phebsoft on 29/05/2024.
 //
 
 import Foundation
 import Combine
 
-class AuthRegistraionAPIService {
-    static let shared = AuthRegistraionAPIService()
+class CheckEmailAPIService {
+    static let shared = CheckEmailAPIService()
     
-    func registerRequest(email: String, password: String) -> AnyPublisher<AuthRegistrationModel, FLAPIError> {
-        guard let url = URL(string: "https://api.fellasloaded.com/api/user/registration/email/") else {
+    func registerRequest(email: String) -> AnyPublisher<Bool, FLAPIError> {
+        guard let url = URL(string: "https://api.fellasloaded.com/api/user/email/verify/request/") else {
             return Fail(error: .urlError).eraseToAnyPublisher()
         }
 
         do {
-            let loginRequestData = try JSONEncoder().encode(AuthRegistrationRequest(email: email, password: password))
+            let checkEmailRequestData = try JSONEncoder().encode(CheckEmailRequest(email: email))
 
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
-            request.httpBody = loginRequestData
+            request.httpBody = checkEmailRequestData
             request.setValue("application/json", forHTTPHeaderField: "content-type")
+            request.setValue("Bearer \(FLUserJourney.shared.authRegistrationToken ?? "N/A")", forHTTPHeaderField: "Authorization")
             
             return URLSession.shared.dataTaskPublisher(for: request)
-                .tryMap { result -> Data in
+                .tryMap { result -> Bool in
                     guard let httpResponse = result.response as? HTTPURLResponse else {
                         throw FLAPIError.networkError
                     }
                     if (200...299).contains(httpResponse.statusCode) {
-                        let resultData = try JSONDecoder().decode(AuthRegistrationModel.self, from: result.data)
-                        FLUserJourney.shared.authRegistrationToken = resultData.access
-                        UserDefaults.standard.setValue(FLUserJourney.shared.authRegistrationToken, forKey: FLUserDefaultKeys.registrationToken.rawValue)
-                        return result.data
+                        return true
                     } else {
 //                        let httpErrorCode = httpResponse.statusCode
                         throw FLAPIError.networkError
                     }
                 }
-                .decode(type: AuthRegistrationModel.self, decoder: JSONDecoder())
                 .mapError({ error in
                     if let flApiError = error as? FLAPIError {
                         return flApiError
