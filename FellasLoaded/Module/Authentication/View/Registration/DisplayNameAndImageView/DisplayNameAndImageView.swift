@@ -13,7 +13,7 @@ struct DisplayNameAndImageView: View {
     @State private var name: String = ""
     @State private var redirectToSubscribeView = false
     @State private var showImagePicker: Bool = false
-    @State private var selectedImage: Image? = Image(systemName: "person.fill")
+    @State private var selectedImage: UIImage?
     
     var body: some View {
         VStack {
@@ -29,7 +29,9 @@ struct DisplayNameAndImageView: View {
                     }
                     
                     DisplayNameAndImageFieldAndButtonsView(name: $name, redirectToSubscribeView: $redirectToSubscribeView) {
-                        DisplayNameAndImageAPIService.shared.updateRequest(selectedImage: selectedImage, name: name)
+                        if let selectedImage = selectedImage {
+                            DisplayNameAndImageAPIService.shared.uploadImageToServer(image: selectedImage, name: name)
+                        }
                     }
                 }
                 .frame(width: horizontalSizeClass == .regular ? 472 : nil)
@@ -37,8 +39,14 @@ struct DisplayNameAndImageView: View {
                 
                 Spacer()
             }
-            .sheet(isPresented: $showImagePicker, content: {
-                ImagePicker(image: $selectedImage)
+            .sheet(isPresented: $showImagePicker, onDismiss: {
+                if selectedImage == nil {
+                    withAnimation {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                }
+            }, content: {
+                ImagePicker(selectedImage: $selectedImage)
             })
             .navigationDestination(isPresented: $redirectToSubscribeView) {
                 SubscribeView()

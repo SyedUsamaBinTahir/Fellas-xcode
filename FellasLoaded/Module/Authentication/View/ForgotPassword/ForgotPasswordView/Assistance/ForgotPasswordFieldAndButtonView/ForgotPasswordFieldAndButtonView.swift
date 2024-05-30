@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ForgotPasswordFieldAndButtonView: View {
     @Binding var email: String
-    @Binding var redirectToCheckEmailView: Bool
+    @Binding var redirectToResetPasswordView: Bool
+    @State var action: () -> Void
     var body: some View {
         VStack(spacing: 20) {
             AuthTestFieldView(field: $email, title: "Email", placeHolder: "") {
@@ -17,7 +18,7 @@ struct ForgotPasswordFieldAndButtonView: View {
             }
             
             AuthButtonView(action: {
-                redirectToCheckEmailView = true
+                action()
             }, title: "SUBMIT", background: Color.white, foreground: Color.black)
         }
     }

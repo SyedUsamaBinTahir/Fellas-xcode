@@ -11,5 +11,6 @@ target 'FellasLoaded' do
   pod 'google-cast-sdk', '~> 4.8.1'
   pod 'SPIndicator'
   pod 'ExytePopupView'
+  pod 'Alamofire'
 
 end

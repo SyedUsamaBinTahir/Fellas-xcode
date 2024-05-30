@@ -10,28 +10,40 @@ import SwiftUI
 struct ResetPasswordView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.presentationMode) var presentationMode
-    @State private var email: String = ""
+    @Binding var email: String
+    @State var code: String = ""
     @State private var redirectToNewPasswordView = false
+    @StateObject var viewModel = AuthenticationViewModel()
     
     var body: some View {
         VStack {
-            VStack(alignment: horizontalSizeClass == .regular ? .center : .leading) {
-                ResetPasswordHeaderView()
-                
-                VStack(alignment: .leading, spacing: 30) {
+            ZStack {
+                VStack(alignment: horizontalSizeClass == .regular ? .center : .leading) {
+                    ResetPasswordHeaderView()
                     
-                    ResetPasswordLablesView()
+                    VStack(alignment: .leading, spacing: 30) {
+                        
+                        ResetPasswordLablesView()
+                        
+                        ResetPasswordFieldAndButtonView(code: $code, redirectToNewPasswordView: $redirectToNewPasswordView) {
+                            viewModel.showLoader = true
+                            viewModel.verifyForgotPasswordCodeRequest(email: email, code: code)
+                        }
+                    }
+                    .frame(width: horizontalSizeClass == .regular ? 472 : nil)
+                    .padding(horizontalSizeClass == .regular ? 140 : 20)
+                    .navigationDestination(isPresented: $redirectToNewPasswordView) {
+                        NewPasswordView()
+                            .navigationBarBackButtonHidden(true)
+                    }
                     
-                    ResetPasswordFieldAndButtonView(email: $email, redirectToNewPasswordView: $redirectToNewPasswordView)
-                }
-                .frame(width: horizontalSizeClass == .regular ? 472 : nil)
-                .padding(horizontalSizeClass == .regular ? 140 : 20)
-                .navigationDestination(isPresented: $redirectToNewPasswordView) {
-                    NewPasswordView()
-                        .navigationBarBackButtonHidden(true)
+                    Spacer()
                 }
                 
-                Spacer()
+               if viewModel.showLoader {
+                    FLLoader()
+                }
+                
             }
         }
         .background {
@@ -42,5 +54,5 @@ struct ResetPasswordView: View {
 }
 
 #Preview {
-    ResetPasswordView()
+    ResetPasswordView(email: .constant(""))
 }

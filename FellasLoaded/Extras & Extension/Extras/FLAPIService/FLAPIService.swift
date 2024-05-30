@@ -68,7 +68,9 @@ class DataService {
                     }
                     if (200...299).contains(httpResponse.statusCode) {
                         let resultData = try JSONDecoder().decode(AuthLoginModel.self, from: result.data)
-//                        UserDefaults.standard.setValue(resultData.access, forKey: FLUserDefaultKeys.Accesstoken.rawValue)
+                        FLUserJourney.shared.authToken = resultData.access
+                        print("AuthLogin Access Token -->", resultData.access)
+                        UserDefaults.standard.setValue(resultData.access, forKey: FLUserDefaultKeys.Accesstoken.rawValue)
                         print("Result Data -->",resultData.access)
                         print("result errors", resultData)
                         return result.data

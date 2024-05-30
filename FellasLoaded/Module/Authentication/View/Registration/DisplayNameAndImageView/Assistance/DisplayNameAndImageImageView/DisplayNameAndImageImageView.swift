@@ -8,15 +8,22 @@
 import SwiftUI
 
 struct DisplayNameAndImageImageView: View {
-    @Binding var image: Image?
+    @Binding var image: UIImage?
     @State var action: () -> Void
     
     var body: some View {
         Button (action: action) {
-            image?
-                .resizable()
-                .scaledToFit()
-                .frame(width: 108, height: 108, alignment: .center)
-        }  
+            if let selectedImage = image {
+                Image(uiImage: selectedImage)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 108, height: 108, alignment: .center)
+            } else {
+                Image(systemName: "person.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 108, height: 108, alignment: .center)
+            }
+        }
     }
 }

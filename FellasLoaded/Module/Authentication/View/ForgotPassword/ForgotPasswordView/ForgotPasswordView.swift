@@ -11,27 +11,37 @@ struct ForgotPasswordView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.presentationMode) var presentationMode
     @State private var email: String = ""
-    @State private var redirectToCheckEmailView = false
+    @State private var redirectToResetPasswordView = false
+    @StateObject var viewModel = AuthenticationViewModel()
     
     var body: some View {
         VStack {
-            VStack(alignment: horizontalSizeClass == .regular ? .center : .leading) {
-                ForgotPasswordHeaderView()
-                
-                VStack(alignment: .leading, spacing: 30) {
+            ZStack {
+                VStack(alignment: horizontalSizeClass == .regular ? .center : .leading) {
+                    ForgotPasswordHeaderView()
                     
-                    ForgotPasswordLablesView()
+                    VStack(alignment: .leading, spacing: 30) {
+                        
+                        ForgotPasswordLablesView()
+                        
+                        ForgotPasswordFieldAndButtonView(email: $email, redirectToResetPasswordView: $redirectToResetPasswordView) {
+                            viewModel.showLoader = true
+                            viewModel.sendForgotPasswordCodeRequest(email: email)
+                        }
+                    }
+                    .frame(width: horizontalSizeClass == .regular ? 472 : nil)
+                    .padding(horizontalSizeClass == .regular ? 140 : 20)
+                    .navigationDestination(isPresented: $viewModel.redirectToResetPasswordView) {
+                        ResetPasswordView(email: $email)
+                            .navigationBarBackButtonHidden(true)
+                    }
                     
-                    ForgotPasswordFieldAndButtonView(email: $email, redirectToCheckEmailView: $redirectToCheckEmailView)
-                }
-                .frame(width: horizontalSizeClass == .regular ? 472 : nil)
-                .padding(horizontalSizeClass == .regular ? 140 : 20)
-                .navigationDestination(isPresented: $redirectToCheckEmailView) {
-                    ResetPasswordView()
-                        .navigationBarBackButtonHidden(true)
+                    Spacer()
                 }
                 
-                Spacer()
+                if viewModel.showLoader {
+                    FLLoader()
+                }
             }
         }
         .background {

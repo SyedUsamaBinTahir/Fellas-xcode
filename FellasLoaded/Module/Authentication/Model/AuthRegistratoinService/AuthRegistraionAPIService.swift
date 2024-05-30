@@ -32,6 +32,8 @@ class AuthRegistraionAPIService {
                     if (200...299).contains(httpResponse.statusCode) {
                         let resultData = try JSONDecoder().decode(AuthRegistrationModel.self, from: result.data)
                         FLUserJourney.shared.authRegistrationToken = resultData.access
+                        print("saved Registration Token -->", FLUserJourney.shared.authRegistrationToken ?? "N/A")
+                        print("Registration Access Token -->", resultData.access)
                         UserDefaults.standard.setValue(FLUserJourney.shared.authRegistrationToken, forKey: FLUserDefaultKeys.registrationToken.rawValue)
                         return result.data
                     } else {

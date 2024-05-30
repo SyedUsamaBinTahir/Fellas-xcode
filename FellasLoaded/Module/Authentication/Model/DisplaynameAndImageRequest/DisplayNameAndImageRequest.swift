@@ -8,6 +8,5 @@
 import Foundation
 
 struct DisplayNameAndImageRequest: Codable {
-    let avatar: String
     let name: String
 }

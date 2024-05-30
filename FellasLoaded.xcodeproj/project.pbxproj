@@ -114,6 +114,10 @@
 		9BCED2152BF4DCB5007D02B3 /* FeedSwiperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCED2142BF4DCB5007D02B3 /* FeedSwiperView.swift */; };
 		9BCED2172BF4EF66007D02B3 /* VaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCED2162BF4EF65007D02B3 /* VaultView.swift */; };
 		9BCED2192BF5085B007D02B3 /* ContinueWatchingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCED2182BF5085B007D02B3 /* ContinueWatchingDetailView.swift */; };
+		9BCF3E992C08C5F80016B22C /* ForgotPasswordAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCF3E982C08C5F80016B22C /* ForgotPasswordAPIService.swift */; };
+		9BCF3E9F2C08C62F0016B22C /* ForgotPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCF3E9E2C08C62F0016B22C /* ForgotPasswordRequest.swift */; };
+		9BCF3EA22C08DC310016B22C /* CodeVerificationAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCF3EA12C08DC310016B22C /* CodeVerificationAPIService.swift */; };
+		9BCF3EA52C08DC6A0016B22C /* CodeVerficationRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCF3EA42C08DC6A0016B22C /* CodeVerficationRequestModel.swift */; };
 		9BE13A3B2C05CADB00D69B66 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE13A3A2C05CADB00D69B66 /* String+.swift */; };
 		9BE13A3E2C05CD3100D69B66 /* FLAuthTextFieldError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE13A3D2C05CD3100D69B66 /* FLAuthTextFieldError.swift */; };
 		9BE13A412C05CEA800D69B66 /* FLAuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE13A402C05CEA800D69B66 /* FLAuthError.swift */; };
@@ -139,7 +143,6 @@
 		9BF226712C00C05200149850 /* FLViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF226702C00C05200149850 /* FLViewModelProtocol.swift */; };
 		9BF767182C073A6F00BDBC6A /* CheckEmailAPiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF767172C073A6F00BDBC6A /* CheckEmailAPiService.swift */; };
 		9BF7671B2C073A9400BDBC6A /* CheckEmailRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF7671A2C073A9400BDBC6A /* CheckEmailRequest.swift */; };
-		9BF7671E2C074B5200BDBC6A /* AuthVerifyEmailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF7671D2C074B5200BDBC6A /* AuthVerifyEmailModel.swift */; };
 		9BF767212C074B7300BDBC6A /* AuthVerfiyEmailAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF767202C074B7300BDBC6A /* AuthVerfiyEmailAPIService.swift */; };
 		9BF767242C074B8A00BDBC6A /* AuthVerifyEmailRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF767232C074B8A00BDBC6A /* AuthVerifyEmailRequest.swift */; };
 		9BF767272C0758BC00BDBC6A /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF767262C0758BC00BDBC6A /* View+.swift */; };
@@ -265,6 +268,10 @@
 		9BCED2142BF4DCB5007D02B3 /* FeedSwiperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSwiperView.swift; sourceTree = "<group>"; };
 		9BCED2162BF4EF65007D02B3 /* VaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultView.swift; sourceTree = "<group>"; };
 		9BCED2182BF5085B007D02B3 /* ContinueWatchingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueWatchingDetailView.swift; sourceTree = "<group>"; };
+		9BCF3E982C08C5F80016B22C /* ForgotPasswordAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordAPIService.swift; sourceTree = "<group>"; };
+		9BCF3E9E2C08C62F0016B22C /* ForgotPasswordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordRequest.swift; sourceTree = "<group>"; };
+		9BCF3EA12C08DC310016B22C /* CodeVerificationAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeVerificationAPIService.swift; sourceTree = "<group>"; };
+		9BCF3EA42C08DC6A0016B22C /* CodeVerficationRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeVerficationRequestModel.swift; sourceTree = "<group>"; };
 		9BE13A3A2C05CADB00D69B66 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		9BE13A3D2C05CD3100D69B66 /* FLAuthTextFieldError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLAuthTextFieldError.swift; sourceTree = "<group>"; };
 		9BE13A402C05CEA800D69B66 /* FLAuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLAuthError.swift; sourceTree = "<group>"; };
@@ -290,7 +297,6 @@
 		9BF226702C00C05200149850 /* FLViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLViewModelProtocol.swift; sourceTree = "<group>"; };
 		9BF767172C073A6F00BDBC6A /* CheckEmailAPiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckEmailAPiService.swift; sourceTree = "<group>"; };
 		9BF7671A2C073A9400BDBC6A /* CheckEmailRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckEmailRequest.swift; sourceTree = "<group>"; };
-		9BF7671D2C074B5200BDBC6A /* AuthVerifyEmailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVerifyEmailModel.swift; sourceTree = "<group>"; };
 		9BF767202C074B7300BDBC6A /* AuthVerfiyEmailAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVerfiyEmailAPIService.swift; sourceTree = "<group>"; };
 		9BF767232C074B8A00BDBC6A /* AuthVerifyEmailRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVerifyEmailRequest.swift; sourceTree = "<group>"; };
 		9BF767262C0758BC00BDBC6A /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
@@ -1501,6 +1507,49 @@
 			path = ProfileView;
 			sourceTree = "<group>";
 		};
+		9BCF3E962C08C5D80016B22C /* ForgotPasswordModel */ = {
+			isa = PBXGroup;
+			children = (
+				9BCF3EA32C08DC490016B22C /* CodeVerificationRequestModel */,
+				9BCF3EA02C08DC0E0016B22C /* CodeVerificationAPIService */,
+				9BCF3E9D2C08C61B0016B22C /* ForgotPasswordRequest */,
+				9BCF3E972C08C5E00016B22C /* ForgotPasswordAPIService */,
+			);
+			path = ForgotPasswordModel;
+			sourceTree = "<group>";
+		};
+		9BCF3E972C08C5E00016B22C /* ForgotPasswordAPIService */ = {
+			isa = PBXGroup;
+			children = (
+				9BCF3E982C08C5F80016B22C /* ForgotPasswordAPIService.swift */,
+			);
+			path = ForgotPasswordAPIService;
+			sourceTree = "<group>";
+		};
+		9BCF3E9D2C08C61B0016B22C /* ForgotPasswordRequest */ = {
+			isa = PBXGroup;
+			children = (
+				9BCF3E9E2C08C62F0016B22C /* ForgotPasswordRequest.swift */,
+			);
+			path = ForgotPasswordRequest;
+			sourceTree = "<group>";
+		};
+		9BCF3EA02C08DC0E0016B22C /* CodeVerificationAPIService */ = {
+			isa = PBXGroup;
+			children = (
+				9BCF3EA12C08DC310016B22C /* CodeVerificationAPIService.swift */,
+			);
+			path = CodeVerificationAPIService;
+			sourceTree = "<group>";
+		};
+		9BCF3EA32C08DC490016B22C /* CodeVerificationRequestModel */ = {
+			isa = PBXGroup;
+			children = (
+				9BCF3EA42C08DC6A0016B22C /* CodeVerficationRequestModel.swift */,
+			);
+			path = CodeVerificationRequestModel;
+			sourceTree = "<group>";
+		};
 		9BE13A392C05CAC200D69B66 /* String+ */ = {
 			isa = PBXGroup;
 			children = (
@@ -1616,10 +1665,10 @@
 		9BF226582C00AC3A00149850 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9BCF3E962C08C5D80016B22C /* ForgotPasswordModel */,
 				9BF7672E2C07662800BDBC6A /* DisplaynameAndImageRequest */,
 				9BF7672B2C075EDE00BDBC6A /* DisplayNameAndImageAPIService */,
 				9BF767222C074B7500BDBC6A /* AuthVerifyEmailRequest */,
-				9BF7671F2C074B5800BDBC6A /* AuthVerifyEmailModel */,
 				9BF7671C2C074B2400BDBC6A /* AuthVerifyEmailAPIService */,
 				9BF767192C073A7300BDBC6A /* CheckEmailRequest */,
 				9BF767162C073A5600BDBC6A /* CheckEmailAPIService */,
@@ -1720,14 +1769,6 @@
 				9BF767202C074B7300BDBC6A /* AuthVerfiyEmailAPIService.swift */,
 			);
 			path = AuthVerifyEmailAPIService;
-			sourceTree = "<group>";
-		};
-		9BF7671F2C074B5800BDBC6A /* AuthVerifyEmailModel */ = {
-			isa = PBXGroup;
-			children = (
-				9BF7671D2C074B5200BDBC6A /* AuthVerifyEmailModel.swift */,
-			);
-			path = AuthVerifyEmailModel;
 			sourceTree = "<group>";
 		};
 		9BF767222C074B7500BDBC6A /* AuthVerifyEmailRequest */ = {
@@ -1976,6 +2017,7 @@
 				9B3D10552BF22E84009AD6F2 /* FLFont.swift in Sources */,
 				9BE13A502C06320C00D69B66 /* AuthRegistrationRequest.swift in Sources */,
 				9B3D10412BF2177E009AD6F2 /* AppDelegate.swift in Sources */,
+				9BCF3EA22C08DC310016B22C /* CodeVerificationAPIService.swift in Sources */,
 				9B7289522BFE125200EB1A90 /* ResetPasswordFieldAndButtonView.swift in Sources */,
 				9BEE716D2BFCD2CA0055760C /* Segments.swift in Sources */,
 				9BEE716B2BFC993E0055760C /* CMTime+.swift in Sources */,
@@ -1983,6 +2025,7 @@
 				9BE13A3E2C05CD3100D69B66 /* FLAuthTextFieldError.swift in Sources */,
 				9BC6B7FE2BF3530D00E684AD /* SubscribeView.swift in Sources */,
 				9B454B662BFE3546000786B6 /* VaultMainImageView.swift in Sources */,
+				9BCF3E9F2C08C62F0016B22C /* ForgotPasswordRequest.swift in Sources */,
 				9BF767302C07664000BDBC6A /* DisplayNameAndImageRequest.swift in Sources */,
 				9BC6B8302BF3C60D00E684AD /* DeleteAccountView.swift in Sources */,
 				9BC6B8282BF3AE3300E684AD /* SettingsNavigatorView.swift in Sources */,
@@ -2003,7 +2046,6 @@
 				9B6D9DA32BF63FC100365CE6 /* EpisodesView.swift in Sources */,
 				9B72890A2BFE026C00EB1A90 /* CreatedPasswordLablesView.swift in Sources */,
 				9BF226662C00B35F00149850 /* FLUserDefaultKeys.swift in Sources */,
-				9BF7671E2C074B5200BDBC6A /* AuthVerifyEmailModel.swift in Sources */,
 				9B3D10342BF21698009AD6F2 /* ContentView.swift in Sources */,
 				9BF226692C00B4F400149850 /* AuthLoginModel.swift in Sources */,
 				9B3D105E2BF270ED009AD6F2 /* CreatePasswordView.swift in Sources */,
@@ -2040,11 +2082,13 @@
 				9BF2266E2C00BFF600149850 /* SystemReachability.swift in Sources */,
 				9B8A18392BFB788200CF9FF1 /* CustomVideoPlayer.swift in Sources */,
 				9BF2265D2C00ACA800149850 /* FLAPIService.swift in Sources */,
+				9BCF3EA52C08DC6A0016B22C /* CodeVerficationRequestModel.swift in Sources */,
 				9BF767212C074B7300BDBC6A /* AuthVerfiyEmailAPIService.swift in Sources */,
 				9B454B6C2BFE366A000786B6 /* VaultLikeAndShareButtonView.swift in Sources */,
 				9B454B692BFE35F0000786B6 /* VaultDescriptionView.swift in Sources */,
 				9B7289162BFE053700EB1A90 /* CheckEmailFieldAndButtonView.swift in Sources */,
 				9B7289132BFE04B700EB1A90 /* CheckEmailLablesView.swift in Sources */,
+				9BCF3E992C08C5F80016B22C /* ForgotPasswordAPIService.swift in Sources */,
 				9B8A182A2BFB5BF100CF9FF1 /* SubscribesSeriesView.swift in Sources */,
 				9BC6B7FC2BF3508500E684AD /* DisplayNameAndImageView.swift in Sources */,
 				9B3D10582BF22F7C009AD6F2 /* AuthButtonView.swift in Sources */,

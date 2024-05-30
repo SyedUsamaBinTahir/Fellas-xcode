@@ -1,4 +1,5 @@
 ${PODS_ROOT}/Target Support Files/Pods-FellasLoaded/Pods-FellasLoaded-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/ExytePopupView/ExytePopupView.framework
 ${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework
 ${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework

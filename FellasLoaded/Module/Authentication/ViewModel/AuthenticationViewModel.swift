@@ -14,6 +14,7 @@ class AuthenticationViewModel: ObservableObject, FLViewModelProtocol {
     @Published var redirectTabbarView = false
     @Published var redirectToCheckEmailView = false
     @Published var redirectToDisplayNameAndImageView = false
+    @Published var redirectToResetPasswordView = false
     @Published var showLoader = false
     @Published var showAlert = false
     @Published var alertMessage = ""
@@ -92,6 +93,53 @@ class AuthenticationViewModel: ObservableObject, FLViewModelProtocol {
     
     func verifyEmailRequest(email: String, code: String) {
         AuthVerfiyEmailAPIService.shared.registerRequest(email: email, code: code)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completion in
+                switch completion {
+                case .failure(let  error):
+                    DispatchQueue.main.async {
+                        print(error)
+                        self?.alertMessage = error.localizedDescription
+                        self?.showAlert = true
+                        self?.showLoader = false
+                    }
+                case .finished:
+                    print("success")
+                    self?.showLoader = false
+                    self?.redirectToDisplayNameAndImageView = true
+                }
+            } receiveValue: { _ in
+                
+            }
+            .store(in: &self.subscriptions)
+    }
+    
+    func sendForgotPasswordCodeRequest(email: String) {
+        ForgotPasswordAPIService.shared.requestForgotPasswordCode(email: email)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completion in
+                switch completion {
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        print(error.localizedDescription)
+                        self?.alertMessage = error.localizedDescription
+                        self?.showLoader = false
+                        self?.showAlert = true
+                    }
+                case .finished:
+                    print("success --> ",completion)
+                    self?.showLoader = false
+                    self?.redirectToResetPasswordView = true
+                }
+            } receiveValue: { _ in
+                
+            }
+            .store(in: &self.subscriptions)
+
+    }
+    
+    func verifyForgotPasswordCodeRequest(email: String, code: String) {
+        CodeVerificationAPIService.shared.verifyForgotPasswordCode(email: email, code: code)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 switch completion {
