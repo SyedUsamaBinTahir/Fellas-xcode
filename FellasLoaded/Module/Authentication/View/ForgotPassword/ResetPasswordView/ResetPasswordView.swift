@@ -13,7 +13,7 @@ struct ResetPasswordView: View {
     @Binding var email: String
     @State var code: String = ""
     @State private var redirectToNewPasswordView = false
-    @StateObject var viewModel = AuthenticationViewModel()
+    @EnvironmentObject var viewModel: AuthenticationViewModel
     
     var body: some View {
         VStack {
@@ -32,8 +32,8 @@ struct ResetPasswordView: View {
                     }
                     .frame(width: horizontalSizeClass == .regular ? 472 : nil)
                     .padding(horizontalSizeClass == .regular ? 140 : 20)
-                    .navigationDestination(isPresented: $redirectToNewPasswordView) {
-                        NewPasswordView()
+                    .navigationDestination(isPresented: $viewModel.redirectToNewPasswordView) {
+                        NewPasswordView(code: $code)
                             .navigationBarBackButtonHidden(true)
                     }
                     

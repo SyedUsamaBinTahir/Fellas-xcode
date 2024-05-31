@@ -33,6 +33,7 @@ struct ForgotPasswordView: View {
                     .padding(horizontalSizeClass == .regular ? 140 : 20)
                     .navigationDestination(isPresented: $viewModel.redirectToResetPasswordView) {
                         ResetPasswordView(email: $email)
+                            .environmentObject(viewModel)
                             .navigationBarBackButtonHidden(true)
                     }
                     

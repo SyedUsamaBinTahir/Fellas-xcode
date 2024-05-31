@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AuthLoginModel: Codable {
+struct AuthLoginAPIModel: Codable {
     let access: String
     let refresh: String
 }

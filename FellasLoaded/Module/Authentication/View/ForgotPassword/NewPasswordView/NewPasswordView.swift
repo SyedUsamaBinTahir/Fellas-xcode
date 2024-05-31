@@ -10,47 +10,55 @@ import SwiftUI
 struct NewPasswordView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.presentationMode) var presentationMode
+    @Binding var code: String
     @State private var currentPassword: String = ""
     @State private var newPassword: String = ""
     @State private var retypePassword: String = ""
+    @StateObject private var viewModel = AuthenticationViewModel()
     
     var body: some View {
         VStack {
-            VStack(alignment: horizontalSizeClass == .regular ? .center : .leading) {
-                NewPasswordHeaderView()
-                
-                VStack(alignment: .leading) {
+            ZStack {
+                VStack(alignment: horizontalSizeClass == .regular ? .center : .leading) {
+                    NewPasswordHeaderView()
                     
-                    VStack(alignment: .leading, spacing: 10) {
+                    VStack(alignment: .leading) {
                         
-                        Text("Change your password")
-                            .font(.custom(Font.semiBold, size: 32))
-                            .foregroundStyle(Color.white)
-                    }
-                    
-                    VStack(alignment: .leading, spacing: 30) {
-                        VStack(alignment: .leading, spacing: 18) {
-                            AuthPasswordTextFieldView(placeholder: .constant("Current password"), field: $currentPassword)
+                        VStack(alignment: .leading, spacing: 10) {
                             
-                            AuthPasswordTextFieldView(placeholder: .constant("New password"), field: $newPassword)
-                            
-                            Text("Use a minimum of 8 characters with a combination of uppercase & lowercase letters, numbers, and special characters.")
-                                .font(.custom(Font.Medium, size: 14))
-                                .foregroundStyle(Color.theme.textGrayColor)
+                            Text("Change your password")
+                                .font(.custom(Font.semiBold, size: 32))
+                                .foregroundStyle(Color.white)
                         }
                         
-                        VStack(spacing: 20) {
-                            AuthPasswordTextFieldView(placeholder: .constant("Retype Password"), field: $currentPassword)
+                        VStack(alignment: .leading, spacing: 30) {
+                            VStack(alignment: .leading, spacing: 18) {
+                                AuthPasswordTextFieldView(placeholder: .constant("Current password"), field: $currentPassword)
+                                                                
+                                Text("Use a minimum of 8 characters with a combination of uppercase & lowercase letters, numbers, and special characters.")
+                                    .font(.custom(Font.Medium, size: 14))
+                                    .foregroundStyle(Color.theme.textGrayColor)
+                            }
                             
-                            AuthButtonView(action: {
-                            }, title: "CHANGE PASSWORD", background: Color.white, foreground: Color.black)
+                            VStack(spacing: 20) {
+                                AuthPasswordTextFieldView(placeholder: .constant("Retype Password"), field: $currentPassword)
+                                
+                                AuthButtonView(action: {
+                                    viewModel.showLoader = true
+                                    viewModel.setNewPasswordRequest(code: code, password: currentPassword)
+                                }, title: "CHANGE PASSWORD", background: Color.white, foreground: Color.black)
+                            }
                         }
                     }
+                    .frame(width: horizontalSizeClass == .regular ? 472 : nil)
+                    .padding(horizontalSizeClass == .regular ? 140 : 20)
+                    
+                    Spacer()
                 }
-                .frame(width: horizontalSizeClass == .regular ? 472 : nil)
-                .padding(horizontalSizeClass == .regular ? 140 : 20)
                 
-                Spacer()
+                if viewModel.showLoader {
+                    FLLoader()
+                }
             }
         }
         .background {
@@ -61,5 +69,5 @@ struct NewPasswordView: View {
 }
 
 #Preview {
-    NewPasswordView()
+    NewPasswordView( code: .constant(""))
 }

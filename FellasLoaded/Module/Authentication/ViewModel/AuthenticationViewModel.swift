@@ -9,20 +9,23 @@ import Foundation
 import Combine
 
 class AuthenticationViewModel: ObservableObject, FLViewModelProtocol {
+    // Cancel subscription after success variable
     var subscriptions = Set<AnyCancellable>()
-    @Published var authError: FLAuthError? = nil
+    // Navigate after success variables
     @Published var redirectTabbarView = false
     @Published var redirectToCheckEmailView = false
     @Published var redirectToDisplayNameAndImageView = false
     @Published var redirectToResetPasswordView = false
+    @Published var redirectToNewPasswordView = false
+    
+    // show loader after api calls variable
     @Published var showLoader = false
     @Published var showAlert = false
     @Published var alertMessage = ""
-    @Published var didLogin = false
     
     func getAccessToken(email: String, password: String) {
         
-        DataService.shared.getAccessToken(email: email, password: password)
+        AuthLoginAPIService.shared.getAccessToken(email: email, password: password)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] complete in
                 switch complete {
@@ -135,7 +138,6 @@ class AuthenticationViewModel: ObservableObject, FLViewModelProtocol {
                 
             }
             .store(in: &self.subscriptions)
-
     }
     
     func verifyForgotPasswordCodeRequest(email: String, code: String) {
@@ -144,8 +146,8 @@ class AuthenticationViewModel: ObservableObject, FLViewModelProtocol {
             .sink { [weak self] completion in
                 switch completion {
                 case .failure(let  error):
+                    print("error: ", error.localizedDescription)
                     DispatchQueue.main.async {
-                        print(error)
                         self?.alertMessage = error.localizedDescription
                         self?.showAlert = true
                         self?.showLoader = false
@@ -153,7 +155,7 @@ class AuthenticationViewModel: ObservableObject, FLViewModelProtocol {
                 case .finished:
                     print("success")
                     self?.showLoader = false
-                    self?.redirectToDisplayNameAndImageView = true
+                    self?.redirectToNewPasswordView = true
                 }
             } receiveValue: { _ in
                 
@@ -161,38 +163,26 @@ class AuthenticationViewModel: ObservableObject, FLViewModelProtocol {
             .store(in: &self.subscriptions)
     }
     
-//    func getLoginAccessToken(email: String, password: String) {
-//        
-//        let doesThrowError = throwErrorIfValueInvalid(email: email, password: password)
-//        
-//        if doesThrowError {
-//            showAlert = true
-//            showLoader = false
-//            didLogin = false
-//        }
-//        
-//        let params: [String: Any] = [
-//            "email": email,
-//            "password": password
-//        ]
-//        print(params)
-//        
-//        if let url = URL(string: "https://api.fellasloaded.com/api/user/auth/email/") {
-//            APIService.shared.postRequest(url: url, params: params, type: AuthLoginModel.self, completionHandler: { (response) in
-//                self.showLoader = true
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//                    print("Response -->" ,response)
-//                    self.showLoader = false
-//                    self.didLogin = true
-//                    self.redirectTabbarView = true
-//                }
-//            }) { (error) in
-//                print(String(describing: error))
-//                self.didLogin = false
-//                self.showLoader = false
-//                self.showAlert = true
-//            }
-//        }
-//    }
-    
+    func setNewPasswordRequest(code: String, password: String) {
+        NewPasswordAPIService.shared.verifyForgotPasswordCode(code: code, password: password)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completion in
+                switch completion {
+                case .failure(let  error):
+                    print("error: ", error.localizedDescription)
+                    DispatchQueue.main.async {
+                        self?.alertMessage = error.localizedDescription
+                        self?.showAlert = true
+                        self?.showLoader = false
+                    }
+                case .finished:
+                    print("success")
+                    self?.showLoader = false
+                    self?.redirectToNewPasswordView = true
+                }
+            } receiveValue: { _ in
+                
+            }
+            .store(in: &self.subscriptions)
+    }
 }

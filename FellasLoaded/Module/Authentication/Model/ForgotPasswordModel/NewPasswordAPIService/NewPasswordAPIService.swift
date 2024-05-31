@@ -1,30 +1,30 @@
 //
-//  CodeVerificationAPIService.swift
+//  NewPasswordAPIService.swift
 //  FellasLoaded
 //
-//  Created by Phebsoft on 30/05/2024.
+//  Created by Phebsoft on 31/05/2024.
 //
 
 import Foundation
 import Combine
 
-class CodeVerificationAPIService {
-    static let shared = CodeVerificationAPIService()
+class NewPasswordAPIService {
+    static let shared = NewPasswordAPIService()
     
-    func verifyForgotPasswordCode(email: String, code: String) -> AnyPublisher<Bool, FLAPIError> {
-        guard let url = URL(string: "https://api.fellasloaded.com/api/user/password/reset/check_code/") else {
+    func verifyForgotPasswordCode(code: String, password: String) -> AnyPublisher<Bool, FLAPIError> {
+        guard let url = URL(string: "https://api.fellasloaded.com/api/user/password/reset/submit/") else {
             return Fail(error: .urlError).eraseToAnyPublisher()
         }
 
         do {
-            let verifyForgotPasswordCodeData = try JSONEncoder().encode(CodeVerficationRequestModel(email_candidate: email, code_candidate: code))
+            let newPasswordRequestData = try JSONEncoder().encode(NewPasswordRequestModel(code_candidate: code, password_candidate: password))
 
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
-            request.httpBody = verifyForgotPasswordCodeData
+            request.httpBody = newPasswordRequestData
             request.addValue("application/json", forHTTPHeaderField: "Accept")
             request.setValue("application/json", forHTTPHeaderField: "content-type")
-            print(String(data: verifyForgotPasswordCodeData, encoding: .utf8) ?? "N/A")
+            print(String(data: newPasswordRequestData, encoding: .utf8) ?? "N/A")
             
             return URLSession.shared.dataTaskPublisher(for: request)
                 .tryMap { result -> Bool in
@@ -63,24 +63,3 @@ class CodeVerificationAPIService {
         }
     }
 }
-
-//let parameters = "{\n  \"email_candidate\": \"princedavill007@gmail.com\",\n  \"code_candidate\": \"\(code)\"\n}"
-//let postData = parameters.data(using: .utf8)
-//
-//var request = URLRequest(url: URL(string: "https://api.fellasloaded.com/api/user/password/reset/check_code/")!,timeoutInterval: Double.infinity)
-//request.addValue("application/json", forHTTPHeaderField: "Accept")
-//request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-////        request.addValue("Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE5NzQ1ODgzLCJpYXQiOjE3MTcxNTM4ODMsImp0aSI6IjhhZmQ4OWNhZTU1YTQ3NWM5ZTM2ZTZmYjhkMzc3NTY0IiwidXNlcl9pZCI6MzU3MDB9.0SDWbrLHZglQl-YXTetnQdZFqRRnbZkPbiUwfJNTV1o", forHTTPHeaderField: "Authorization")
-//
-//request.httpMethod = "POST"
-//request.httpBody = postData
-//
-//let task = URLSession.shared.dataTask(with: request) { data, response, error in
-//  guard let data = data else {
-//    print(String(describing: error))
-//    return
-//  }
-//  print(String(data: data, encoding: .utf8)!)
-//}
-//
-//task.resume()

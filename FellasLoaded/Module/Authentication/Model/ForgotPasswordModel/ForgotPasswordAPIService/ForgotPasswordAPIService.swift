@@ -23,8 +23,6 @@ class ForgotPasswordAPIService {
             request.httpMethod = "POST"
             request.httpBody = forgotPassswordRequestData
             request.setValue("application/json", forHTTPHeaderField: "content-type")
-            request.setValue("Bearer \(FLUserJourney.shared.authRegistrationToken ?? "N/A")", forHTTPHeaderField: "Authorization")
-            print(FLUserJourney.shared.authToken ?? "N/A")
             
             return URLSession.shared.dataTaskPublisher(for: request)
                 .tryMap { resutl -> Bool in
@@ -49,7 +47,7 @@ class ForgotPasswordAPIService {
             print(error)
             if let error = error as? EncodingError {
                 switch error {
-                case .invalidValue(let any, let context):
+                case .invalidValue(_, _):
                     return Fail(error: .EncodeError).eraseToAnyPublisher()
                 default:
                     return Fail(error: .EncodeError).eraseToAnyPublisher()

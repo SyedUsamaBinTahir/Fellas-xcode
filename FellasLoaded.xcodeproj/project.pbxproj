@@ -83,6 +83,8 @@
 		9B8A18392BFB788200CF9FF1 /* CustomVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8A18382BFB788200CF9FF1 /* CustomVideoPlayer.swift */; };
 		9B8A183C2BFB78A000CF9FF1 /* DoubleTapSeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8A183B2BFB78A000CF9FF1 /* DoubleTapSeek.swift */; };
 		9B8A183F2BFB7BC100CF9FF1 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8A183E2BFB7BC100CF9FF1 /* VideoPlayerView.swift */; };
+		9BC506CB2C0A189E00EAEF9B /* NewPasswordAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC506CA2C0A189E00EAEF9B /* NewPasswordAPIService.swift */; };
+		9BC506CE2C0A18C400EAEF9B /* NewPasswordRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC506CD2C0A18C400EAEF9B /* NewPasswordRequestModel.swift */; };
 		9BC6B7FA2BF34D2800E684AD /* CheckEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6B7F92BF34D2800E684AD /* CheckEmailView.swift */; };
 		9BC6B7FC2BF3508500E684AD /* DisplayNameAndImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6B7FB2BF3508500E684AD /* DisplayNameAndImageView.swift */; };
 		9BC6B7FE2BF3530D00E684AD /* SubscribeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6B7FD2BF3530D00E684AD /* SubscribeView.swift */; };
@@ -133,11 +135,11 @@
 		9BEE716D2BFCD2CA0055760C /* Segments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEE716C2BFCD2CA0055760C /* Segments.swift */; };
 		9BEE71702BFCF2CF0055760C /* AirPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEE716F2BFCF2CF0055760C /* AirPlayView.swift */; };
 		9BF226572C0082CD00149850 /* WatchlistAndShareButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF226562C0082CD00149850 /* WatchlistAndShareButtonView.swift */; };
-		9BF2265D2C00ACA800149850 /* FLAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF2265C2C00ACA800149850 /* FLAPIService.swift */; };
+		9BF2265D2C00ACA800149850 /* AuthLoginAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF2265C2C00ACA800149850 /* AuthLoginAPIService.swift */; };
 		9BF226602C00AFA200149850 /* FLApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF2265F2C00AFA200149850 /* FLApiError.swift */; };
 		9BF226632C00B1E500149850 /* FLUserJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF226622C00B1E500149850 /* FLUserJourney.swift */; };
 		9BF226662C00B35F00149850 /* FLUserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF226652C00B35F00149850 /* FLUserDefaultKeys.swift */; };
-		9BF226692C00B4F400149850 /* AuthLoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF226682C00B4F400149850 /* AuthLoginModel.swift */; };
+		9BF226692C00B4F400149850 /* AuthLoginAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF226682C00B4F400149850 /* AuthLoginAPIModel.swift */; };
 		9BF2266B2C00BC8A00149850 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF2266A2C00BC8A00149850 /* AuthenticationViewModel.swift */; };
 		9BF2266E2C00BFF600149850 /* SystemReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF2266D2C00BFF600149850 /* SystemReachability.swift */; };
 		9BF226712C00C05200149850 /* FLViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF226702C00C05200149850 /* FLViewModelProtocol.swift */; };
@@ -233,6 +235,8 @@
 		9B8A18382BFB788200CF9FF1 /* CustomVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVideoPlayer.swift; sourceTree = "<group>"; };
 		9B8A183B2BFB78A000CF9FF1 /* DoubleTapSeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleTapSeek.swift; sourceTree = "<group>"; };
 		9B8A183E2BFB7BC100CF9FF1 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
+		9BC506CA2C0A189E00EAEF9B /* NewPasswordAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordAPIService.swift; sourceTree = "<group>"; };
+		9BC506CD2C0A18C400EAEF9B /* NewPasswordRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordRequestModel.swift; sourceTree = "<group>"; };
 		9BC6B7F92BF34D2800E684AD /* CheckEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckEmailView.swift; sourceTree = "<group>"; };
 		9BC6B7FB2BF3508500E684AD /* DisplayNameAndImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayNameAndImageView.swift; sourceTree = "<group>"; };
 		9BC6B7FD2BF3530D00E684AD /* SubscribeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeView.swift; sourceTree = "<group>"; };
@@ -287,11 +291,11 @@
 		9BEE716C2BFCD2CA0055760C /* Segments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segments.swift; sourceTree = "<group>"; };
 		9BEE716F2BFCF2CF0055760C /* AirPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirPlayView.swift; sourceTree = "<group>"; };
 		9BF226562C0082CD00149850 /* WatchlistAndShareButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistAndShareButtonView.swift; sourceTree = "<group>"; };
-		9BF2265C2C00ACA800149850 /* FLAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLAPIService.swift; sourceTree = "<group>"; };
+		9BF2265C2C00ACA800149850 /* AuthLoginAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthLoginAPIService.swift; sourceTree = "<group>"; };
 		9BF2265F2C00AFA200149850 /* FLApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLApiError.swift; sourceTree = "<group>"; };
 		9BF226622C00B1E500149850 /* FLUserJourney.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLUserJourney.swift; sourceTree = "<group>"; };
 		9BF226652C00B35F00149850 /* FLUserDefaultKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLUserDefaultKeys.swift; sourceTree = "<group>"; };
-		9BF226682C00B4F400149850 /* AuthLoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthLoginModel.swift; sourceTree = "<group>"; };
+		9BF226682C00B4F400149850 /* AuthLoginAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthLoginAPIModel.swift; sourceTree = "<group>"; };
 		9BF2266A2C00BC8A00149850 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		9BF2266D2C00BFF600149850 /* SystemReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemReachability.swift; sourceTree = "<group>"; };
 		9BF226702C00C05200149850 /* FLViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLViewModelProtocol.swift; sourceTree = "<group>"; };
@@ -1325,6 +1329,48 @@
 			path = AddCommentView;
 			sourceTree = "<group>";
 		};
+		9BC506C92C0A187600EAEF9B /* NewPasswordAPIService */ = {
+			isa = PBXGroup;
+			children = (
+				9BC506CA2C0A189E00EAEF9B /* NewPasswordAPIService.swift */,
+			);
+			path = NewPasswordAPIService;
+			sourceTree = "<group>";
+		};
+		9BC506CC2C0A18AA00EAEF9B /* NewPasswordRequestModel */ = {
+			isa = PBXGroup;
+			children = (
+				9BC506CD2C0A18C400EAEF9B /* NewPasswordRequestModel.swift */,
+			);
+			path = NewPasswordRequestModel;
+			sourceTree = "<group>";
+		};
+		9BC506CF2C0A1F5300EAEF9B /* AuthRegistrationModel */ = {
+			isa = PBXGroup;
+			children = (
+				9BF7672E2C07662800BDBC6A /* DisplaynameAndImageRequest */,
+				9BF7672B2C075EDE00BDBC6A /* DisplayNameAndImageAPIService */,
+				9BF767222C074B7500BDBC6A /* AuthVerifyEmailRequest */,
+				9BF7671C2C074B2400BDBC6A /* AuthVerifyEmailAPIService */,
+				9BF767192C073A7300BDBC6A /* CheckEmailRequest */,
+				9BF767162C073A5600BDBC6A /* CheckEmailAPIService */,
+				9BE13A4E2C0631F700D69B66 /* AuthRegistrationRequest */,
+				9BE13A4B2C06314100D69B66 /* AuthRegistrationAPIModel */,
+				9BE13A482C0630F400D69B66 /* AuthRegistratoinService */,
+			);
+			path = AuthRegistrationModel;
+			sourceTree = "<group>";
+		};
+		9BC506D02C0A1F6F00EAEF9B /* AuthLoginModel */ = {
+			isa = PBXGroup;
+			children = (
+				9BE13A452C06271C00D69B66 /* AuthLoginRequest */,
+				9BF2265B2C00AC8C00149850 /* AuthLoginAPIService */,
+				9BF226672C00B4E500149850 /* AuthLoginAPIModel */,
+			);
+			path = AuthLoginModel;
+			sourceTree = "<group>";
+		};
 		9BC6B7FF2BF35E3500E684AD /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -1364,7 +1410,6 @@
 				9BF226642C00B34A00149850 /* FLUserDefaultKeys */,
 				9BF226612C00B1D600149850 /* FLUserJourney */,
 				9BF2265E2C00AF7F00149850 /* FLApiError */,
-				9BF2265B2C00AC8C00149850 /* FLAPIService */,
 				9BC6B8132BF37ACD00E684AD /* Fonts */,
 				9B3D10452BF229A3009AD6F2 /* FLColor */,
 				9B3D10482BF22D61009AD6F2 /* FLFont */,
@@ -1510,6 +1555,8 @@
 		9BCF3E962C08C5D80016B22C /* ForgotPasswordModel */ = {
 			isa = PBXGroup;
 			children = (
+				9BC506CC2C0A18AA00EAEF9B /* NewPasswordRequestModel */,
+				9BC506C92C0A187600EAEF9B /* NewPasswordAPIService */,
 				9BCF3EA32C08DC490016B22C /* CodeVerificationRequestModel */,
 				9BCF3EA02C08DC0E0016B22C /* CodeVerificationAPIService */,
 				9BCF3E9D2C08C61B0016B22C /* ForgotPasswordRequest */,
@@ -1665,19 +1712,10 @@
 		9BF226582C00AC3A00149850 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9BC506D02C0A1F6F00EAEF9B /* AuthLoginModel */,
+				9BC506CF2C0A1F5300EAEF9B /* AuthRegistrationModel */,
 				9BCF3E962C08C5D80016B22C /* ForgotPasswordModel */,
-				9BF7672E2C07662800BDBC6A /* DisplaynameAndImageRequest */,
-				9BF7672B2C075EDE00BDBC6A /* DisplayNameAndImageAPIService */,
-				9BF767222C074B7500BDBC6A /* AuthVerifyEmailRequest */,
-				9BF7671C2C074B2400BDBC6A /* AuthVerifyEmailAPIService */,
-				9BF767192C073A7300BDBC6A /* CheckEmailRequest */,
-				9BF767162C073A5600BDBC6A /* CheckEmailAPIService */,
-				9BE13A4E2C0631F700D69B66 /* AuthRegistrationRequest */,
-				9BE13A4B2C06314100D69B66 /* AuthRegistrationAPIModel */,
-				9BE13A482C0630F400D69B66 /* AuthRegistratoinService */,
-				9BE13A452C06271C00D69B66 /* AuthLoginRequest */,
 				9BE13A3F2C05CE9000D69B66 /* FLAuthError */,
-				9BF226672C00B4E500149850 /* AuthLoginModel */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1691,12 +1729,12 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		9BF2265B2C00AC8C00149850 /* FLAPIService */ = {
+		9BF2265B2C00AC8C00149850 /* AuthLoginAPIService */ = {
 			isa = PBXGroup;
 			children = (
-				9BF2265C2C00ACA800149850 /* FLAPIService.swift */,
+				9BF2265C2C00ACA800149850 /* AuthLoginAPIService.swift */,
 			);
-			path = FLAPIService;
+			path = AuthLoginAPIService;
 			sourceTree = "<group>";
 		};
 		9BF2265E2C00AF7F00149850 /* FLApiError */ = {
@@ -1723,12 +1761,12 @@
 			path = FLUserDefaultKeys;
 			sourceTree = "<group>";
 		};
-		9BF226672C00B4E500149850 /* AuthLoginModel */ = {
+		9BF226672C00B4E500149850 /* AuthLoginAPIModel */ = {
 			isa = PBXGroup;
 			children = (
-				9BF226682C00B4F400149850 /* AuthLoginModel.swift */,
+				9BF226682C00B4F400149850 /* AuthLoginAPIModel.swift */,
 			);
-			path = AuthLoginModel;
+			path = AuthLoginAPIModel;
 			sourceTree = "<group>";
 		};
 		9BF2266C2C00BFCF00149850 /* SystemReachability */ = {
@@ -2000,6 +2038,7 @@
 				9BEC0A832C049D1C00BDE169 /* Dictionary+.swift in Sources */,
 				9BCED2112BF4C6EA007D02B3 /* ProfileView.swift in Sources */,
 				9BC6B80A2BF36A3A00E684AD /* NewPasswordView.swift in Sources */,
+				9BC506CB2C0A189E00EAEF9B /* NewPasswordAPIService.swift in Sources */,
 				9B7289312BFE0A4F00EB1A90 /* EmailLablesView.swift in Sources */,
 				9B7289342BFE0A8A00EB1A90 /* EmailFieldAndButtonView.swift in Sources */,
 				9BF2266B2C00BC8A00149850 /* AuthenticationViewModel.swift in Sources */,
@@ -2047,7 +2086,7 @@
 				9B72890A2BFE026C00EB1A90 /* CreatedPasswordLablesView.swift in Sources */,
 				9BF226662C00B35F00149850 /* FLUserDefaultKeys.swift in Sources */,
 				9B3D10342BF21698009AD6F2 /* ContentView.swift in Sources */,
-				9BF226692C00B4F400149850 /* AuthLoginModel.swift in Sources */,
+				9BF226692C00B4F400149850 /* AuthLoginAPIModel.swift in Sources */,
 				9B3D105E2BF270ED009AD6F2 /* CreatePasswordView.swift in Sources */,
 				9B72892E2BFE09E600EB1A90 /* EmailHeaderView.swift in Sources */,
 				9BE13A412C05CEA800D69B66 /* FLAuthError.swift in Sources */,
@@ -2063,6 +2102,7 @@
 				9BCED2152BF4DCB5007D02B3 /* FeedSwiperView.swift in Sources */,
 				9BC6B82E2BF3C44E00E684AD /* AccountView.swift in Sources */,
 				9B3D10602BF27D51009AD6F2 /* AuthTestFieldView.swift in Sources */,
+				9BC506CE2C0A18C400EAEF9B /* NewPasswordRequestModel.swift in Sources */,
 				9BF226632C00B1E500149850 /* FLUserJourney.swift in Sources */,
 				9B3D105C2BF253CF009AD6F2 /* RegistrationView.swift in Sources */,
 				9BC6B81E2BF3878900E684AD /* Tabbar.swift in Sources */,
@@ -2081,7 +2121,7 @@
 				9BE13A3B2C05CADB00D69B66 /* String+.swift in Sources */,
 				9BF2266E2C00BFF600149850 /* SystemReachability.swift in Sources */,
 				9B8A18392BFB788200CF9FF1 /* CustomVideoPlayer.swift in Sources */,
-				9BF2265D2C00ACA800149850 /* FLAPIService.swift in Sources */,
+				9BF2265D2C00ACA800149850 /* AuthLoginAPIService.swift in Sources */,
 				9BCF3EA52C08DC6A0016B22C /* CodeVerficationRequestModel.swift in Sources */,
 				9BF767212C074B7300BDBC6A /* AuthVerfiyEmailAPIService.swift in Sources */,
 				9B454B6C2BFE366A000786B6 /* VaultLikeAndShareButtonView.swift in Sources */,

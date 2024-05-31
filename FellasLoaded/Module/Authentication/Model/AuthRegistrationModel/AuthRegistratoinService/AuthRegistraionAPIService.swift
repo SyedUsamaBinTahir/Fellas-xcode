@@ -34,7 +34,7 @@ class AuthRegistraionAPIService {
                         FLUserJourney.shared.authRegistrationToken = resultData.access
                         print("saved Registration Token -->", FLUserJourney.shared.authRegistrationToken ?? "N/A")
                         print("Registration Access Token -->", resultData.access)
-                        UserDefaults.standard.setValue(FLUserJourney.shared.authRegistrationToken, forKey: FLUserDefaultKeys.registrationToken.rawValue)
+//                        UserDefaults.standard.setValue(FLUserJourney.shared.authRegistrationToken, forKey: FLUserDefaultKeys.registrationToken.rawValue)
                         return result.data
                     } else {
 //                        let httpErrorCode = httpResponse.statusCode
