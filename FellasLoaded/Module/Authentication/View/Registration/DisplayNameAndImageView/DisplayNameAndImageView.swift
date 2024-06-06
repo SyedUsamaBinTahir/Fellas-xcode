@@ -14,43 +14,64 @@ struct DisplayNameAndImageView: View {
     @State private var redirectToSubscribeView = false
     @State private var showImagePicker: Bool = false
     @State private var selectedImage: UIImage?
+    @StateObject var viewModel = DisplayNameAndImageAPIService()
     
     var body: some View {
         VStack {
-            VStack(alignment: horizontalSizeClass == .regular ? .center : .leading) {
-                AuthHeaderView(step: .constant("STEP 4 OF 5"))
-                
-                VStack(alignment: .center, spacing: 30) {
+            ZStack {
+                VStack(alignment: horizontalSizeClass == .regular ? .center : .leading) {
+                    AuthHeaderView(step: .constant("STEP 4 OF 5"))
                     
-                    DisplayNameAndImageLablesView()
-                    
-                    DisplayNameAndImageImageView(image: $selectedImage) {
-                        showImagePicker.toggle()
-                    }
-                    
-                    DisplayNameAndImageFieldAndButtonsView(name: $name, redirectToSubscribeView: $redirectToSubscribeView) {
-                        if let selectedImage = selectedImage {
-                            DisplayNameAndImageAPIService.shared.uploadImageToServer(image: selectedImage, name: name)
+                    VStack(alignment: .center, spacing: 30) {
+                        
+                        DisplayNameAndImageLablesView()
+                        
+                        DisplayNameAndImageImageView(image: $selectedImage) {
+                            showImagePicker.toggle()
+                        }
+                        
+                        DisplayNameAndImageFieldAndButtonsView(name: $name, redirectToSubscribeView: $redirectToSubscribeView) {
+                            if let selectedImage = selectedImage {
+                                viewModel.showLoader = true
+                                viewModel.uploadImageToServer(image: selectedImage, name: name)
+                            }
                         }
                     }
+                    .frame(width: horizontalSizeClass == .regular ? 472 : nil)
+                    .padding(horizontalSizeClass == .regular ? 140 : 20)
+                    
+                    Spacer()
                 }
-                .frame(width: horizontalSizeClass == .regular ? 472 : nil)
-                .padding(horizontalSizeClass == .regular ? 140 : 20)
-                
-                Spacer()
-            }
-            .sheet(isPresented: $showImagePicker, onDismiss: {
-                if selectedImage == nil {
-                    withAnimation {
-                        presentationMode.wrappedValue.dismiss()
+                .popup(isPresented: $viewModel.showAlert) {
+                    FLToastAlert(image: .constant(""), message: .constant(viewModel.alertMessage))
+                } customize: {
+                    $0
+                        .type(.floater(useSafeAreaInset: true))
+                        .position(.top)
+                        .animation(.spring())
+                        .closeOnTapOutside(true)
+                        .backgroundColor(.black.opacity(0.5))
+                        .autohideIn(3)
+                        .appearFrom(.top)
+                }
+                .sheet(isPresented: $showImagePicker, onDismiss: {
+                    if selectedImage == nil {
+                        withAnimation {
+                            presentationMode.wrappedValue.dismiss()
+                        }
                     }
+                }, content: {
+                    ImagePicker(selectedImage: $selectedImage)
+                })
+                .navigationDestination(isPresented: $viewModel.redirectToSubscribeView) {
+                    SubscribeView()
+                        .navigationBarBackButtonHidden(true)
                 }
-            }, content: {
-                ImagePicker(selectedImage: $selectedImage)
-            })
-            .navigationDestination(isPresented: $redirectToSubscribeView) {
-                SubscribeView()
-                    .navigationBarBackButtonHidden(true)
+                
+                if viewModel.showLoader {
+                    FLLoader()
+                }
+                
             }
         }
         .background {

@@ -11,8 +11,8 @@ import Combine
 class AuthVerfiyEmailAPIService {
     static let shared = AuthVerfiyEmailAPIService()
     
-    func registerRequest(email: String, code: String) -> AnyPublisher<Bool, FLAPIError> {
-        guard let url = URL(string: "https://api.fellasloaded.com/api/user/email/verify/submit/") else {
+    func registerRequest(email: String, code: String) -> AnyPublisher<Bool, AuthVerifyApiError> {
+        guard let url = URL(string: FLAPIs.baseURL + FLAPIs.emailVerify) else {
             return Fail(error: .urlError).eraseToAnyPublisher()
         }
 
@@ -23,25 +23,25 @@ class AuthVerfiyEmailAPIService {
             request.httpMethod = "POST"
             request.httpBody = verifyEmailRequestData
             request.setValue("application/json", forHTTPHeaderField: "content-type")
-            request.setValue("Bearer \(FLUserJourney.shared.authRegistrationToken ?? "N/A")", forHTTPHeaderField: "Authorization")
+            request.setValue("Bearer \(FLUserJourney.shared.authToken ?? "N/A")", forHTTPHeaderField: "Authorization")
             
             return URLSession.shared.dataTaskPublisher(for: request)
                 .tryMap { result -> Bool in
                     guard let httpResponse = result.response as? HTTPURLResponse else {
-                        throw FLAPIError.networkError
+                        throw AuthVerifyApiError.urlError
                     }
                     if (200...299).contains(httpResponse.statusCode) {
                         return true
                     } else {
 //                        let httpErrorCode = httpResponse.statusCode
-                        throw FLAPIError.networkError
+                        throw AuthVerifyApiError.EncodeError
                     }
                 }
                 .mapError({ error in
-                    if let flApiError = error as? FLAPIError {
+                    if let flApiError = error as? AuthVerifyApiError {
                         return flApiError
                     } else {
-                        return FLAPIError.unknownError
+                        return AuthVerifyApiError.unknownError
                     }
                 })
                 .eraseToAnyPublisher()
@@ -49,7 +49,7 @@ class AuthVerfiyEmailAPIService {
             print(String(describing: error))
             if let error = error as? EncodingError {
                 switch error {
-                case .invalidValue(let any, let context):
+                case .invalidValue(_, _):
                     return Fail(error: .EncodeError).eraseToAnyPublisher()
                 default:
                     return Fail(error: .EncodeError).eraseToAnyPublisher()

@@ -9,7 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        WelcomeScreen()
+        if let isLoggedIn = FLUserJourney.shared.isSubscibedUserLoggedIn, isLoggedIn {
+            Tabbar()
+        } else {
+            WelcomeScreen()
+        }
     }
 }
 

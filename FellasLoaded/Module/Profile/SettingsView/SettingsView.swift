@@ -10,6 +10,7 @@ import SwiftUI
 struct SettingsView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.viewController) private var viewControllerHolder: UIViewController?
     @State private var email: String = ""
     @State private var redirectAccount = false
     @State private var dismissLogout = false
@@ -50,14 +51,17 @@ struct SettingsView: View {
                 .frame(width: horizontalSizeClass == .regular ? 472 : nil)
                 .padding(horizontalSizeClass == .regular ? 140 : 20)
                 
-                
-                
                 Spacer()
             }
             .overlay {
                 if dismissLogout {
                     LogOutView(cancelAction: { withAnimation(.easeInOut(duration: 0.2)) { dismissLogout = false } },
-                               logoutAction: {})
+                               logoutAction: {
+                        FLUserJourney.shared.logoutOccured()
+                        self.viewControllerHolder?.present(style: .overFullScreen) {
+                            WelcomeScreen()
+                        }
+                    })
                 }
             }
             .navigationDestination(isPresented: $redirectAccount) {

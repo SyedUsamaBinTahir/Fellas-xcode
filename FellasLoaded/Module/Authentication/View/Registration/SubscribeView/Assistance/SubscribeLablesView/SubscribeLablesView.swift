@@ -31,10 +31,6 @@ struct SubscribeLablesView: View {
                 .font(.custom(Font.regular, size: 16))
                 .foregroundStyle(Color.theme.textGrayColor)
         }
-        
-        Text("By signing up, you agree to our Terms of Service and Privacy Policy.")
-             .font(.custom(Font.regular, size: 14))
-             .foregroundStyle(Color.white)
     }
 }
 

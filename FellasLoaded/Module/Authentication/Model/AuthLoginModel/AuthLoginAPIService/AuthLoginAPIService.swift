@@ -12,8 +12,8 @@ class AuthLoginAPIService {
     static let shared = AuthLoginAPIService()
     var cancellable: AnyCancellable?
     
-    func getAccessToken(email: String, password: String) -> AnyPublisher<AuthLoginAPIModel, FLAPIError> {
-        guard let url = URL(string: "https://api.fellasloaded.com/api/user/auth/email/") else {
+    func getAccessToken(email: String, password: String) -> AnyPublisher<AuthLoginAPIModel, AuthLoginAPIError> {
+        guard let url = URL(string: FLAPIs.baseURL + FLAPIs.login) else {
             return Fail(error: .urlError).eraseToAnyPublisher()
         }
 
@@ -28,25 +28,25 @@ class AuthLoginAPIService {
             return URLSession.shared.dataTaskPublisher(for: request)
                 .tryMap { result -> Data in
                     guard let httpResponse = result.response as? HTTPURLResponse else {
-                        throw FLAPIError.networkError
+                        throw AuthLoginAPIError.urlError
                     }
                     if (200...299).contains(httpResponse.statusCode) {
                         let resultData = try JSONDecoder().decode(AuthLoginAPIModel.self, from: result.data)
                         FLUserJourney.shared.authToken = resultData.access
                         print("AuthLogin Access Token -->", resultData.access)
                         print("Saved auth login access token -->", FLUserJourney.shared.authToken ?? "N/A")
-                        UserDefaults.standard.setValue(FLUserJourney.shared.authToken, forKey: FLUserDefaultKeys.Accesstoken.rawValue)
+                        FLUserJourney.shared.subscribedUserLoggedin()
                         return result.data
                     } else {
-                        throw FLAPIError.networkError
+                        throw AuthLoginAPIError.EncodeError
                     }
                 }
                 .decode(type: AuthLoginAPIModel.self, decoder: JSONDecoder())
                 .mapError({ error in
-                    if let flApiError = error as? FLAPIError {
+                    if let flApiError = error as? AuthLoginAPIError {
                         return flApiError
                     } else {
-                        return FLAPIError.unknownError
+                        return AuthLoginAPIError.unknownError
                     }
                 })
                 .eraseToAnyPublisher()

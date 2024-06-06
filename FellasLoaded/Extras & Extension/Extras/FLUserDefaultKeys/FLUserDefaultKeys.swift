@@ -8,8 +8,9 @@
 import Foundation
 
 public enum FLUserDefaultKeys: String, CaseIterable {
-    case loggedIn = "FLLoggedIn"
-    case Accesstoken = "AuthAccessToken"
+    case subscribedUserloggedIn = "FLSubscribedUser"
+    case unSubscribedUserLoggedIn = "FLunSubscribedUser"
+    case accesstoken = "AuthAccessToken"
     case refreshToken = "refreshToken"
     case registrationToken = "AuthRegistrationToken"
 }

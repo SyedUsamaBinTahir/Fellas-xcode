@@ -11,17 +11,19 @@ import Combine
 class AuthenticationViewModel: ObservableObject, FLViewModelProtocol {
     // Cancel subscription after success variable
     var subscriptions = Set<AnyCancellable>()
-    // Navigate after success variables
+    // Navigate after success properties
     @Published var redirectTabbarView = false
     @Published var redirectToCheckEmailView = false
     @Published var redirectToDisplayNameAndImageView = false
     @Published var redirectToResetPasswordView = false
     @Published var redirectToNewPasswordView = false
     
-    // show loader after api calls variable
+    // show loader after api calls properties
     @Published var showLoader = false
     @Published var showAlert = false
     @Published var alertMessage = ""
+    
+    @Published var getStripePaymentsModel = [GetStripePaymentsModel]()
     
     func getAccessToken(email: String, password: String) {
         
@@ -184,5 +186,44 @@ class AuthenticationViewModel: ObservableObject, FLViewModelProtocol {
                 
             }
             .store(in: &self.subscriptions)
+    }
+    
+    func getStripePaymentPrices() {
+//        GetServerData.shared.getServerData(endpoint: .getPaymentPrices, type: GetStripePaymentsModel.self)
+//            .sink { [weak self] completion in
+//                switch completion {
+//                case .failure(let error):
+//                    print("\(error.localizedDescription)")
+//                    DispatchQueue.main.async {
+//                        self?.showAlert = true
+//                        self?.alertMessage = error.localizedDescription
+//                        self?.showLoader = false
+//                    }
+//                case .finished:
+//                    print("Finished")
+//                    self?.showLoader = false
+//                }
+//            }
+//            receiveValue: { [weak self] resultData in
+//                self?.getStripePaymentsModel = resultData
+//            }
+//            .store(in: &subscriptions)
+        
+//        GetPaymentPricesAPIService.shared.getPaymentsPrices()
+//            .receive(on: DispatchQueue.main)
+//            .sink { [weak self] completion in
+//                    switch completion {
+//                    case .failure(let error):
+//                        print(String(describing: error.localizedDescription))
+//                        DispatchQueue.main.async {
+//                            self?.showLoader = false
+//                        }
+//                    case .finished:
+//                        print("success")
+//                    }
+//            } receiveValue: { getStripePayments in
+//                self.getStripePaymentsModel = getStripePayments
+//            }
+//            .store(in: &self.subscriptions)
     }
 }

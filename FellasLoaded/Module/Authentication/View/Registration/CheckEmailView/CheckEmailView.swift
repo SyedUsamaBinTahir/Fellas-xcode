@@ -35,6 +35,18 @@ struct CheckEmailView: View {
                     }
                     .frame(width: horizontalSizeClass == .regular ? 472 : nil)
                     .padding(horizontalSizeClass == .regular ? 140 : 20)
+                    .popup(isPresented: $viewModel.showAlert) {
+                        FLToastAlert(image: .constant(""), message: .constant(viewModel.alertMessage))
+                    } customize: {
+                        $0
+                            .type(.floater(useSafeAreaInset: true))
+                            .position(.top)
+                            .animation(.spring())
+                            .closeOnTapOutside(true)
+                            .backgroundColor(.black.opacity(0.5))
+                            .autohideIn(3)
+                            .appearFrom(.top)
+                    }
                     .navigationDestination(isPresented: $viewModel.redirectToDisplayNameAndImageView) {
                         DisplayNameAndImageView()
                             .navigationBarBackButtonHidden(true)

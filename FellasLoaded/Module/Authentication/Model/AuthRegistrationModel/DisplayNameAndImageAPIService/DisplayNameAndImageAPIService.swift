@@ -25,9 +25,13 @@ struct Media {
     }
 }
 
-class DisplayNameAndImageAPIService {
-    static let shared = DisplayNameAndImageAPIService()
+class DisplayNameAndImageAPIService: ObservableObject {
     @Published var images = UIImage()
+    // show loader after api calls variable
+    @Published var showLoader = false
+    @Published var showAlert = false
+    @Published var alertMessage = ""
+    @Published var redirectToSubscribeView = false
     
     func uploadImageToServer(image: UIImage, name: String) {
         images = image
@@ -36,14 +40,14 @@ class DisplayNameAndImageAPIService {
        ]
        guard let mediaImage = Media(withImage: image, forKey: "avatar") else { return }
        print("Media Image -->", mediaImage)
-       guard let url = URL(string: "https://api.fellasloaded.com/api/user/update/") else { return }
+        guard let url = URL(string: FLAPIs.baseURL + FLAPIs.displayNameAndImage) else { return }
        var request = URLRequest(url: url)
        request.httpMethod = "PATCH"
        //create boundary
        let boundary = generateBoundary()
        //set content type
        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-        request.setValue("Bearer \(FLUserJourney.shared.authRegistrationToken ?? "N/A")", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(FLUserJourney.shared.authToken ?? "N/A")", forHTTPHeaderField: "Authorization")
        //call createDataBody method
        let dataBody = DataBody(withParameters: parameters, media: [mediaImage], boundary: boundary)
        request.httpBody = dataBody
@@ -52,12 +56,18 @@ class DisplayNameAndImageAPIService {
           if let response = response {
              print("Response --> ",response)
           }
+           self.showLoader = true
           if let data = data {
              do {
                 let json = try JSONSerialization.jsonObject(with: data, options: [])
                 print("JSON -->",json)
+                 self.showLoader = false
+                 self.redirectToSubscribeView = true
              } catch {
                 print("ERROR -->",error)
+                 self.showLoader = false
+                 self.showAlert = true
+                 self.alertMessage = error.localizedDescription
              }
           }
        }.resume()

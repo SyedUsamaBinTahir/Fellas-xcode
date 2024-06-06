@@ -21,6 +21,7 @@ struct EmailFieldAndButtonView: View {
             
             AuthButtonView(action: {
                 redirectToPasswordView = true
+                print("email --> ",email)
             }, title: "CONTINUE", background: Color.white, foreground: Color.black)
             .disabled(isDisabled)
             .opacity(setOpacity)

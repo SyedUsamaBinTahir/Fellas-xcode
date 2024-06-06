@@ -11,8 +11,8 @@ import Combine
 class ForgotPasswordAPIService {
     static let shared = ForgotPasswordAPIService()
     
-    func requestForgotPasswordCode(email: String) -> AnyPublisher<Bool, FLAPIError> {
-        guard let url = URL(string: "https://api.fellasloaded.com/api/user/password/reset/request/") else {
+    func requestForgotPasswordCode(email: String) -> AnyPublisher<Bool, ForgotPasswordAPIError> {
+        guard let url = URL(string: FLAPIs.baseURL + FLAPIs.forgotPassword) else {
             return Fail(error: .urlError).eraseToAnyPublisher()
         }
         
@@ -27,20 +27,20 @@ class ForgotPasswordAPIService {
             return URLSession.shared.dataTaskPublisher(for: request)
                 .tryMap { resutl -> Bool in
                     guard let httpResponse = resutl.response as? HTTPURLResponse else {
-                        throw FLAPIError.networkError
+                        throw ForgotPasswordAPIError.urlError
                     }
                     
                     if (200...299).contains(httpResponse.statusCode) {
                         return true
                     } else {
-                        throw FLAPIError.unknownError
+                        throw ForgotPasswordAPIError.EncodeError
                     }
                 }
                 .mapError { error in
-                    if let flApiError = error as? FLAPIError {
+                    if let flApiError = error as? ForgotPasswordAPIError {
                         return flApiError
                     } else {
-                        return FLAPIError.EncodeError
+                        return ForgotPasswordAPIError.unknownError
                     }
                 }.eraseToAnyPublisher()
         } catch {

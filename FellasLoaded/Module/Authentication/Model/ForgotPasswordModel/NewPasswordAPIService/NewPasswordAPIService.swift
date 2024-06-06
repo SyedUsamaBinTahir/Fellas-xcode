@@ -11,8 +11,8 @@ import Combine
 class NewPasswordAPIService {
     static let shared = NewPasswordAPIService()
     
-    func verifyForgotPasswordCode(code: String, password: String) -> AnyPublisher<Bool, FLAPIError> {
-        guard let url = URL(string: "https://api.fellasloaded.com/api/user/password/reset/submit/") else {
+    func verifyForgotPasswordCode(code: String, password: String) -> AnyPublisher<Bool, NewPasswordAPIError> {
+        guard let url = URL(string: FLAPIs.baseURL + FLAPIs.newPassword) else {
             return Fail(error: .urlError).eraseToAnyPublisher()
         }
 
@@ -29,7 +29,7 @@ class NewPasswordAPIService {
             return URLSession.shared.dataTaskPublisher(for: request)
                 .tryMap { result -> Bool in
                     guard let httpResponse = result.response as? HTTPURLResponse else {
-                        throw FLAPIError.networkError
+                        throw NewPasswordAPIError.urlError
                     }
                     
                     if (200...299).contains(httpResponse.statusCode) {
@@ -37,14 +37,14 @@ class NewPasswordAPIService {
                     } else {
 //                        let httpErrorCode = httpResponse.statusCode
                         print(httpResponse.statusCode)
-                        throw FLAPIError.networkError
+                        throw NewPasswordAPIError.EncodeError
                     }
                 }
                 .mapError { error in
-                    if let flApiError = error as? FLAPIError {
+                    if let flApiError = error as? NewPasswordAPIError {
                         return flApiError
                     } else {
-                        return FLAPIError.unknownError
+                        return NewPasswordAPIError.unknownError
                     }
                 }
                 .eraseToAnyPublisher()

@@ -11,8 +11,8 @@ import Combine
 class AuthRegistraionAPIService {
     static let shared = AuthRegistraionAPIService()
     
-    func registerRequest(email: String, password: String) -> AnyPublisher<AuthRegistrationModel, FLAPIError> {
-        guard let url = URL(string: "https://api.fellasloaded.com/api/user/registration/email/") else {
+    func registerRequest(email: String, password: String) -> AnyPublisher<AuthRegistrationModel, AuthRegistrationAPIError> {
+        guard let url = URL(string: FLAPIs.baseURL + FLAPIs.registration) else {
             return Fail(error: .urlError).eraseToAnyPublisher()
         }
 
@@ -27,26 +27,25 @@ class AuthRegistraionAPIService {
             return URLSession.shared.dataTaskPublisher(for: request)
                 .tryMap { result -> Data in
                     guard let httpResponse = result.response as? HTTPURLResponse else {
-                        throw FLAPIError.networkError
+                        throw AuthRegistrationAPIError.networkError
                     }
                     if (200...299).contains(httpResponse.statusCode) {
                         let resultData = try JSONDecoder().decode(AuthRegistrationModel.self, from: result.data)
-                        FLUserJourney.shared.authRegistrationToken = resultData.access
-                        print("saved Registration Token -->", FLUserJourney.shared.authRegistrationToken ?? "N/A")
+                        FLUserJourney.shared.authToken = resultData.access
+                        print("saved Registration Token -->", FLUserJourney.shared.authToken ?? "N/A")
                         print("Registration Access Token -->", resultData.access)
-//                        UserDefaults.standard.setValue(FLUserJourney.shared.authRegistrationToken, forKey: FLUserDefaultKeys.registrationToken.rawValue)
                         return result.data
                     } else {
 //                        let httpErrorCode = httpResponse.statusCode
-                        throw FLAPIError.networkError
+                        throw AuthRegistrationAPIError.EncodeError
                     }
                 }
                 .decode(type: AuthRegistrationModel.self, decoder: JSONDecoder())
                 .mapError({ error in
-                    if let flApiError = error as? FLAPIError {
+                    if let flApiError = error as? AuthRegistrationAPIError {
                         return flApiError
                     } else {
-                        return FLAPIError.unknownError
+                        return AuthRegistrationAPIError.unknownError
                     }
                 })
                 .eraseToAnyPublisher()
@@ -54,7 +53,7 @@ class AuthRegistraionAPIService {
             print(String(describing: error))
             if let error = error as? EncodingError {
                 switch error {
-                case .invalidValue(let any, let context):
+                case .invalidValue(_, _):
                     return Fail(error: .EncodeError).eraseToAnyPublisher()
                 default:
                     return Fail(error: .EncodeError).eraseToAnyPublisher()

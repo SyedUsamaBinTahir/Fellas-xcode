@@ -18,13 +18,13 @@ extension FLAPIError: LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .unknownError:
-            return "Something went wrong. Please try again."
+            return NSLocalizedString("Unkonwn Error", comment: "Somthing went wrong please try again")
         case .urlError:
-            return "Worker template URL error."
+            return NSLocalizedString("Invalid URL", comment: "Invalid URL")
         case .networkError:
-            return "Network Error."
+            return NSLocalizedString("No Internet Connection", comment: "No Internet Connection")
         case .EncodeError:
-            return "Template encode error."
+            return NSLocalizedString("Encoding Error", comment: "Encoding Error")
         }
     }
 }

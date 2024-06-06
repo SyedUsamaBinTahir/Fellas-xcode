@@ -273,6 +273,8 @@ struct VideoPlayer: View {
         .padding(.top, isRotated ? safeArea!.top : (horizontalSizeClass == .regular ? 0 : 20))
         .padding(.leading, isRotated ? (horizontalSizeClass == .regular ? -44 : 32) : 0)
         .onAppear {
+            isPlaying = true
+            player.play()
             guard !isObservedAdded else { return }
             /// Adding observer to update seeker when the video is playing
             player.addPeriodicTimeObserver(forInterval: .init(seconds: 1, preferredTimescale: 1), queue: .main) { time in
@@ -296,6 +298,10 @@ struct VideoPlayer: View {
             }
             
             isObservedAdded = true
+        }
+        .onDisappear {
+            isPlaying = false
+            player.pause()
         }
         .background {
             LinearGradient(gradient: Gradient(colors: [Color.black, Color.theme.appColor, Color.black]), startPoint: .topLeading, endPoint: .bottomTrailing)

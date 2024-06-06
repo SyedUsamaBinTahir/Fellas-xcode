@@ -12,5 +12,7 @@ target 'FellasLoaded' do
   pod 'SPIndicator'
   pod 'ExytePopupView'
   pod 'Alamofire'
+  pod 'StripePaymentSheet'
+  pod 'Kingfisher'
 
 end

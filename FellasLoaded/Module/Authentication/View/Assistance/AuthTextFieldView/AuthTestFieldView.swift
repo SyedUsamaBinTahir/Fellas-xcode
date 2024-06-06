@@ -21,6 +21,7 @@ struct AuthTestFieldView: View {
             TextField(placeHolder, text: $field)
                 .font(.custom(Font.regular, size: 16))
                 .foregroundStyle(Color.white)
+                .textInputAutocapitalization(.never)
         }
         .padding(10)
         .frame(height: 48)

@@ -11,8 +11,8 @@ import Combine
 class CheckEmailAPIService {
     static let shared = CheckEmailAPIService()
     
-    func registerRequest(email: String) -> AnyPublisher<Bool, FLAPIError> {
-        guard let url = URL(string: "https://api.fellasloaded.com/api/user/email/verify/request/") else {
+    func registerRequest(email: String) -> AnyPublisher<Bool, CheckEmailApiError> {
+        guard let url = URL(string: FLAPIs.baseURL + FLAPIs.emailRequest) else {
             return Fail(error: .urlError).eraseToAnyPublisher()
         }
 
@@ -23,25 +23,25 @@ class CheckEmailAPIService {
             request.httpMethod = "POST"
             request.httpBody = checkEmailRequestData
             request.setValue("application/json", forHTTPHeaderField: "content-type")
-            request.setValue("Bearer \(FLUserJourney.shared.authRegistrationToken ?? "N/A")", forHTTPHeaderField: "Authorization")
+            request.setValue("Bearer \(FLUserJourney.shared.authToken ?? "N/A")", forHTTPHeaderField: "Authorization")
             
             return URLSession.shared.dataTaskPublisher(for: request)
                 .tryMap { result -> Bool in
                     guard let httpResponse = result.response as? HTTPURLResponse else {
-                        throw FLAPIError.networkError
+                        throw CheckEmailApiError.urlError
                     }
                     if (200...299).contains(httpResponse.statusCode) {
                         return true
                     } else {
 //                        let httpErrorCode = httpResponse.statusCode
-                        throw FLAPIError.networkError
+                        throw CheckEmailApiError.EncodeError
                     }
                 }
                 .mapError({ error in
-                    if let flApiError = error as? FLAPIError {
+                    if let flApiError = error as? CheckEmailApiError {
                         return flApiError
                     } else {
-                        return FLAPIError.unknownError
+                        return CheckEmailApiError.unknownError
                     }
                 })
                 .eraseToAnyPublisher()
@@ -49,7 +49,7 @@ class CheckEmailAPIService {
             print(String(describing: error))
             if let error = error as? EncodingError {
                 switch error {
-                case .invalidValue(let any, let context):
+                case .invalidValue(_, _):
                     return Fail(error: .EncodeError).eraseToAnyPublisher()
                 default:
                     return Fail(error: .EncodeError).eraseToAnyPublisher()

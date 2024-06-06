@@ -55,6 +55,18 @@ struct NewPasswordView: View {
                     
                     Spacer()
                 }
+                .popup(isPresented: $viewModel.showAlert) {
+                    FLToastAlert(image: .constant(""), message: .constant(viewModel.alertMessage))
+                } customize: {
+                    $0
+                        .type(.floater(useSafeAreaInset: true))
+                        .position(.top)
+                        .animation(.spring())
+                        .closeOnTapOutside(true)
+                        .backgroundColor(.black.opacity(0.5))
+                        .autohideIn(3)
+                        .appearFrom(.top)
+                }
                 
                 if viewModel.showLoader {
                     FLLoader()

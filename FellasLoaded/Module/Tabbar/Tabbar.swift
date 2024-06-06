@@ -11,17 +11,20 @@ struct Tabbar: View {
     @State private var selectedTab: Tab = .home
     
     var body: some View {
-        VStack(spacing: 0) {
-            if selectedTab == .home {
-                FeedView()
-            } else if selectedTab == .vault {
-                VaultView()
-            } else if selectedTab == .profile {
-                ProfileView()
+        NavigationStack {
+            VStack(spacing: 0) {
+                if selectedTab == .home {
+                    FeedView()
+                } else if selectedTab == .vault {
+                    VaultView()
+                } else if selectedTab == .profile {
+                    ProfileView()
+                }
+                
+                CustomTabbar(selectedTab: $selectedTab)
             }
-                        
-            CustomTabbar(selectedTab: $selectedTab)
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 
