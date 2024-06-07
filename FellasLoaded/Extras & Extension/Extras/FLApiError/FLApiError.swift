@@ -18,7 +18,7 @@ extension FLAPIError: LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .unknownError:
-            return NSLocalizedString("Unkonwn Error", comment: "Somthing went wrong please try again")
+            return NSLocalizedString("Somthing went wrong please try again", comment: "Unknown Error")
         case .urlError:
             return NSLocalizedString("Invalid URL", comment: "Invalid URL")
         case .networkError:

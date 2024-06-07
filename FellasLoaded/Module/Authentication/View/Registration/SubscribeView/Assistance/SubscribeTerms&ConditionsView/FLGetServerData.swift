@@ -24,13 +24,12 @@ class GetServerData {
         return URLSession.shared.dataTaskPublisher(for: request)
             .tryMap { result -> Data in
                 guard let httpResponse = result.response as? HTTPURLResponse else {
-                    throw FLAPIError.networkError
+                    throw FLAPIError.urlError
                 }
                 if  (200...299).contains(httpResponse.statusCode) {
-                    //                    return settingAPIJson.data(using: .utf8)!
                     return result.data
                 } else {
-                    throw FLAPIError.networkError
+                    throw FLAPIError.EncodeError
                 }
             }
             .decode(type: T.self, decoder: JSONDecoder())
@@ -38,6 +37,7 @@ class GetServerData {
                 if let flAPIError = error as? FLAPIError {
                     return flAPIError
                 } else {
+                    print(String(describing: error))
                     return FLAPIError.unknownError
                 }
             })

@@ -25,5 +25,8 @@ extension FLAPIs {
     
     // Feeds
     static let feedBanner = "/feed/banners/"
-    static let feedCategories = "/feed/categories/"
+    static let feedCategories = "/feed/categories/fetch/"
+    static let feedCategoriesGroup = "/feed/categories/group/"
+    static let feedCategorySeries = "/feed/categories/series/"
+    static let feedCategoryEpisodes = "/feed/categories/episodes/"
 }

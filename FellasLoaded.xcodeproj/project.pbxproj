@@ -126,13 +126,15 @@
 		9BCF3EA22C08DC310016B22C /* CodeVerificationAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCF3EA12C08DC310016B22C /* CodeVerificationAPIService.swift */; };
 		9BCF3EA52C08DC6A0016B22C /* CodeVerficationRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCF3EA42C08DC6A0016B22C /* CodeVerficationRequestModel.swift */; };
 		9BD0E4102C11C1F800BFBE6A /* FeedCategoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD0E40F2C11C1F800BFBE6A /* FeedCategoriesModel.swift */; };
+		9BD0E4132C1317D400BFBE6A /* FeedSwiperHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD0E4122C1317D400BFBE6A /* FeedSwiperHeaderView.swift */; };
+		9BD0E4162C13484000BFBE6A /* FeedCategorySeriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD0E4152C13484000BFBE6A /* FeedCategorySeriesModel.swift */; };
 		9BE13A3B2C05CADB00D69B66 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE13A3A2C05CADB00D69B66 /* String+.swift */; };
 		9BE13A3E2C05CD3100D69B66 /* FLAuthTextFieldError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE13A3D2C05CD3100D69B66 /* FLAuthTextFieldError.swift */; };
 		9BE13A472C06275000D69B66 /* AuthLoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE13A462C06275000D69B66 /* AuthLoginRequest.swift */; };
 		9BE13A4A2C06313D00D69B66 /* AuthRegistraionAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE13A492C06313D00D69B66 /* AuthRegistraionAPIService.swift */; };
 		9BE13A4D2C0631A200D69B66 /* AuthRegistrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE13A4C2C0631A200D69B66 /* AuthRegistrationModel.swift */; };
 		9BE13A502C06320C00D69B66 /* AuthRegistrationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE13A4F2C06320C00D69B66 /* AuthRegistrationRequest.swift */; };
-		9BE4BEA92C1058200016E673 /* FLAPIEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE4BEA82C1058200016E673 /* FLAPIEndpoints.swift */; };
+		9BE4BEA92C1058200016E673 /* FLAPIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE4BEA82C1058200016E673 /* FLAPIs.swift */; };
 		9BE4BEAF2C1076130016E673 /* FeedBannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE4BEAE2C1076130016E673 /* FeedBannerModel.swift */; };
 		9BE4BEB32C1077590016E673 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE4BEB22C1077590016E673 /* FeedViewModel.swift */; };
 		9BEB302D2C0F44FB002C7F82 /* ViewControllerHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEB302C2C0F44FB002C7F82 /* ViewControllerHolder.swift */; };
@@ -298,13 +300,15 @@
 		9BCF3EA12C08DC310016B22C /* CodeVerificationAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeVerificationAPIService.swift; sourceTree = "<group>"; };
 		9BCF3EA42C08DC6A0016B22C /* CodeVerficationRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeVerficationRequestModel.swift; sourceTree = "<group>"; };
 		9BD0E40F2C11C1F800BFBE6A /* FeedCategoriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCategoriesModel.swift; sourceTree = "<group>"; };
+		9BD0E4122C1317D400BFBE6A /* FeedSwiperHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSwiperHeaderView.swift; sourceTree = "<group>"; };
+		9BD0E4152C13484000BFBE6A /* FeedCategorySeriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCategorySeriesModel.swift; sourceTree = "<group>"; };
 		9BE13A3A2C05CADB00D69B66 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		9BE13A3D2C05CD3100D69B66 /* FLAuthTextFieldError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLAuthTextFieldError.swift; sourceTree = "<group>"; };
 		9BE13A462C06275000D69B66 /* AuthLoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthLoginRequest.swift; sourceTree = "<group>"; };
 		9BE13A492C06313D00D69B66 /* AuthRegistraionAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRegistraionAPIService.swift; sourceTree = "<group>"; };
 		9BE13A4C2C0631A200D69B66 /* AuthRegistrationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRegistrationModel.swift; sourceTree = "<group>"; };
 		9BE13A4F2C06320C00D69B66 /* AuthRegistrationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRegistrationRequest.swift; sourceTree = "<group>"; };
-		9BE4BEA82C1058200016E673 /* FLAPIEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLAPIEndpoints.swift; sourceTree = "<group>"; };
+		9BE4BEA82C1058200016E673 /* FLAPIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLAPIs.swift; sourceTree = "<group>"; };
 		9BE4BEAE2C1076130016E673 /* FeedBannerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBannerModel.swift; sourceTree = "<group>"; };
 		9BE4BEB22C1077590016E673 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		9BEB302A2C0F141A002C7F82 /* storekit.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = storekit.storekit; sourceTree = "<group>"; };
@@ -623,6 +627,7 @@
 		9B454B712BFE3F06000786B6 /* Assistance */ = {
 			isa = PBXGroup;
 			children = (
+				9BD0E4112C1317BE00BFBE6A /* FeedSwiperHeaderView */,
 				9B454B752BFE401F000786B6 /* FeedSwiperView */,
 				9B454B742BFE3FFC000786B6 /* FeedHeaderView */,
 				9B6D9D982BF6267D00365CE6 /* CarousalView */,
@@ -1689,6 +1694,22 @@
 			path = FeedCategoriesModel;
 			sourceTree = "<group>";
 		};
+		9BD0E4112C1317BE00BFBE6A /* FeedSwiperHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				9BD0E4122C1317D400BFBE6A /* FeedSwiperHeaderView.swift */,
+			);
+			path = FeedSwiperHeaderView;
+			sourceTree = "<group>";
+		};
+		9BD0E4142C13482500BFBE6A /* FeedCategorySeriesModel */ = {
+			isa = PBXGroup;
+			children = (
+				9BD0E4152C13484000BFBE6A /* FeedCategorySeriesModel.swift */,
+			);
+			path = FeedCategorySeriesModel;
+			sourceTree = "<group>";
+		};
 		9BE13A392C05CAC200D69B66 /* String+ */ = {
 			isa = PBXGroup;
 			children = (
@@ -1740,7 +1761,7 @@
 		9BE4BEA72C1057F00016E673 /* FLAPIEndpoints */ = {
 			isa = PBXGroup;
 			children = (
-				9BE4BEA82C1058200016E673 /* FLAPIEndpoints.swift */,
+				9BE4BEA82C1058200016E673 /* FLAPIs.swift */,
 			);
 			path = FLAPIEndpoints;
 			sourceTree = "<group>";
@@ -1794,6 +1815,7 @@
 		9BE4BEB12C10773F0016E673 /* FeedModel */ = {
 			isa = PBXGroup;
 			children = (
+				9BD0E4142C13482500BFBE6A /* FeedCategorySeriesModel */,
 				9BD0E40E2C11C1E800BFBE6A /* FeedCategoriesModel */,
 				9BE4BEAD2C1076040016E673 /* FeedBannerModel */,
 			);
@@ -2250,6 +2272,7 @@
 				9BC9F1DF2BF76ECF00B0EE8E /* CommentView.swift in Sources */,
 				9BE13A4D2C0631A200D69B66 /* AuthRegistrationModel.swift in Sources */,
 				9BEC0A832C049D1C00BDE169 /* Dictionary+.swift in Sources */,
+				9BD0E4162C13484000BFBE6A /* FeedCategorySeriesModel.swift in Sources */,
 				9BCED2112BF4C6EA007D02B3 /* ProfileView.swift in Sources */,
 				9BC6B80A2BF36A3A00E684AD /* NewPasswordView.swift in Sources */,
 				9BC506CB2C0A189E00EAEF9B /* NewPasswordAPIService.swift in Sources */,
@@ -2285,7 +2308,7 @@
 				9BC6B7FE2BF3530D00E684AD /* SubscribeView.swift in Sources */,
 				9B454B662BFE3546000786B6 /* VaultMainImageView.swift in Sources */,
 				9BCF3E9F2C08C62F0016B22C /* ForgotPasswordRequest.swift in Sources */,
-				9BE4BEA92C1058200016E673 /* FLAPIEndpoints.swift in Sources */,
+				9BE4BEA92C1058200016E673 /* FLAPIs.swift in Sources */,
 				9BF767302C07664000BDBC6A /* DisplayNameAndImageRequest.swift in Sources */,
 				9BC6B8302BF3C60D00E684AD /* DeleteAccountView.swift in Sources */,
 				9BC6B8282BF3AE3300E684AD /* SettingsNavigatorView.swift in Sources */,
@@ -2345,6 +2368,7 @@
 				9B72894F2BFE122100EB1A90 /* ResetPasswordLablesView.swift in Sources */,
 				9BE13A3B2C05CADB00D69B66 /* String+.swift in Sources */,
 				9BF2266E2C00BFF600149850 /* SystemReachability.swift in Sources */,
+				9BD0E4132C1317D400BFBE6A /* FeedSwiperHeaderView.swift in Sources */,
 				9B8A18392BFB788200CF9FF1 /* CustomVideoPlayer.swift in Sources */,
 				9BF2265D2C00ACA800149850 /* AuthLoginAPIService.swift in Sources */,
 				9BCF3EA52C08DC6A0016B22C /* CodeVerficationRequestModel.swift in Sources */,

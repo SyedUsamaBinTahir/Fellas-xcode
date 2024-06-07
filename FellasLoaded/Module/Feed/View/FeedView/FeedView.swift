@@ -24,100 +24,178 @@ struct FeedView: View {
     
     var body: some View {
         VStack {
-            VStack {
-                
-                FeedHeaderView(redirectSearch: $redirectSearch, redirectNotifications: $redirectNotifications)
-                ScrollView {
-//                    CarousalView(redirectVideoPlayer: $redirectVideoPlayer)
-//                        .environmentObject(feedViewModel)
+            ZStack {
+                VStack {
                     
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 10) {
-                            ForEach(feedViewModel.feedBannerModel?.results ?? [], id: \.uid) { data in
-                                KFImage.init(URL(string: data.cover_art))
-                                    .placeholder({ progress in
-                                        ProgressView()
-                                    })
-                                    .loadDiskFileSynchronously()
-                                    .cacheMemoryOnly()
-                                    .fade(duration: 0.25)
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(height: horizontalSizeClass == .regular ? UIScreen.main.bounds.height * 0.32 : UIScreen.main.bounds.height * 0.22)
-                                    .cornerRadius(10)
-                                    .overlay {
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .stroke(Color.white, lineWidth: 0.3)
+                    FeedHeaderView(redirectSearch: $redirectSearch, redirectNotifications: $redirectNotifications)
+                    ScrollView {
+                        //                    CarousalView(redirectVideoPlayer: $redirectVideoPlayer)
+                        //                        .environmentObject(feedViewModel)
+                        
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            LazyHStack(spacing: 10) {
+                                ForEach(feedViewModel.feedBannerModel?.results ?? [], id: \.uid) { data in
+                                    KFImage.init(URL(string: data.cover_art))
+                                        .placeholder({ progress in
+                                            RoundedRectangle(cornerRadius: 8)
+                                                .fill(Color.theme.appGrayColor)
+                                        })
+                                        .loadDiskFileSynchronously()
+                                        .cacheMemoryOnly()
+                                        .fade(duration: 0.25)
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(height: horizontalSizeClass == .regular ? UIScreen.main.bounds.height * 0.32 : UIScreen.main.bounds.height * 0.22)
+                                        .cornerRadius(10)
+                                        .overlay {
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .stroke(Color.white, lineWidth: 0.3)
+                                        }
+                                        .onTapGesture {
+                                            redirectVideoPlayer = true
+                                        }
+                                }
+                            }
+                            .frame(height: horizontalSizeClass == .regular ? UIScreen.main.bounds.height * 0.32 : UIScreen.main.bounds.height * 0.22)
+                            .padding(.horizontal)
+                        }
+                        
+                        LazyVStack(spacing: 20) {
+                            ForEach(feedViewModel.feedCategoriesModel?.results ?? [], id: \.uid) { data in
+                                if data.order == 1 {
+                                    VStack(alignment: .leading, spacing: 10) {
+                                        FeedSwiperHeaderView(title: data.title) {
+                                            redirectSeriesDetail = true
+                                        }
+                                        ScrollView(.horizontal) {
+                                            LazyHStack(spacing: 10) {
+                                                ForEach(data.results, id: \.uid) { result in
+                                                    FeedSwiperView(feedImage: result.thumbnail, description: nil, width: horizontalSizeClass == .regular ? 304 : 155, height: horizontalSizeClass == .regular ? 456 : 232, progressBarValue: nil) {
+                                                        redirectEpisodeDetail = true
+                                                    }
+                                                }
+                                            }
+                                        }
                                     }
-                                    .onTapGesture {
-                                        redirectVideoPlayer = true
+                                }
+                                if data.order == 2 {
+                                    VStack(alignment: .leading, spacing: 10) {
+                                        FeedSwiperHeaderView(title: data.title) {
+                                            redirectContinueWatchingDetail = true
+                                        }
+                                        
+                                        ScrollView(.horizontal, showsIndicators: false) {
+                                            LazyHStack(spacing: 10) {
+                                                ForEach(data.results, id: \.uid) { result in
+                                                    FeedSwiperView(feedImage: result.thumbnail, description: result.title, width: horizontalSizeClass == .regular ? 523 : 277, height: horizontalSizeClass == .regular ? 294 : 155, progressBarValue: nil) {
+                                                        redirectVideoPlayer = true
+                                                    }
+                                                }
+                                            }
+                                        }
                                     }
+                                }
+                                //                                FeedSwiperView(title: "Continue watching", feedImage: "series-image", description: "The Fellas & W2S Get Drunk in Amsterdam Holland" ,width: horizontalSizeClass == .regular ? 523 : 277, height: horizontalSizeClass == .regular ? 294 : 155, action: {
+                                //                                    redirectContinueWatchingDetail = true
+                                //                                }, imageAction: {
+                                //                                    redirectVideoPlayer = true
+                                //                                })
+                                if data.order == 4 {
+                                    VStack(alignment: .leading, spacing: 10) {
+                                        FeedSwiperHeaderView(title: data.title) {
+                                            redirectSeriesDetail = true
+                                        }
+                                        ScrollView(.horizontal) {
+                                            LazyHStack(spacing: 10) {
+                                                ForEach(data.results, id: \.uid) { result in
+                                                    FeedSwiperView(feedImage: result.thumbnail, description: nil, width: horizontalSizeClass == .regular ? 195 : 114, height: horizontalSizeClass == .regular ? 292 : 171, progressBarValue: nil) {
+                                                        redirectEpisodeDetail = true
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                if data.order == 5 {
+                                    VStack(alignment: .leading, spacing: 10) {
+                                        FeedSwiperHeaderView(title: data.title) {
+                                            redirectSeriesDetail = true
+                                        }
+                                        ScrollView(.horizontal) {
+                                            LazyHStack(spacing: 10) {
+                                                ForEach(data.results, id: \.uid) { result in
+                                                    FeedSwiperView(feedImage: result.thumbnail, description: nil, width: horizontalSizeClass == .regular ? 195 : 114, height: horizontalSizeClass == .regular ? 292 : 171, progressBarValue: nil) {
+                                                        redirectEpisodeDetail = true
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                if data.order == 8 {
+                                    VStack(alignment: .leading, spacing: 10) {
+                                        FeedSwiperHeaderView(title: data.title) {
+                                            redirectSeriesDetail = true
+                                        }
+                                        ScrollView(.horizontal) {
+                                            LazyHStack(spacing: 10) {
+                                                ForEach(data.results, id: \.uid) { result in
+                                                    FeedSwiperView(feedImage: result.thumbnail, description: nil, width: horizontalSizeClass == .regular ? 195 : 114, height: horizontalSizeClass == .regular ? 292 : 171, progressBarValue: nil) {
+                                                        redirectEpisodeDetail = true
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                if data.order == 9 {
+                                    VStack(alignment: .leading, spacing: 10) {
+                                        FeedSwiperHeaderView(title: data.title) {
+                                            redirectContinueWatchingDetail = true
+                                        }
+                                        
+                                        ScrollView(.horizontal, showsIndicators: false) {
+                                            LazyHStack(spacing: 10) {
+                                                ForEach(data.results, id: \.uid) { result in
+                                                    FeedSwiperView(feedImage: result.thumbnail, description: result.title, width: horizontalSizeClass == .regular ? 523 : 277, height: horizontalSizeClass == .regular ? 294 : 155, progressBarValue: nil) {
+                                                        redirectVideoPlayer = true
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
-                        .frame(height: horizontalSizeClass == .regular ? UIScreen.main.bounds.height * 0.32 : UIScreen.main.bounds.height * 0.22)
-                        .padding(.horizontal)
+                        .padding()
                     }
-                    
-                    VStack(spacing: 20) {
-                        FeedSwiperView(title: "Specials", feedImage: "series-image", width: horizontalSizeClass == .regular ? 304 : 155, height: horizontalSizeClass == .regular ? 456 : 232, action:  {
-                            redirectSeriesDetail = true
-                        }, imageAction: {
-                            redirectEpisodeDetail = true
-                        })
-                        FeedSwiperView(title: "Recently added", feedImage: "series-image", description: "The Fellas & W2S Get Drunk in Amsterdam Holland" ,width: horizontalSizeClass == .regular ? 523 : 277, height: horizontalSizeClass == .regular ? 294 : 155, action: {
-                            redirectContinueWatchingDetail = true
-                        }, imageAction: {
-                            redirectVideoPlayer = true
-                        })
-                        FeedSwiperView(title: "Continue watching", feedImage: "series-image", description: "The Fellas & W2S Get Drunk in Amsterdam Holland" ,width: horizontalSizeClass == .regular ? 523 : 277, height: horizontalSizeClass == .regular ? 294 : 155, action: {
-                            redirectContinueWatchingDetail = true
-                        }, imageAction: {
-                            redirectVideoPlayer = true
-                        })
-                        FeedSwiperView(title: "Series", feedImage: "series-image", width: horizontalSizeClass == .regular ? 195 : 114, height: horizontalSizeClass == .regular ? 292 : 171, action:  {
-                            redirectSeriesDetail = true
-                        }, imageAction: {
-                            redirectEpisodeDetail = true
-                        })
-                        FeedSwiperView(title: "Bonus Content", feedImage: "series-image", width: horizontalSizeClass == .regular ? 195 : 114, height: horizontalSizeClass == .regular ? 292 : 171, action:  {
-                            redirectSeriesDetail = true
-                        }, imageAction: {
-                            redirectEpisodeDetail = true
-                        })
-                        FeedSwiperView(title: "Podcasts", feedImage: "series-image", width: horizontalSizeClass == .regular ? 195 : 114, height: horizontalSizeClass == .regular ? 292 : 171, action:  {
-                            redirectSeriesDetail = true
-                        }, imageAction: {
-                            redirectEpisodeDetail = true
-                        })
-                        FeedSwiperView(title: "Most Popular", feedImage: "series-image", description: "The Fellas & W2S Get Drunk in Amsterdam Holland" ,width: horizontalSizeClass == .regular ? 523 : 277, height: horizontalSizeClass == .regular ? 294 : 155, action: {
-                            redirectContinueWatchingDetail = true
-                        }, imageAction: {
-                            redirectVideoPlayer = true
-                        })
-                    }
-                    .padding()
+                }
+                .padding(.top, 30)
+                .onAppear {
+                    feedViewModel.showLoader = true
+                    feedViewModel.getFeedBanners()
+                    feedViewModel.getFeedCategories()
                 }
                 
-            }
-            .padding(.top, 30)
-            .onAppear {
-                   feedViewModel.getFeedBanners()
-            }
-            
-            .navigationDestination(isPresented: $redirectContinueWatchingDetail) {
-                ContinueWatchingDetailView().navigationBarBackButtonHidden(true)
-            }
-            .navigationDestination(isPresented: $redirectSeriesDetail) {
-                ShowAllSeriesView().navigationBarBackButtonHidden(true)
-            }
-            .navigationDestination(isPresented: $redirectEpisodeDetail) {
-                EpisodeDetailView().navigationBarBackButtonHidden(true)
-            }
-            .navigationDestination(isPresented: $redirectSearch) {
-                SearchView().navigationBarBackButtonHidden(true)
-            }
-            .navigationDestination(isPresented: $redirectVideoPlayer) {
-                VideoPlayerView().navigationBarBackButtonHidden(true)
+                .navigationDestination(isPresented: $redirectContinueWatchingDetail) {
+                    ContinueWatchingDetailView().navigationBarBackButtonHidden(true)
+                }
+                .navigationDestination(isPresented: $redirectSeriesDetail) {
+                    ShowAllSeriesView().navigationBarBackButtonHidden(true)
+                }
+                .navigationDestination(isPresented: $redirectEpisodeDetail) {
+                    EpisodeDetailView().navigationBarBackButtonHidden(true)
+                }
+                .navigationDestination(isPresented: $redirectSearch) {
+                    SearchView().navigationBarBackButtonHidden(true)
+                }
+                .navigationDestination(isPresented: $redirectVideoPlayer) {
+                    VideoPlayerView().navigationBarBackButtonHidden(true)
+                }
+                
+                if feedViewModel.showLoader {
+                    FLLoader()
+                }
             }
             
         }

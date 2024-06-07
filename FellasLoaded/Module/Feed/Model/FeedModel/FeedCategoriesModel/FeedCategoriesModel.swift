@@ -8,79 +8,85 @@
 import Foundation
 
 struct FeedCategoriesModel: Codable {
-    let count: Int
-    let next, previous: JSONNull?
-    let current, pagesCount, pageSize: Int
-    let pageSizeQueryParam, pageQueryParam: String
-    let results: [FeedBannerResults]
-
-    enum CodingKeys: String, CodingKey {
-        case count, next, previous, current
-        case pagesCount = "pages_count"
-        case pageSize = "page_size"
-        case pageSizeQueryParam = "page_size_query_param"
-        case pageQueryParam = "page_query_param"
-        case results
-    }
+    let results: [FeedCategoriesResults]
 }
 
-// MARK: - Result
 struct FeedCategoriesResults: Codable {
-    let uid, title: String
+    let uid, title, categoryType: String
+    let objectsType: ObjectsTypeEnum
     let order: Int
-    let categoryType, createdAt: String
-    let series: [Series]
-    let episodes: [Episode]
+    let results: [CategoriesResults]
 
     enum CodingKeys: String, CodingKey {
-        case uid, title, order
+        case uid, title
         case categoryType = "category_type"
-        case createdAt = "created_at"
-        case series, episodes
+        case objectsType = "objects_type"
+        case order, results
     }
 }
 
-// MARK: - Episode
-struct Episode: Codable {
-    let uid, seriesUid, seriesThumbnail, sessionUid: String
-    let title: String
-    let sessionNumber, episodeNumber: Int
-    let description: String
-    let thumbnail: String
-    let trailer: JSONNull?
-    let isPublished, isVisible: Bool
-    let reachedEpisodeTime: JSONNull?
-    let isFullyWatched: Bool
-    let watchHistoryAddedAt: JSONNull?
-    let commentsCount: Int
-    let isWatchLater: Bool
-    let watchLaterAddedAt: JSONNull?
-    let playableFrom: Date
-    let releaseDate: Date?
-    let bvideo: Bvideo
+enum ObjectsTypeEnum: String, Codable {
+    case episode = "episode"
+    case series = "series"
+}
+
+// MARK: - ResultResult
+struct CategoriesResults: Codable {
+    let uid, title: String
+    let categoryUUID: String?
+    let totalEpisodes, totalSessions: Int?
+    let genre: Genre?
     let createdAt: String
+    let reachedSession, reachedEpisode: JSONNull?
+    let reachedEpisodeTime: JSONNull?
+    let isWatchLater: Bool
+    let watchLaterCount: Int?
+    let watchLaterAddedAt: JSONNull?
+    let isNotificationSubscribed: Bool?
+    let coverArt: String?
+    let thumbnail: String
+    let verticalCoverPhoto: String?
+    let horizontalCoverPhoto: String?
+    let logo: String?
+    let reccommendedType: ObjectsTypeEnum?
+    let seriesUid, sessionUid: String?
+    let sessionNumber, episodeNumber: Int?
+    let description: String?
+    let trailer: JSONNull?
+    let isPublished, isVisible: Bool?
+    let playableFrom, releaseDate: String?
+    let bvideo: Bvideo?
 
     enum CodingKeys: String, CodingKey {
         case uid
-        case seriesUid = "series_uid"
-        case seriesThumbnail = "series_thumbnail"
-        case sessionUid = "session_uid"
+        case categoryUUID = "category_uuid"
         case title
+        case totalEpisodes = "total_episodes"
+        case totalSessions = "total_sessions"
+        case genre
+        case createdAt = "created_at"
+        case reachedSession = "reached_session"
+        case reachedEpisode = "reached_episode"
+        case reachedEpisodeTime = "reached_episode_time"
+        case isWatchLater = "is_watch_later"
+        case watchLaterCount = "watch_later_count"
+        case watchLaterAddedAt = "watch_later_added_at"
+        case isNotificationSubscribed = "is_notification_subscribed"
+        case coverArt = "cover_art"
+        case thumbnail
+        case verticalCoverPhoto = "vertical_cover_photo"
+        case horizontalCoverPhoto = "horizontal_cover_photo"
+        case logo, reccommendedType
+        case seriesUid = "series_uid"
+        case sessionUid = "session_uid"
         case sessionNumber = "session_number"
         case episodeNumber = "episode_number"
-        case description, thumbnail, trailer
+        case description, trailer
         case isPublished = "is_published"
         case isVisible = "is_visible"
-        case reachedEpisodeTime = "reached_episode_time"
-        case isFullyWatched = "is_fully_watched"
-        case watchHistoryAddedAt = "watch_history_added_at"
-        case commentsCount = "comments_count"
-        case isWatchLater = "is_watch_later"
-        case watchLaterAddedAt = "watch_later_added_at"
         case playableFrom = "playable_from"
         case releaseDate = "release_date"
         case bvideo
-        case createdAt = "created_at"
     }
 }
 
@@ -110,48 +116,6 @@ struct Bvideo: Codable {
 
 enum FileEXT: String, Codable {
     case mp4 = "mp4"
-}
-
-// MARK: - Series
-struct Series: Codable {
-    let uid, title: String
-    let totalEpisodes, totalSessions, sessionsCount, episodesCount: Int
-    let genre: Genre
-    let createdAt: String
-    let reachedSession, reachedEpisode, reachedEpisodeUid, reachedEpisodeTime: JSONNull?
-    let isWatchLater: Bool
-    let watchLaterCount: Int
-    let watchLaterAddedAt: JSONNull?
-    let isNotificationSubscribed: Bool
-    let coverArt: String
-    let thumbnail, horizontalThumbnail: String
-    let verticalCoverPhoto: String
-    let horizontalCoverPhoto: String
-    let logo: String
-
-    enum CodingKeys: String, CodingKey {
-        case uid, title
-        case totalEpisodes = "total_episodes"
-        case totalSessions = "total_sessions"
-        case sessionsCount = "sessions_count"
-        case episodesCount = "episodes_count"
-        case genre
-        case createdAt = "created_at"
-        case reachedSession = "reached_session"
-        case reachedEpisode = "reached_episode"
-        case reachedEpisodeUid = "reached_episode_uid"
-        case reachedEpisodeTime = "reached_episode_time"
-        case isWatchLater = "is_watch_later"
-        case watchLaterCount = "watch_later_count"
-        case watchLaterAddedAt = "watch_later_added_at"
-        case isNotificationSubscribed = "is_notification_subscribed"
-        case coverArt = "cover_art"
-        case thumbnail
-        case horizontalThumbnail = "horizontal_thumbnail"
-        case verticalCoverPhoto = "vertical_cover_photo"
-        case horizontalCoverPhoto = "horizontal_cover_photo"
-        case logo
-    }
 }
 
 // MARK: - Genre
