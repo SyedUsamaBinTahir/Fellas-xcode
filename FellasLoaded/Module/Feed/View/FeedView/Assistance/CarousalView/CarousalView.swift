@@ -28,7 +28,7 @@ struct CarousalView: View {
                     })
                     .loadDiskFileSynchronously()
                     .cacheMemoryOnly()
-                    .fade(duration: 0.25)
+                    .fade(duration: 0.50)
                     .resizable()
                     .scaledToFill()
                     .frame(height: horizontalSizeClass == .regular ? UIScreen.main.bounds.height * 0.32 : UIScreen.main.bounds.height * 0.22)

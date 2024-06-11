@@ -12,7 +12,7 @@ struct EpisodeDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     @StateObject var feedViewModel = FeedViewModel(_dataService: GetServerData.shared)
     var feedCategorySeriesDatailModel: FeedCategorySeriesDetailModel?
-    @State var seriesDetailID: String?
+    @Binding var seriesDetailID: String
     
     var body: some View {
         VStack {
@@ -85,8 +85,10 @@ struct EpisodeDetailView: View {
                                 .foregroundStyle(Color.white)
                             
                             VStack(spacing: 20) {
-                                ForEach(1...5, id: \.self) { data in
-                                    EpisodesView(seriesImage: "series-image", episode: "S1:E1", title: "The Fellas & W2S Get Drunk in Amsterdam The Fellas & W2S Get Drunk in Amsterdam", description: "The Fellas head to the city of Amsterdam for some absolute CARNAGE! 24 hours was more than enough and you'll see why", icon: "download")
+                                ForEach(feedViewModel.feedCategorySeriesDatailModel?.sessions ?? [], id: \.uid) { data in
+                                    ForEach(data.episodes ?? [], id: \.uid) { episode in
+                                        EpisodesView(seriesImage: episode.series_thumbnail, episode: "S\(episode.session_number):E\(episode.episode_number)", title: episode.title, description: episode.description, icon: "download")
+                                    }
                                 }
                             }
                         }
@@ -103,8 +105,8 @@ struct EpisodeDetailView: View {
             }
         }
         .onAppear {
-            feedViewModel.getFeedCategorySeriesDetail(id: seriesDetailID ?? "")
-            print("series detail id --> ", seriesDetailID ?? "")
+            feedViewModel.getFeedCategorySeriesDetail(id: seriesDetailID)
+            print("series detail id --> ", seriesDetailID)
         }
         .background {
             LinearGradient(gradient: Gradient(colors: [Color.black, Color.theme.appColor, Color.black]), startPoint: .topLeading, endPoint: .bottomTrailing)
@@ -114,5 +116,5 @@ struct EpisodeDetailView: View {
 }
 
 #Preview {
-    EpisodeDetailView()
+    EpisodeDetailView(seriesDetailID: .constant(""))
 }

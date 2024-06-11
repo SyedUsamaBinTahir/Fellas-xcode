@@ -42,7 +42,7 @@ struct ShowAllSeriesView: View {
                                         })
                                         .loadDiskFileSynchronously()
                                         .cacheMemoryOnly()
-                                        .fade(duration: 0.80)
+                                        .fade(duration: 0.50)
                                         .resizable()
                                         .scaledToFill()
                                         .frame(width: horizontalSizeClass == .regular ? geometry.size.width * 0.32 : geometry.size.width * 0.48, height: horizontalSizeClass == .regular ? geometry.size.height * 0.37 : geometry.size.height * 0.35)
@@ -64,7 +64,7 @@ struct ShowAllSeriesView: View {
                 }
                 
                 NavigationLink(isActive: $redirectDetailPage) {
-                    EpisodeDetailView()
+                    EpisodeDetailView(seriesDetailID: $seriesID)
                 } label: {
                     EmptyView()
                 }

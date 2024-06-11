@@ -19,7 +19,7 @@ struct EpisodesDetailLogoView: View {
             })
             .loadDiskFileSynchronously()
             .cacheMemoryOnly()
-            .fade(duration: 0.80)
+            .fade(duration: 0.50)
             .resizable()
             .scaledToFit()
             .frame(width: 203, height: 125)

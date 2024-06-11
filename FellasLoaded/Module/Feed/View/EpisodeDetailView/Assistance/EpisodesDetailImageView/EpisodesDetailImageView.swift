@@ -20,7 +20,7 @@ struct EpisodesDetailImageView: View {
             })
             .loadDiskFileSynchronously()
             .cacheMemoryOnly()
-            .fade(duration: 0.80)
+            .fade(duration: 0.50)
             .resizable()
             .scaledToFill()
             .frame(width: UIScreen.main.bounds.width, height: horizontalSizeClass == .regular ? UIScreen.main.bounds.height * 0.40 : 488)

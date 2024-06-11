@@ -31,7 +31,7 @@ struct EpisodesView: View {
                 })
                 .loadDiskFileSynchronously()
                 .cacheMemoryOnly()
-                .fade(duration: 0.80)
+                .fade(duration: 0.50)
                 .resizable()
                 .scaledToFill()
                 .frame(width: horizontalSizeClass == .regular ? 345 : 124, height: horizontalSizeClass == .regular ? 194 : 69)

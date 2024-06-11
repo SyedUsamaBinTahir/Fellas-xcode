@@ -22,6 +22,8 @@ struct FeedView: View {
     @State private var redirectNotifications = false
     @State private var redirectVideoPlayer = false
     
+    @State private var seriesDetailID: String = ""
+    
     // services model properties
     @StateObject var feedViewModel = FeedViewModel(_dataService: GetServerData.shared)
     
@@ -45,7 +47,7 @@ struct FeedView: View {
                                         })
                                         .loadDiskFileSynchronously()
                                         .cacheMemoryOnly()
-                                        .fade(duration: 0.25)
+                                        .fade(duration: 0.50)
                                         .resizable()
                                         .scaledToFill()
                                         .frame(height: horizontalSizeClass == .regular ? UIScreen.main.bounds.height * 0.32 : UIScreen.main.bounds.height * 0.22)
@@ -75,6 +77,7 @@ struct FeedView: View {
                                                 ForEach(data.results, id: \.uid) { result in
                                                     FeedSwiperView(feedImage: result.thumbnail, description: nil, width: horizontalSizeClass == .regular ? 304 : 155, height: horizontalSizeClass == .regular ? 456 : 232, progressBarValue: nil) {
                                                         redirectEpisodeDetail = true
+                                                        seriesDetailID = result.uid
                                                     }
                                                     
                                                     NavigationLink(isActive: $redirectSpecialSeriesDetail) {
@@ -84,7 +87,7 @@ struct FeedView: View {
                                                     }
                                                     
                                                     NavigationLink(isActive: $redirectEpisodeDetail) {
-                                                        EpisodeDetailView(seriesDetailID: result.uid ?? "").navigationBarBackButtonHidden(true)
+                                                        EpisodeDetailView(seriesDetailID: $seriesDetailID).navigationBarBackButtonHidden(true)
                                                     } label: {
                                                         EmptyView()
                                                     }
@@ -100,7 +103,7 @@ struct FeedView: View {
                                         }
                                         
                                         ScrollView(.horizontal, showsIndicators: false) {
-                                            LazyHStack(spacing: 10) {
+                                            LazyHStack(spacing: 3) {
                                                 ForEach(data.results, id: \.uid) { result in
                                                     FeedSwiperView(feedImage: result.thumbnail, description: result.title, width: horizontalSizeClass == .regular ? 523 : 277, height: horizontalSizeClass == .regular ? 294 : 155, progressBarValue: nil) {
                                                         redirectVideoPlayer = true
@@ -127,14 +130,21 @@ struct FeedView: View {
                                             redirectSeriesDetail = true
                                         }
                                         ScrollView(.horizontal) {
-                                            LazyHStack(spacing: 10) {
+                                            LazyHStack(spacing: 3) {
                                                 ForEach(data.results, id: \.uid) { result in
                                                     FeedSwiperView(feedImage: result.thumbnail, description: nil, width: horizontalSizeClass == .regular ? 195 : 114, height: horizontalSizeClass == .regular ? 292 : 171, progressBarValue: nil) {
                                                         redirectEpisodeDetail = true
+                                                        seriesDetailID = result.uid
                                                     }
                                                     
                                                     NavigationLink(isActive: $redirectSeriesDetail) {
                                                         ShowAllSeriesView(title: data.title, seriesID: result.categoryUUID ?? "").navigationBarBackButtonHidden(true)
+                                                    } label: {
+                                                        EmptyView()
+                                                    }
+                                                    
+                                                    NavigationLink(isActive: $redirectEpisodeDetail) {
+                                                        EpisodeDetailView(seriesDetailID: $seriesDetailID).navigationBarBackButtonHidden(true)
                                                     } label: {
                                                         EmptyView()
                                                     }
@@ -149,14 +159,21 @@ struct FeedView: View {
                                             redirectBonusContentSeriesDetail = true
                                         }
                                         ScrollView(.horizontal) {
-                                            LazyHStack(spacing: 10) {
+                                            LazyHStack(spacing: 3) {
                                                 ForEach(data.results, id: \.uid) { result in
                                                     FeedSwiperView(feedImage: result.thumbnail, description: nil, width: horizontalSizeClass == .regular ? 195 : 114, height: horizontalSizeClass == .regular ? 292 : 171, progressBarValue: nil) {
                                                         redirectEpisodeDetail = true
+                                                        seriesDetailID = result.uid
                                                     }
                                                     
                                                     NavigationLink(isActive: $redirectBonusContentSeriesDetail) {
                                                         ShowAllSeriesView(title: data.title, seriesID: result.categoryUUID ?? "").navigationBarBackButtonHidden(true)
+                                                    } label: {
+                                                        EmptyView()
+                                                    }
+                                                    
+                                                    NavigationLink(isActive: $redirectEpisodeDetail) {
+                                                        EpisodeDetailView(seriesDetailID: $seriesDetailID).navigationBarBackButtonHidden(true)
                                                     } label: {
                                                         EmptyView()
                                                     }
@@ -171,14 +188,21 @@ struct FeedView: View {
                                             redirectPodcastSeriesDetail = true
                                         }
                                         ScrollView(.horizontal) {
-                                            LazyHStack(spacing: 10) {
+                                            LazyHStack(spacing: 3) {
                                                 ForEach(data.results, id: \.uid) { result in
                                                     FeedSwiperView(feedImage: result.thumbnail, description: nil, width: horizontalSizeClass == .regular ? 195 : 114, height: horizontalSizeClass == .regular ? 292 : 171, progressBarValue: nil) {
                                                         redirectEpisodeDetail = true
+                                                        seriesDetailID = result.uid
                                                     }
                                                     
                                                     NavigationLink(isActive: $redirectPodcastSeriesDetail) {
                                                         ShowAllSeriesView(title: data.title, seriesID: result.categoryUUID ?? "").navigationBarBackButtonHidden(true)
+                                                    } label: {
+                                                        EmptyView()
+                                                    }
+                                                    
+                                                    NavigationLink(isActive: $redirectEpisodeDetail) {
+                                                        EpisodeDetailView(seriesDetailID: $seriesDetailID).navigationBarBackButtonHidden(true)
                                                     } label: {
                                                         EmptyView()
                                                     }
@@ -194,7 +218,7 @@ struct FeedView: View {
                                         }
                                         
                                         ScrollView(.horizontal, showsIndicators: false) {
-                                            LazyHStack(spacing: 10) {
+                                            LazyHStack(spacing: 3) {
                                                 ForEach(data.results, id: \.uid) { result in
                                                     FeedSwiperView(feedImage: result.thumbnail, description: result.title, width: horizontalSizeClass == .regular ? 523 : 277, height: horizontalSizeClass == .regular ? 294 : 155, progressBarValue: nil) {
                                                         redirectVideoPlayer = true
