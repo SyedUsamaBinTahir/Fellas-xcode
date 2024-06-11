@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct EpisodesDetailDescriptionView: View {
+    @EnvironmentObject var viewModel: FeedViewModel
     @Binding var seasonNumber: String
     @Binding var desctiption: String
-    @Binding var host: String
+//    @Binding var host: String
     
     var body: some View {
         Text(seasonNumber)
@@ -21,8 +22,12 @@ struct EpisodesDetailDescriptionView: View {
             .font(.custom(Font.regular, size: 14))
             .foregroundStyle(Color.white)
         
-        Text("Hosts: \(host)")
-            .font(.custom(Font.Medium, size: 14))
-            .foregroundStyle(Color.theme.textGrayColor)
+        HStack(spacing: 0) {
+            ForEach(viewModel.feedCategorySeriesDatailModel?.hosts ?? [], id: \.uid) { host in
+                Text(host.name)
+                    .font(.custom(Font.Medium, size: 14))
+                    .foregroundStyle(Color.theme.textGrayColor)
+            }
+        }
     }
 }

@@ -55,9 +55,9 @@ struct SubscribeView: View {
                     viewModel.showLoader = true
                     viewModel.getStripePaymentPrices()
                 }
-                .navigationDestination(isPresented: $redirectToTabbarView, destination: {
-                    Tabbar().navigationBarBackButtonHidden(true)
-                })
+//                .navigationDestination(isPresented: $redirectToTabbarView, destination: {
+//                    Tabbar().navigationBarBackButtonHidden(true)
+//                })
                 .popup(isPresented: $viewModel.showAlert) {
                     FLToastAlert(image: .constant(""), message: .constant(viewModel.alertMessage))
                 } customize: {
@@ -74,6 +74,13 @@ struct SubscribeView: View {
                 if viewModel.showLoader {
                     FLLoader()
                 }
+                
+                NavigationLink(isActive: $redirectToTabbarView) {
+                    Tabbar().navigationBarBackButtonHidden(true)
+                } label: {
+                    EmptyView()
+                }
+
             }
             .task {
                 do {

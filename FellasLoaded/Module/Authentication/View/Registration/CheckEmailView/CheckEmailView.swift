@@ -47,10 +47,18 @@ struct CheckEmailView: View {
                             .autohideIn(3)
                             .appearFrom(.top)
                     }
-                    .navigationDestination(isPresented: $viewModel.redirectToDisplayNameAndImageView) {
+//                    .navigationDestination(isPresented: $viewModel.redirectToDisplayNameAndImageView) {
+//                        DisplayNameAndImageView()
+//                            .navigationBarBackButtonHidden(true)
+//                    }
+                    
+                    NavigationLink(isActive: $viewModel.redirectToDisplayNameAndImageView) {
                         DisplayNameAndImageView()
                             .navigationBarBackButtonHidden(true)
+                    } label: {
+                        EmptyView()
                     }
+
                     
                     Spacer()
                 }

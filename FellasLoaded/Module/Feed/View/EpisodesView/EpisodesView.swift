@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct EpisodesView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
@@ -17,7 +18,20 @@ struct EpisodesView: View {
     
     var body: some View {
         HStack(spacing: 16) {
-            Image("\(seriesImage)")
+//            Image("\(seriesImage)")
+//                .resizable()
+//                .scaledToFill()
+//                .frame(width: horizontalSizeClass == .regular ? 345 : 124, height: horizontalSizeClass == .regular ? 194 : 69)
+//                .clipped()
+//                .cornerRadius(10)
+            KFImage.init(URL(string: "\(FLAPIs.imageURL + seriesImage)"))
+                .placeholder({ _ in
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(Color.theme.appGrayColor)
+                })
+                .loadDiskFileSynchronously()
+                .cacheMemoryOnly()
+                .fade(duration: 0.80)
                 .resizable()
                 .scaledToFill()
                 .frame(width: horizontalSizeClass == .regular ? 345 : 124, height: horizontalSizeClass == .regular ? 194 : 69)

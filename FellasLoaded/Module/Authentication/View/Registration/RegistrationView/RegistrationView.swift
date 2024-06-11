@@ -29,12 +29,20 @@ struct RegistrationView: View {
                     }
                     .frame(width: horizontalSizeClass == .regular ? 472 : nil)
                     .padding(horizontalSizeClass == .regular ? 140 : 20)
-                    .navigationDestination(isPresented: $redirectToCreatepassword) {
+//                    .navigationDestination(isPresented: $redirectToCreatepassword) {
+//                        CreatePasswordView(email: $email, password: $password)
+//                            .environmentObject(viewModel)
+//                            .navigationBarBackButtonHidden(true)
+//                    }
+                    
+                    NavigationLink(isActive: $redirectToCreatepassword) {
                         CreatePasswordView(email: $email, password: $password)
                             .environmentObject(viewModel)
                             .navigationBarBackButtonHidden(true)
+                    } label: {
+                        EmptyView()
                     }
-                    
+
                     Spacer()
                 }
             }

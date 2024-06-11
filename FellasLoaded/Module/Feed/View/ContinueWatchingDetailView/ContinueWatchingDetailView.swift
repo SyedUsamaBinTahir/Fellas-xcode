@@ -9,22 +9,35 @@ import SwiftUI
 
 struct ContinueWatchingDetailView: View {
     @Environment(\.presentationMode) var presentationMode
+    @StateObject var feedViewModel = FeedViewModel(_dataService: GetServerData.shared)
+    @State var title: String = ""
+    @State var episodeID: String = ""
     
     var body: some View {
         VStack {
-            VStack(alignment: .leading, spacing: 30) {
-                
-                ContinueWatchingDetailHeaderView()
-                
-                ScrollView {
-                    VStack(spacing: 20) {
-                        ForEach(1...5, id: \.self) { data in
-                            EpisodesView(seriesImage: "series-image", episode: "S1:E1", title: "The Fellas & W2S Get Drunk in Amsterdam The Fellas & W2S Get Drunk in Amsterdam", description: "The Fellas head to the city of Amsterdam for some absolute CARNAGE! 24 hours was more than enough and you'll see why", icon: "download")
+            ZStack {
+                VStack(alignment: .leading, spacing: 30) {
+                    
+                    ContinueWatchingDetailHeaderView(title: $title)
+                    
+                    ScrollView {
+                        LazyVStack(spacing: 20) {
+                            ForEach(feedViewModel.feedCategoryEpisodesModel?.results ?? [], id: \.uid) { data in
+                                EpisodesView(seriesImage: data.series_thumbnail, episode: "\(data.session_number):\(data.episode_number)", title: data.title, description: data.description, icon: "download")
+                            }
                         }
                     }
                 }
+                .padding()
+                .onAppear {
+                    feedViewModel.getCategoryEpisodes(id: episodeID)
+                    print("Episode ID --> ", episodeID)
+                }
+                
+                if feedViewModel.showLoader {
+                    FLLoader()
+                }
             }
-            .padding()
         }
         .background {
             LinearGradient(gradient: Gradient(colors: [Color.black, Color.theme.appColor, Color.black]), startPoint: .topLeading, endPoint: .bottomTrailing)

@@ -9,7 +9,7 @@ import Foundation
 
 class FLAPIs {
     static let baseURL = "https://api.fellasloaded.com/api"
-    
+    static let imageURL = "https://storage.googleapis.com/fellas_media/"
 }
 
 extension FLAPIs {
@@ -25,8 +25,8 @@ extension FLAPIs {
     
     // Feeds
     static let feedBanner = "/feed/banners/"
-    static let feedCategories = "/feed/categories/fetch/"
     static let feedCategoriesGroup = "/feed/categories/group/"
     static let feedCategorySeries = "/feed/categories/series/"
     static let feedCategoryEpisodes = "/feed/categories/episodes/"
+    static let feedCategorySeriesDetail = "/series/series/"
 }

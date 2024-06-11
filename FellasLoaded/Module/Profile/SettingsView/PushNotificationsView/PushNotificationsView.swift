@@ -42,12 +42,25 @@ struct PushNotificationsView: View {
                 
                 Spacer()
             }
-            .navigationDestination(isPresented: $redirectMediaUpdates) {
-                MediaUpdatesView().navigationBarBackButtonHidden()
+//            .navigationDestination(isPresented: $redirectMediaUpdates) {
+//                MediaUpdatesView().navigationBarBackButtonHidden()
+//            }
+//            .navigationDestination(isPresented: $redirectInteraction) {
+//                InteractionsView().navigationBarBackButtonHidden(true)
+//            }
+            
+            NavigationLink(isActive: $redirectMediaUpdates) {
+                MediaUpdatesView().navigationBarBackButtonHidden(true)
+            } label: {
+                EmptyView()
             }
-            .navigationDestination(isPresented: $redirectInteraction) {
+            
+            NavigationLink(isActive: $redirectInteraction) {
                 InteractionsView().navigationBarBackButtonHidden(true)
+            } label: {
+                EmptyView()
             }
+
         }
         .background {
             LinearGradient(gradient: Gradient(colors: [Color.black, Color.theme.appColor, Color.black]), startPoint: .topLeading, endPoint: .bottomTrailing)

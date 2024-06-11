@@ -117,9 +117,16 @@ struct ChangePasswordView: View {
                 }
                 .frame(width: horizontalSizeClass == .regular ? 472 : nil)
                 .padding(horizontalSizeClass == .regular ? 140 : 20)
-                .navigationDestination(isPresented: $regirectForgotPassword) {
+//                .navigationDestination(isPresented: $regirectForgotPassword) {
+//                    ForgotPasswordView().navigationBarBackButtonHidden(true)
+//                }
+                
+                NavigationLink(isActive: $regirectForgotPassword) {
                     ForgotPasswordView().navigationBarBackButtonHidden(true)
+                } label: {
+                    EmptyView()
                 }
+
                 
                 Spacer()
             }

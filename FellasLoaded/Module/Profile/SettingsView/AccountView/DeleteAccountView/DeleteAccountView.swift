@@ -107,6 +107,14 @@ struct DeleteAccountView: View {
                         .navigationBarBackButtonHidden(true)
                 }
                 
+                NavigationLink(isActive: $redirectToDisplayNameAndImageView) {
+                    DisplayNameAndImageView()
+                        .navigationBarBackButtonHidden(true)
+                } label: {
+                    EmptyView()
+                }
+
+                
                 Spacer()
             }
         }

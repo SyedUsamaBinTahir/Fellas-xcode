@@ -36,7 +36,7 @@ struct CommentView: View {
     @Binding var dismissSheet: Bool
     
     var body: some View {
-        NavigationStack {
+        NavigationView {
             VStack(spacing: 0) {
                 VStack {
                     CommentsHeaderView(backIcon: .constant(""), title: .constant("Comments"), dismissSheet: $dismissSheet)
@@ -75,6 +75,7 @@ struct CommentView: View {
                 LinearGradient(gradient: Gradient(colors: [Color.black, Color.theme.appColor, Color.black]), startPoint: .topLeading, endPoint: .bottomTrailing)
             }
         .ignoresSafeArea()
+        .navigationBarHidden(true)
         }
     }
 }

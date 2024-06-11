@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContinueWatchingDetailHeaderView: View {
     @Environment(\.presentationMode) var presentationMode
+    @Binding var title: String
     
     var body: some View {
         ZStack {
@@ -26,7 +27,7 @@ struct ContinueWatchingDetailHeaderView: View {
             }
             
             HStack {
-                Text("Continue Watching")
+                Text(title)
                     .font(.custom(Font.semiBold, size: 24))
                     .foregroundStyle(Color.white)
             }
@@ -36,5 +37,5 @@ struct ContinueWatchingDetailHeaderView: View {
 }
 
 #Preview {
-    ContinueWatchingDetailHeaderView()
+    ContinueWatchingDetailHeaderView(title: .constant(""))
 }

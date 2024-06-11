@@ -64,15 +64,34 @@ struct SettingsView: View {
                     })
                 }
             }
-            .navigationDestination(isPresented: $redirectAccount) {
+//            .navigationDestination(isPresented: $redirectAccount) {
+//                AccountView().navigationBarBackButtonHidden(true)
+//            }
+//            .navigationDestination(isPresented: $redirectPushNotifications) {
+//                PushNotificationsView().navigationBarBackButtonHidden(true)
+//            }
+//            .navigationDestination(isPresented: $redirectvideoPlayback) {
+//                VideoPlaybackView().navigationBarBackButtonHidden(true)
+//            }
+            
+            NavigationLink(isActive: $redirectAccount) {
                 AccountView().navigationBarBackButtonHidden(true)
+            } label: {
+                EmptyView()
             }
-            .navigationDestination(isPresented: $redirectPushNotifications) {
+            
+            NavigationLink(isActive: $redirectPushNotifications) {
                 PushNotificationsView().navigationBarBackButtonHidden(true)
+            } label: {
+                EmptyView()
             }
-            .navigationDestination(isPresented: $redirectvideoPlayback) {
+            
+            NavigationLink(isActive: $redirectvideoPlayback) {
                 VideoPlaybackView().navigationBarBackButtonHidden(true)
+            } label: {
+                EmptyView()
             }
+
         }
         .background {
             LinearGradient(gradient: Gradient(colors: [Color.black, Color.theme.appColor, Color.black]), startPoint: .topLeading, endPoint: .bottomTrailing)

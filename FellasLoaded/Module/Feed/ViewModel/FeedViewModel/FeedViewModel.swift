@@ -8,7 +8,22 @@
 import Foundation
 import Combine
 
+protocol FeedDataProvider {
+    func getFeedBanners()
+    func getFeedCategories()
+    func getFeedCategorySeries(id: String)
+    func getCategoryEpisodes(id: String)
+    func getFeedCategorySeriesDetail(id: String)
+}
+
 class FeedViewModel: ObservableObject {
+    // Dependency for GetDataService class
+    private let dataService: DataServiceBased
+    
+    init(_dataService: DataServiceBased) {
+        self.dataService = _dataService
+    }
+    
     // Cancel Subscription after success
     var subscriptions = Set<AnyCancellable>()
     
@@ -21,10 +36,15 @@ class FeedViewModel: ObservableObject {
     var feedBannerModel: FeedBannerModel?
     var feedCategoriesModel: FeedCategoriesModel?
     var feedCategorySeriesModel: FeedCategorySeriesModel?
+    var feedCategoryEpisodesModel: FeedCategoryEpisodesModel?
+    var feedCategorySeriesDatailModel: FeedCategorySeriesDetailModel? = nil
     
+}
+
+extension FeedViewModel: FeedDataProvider {
     // MARK: - Getting feed's data functions
     func getFeedBanners() {
-        GetServerData.shared.getServerData(url: FLAPIs.baseURL + FLAPIs.feedBanner, type: FeedBannerModel.self)
+        dataService.getServerData(url: FLAPIs.baseURL + FLAPIs.feedBanner, type: FeedBannerModel.self)
             .sink { [weak self] completion in
                 DispatchQueue.main.async {
                     switch completion {
@@ -45,7 +65,7 @@ class FeedViewModel: ObservableObject {
     }
     
     func getFeedCategories() {
-        GetServerData.shared.getServerData(url: FLAPIs.baseURL + FLAPIs.feedCategoriesGroup, type: FeedCategoriesModel.self)
+        dataService.getServerData(url: FLAPIs.baseURL + FLAPIs.feedCategoriesGroup, type: FeedCategoriesModel.self)
             .sink { [weak self] completion in
                 DispatchQueue.main.async {
                     switch completion {
@@ -66,7 +86,7 @@ class FeedViewModel: ObservableObject {
     }
     
     func getFeedCategorySeries(id: String) {
-        GetServerData.shared.getServerData(url: FLAPIs.baseURL + FLAPIs.feedCategorySeries + id, type: FeedCategorySeriesModel.self)
+        dataService.getServerData(url: FLAPIs.baseURL + FLAPIs.feedCategorySeries + id, type: FeedCategorySeriesModel.self)
             .sink { [weak self] completion in
                 DispatchQueue.main.async {
                     switch completion {
@@ -82,6 +102,48 @@ class FeedViewModel: ObservableObject {
                 }
             } receiveValue: { categorySeriesData in
                 self.feedCategorySeriesModel = categorySeriesData
+            }
+            .store(in: &subscriptions)
+    }
+    
+    func getCategoryEpisodes(id: String) {
+        dataService.getServerData(url: FLAPIs.baseURL + FLAPIs.feedCategoryEpisodes + id, type: FeedCategoryEpisodesModel.self)
+            .sink { [weak self] completion in
+                DispatchQueue.main.async {
+                    switch completion {
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                        self?.showAlert = true
+                        self?.alertMessage = error.localizedDescription
+                        self?.showLoader = false
+                    case .finished:
+                        print("Feed Categories Episodes Success")
+                        self?.showLoader = false
+                    }
+                }
+            } receiveValue: { categoryEpisodesData in
+                self.feedCategoryEpisodesModel = categoryEpisodesData
+            }
+            .store(in: &subscriptions)
+    }
+    
+    func getFeedCategorySeriesDetail(id: String) {
+        dataService.getServerData(url: FLAPIs.baseURL + FLAPIs.feedCategorySeriesDetail + id, type: FeedCategorySeriesDetailModel.self)
+            .sink { [weak self] completion in
+                DispatchQueue.main.async {
+                    switch completion {
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                        self?.showAlert = true
+                        self?.alertMessage = error.localizedDescription
+                        self?.showLoader = false
+                    case .finished:
+                        print("Feed Categories Episodes Success")
+                        self?.showLoader = false
+                    }
+                }
+            } receiveValue: { categorySeriesDatailData in
+                self.feedCategorySeriesDatailModel = categorySeriesDatailData
             }
             .store(in: &subscriptions)
     }

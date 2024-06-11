@@ -11,7 +11,7 @@ struct Tabbar: View {
     @State private var selectedTab: Tab = .home
     
     var body: some View {
-        NavigationStack {
+        NavigationView {
             VStack(spacing: 0) {
                 if selectedTab == .home {
                     FeedView()
@@ -23,6 +23,7 @@ struct Tabbar: View {
                 
                 CustomTabbar(selectedTab: $selectedTab)
             }
+            .navigationBarHidden(true)
         }
         .navigationBarBackButtonHidden(true)
     }

@@ -43,11 +43,20 @@ struct ForgotPasswordView: View {
                             .autohideIn(3)
                             .appearFrom(.top)
                     }
-                    .navigationDestination(isPresented: $viewModel.redirectToResetPasswordView) {
+//                    .navigationDestination(isPresented: $viewModel.redirectToResetPasswordView) {
+//                        ResetPasswordView(email: $email)
+//                            .environmentObject(viewModel)
+//                            .navigationBarBackButtonHidden(true)
+//                    }
+                    
+                    NavigationLink(isActive: $viewModel.redirectToResetPasswordView) {
                         ResetPasswordView(email: $email)
                             .environmentObject(viewModel)
                             .navigationBarBackButtonHidden(true)
+                    } label: {
+                        EmptyView()
                     }
+
                     
                     Spacer()
                 }

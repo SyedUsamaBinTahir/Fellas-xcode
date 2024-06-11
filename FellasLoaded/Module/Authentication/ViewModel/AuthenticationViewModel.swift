@@ -8,6 +8,16 @@
 import Foundation
 import Combine
 
+protocol AuthenticationBased {
+    func getAccessToken(email: String, password: String)
+    func registerUser(email: String, password: String)
+    func checkEamilResendCode(email: String)
+    func verifyEmailRequest(email: String, code: String)
+    func sendForgotPasswordCodeRequest(email: String)
+    func verifyForgotPasswordCodeRequest(email: String, code: String)
+    func setNewPasswordRequest(code: String, password: String)
+}
+
 class AuthenticationViewModel: ObservableObject, FLViewModelProtocol {
     // Cancel subscription after success variable
     var subscriptions = Set<AnyCancellable>()
@@ -23,7 +33,12 @@ class AuthenticationViewModel: ObservableObject, FLViewModelProtocol {
     @Published var showAlert = false
     @Published var alertMessage = ""
     
+    // Services models
     @Published var getStripePaymentsModel = [GetStripePaymentsModel]()
+    
+}
+
+extension AuthenticationViewModel {
     
     func getAccessToken(email: String, password: String) {
         

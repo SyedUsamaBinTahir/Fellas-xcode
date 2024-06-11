@@ -40,15 +40,34 @@ struct ProfileView: View {
                 .frame(width: horizontalSizeClass == .regular ? 472 : nil)
                 .padding(horizontalSizeClass == .regular ? 140 : 20)
                 
-                .navigationDestination(isPresented: $redirectSettings) {
+//                .navigationDestination(isPresented: $redirectSettings) {
+//                    SettingsView().navigationBarBackButtonHidden(true)
+//                }
+//                .navigationDestination(isPresented: $redirectDownloads) {
+//                    DownloadsView().navigationBarBackButtonHidden(true)
+//                }
+//                .navigationDestination(isPresented: $redirectWatchlist) {
+//                    WatchlistView().navigationBarBackButtonHidden(true)
+//                }
+                
+                NavigationLink(isActive: $redirectSettings) {
                     SettingsView().navigationBarBackButtonHidden(true)
+                } label: {
+                    EmptyView()
                 }
-                .navigationDestination(isPresented: $redirectDownloads) {
+                
+                NavigationLink(isActive: $redirectDownloads) {
                     DownloadsView().navigationBarBackButtonHidden(true)
+                } label: {
+                    EmptyView()
                 }
-                .navigationDestination(isPresented: $redirectWatchlist) {
+                
+                NavigationLink(isActive: $redirectWatchlist) {
                     WatchlistView().navigationBarBackButtonHidden(true)
+                } label: {
+                    EmptyView()
                 }
+
             }
         }
         .background {

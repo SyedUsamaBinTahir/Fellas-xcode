@@ -54,15 +54,34 @@ struct AccountView: View {
                                logoutAction: {})
                 }
             }
-            .navigationDestination(isPresented: $redirectDeleteAccount) {
+//            .navigationDestination(isPresented: $redirectDeleteAccount) {
+//                DeleteAccountView().navigationBarBackButtonHidden(true)
+//            }
+//            .navigationDestination(isPresented: $redirectChangePassword) {
+//                ChangePasswordView().navigationBarBackButtonHidden(true)
+//            }
+//            .navigationDestination(isPresented: $redirectManageSubscriptions) {
+//                ManageSubscriptionsView().navigationBarBackButtonHidden(true)
+//            }
+            
+            NavigationLink(isActive: $redirectDeleteAccount) {
                 DeleteAccountView().navigationBarBackButtonHidden(true)
+            } label: {
+                EmptyView()
             }
-            .navigationDestination(isPresented: $redirectChangePassword) {
+            
+            NavigationLink(isActive: $redirectChangePassword) {
                 ChangePasswordView().navigationBarBackButtonHidden(true)
+            } label: {
+                EmptyView()
             }
-            .navigationDestination(isPresented: $redirectManageSubscriptions) {
+            
+            NavigationLink(isActive: $redirectManageSubscriptions) {
                 ManageSubscriptionsView().navigationBarBackButtonHidden(true)
+            } label: {
+                EmptyView()
             }
+
         }
         .background {
             LinearGradient(gradient: Gradient(colors: [Color.black, Color.theme.appColor, Color.black]), startPoint: .topLeading, endPoint: .bottomTrailing)

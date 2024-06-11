@@ -14,7 +14,7 @@ struct WelcomeScreen: View {
     @State private var redirectExplore = false
     
     var body: some View {
-        NavigationStack {
+        NavigationView {
             ZStack(alignment: horizontalSizeClass == .regular ? .center : .bottom) {
                 if horizontalSizeClass == .regular {
                     Image("welcome-image")
@@ -65,11 +65,19 @@ struct WelcomeScreen: View {
                         }, title: "EXPLORE CONTENT", background: Color.theme.appGrayColor, foreground: Color.white)
                     }
                     .padding(.bottom)
-                    .navigationDestination(isPresented: $redirectSignUp) {
-                        RegistrationView().navigationBarBackButtonHidden(true)
+//                    .navigationDestination(isPresented: $redirectSignUp) {
+//                        RegistrationView().navigationBarBackButtonHidden(true)
+//                    }
+//                    .navigationDestination(isPresented: $redirectLogin) {
+//                        EmailView().navigationBarBackButtonHidden(true)
+//                    }
+                    
+                    NavigationLink(destination: RegistrationView().navigationBarBackButtonHidden(true), isActive: $redirectSignUp) {
+                        EmptyView()
                     }
-                    .navigationDestination(isPresented: $redirectLogin) {
-                        EmailView().navigationBarBackButtonHidden(true)
+                    
+                    NavigationLink(destination: EmailView().navigationBarBackButtonHidden(true), isActive: $redirectLogin) {
+                        EmptyView()
                     }
                 }
                 .padding()

@@ -64,12 +64,26 @@ struct PasswordView: View {
                         .appearFrom(.top)
                 }
                 
-                .navigationDestination(isPresented: $viewModel.redirectTabbarView) {
+//                .navigationDestination(isPresented: $viewModel.redirectTabbarView) {
+//                    Tabbar()
+//                        .navigationBarBackButtonHidden(true)
+//                }
+//                .navigationDestination(isPresented: $redirectToForgotPassword) {
+//                    ForgotPasswordView().navigationBarBackButtonHidden(true)
+//                }
+                
+                NavigationLink(isActive: $viewModel.redirectTabbarView) {
                     Tabbar()
                         .navigationBarBackButtonHidden(true)
+                } label: {
+                    EmptyView()
                 }
-                .navigationDestination(isPresented: $redirectToForgotPassword) {
-                    ForgotPasswordView().navigationBarBackButtonHidden(true)
+                
+                NavigationLink(isActive: $redirectToForgotPassword) {
+                    ForgotPasswordView()
+                        .navigationBarBackButtonHidden(true)
+                } label: {
+                    EmptyView()
                 }
                 
                 if viewModel.showLoader {

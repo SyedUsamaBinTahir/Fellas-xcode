@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ShowAllSeriesHeaderView: View {
     @Environment(\.presentationMode) var presentationMode
+    @Binding var title: String
+    
     var body: some View {
         ZStack {
             HStack {
@@ -25,7 +27,7 @@ struct ShowAllSeriesHeaderView: View {
             }
             
             HStack {
-                Text("Most Popular")
+                Text(title)
                     .font(.custom(Font.semiBold, size: 24))
                     .foregroundStyle(Color.white)
             }
@@ -35,5 +37,5 @@ struct ShowAllSeriesHeaderView: View {
 }
 
 #Preview {
-    ShowAllSeriesHeaderView()
+    ShowAllSeriesHeaderView(title: .constant(""))
 }

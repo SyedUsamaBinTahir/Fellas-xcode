@@ -90,9 +90,16 @@ struct CommentCardView: View {
                             redirectReply = true
                         }
                     }
-                    .navigationDestination(isPresented: $redirectReply) {
+//                    .navigationDestination(isPresented: $redirectReply) {
+//                        RepliesView(dismissSheet: $redirectReply).navigationBarBackButtonHidden(true)
+//                    }
+                    
+                    NavigationLink(isActive: $redirectReply) {
                         RepliesView(dismissSheet: $redirectReply).navigationBarBackButtonHidden(true)
+                    } label: {
+                        EmptyView()
                     }
+
                     
                 }
                 .padding(.top, 4)

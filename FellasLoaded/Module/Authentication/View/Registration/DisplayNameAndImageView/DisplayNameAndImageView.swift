@@ -72,6 +72,14 @@ struct DisplayNameAndImageView: View {
                     FLLoader()
                 }
                 
+                NavigationLink(isActive: $viewModel.redirectToSubscribeView) {
+                    SubscribeView()
+                        .navigationBarBackButtonHidden(true)
+                } label: {
+                    EmptyView()
+                }
+
+                
             }
         }
         .background {

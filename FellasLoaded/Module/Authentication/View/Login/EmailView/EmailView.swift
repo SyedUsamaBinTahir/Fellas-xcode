@@ -29,11 +29,20 @@ struct EmailView: View {
                 }
                 .frame(width: horizontalSizeClass == .regular ? 472 : nil)
                 .padding(horizontalSizeClass == .regular ? 140 : 20)
-                .navigationDestination(isPresented: $redirectToPasswordView) {
+//                .navigationDestination(isPresented: $redirectToPasswordView) {
+//                    PasswordView(password: $password, email: $email)
+//                        .environmentObject(viewModel)
+//                        .navigationBarBackButtonHidden(true)
+//                }
+                
+                NavigationLink(isActive: $redirectToPasswordView) {
                     PasswordView(password: $password, email: $email)
                         .environmentObject(viewModel)
                         .navigationBarBackButtonHidden(true)
+                } label: {
+                    EmptyView()
                 }
+
                 
                 Spacer()
             }

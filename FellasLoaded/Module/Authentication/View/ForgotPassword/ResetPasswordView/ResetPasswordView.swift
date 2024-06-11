@@ -49,6 +49,14 @@ struct ResetPasswordView: View {
                             .navigationBarBackButtonHidden(true)
                     }
                     
+                    NavigationLink(isActive: $viewModel.redirectToNewPasswordView) {
+                        NewPasswordView(code: $code)
+                            .navigationBarBackButtonHidden(true)
+                    } label: {
+                        EmptyView()
+                    }
+
+                    
                     Spacer()
                 }
                 

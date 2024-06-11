@@ -68,9 +68,16 @@ struct MediaUpdatesView: View {
                                 
                 Spacer()
             }
-            .navigationDestination(isPresented: $redirectSubscriptionSeries) {
+//            .navigationDestination(isPresented: $redirectSubscriptionSeries) {
+//                SubscribesSeriesView().navigationBarBackButtonHidden(true)
+//            }
+            
+            NavigationLink(isActive: $redirectSubscriptionSeries) {
                 SubscribesSeriesView().navigationBarBackButtonHidden(true)
+            } label: {
+                EmptyView()
             }
+
         }
         .background {
             LinearGradient(gradient: Gradient(colors: [Color.black, Color.theme.appColor, Color.black]), startPoint: .topLeading, endPoint: .bottomTrailing)

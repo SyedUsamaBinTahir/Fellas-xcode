@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		9B10F8582BFDF2CD005914BD /* AuthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B10F8572BFDF2CD005914BD /* AuthHeaderView.swift */; };
+		9B11FC5B2C17036200AE80ED /* FeedCategoryEpisodesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B11FC5A2C17036100AE80ED /* FeedCategoryEpisodesModel.swift */; };
+		9B11FC5E2C17361600AE80ED /* FeedCategorySeriesDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B11FC5D2C17361600AE80ED /* FeedCategorySeriesDetailModel.swift */; };
 		9B160A232C0DDCD40073B3F1 /* GetStripePaymentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B160A222C0DDCD40073B3F1 /* GetStripePaymentsModel.swift */; };
 		9B160A262C0E04170073B3F1 /* SubscribeDiscountLableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B160A252C0E04170073B3F1 /* SubscribeDiscountLableView.swift */; };
 		9B160A292C0E194D0073B3F1 /* InAppPurchaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B160A282C0E194D0073B3F1 /* InAppPurchaseModel.swift */; };
@@ -176,6 +178,8 @@
 		26944833114E4BB884AA0446 /* Pods-FellasLoaded.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FellasLoaded.release.xcconfig"; path = "Target Support Files/Pods-FellasLoaded/Pods-FellasLoaded.release.xcconfig"; sourceTree = "<group>"; };
 		959029D06F70831162C77BD0 /* Pods_FellasLoaded.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FellasLoaded.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B10F8572BFDF2CD005914BD /* AuthHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHeaderView.swift; sourceTree = "<group>"; };
+		9B11FC5A2C17036100AE80ED /* FeedCategoryEpisodesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCategoryEpisodesModel.swift; sourceTree = "<group>"; };
+		9B11FC5D2C17361600AE80ED /* FeedCategorySeriesDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCategorySeriesDetailModel.swift; sourceTree = "<group>"; };
 		9B160A222C0DDCD40073B3F1 /* GetStripePaymentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStripePaymentsModel.swift; sourceTree = "<group>"; };
 		9B160A252C0E04170073B3F1 /* SubscribeDiscountLableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeDiscountLableView.swift; sourceTree = "<group>"; };
 		9B160A282C0E194D0073B3F1 /* InAppPurchaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchaseModel.swift; sourceTree = "<group>"; };
@@ -430,6 +434,22 @@
 				9B7288FF2BFDFE5800EB1A90 /* RegistrationLablesView.swift */,
 			);
 			name = RegistrationLablesView;
+			sourceTree = "<group>";
+		};
+		9B11FC592C17034100AE80ED /* FeedCategoryEpisodesModel */ = {
+			isa = PBXGroup;
+			children = (
+				9B11FC5A2C17036100AE80ED /* FeedCategoryEpisodesModel.swift */,
+			);
+			path = FeedCategoryEpisodesModel;
+			sourceTree = "<group>";
+		};
+		9B11FC5C2C1735FB00AE80ED /* FeedCategorySeriesDetailModel */ = {
+			isa = PBXGroup;
+			children = (
+				9B11FC5D2C17361600AE80ED /* FeedCategorySeriesDetailModel.swift */,
+			);
+			path = FeedCategorySeriesDetailModel;
 			sourceTree = "<group>";
 		};
 		9B160A212C0DDC970073B3F1 /* GetStripePaymentsModel */ = {
@@ -1815,6 +1835,8 @@
 		9BE4BEB12C10773F0016E673 /* FeedModel */ = {
 			isa = PBXGroup;
 			children = (
+				9B11FC5C2C1735FB00AE80ED /* FeedCategorySeriesDetailModel */,
+				9B11FC592C17034100AE80ED /* FeedCategoryEpisodesModel */,
 				9BD0E4142C13482500BFBE6A /* FeedCategorySeriesModel */,
 				9BD0E40E2C11C1E800BFBE6A /* FeedCategoriesModel */,
 				9BE4BEAD2C1076040016E673 /* FeedBannerModel */,
@@ -2284,6 +2306,7 @@
 				9B454B7D2BFE436F000786B6 /* SearchResultAndRecommentdTextView.swift in Sources */,
 				9B72896A2BFE1BF400EB1A90 /* SettingsHeaderView.swift in Sources */,
 				9B7289292BFE08BF00EB1A90 /* SubscribeFieldAndButtonView.swift in Sources */,
+				9B11FC5E2C17361600AE80ED /* FeedCategorySeriesDetailModel.swift in Sources */,
 				9B8A183F2BFB7BC100CF9FF1 /* VideoPlayerView.swift in Sources */,
 				9BEB303F2C0F54A1002C7F82 /* CodeVerificationAPIError.swift in Sources */,
 				9BF7671B2C073A9400BDBC6A /* CheckEmailRequest.swift in Sources */,
@@ -2333,6 +2356,7 @@
 				9B3D10342BF21698009AD6F2 /* ContentView.swift in Sources */,
 				9BF226692C00B4F400149850 /* AuthLoginAPIModel.swift in Sources */,
 				9B3D105E2BF270ED009AD6F2 /* CreatePasswordView.swift in Sources */,
+				9B11FC5B2C17036200AE80ED /* FeedCategoryEpisodesModel.swift in Sources */,
 				9B72892E2BFE09E600EB1A90 /* EmailHeaderView.swift in Sources */,
 				9B7289652BFE19CF00EB1A90 /* ConfesstionBoxButtonView.swift in Sources */,
 				9BEC0A862C049DF200BDE169 /* Data+.swift in Sources */,
@@ -2524,7 +2548,7 @@
 				CODE_SIGN_ENTITLEMENTS = FellasLoaded/FellasLoaded.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"FellasLoaded/Preview Content\"";
 				DEVELOPMENT_TEAM = HAG8AD6Y2K;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -2566,7 +2590,7 @@
 				CODE_SIGN_ENTITLEMENTS = FellasLoaded/FellasLoaded.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"FellasLoaded/Preview Content\"";
 				DEVELOPMENT_TEAM = HAG8AD6Y2K;
 				ENABLE_HARDENED_RUNTIME = YES;
