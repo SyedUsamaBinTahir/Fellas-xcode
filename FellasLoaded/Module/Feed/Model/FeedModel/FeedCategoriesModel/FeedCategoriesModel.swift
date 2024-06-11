@@ -38,7 +38,7 @@ struct CategoriesResults: Codable {
     let genre: Genre?
     let createdAt: String
     let reachedSession, reachedEpisode: JSONNull?
-    let reachedEpisodeTime: JSONNull?
+//    let reachedEpisodeTime: JSONNull?
     let isWatchLater: Bool
     let watchLaterCount: Int?
     let watchLaterAddedAt: JSONNull?
@@ -67,7 +67,7 @@ struct CategoriesResults: Codable {
         case createdAt = "created_at"
         case reachedSession = "reached_session"
         case reachedEpisode = "reached_episode"
-        case reachedEpisodeTime = "reached_episode_time"
+//        case reachedEpisodeTime = "reached_episode_time"
         case isWatchLater = "is_watch_later"
         case watchLaterCount = "watch_later_count"
         case watchLaterAddedAt = "watch_later_added_at"

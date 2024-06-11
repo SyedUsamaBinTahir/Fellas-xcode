@@ -169,7 +169,7 @@ struct FeedView: View {
                                                     NavigationLink(isActive: $redirectBonusContentSeriesDetail) {
                                                         ShowAllSeriesView(title: data.title, seriesID: result.categoryUUID ?? "").navigationBarBackButtonHidden(true)
                                                     } label: {
-                                                        EmptyView()
+                                                        EmptyView()		
                                                     }
                                                     
                                                     NavigationLink(isActive: $redirectEpisodeDetail) {

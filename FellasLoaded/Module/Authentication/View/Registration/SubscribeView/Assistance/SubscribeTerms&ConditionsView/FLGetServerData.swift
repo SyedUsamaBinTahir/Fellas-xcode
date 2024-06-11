@@ -25,7 +25,7 @@ extension GetServerData {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "content-type")
-        request.setValue("Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIwMTY5NDAxLCJpYXQiOjE3MTc1Nzc0MDEsImp0aSI6ImI2MDRlNDc1ZmQ5ZDQyNGY4YjI2NjQ5ZGU2Y2UzMTlhIiwidXNlcl9pZCI6MzU3MzZ9.2m2MJPnLMDOkF5Xi-OORd2-hgKB7_a20clNEk6nZjlM", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(UserDefaults.standard.string(forKey: FLUserDefaultKeys.accesstoken.rawValue) ?? "N/A")", forHTTPHeaderField: "Authorization")
         
         return URLSession.shared.dataTaskPublisher(for: request)
             .tryMap { result -> Data in

@@ -27,6 +27,13 @@ struct VideoPlayer: View {
     var size: CGSize
     var safeArea: EdgeInsets?
     @State private var player = AVPlayer(url: URL(string: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")!)
+//    @State private var player: AVPlayer? = {
+//        if let bundle = Bundle.main.path(forResource: "BigBuckBunny", ofType: "mp4") {
+//            return .init(url: URL(fileURLWithPath: bundle))
+//        }
+//        
+//        return nil
+//    }()
     @State private var showPlayerControlls: Bool = false
     @State private var isPlaying: Bool = false
     @State private var timeoutTask: DispatchWorkItem?

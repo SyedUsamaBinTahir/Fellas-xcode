@@ -48,7 +48,7 @@ extension FLUserJourney: FLUserJourneyBased {
     
     func subscribedUserLoggedin() {
         self.addAccountInformation(key: FLUserDefaultKeys.subscribedUserloggedIn, value: true)
-        self.addAccountInformation(key: FLUserDefaultKeys.accesstoken, value: true)
+        self.addAccountInformation(key: FLUserDefaultKeys.accesstoken, value: authToken ?? "N/A")
     }
     
     func unSubscribedUserLoggedin() {

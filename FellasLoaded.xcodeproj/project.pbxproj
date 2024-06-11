@@ -88,6 +88,7 @@
 		9B8A18392BFB788200CF9FF1 /* CustomVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8A18382BFB788200CF9FF1 /* CustomVideoPlayer.swift */; };
 		9B8A183C2BFB78A000CF9FF1 /* DoubleTapSeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8A183B2BFB78A000CF9FF1 /* DoubleTapSeek.swift */; };
 		9B8A183F2BFB7BC100CF9FF1 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8A183E2BFB7BC100CF9FF1 /* VideoPlayerView.swift */; };
+		9BA6EC082C188146000D31CE /* BigBuckBunny.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 9BA6EC072C188146000D31CE /* BigBuckBunny.mp4 */; };
 		9BC506CB2C0A189E00EAEF9B /* NewPasswordAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC506CA2C0A189E00EAEF9B /* NewPasswordAPIService.swift */; };
 		9BC506CE2C0A18C400EAEF9B /* NewPasswordRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC506CD2C0A18C400EAEF9B /* NewPasswordRequestModel.swift */; };
 		9BC6B7FA2BF34D2800E684AD /* CheckEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6B7F92BF34D2800E684AD /* CheckEmailView.swift */; };
@@ -260,6 +261,7 @@
 		9B8A18382BFB788200CF9FF1 /* CustomVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVideoPlayer.swift; sourceTree = "<group>"; };
 		9B8A183B2BFB78A000CF9FF1 /* DoubleTapSeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleTapSeek.swift; sourceTree = "<group>"; };
 		9B8A183E2BFB7BC100CF9FF1 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
+		9BA6EC072C188146000D31CE /* BigBuckBunny.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = BigBuckBunny.mp4; path = ../../../Downloads/BigBuckBunny.mp4; sourceTree = "<group>"; };
 		9BC506CA2C0A189E00EAEF9B /* NewPasswordAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordAPIService.swift; sourceTree = "<group>"; };
 		9BC506CD2C0A18C400EAEF9B /* NewPasswordRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordRequestModel.swift; sourceTree = "<group>"; };
 		9BC6B7F92BF34D2800E684AD /* CheckEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckEmailView.swift; sourceTree = "<group>"; };
@@ -489,6 +491,7 @@
 		9B3D10252BF21697009AD6F2 = {
 			isa = PBXGroup;
 			children = (
+				9BA6EC072C188146000D31CE /* BigBuckBunny.mp4 */,
 				9BEB302A2C0F141A002C7F82 /* storekit.storekit */,
 				9B3D10302BF21698009AD6F2 /* FellasLoaded */,
 				9B3D102F2BF21698009AD6F2 /* Products */,
@@ -2193,6 +2196,7 @@
 				9BC6B8182BF37AE700E684AD /* Barlow-Regular.ttf in Resources */,
 				9BC6B8192BF37AE700E684AD /* Barlow-Medium.ttf in Resources */,
 				9B3D10362BF21699009AD6F2 /* Assets.xcassets in Resources */,
+				9BA6EC082C188146000D31CE /* BigBuckBunny.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
