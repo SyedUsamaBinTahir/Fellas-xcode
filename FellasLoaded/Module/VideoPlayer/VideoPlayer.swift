@@ -26,14 +26,14 @@ struct VideoPlayer: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     var size: CGSize
     var safeArea: EdgeInsets?
-    @State private var player = AVPlayer(url: URL(string: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")!)
-//    @State private var player: AVPlayer? = {
-//        if let bundle = Bundle.main.path(forResource: "BigBuckBunny", ofType: "mp4") {
-//            return .init(url: URL(fileURLWithPath: bundle))
-//        }
-//        
-//        return nil
-//    }()
+//    @State private var player = AVPlayer(url: URL(string: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")!)
+    @State private var player: AVPlayer? = {
+        if let bundle = Bundle.main.path(forResource: "BigBuckBunny", ofType: "mp4") {
+            return .init(url: URL(fileURLWithPath: bundle))
+        }
+        
+        return nil
+    }()
     @State private var showPlayerControlls: Bool = false
     @State private var isPlaying: Bool = false
     @State private var timeoutTask: DispatchWorkItem?
@@ -61,74 +61,77 @@ struct VideoPlayer: View {
             
             // Custom Video Player
             ZStack(alignment: .topLeading) {
-                    CustomVideoPlayer(player: player)
-                    .overlay {
-                        Rectangle()
-                            .fill(.black.opacity(0.4))
-                            .opacity(showPlayerControlls || isDragging ? 1 : 0)
-                            /// Animating Dragging State
-                            .animation(.easeIn(duration: 0.35), value: isDragging)
-                            .overlay {
-                                playerbackControlls()
+                if let player {
+                    
+                        CustomVideoPlayer(player: player)
+                        .overlay {
+                            Rectangle()
+                                .fill(.black.opacity(0.4))
+                                .opacity(showPlayerControlls || isDragging ? 1 : 0)
+                                /// Animating Dragging State
+                                .animation(.easeIn(duration: 0.35), value: isDragging)
+                                .overlay {
+                                    playerbackControlls()
+                                }
+                        }
+                        .overlay(content: {
+                            HStack(spacing: 60) {
+                                DoubleTapSeek {
+                                    /// seeking 15 seconds backward
+                                    let seconds = player.currentTime().seconds - 15
+                                    player.seek(to: .init(seconds: seconds, preferredTimescale: 600))
+                                }
+                                
+                                DoubleTapSeek(isForward: true) {
+                                    /// seeking 15 seconds farward
+                                    let seconds = player.currentTime().seconds + 15
+                                    player.seek(to: .init(seconds: seconds, preferredTimescale: 600))
+                                }
                             }
-                    }
-                    .overlay(content: {
-                        HStack(spacing: 60) {
-                            DoubleTapSeek {
-                                /// seeking 15 seconds backward
-                                let seconds = player.currentTime().seconds - 15
-                                player.seek(to: .init(seconds: seconds, preferredTimescale: 600))
+                        })
+                        .onTapGesture {
+                            withAnimation(.easeInOut(duration: 0.35)) {
+                                showPlayerControlls.toggle()
                             }
                             
-                            DoubleTapSeek(isForward: true) {
-                                /// seeking 15 seconds farward
-                                let seconds = player.currentTime().seconds + 15
-                                player.seek(to: .init(seconds: seconds, preferredTimescale: 600))
+                            if isPlaying {
+                                timeoutControlls()
                             }
                         }
-                    })
-                    .onTapGesture {
-                        withAnimation(.easeInOut(duration: 0.35)) {
-                            showPlayerControlls.toggle()
+                        .overlay(alignment: .leading ,content: {
+                            seekerThumbnailView(videoPlayerSize)
+                        })
+                        .overlay(alignment: .bottom) {
+                            if showPlayerControlls {
+                                videoSeekerView(videoPlayerSize)
+                            }
+                        }
+                    
+                    HStack {
+                        Button {
+                            presentationMode.wrappedValue.dismiss()
+                        } label: {
+                            Image("back-icon")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 32, height: 32)
+                                .opacity(0.8)
                         }
                         
-                        if isPlaying {
-                            timeoutControlls()
-                        }
-                    }
-                    .overlay(alignment: .leading ,content: {
-                        seekerThumbnailView(videoPlayerSize)
-                    })
-                    .overlay(alignment: .bottom) {
+                        Spacer()
                         if showPlayerControlls {
-                            videoSeekerView(videoPlayerSize)
+                            HStack {
+                                AirPlayView()
+                                    .frame(width: 32, height: 32)
+                                CastButtonRepresentable()
+                                    .frame(width: 32, height: 32)
+                                    .foregroundColor(.white)
+                            }
                         }
                     }
-                
-                HStack {
-                    Button {
-                        presentationMode.wrappedValue.dismiss()
-                    } label: {
-                        Image("back-icon")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 32, height: 32)
-                            .opacity(0.8)
-                    }
-                    
-                    Spacer()
-                    if showPlayerControlls {
-                        HStack {
-                            AirPlayView()
-                                .frame(width: 32, height: 32)
-                            CastButtonRepresentable()
-                                .frame(width: 32, height: 32)
-                                .foregroundColor(.white)
-                        }
-                    }
-                }
-                .padding(10)
+                    .padding(10)
 
+                }
             }
             .background(content: {
                 Rectangle()
@@ -286,14 +289,14 @@ struct VideoPlayer: View {
         .padding(.leading, isRotated ? (horizontalSizeClass == .regular ? -44 : 32) : 0)
         .onAppear {
             isPlaying = true
-            player.play()
+            player?.play()
             guard !isObservedAdded else { return }
             /// Adding observer to update seeker when the video is playing
-            player.addPeriodicTimeObserver(forInterval: .init(seconds: 1, preferredTimescale: 600), queue: .main) { time in
+            player?.addPeriodicTimeObserver(forInterval: .init(seconds: 1, preferredTimescale: 600), queue: .main) { time in
                 /// calculating video prcess
-                if let currentPlayerItem = player.currentItem {
+                if let currentPlayerItem = player?.currentItem {
                     let totalDuration = currentPlayerItem.duration.seconds
-                    let currentDuration = player.currentTime().seconds
+                    guard let currentDuration = player?.currentTime().seconds else { return }
                     
                     let calculatedProgress = currentDuration / totalDuration
                     
@@ -312,7 +315,7 @@ struct VideoPlayer: View {
             isObservedAdded = true
             
             // Before generating thumbnail check if the video is loaded
-            playerStatusObserver = player.observe(\.status, options: .new, changeHandler: { player, _ in
+            playerStatusObserver = player?.observe(\.status, options: .new, changeHandler: { player, _ in
                 if player.status == .readyToPlay {
                     generateThumbnailFrames()
                 }
@@ -320,7 +323,7 @@ struct VideoPlayer: View {
         }
         .onDisappear {
             isPlaying = false
-            player.pause()
+            player?.pause()
             
             playerStatusObserver?.invalidate()
         }
@@ -341,7 +344,7 @@ struct VideoPlayer: View {
                     .frame(width: thumbSize.width, height: thumbSize.height)
                     .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
                     .overlay(alignment: .bottom, content: {
-                        if let currentTime = player.currentItem {
+                        if let currentTime = player?.currentItem {
                             Text(CMTime(seconds: progress * currentTime.duration.seconds, preferredTimescale: 600).toTimeString())
                                 .font(.callout)
                                 .fontWeight(.semibold)
@@ -417,10 +420,10 @@ struct VideoPlayer: View {
                         .onEnded({ value in
                             lastDraggedProgress = progress
                             /// seeking video to dragged time
-                            if let currentPlayerTime = player.currentItem {
+                            if let currentPlayerTime = player?.currentItem {
                                 let totalDuration = currentPlayerTime.duration.seconds
                                 
-                                player.seek(to: .init(seconds: totalDuration * progress, preferredTimescale: 600))
+                                player?.seek(to: .init(seconds: totalDuration * progress, preferredTimescale: 600))
                                 
                                 /// Re-shooting Timeout Task
                                 if isPlaying {
@@ -462,19 +465,19 @@ struct VideoPlayer: View {
                 if isFinishedSeeking {
                     /// Setting Video To start and playing again
                     isFinishedSeeking = false
-                    player.seek(to: .zero)
+                    player?.seek(to: .zero)
                     progress = .zero
                     lastDraggedProgress = .zero
                 }
                 // Chainging Video status to play/puase based on user input
                 if isPlaying {
-                    player.pause()
+                    player?.pause()
                     
                     if let timeoutTask {
                         timeoutTask.cancel()
                     }
                 } else {
-                    player.play()
+                    player?.play()
                     timeoutControlls()
                 }
                 
@@ -536,7 +539,7 @@ struct VideoPlayer: View {
     // Generating thumbnail frames
     func generateThumbnailFrames() {
         Task.detached {
-            guard let asset = player.currentItem?.asset else { return }
+            guard let asset = player?.currentItem?.asset else { return }
             let generator = AVAssetImageGenerator(asset: asset)
             generator.appliesPreferredTrackTransform = true
             /// Min size
