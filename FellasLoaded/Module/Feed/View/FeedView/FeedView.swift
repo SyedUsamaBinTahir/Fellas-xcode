@@ -23,6 +23,7 @@ struct FeedView: View {
     @State private var redirectVideoPlayer = false
     
     @State private var seriesDetailID: String = ""
+    @State private var seriesEpisodeDetailId: String = ""
     
     // services model properties
     @StateObject var feedViewModel = FeedViewModel(_dataService: GetServerData.shared)
@@ -275,7 +276,7 @@ struct FeedView: View {
                 }
                 
                 NavigationLink(isActive: $redirectVideoPlayer) {
-                    VideoPlayerView().navigationBarBackButtonHidden(true)
+//                    VideoPlayerView(seriesEpisodeDetailId: $seriesEpisodeDetailId).navigationBarBackButtonHidden(true)
                 } label: {
                     EmptyView()
                 }

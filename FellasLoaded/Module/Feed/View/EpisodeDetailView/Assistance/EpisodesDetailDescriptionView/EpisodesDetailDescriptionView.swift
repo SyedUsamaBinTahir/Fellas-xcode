@@ -23,7 +23,10 @@ struct EpisodesDetailDescriptionView: View {
             .foregroundStyle(Color.white)
         
         HStack(spacing: 0) {
-            ForEach(viewModel.feedCategorySeriesDatailModel?.hosts ?? [], id: \.uid) { host in
+            Text("Hosts: ")
+                .font(.custom(Font.Medium, size: 14))
+                .foregroundStyle(Color.theme.textGrayColor)
+            ForEach(viewModel.feedCategorySeriesDetailModel?.hosts ?? [], id: \.uid) { host in
                 Text(host.name)
                     .font(.custom(Font.Medium, size: 14))
                     .foregroundStyle(Color.theme.textGrayColor)

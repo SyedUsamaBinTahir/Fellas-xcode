@@ -6,6 +6,7 @@ PODS:
     - Protobuf (~> 3.13)
   - IQKeyboardManager (6.5.19)
   - Kingfisher (7.11.0)
+  - MahsaHLSParser (1.0)
   - Protobuf (3.26.1)
   - SDWebImage (5.19.2):
     - SDWebImage/Core (= 5.19.2)
@@ -38,6 +39,7 @@ DEPENDENCIES:
   - google-cast-sdk (~> 4.8.1)
   - IQKeyboardManager
   - Kingfisher
+  - MahsaHLSParser
   - SDWebImage
   - SPIndicator
   - StripePaymentSheet
@@ -49,6 +51,7 @@ SPEC REPOS:
     - google-cast-sdk
     - IQKeyboardManager
     - Kingfisher
+    - MahsaHLSParser
     - Protobuf
     - SDWebImage
     - SPIndicator
@@ -66,6 +69,7 @@ SPEC CHECKSUMS:
   google-cast-sdk: 3f5305b8d65b609bb09364c05aef1c8be3cae7ec
   IQKeyboardManager: c8665b3396bd0b79402b4c573eac345a31c7d485
   Kingfisher: b9c985d864d43515f404f1ef4a8ce7d802ace3ac
+  MahsaHLSParser: e8b0f4ee9cfda61118928bfb48522c28a3b4245a
   Protobuf: a53f5173a603075b3522a5c50be63a67a5f3353a
   SDWebImage: dfe95b2466a9823cf9f0c6d01217c06550d7b29a
   SPIndicator: 93e0a4fb23de51294ac48e874c0f081a5e293e4f
@@ -77,6 +81,6 @@ SPEC CHECKSUMS:
   StripeUICore: 436db87a21e3bb45b7a6a90c114a6d21c35b4be0
   SwiftUIIntrospect: 434b406dc6f5e30744bb6e180f90343f6a8eba8c
 
-PODFILE CHECKSUM: 73582012a389672a66ab78c713126128c7f9f9fb
+PODFILE CHECKSUM: edb0ef380075cd71c8d78f83407821568575080d
 
 COCOAPODS: 1.15.2

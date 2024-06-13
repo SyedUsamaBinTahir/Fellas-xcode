@@ -9,31 +9,20 @@ import SwiftUI
 import AVKit
 import GoogleCast
 
-struct CastButtonRepresentable: UIViewRepresentable {
-    func makeUIView(context: Context) -> GCKUICastButton {
-        let castButton = GCKUICastButton(frame: .zero)
-        castButton.tintColor = UIColor.gray
-        return castButton
-    }
-
-    func updateUIView(_ uiView: GCKUICastButton, context: Context) {
-        // Update the view if needed
-    }
-}
-
 struct VideoPlayer: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @EnvironmentObject var feedViewModel: FeedViewModel
     var size: CGSize
     var safeArea: EdgeInsets?
-//    @State private var player = AVPlayer(url: URL(string: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")!)
-    @State private var player: AVPlayer? = {
-        if let bundle = Bundle.main.path(forResource: "BigBuckBunny", ofType: "mp4") {
-            return .init(url: URL(fileURLWithPath: bundle))
-        }
-        
-        return nil
-    }()
+    var url: URL
+    @State private var player: AVPlayer
+    init(size: CGSize, safeArea: EdgeInsets?, url: URL) {
+        self.size = size
+        self.safeArea = safeArea
+        self.url = url
+        self._player = State(initialValue: AVPlayer(url: url))
+    }
     @State private var showPlayerControlls: Bool = false
     @State private var isPlaying: Bool = false
     @State private var timeoutTask: DispatchWorkItem?
@@ -55,83 +44,95 @@ struct VideoPlayer: View {
     @State private var redirectComment = false
     @State private var selectedTab: SegmentsTab = .EPISODES
     
+    @State private var showSleepTimer = false
+    
     var body: some View {
         VStack(alignment: .leading) {
             let videoPlayerSize: CGSize = .init(width: isRotated ? size.height : size.width, height: isRotated ? size.width : (size.height / 3.5))
             
             // Custom Video Player
             ZStack(alignment: .topLeading) {
-                if let player {
-                    
-                        CustomVideoPlayer(player: player)
-                        .overlay {
-                            Rectangle()
-                                .fill(.black.opacity(0.4))
-                                .opacity(showPlayerControlls || isDragging ? 1 : 0)
-                                /// Animating Dragging State
-                                .animation(.easeIn(duration: 0.35), value: isDragging)
-                                .overlay {
-                                    playerbackControlls()
-                                }
-                        }
-                        .overlay(content: {
-                            HStack(spacing: 60) {
-                                DoubleTapSeek {
-                                    /// seeking 15 seconds backward
-                                    let seconds = player.currentTime().seconds - 15
-                                    player.seek(to: .init(seconds: seconds, preferredTimescale: 600))
-                                }
-                                
-                                DoubleTapSeek(isForward: true) {
-                                    /// seeking 15 seconds farward
-                                    let seconds = player.currentTime().seconds + 15
-                                    player.seek(to: .init(seconds: seconds, preferredTimescale: 600))
-                                }
+                CustomVideoPlayer(player: player)
+                    .overlay {
+                        Rectangle()
+                            .fill(.black.opacity(0.4))
+                            .opacity(showPlayerControlls || isDragging ? 1 : 0)
+                        /// Animating Dragging State
+                            .animation(.easeIn(duration: 0.35), value: isDragging)
+                            .overlay {
+                                playerbackControlls()
                             }
-                        })
-                        .onTapGesture {
-                            withAnimation(.easeInOut(duration: 0.35)) {
-                                showPlayerControlls.toggle()
+                    }
+                    .overlay(content: {
+                        HStack(spacing: 60) {
+                            DoubleTapSeek {
+                                /// seeking 15 seconds backward
+                                let seconds = player.currentTime().seconds - 15
+                                player.seek(to: .init(seconds: seconds, preferredTimescale: 600))
                             }
                             
-                            if isPlaying {
-                                timeoutControlls()
+                            DoubleTapSeek(isForward: true) {
+                                /// seeking 15 seconds farward
+                                let seconds = player.currentTime().seconds + 15
+                                player.seek(to: .init(seconds: seconds, preferredTimescale: 600))
                             }
                         }
-                        .overlay(alignment: .leading ,content: {
-                            seekerThumbnailView(videoPlayerSize)
-                        })
-                        .overlay(alignment: .bottom) {
-                            if showPlayerControlls {
-                                videoSeekerView(videoPlayerSize)
-                            }
-                        }
-                    
-                    HStack {
-                        Button {
-                            presentationMode.wrappedValue.dismiss()
-                        } label: {
-                            Image("back-icon")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 32, height: 32)
-                                .opacity(0.8)
+                    })
+                    .onTapGesture {
+                        withAnimation(.easeInOut(duration: 0.35)) {
+                            showPlayerControlls.toggle()
                         }
                         
-                        Spacer()
+                        if isPlaying {
+                            timeoutControlls()
+                        }
+                    }
+                    .overlay(alignment: .leading ,content: {
+                        seekerThumbnailView(videoPlayerSize)
+                    })
+                    .overlay(alignment: .bottom) {
                         if showPlayerControlls {
-                            HStack {
-                                AirPlayView()
-                                    .frame(width: 32, height: 32)
-                                CastButtonRepresentable()
+                            videoSeekerView(videoPlayerSize)
+                        }
+                    }
+                
+                HStack {
+                    Button {
+                        presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Image("back-icon")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 32, height: 32)
+                            .opacity(0.8)
+                    }
+                    
+                    Spacer()
+                    if showPlayerControlls {
+                        HStack {
+                            AirPlayView()
+                                .frame(width: 32, height: 32)
+                            CastButtonRepresentable()
+                                .frame(width: 32, height: 32)
+                                .foregroundColor(.white)
+                            Button {
+                                showSleepTimer.toggle()
+                            } label: {
+                                Image(systemName: "clock")
                                     .frame(width: 32, height: 32)
                                     .foregroundColor(.white)
                             }
+                            
+                            
                         }
                     }
-                    .padding(10)
-
                 }
+                .padding(10)
+            }
+            .sheet(isPresented: $showSleepTimer) {
+                SleepTimerView()
+                    .presentationDetents([.medium])
+                    .presentationDragIndicator(.visible)
             }
             .background(content: {
                 Rectangle()
@@ -163,7 +164,7 @@ struct VideoPlayer: View {
             
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading) {
-                    Text("The Fellas Try KSI's Workout Routine?!")
+                    Text(feedViewModel.seriesEpisodeDetailModel?.title ?? "")
                         .font(.custom(Font.semiBold, size: 24))
                         .foregroundStyle(.white)
                     
@@ -194,12 +195,12 @@ struct VideoPlayer: View {
                     }
                     
                     VStack(alignment: .leading, spacing: 14) {
-                        Text("S1: E22 • 2022")
+                        Text("S\(feedViewModel.seriesEpisodeDetailModel?.session_number ?? 0): E\(feedViewModel.seriesEpisodeDetailModel?.episode_number ?? 0) • 2022")
                             .font(.custom(Font.Medium, size: 11))
                             .foregroundStyle(Color.theme.textGrayColor)
                         
                         VStack(alignment: .leading) {
-                            Text("The Fellas head to the city of Amsterdam for some absolute CARNAGE! 24 hours was more than enough and you'll see why The Fellas head to the city of Amsterdam for some absolute CARNAGE! 24 hours was more than enough and you'll see wh")
+                            Text(feedViewModel.seriesEpisodeDetailModel?.description ?? "")
                                 .font(.custom(Font.regular, size: 14))
                                 .foregroundStyle(.white)
                                 .lineLimit(expandDescription ? nil : 2)
@@ -213,15 +214,10 @@ struct VideoPlayer: View {
                         
                         VStack(alignment: .leading, spacing: 4) {
                             HStack(spacing: 0) {
-                                Text("Host: ")
-                                Text("Cal, and Chip")
-                            }
-                            .font(.custom(Font.Medium, size: 14))
-                            .foregroundStyle(Color.theme.textGrayColor)
-                            
-                            HStack(spacing: 0) {
-                                Text("Host: ")
-                                Text("Stormzy")
+                                Text("Hosts: ")
+                                ForEach(feedViewModel.seriesEpisodeDetailModel?.main_hosts ?? [], id: \.uid) { host in
+                                    Text("\(host.name), ")
+                                }
                             }
                             .font(.custom(Font.Medium, size: 14))
                             .foregroundStyle(Color.theme.textGrayColor)
@@ -229,7 +225,7 @@ struct VideoPlayer: View {
                         
                         VStack(alignment: .leading) {
                             HStack {
-                               Text("COMMENTS")
+                                Text("COMMENTS")
                                     .font(.custom(Font.semiBold, size: 14))
                                     .foregroundStyle(.white)
                                 Text("217")
@@ -271,8 +267,10 @@ struct VideoPlayer: View {
                         Segments(selectedTab: $selectedTab)
                         
                         if selectedTab == .EPISODES {
-                            ForEach(1...5, id: \.self) { _ in
-                                EpisodesView(seriesImage: "series-image", episode: "S1:E1", title: "The Fellas & W2S Get Drunk in Amsterdam The Fellas & W2S Get Drunk in Amsterdam", description: "The Fellas head to the city of Amsterdam for some absolute CARNAGE! 24 hours was more than enough and you'll see why")
+                            ForEach(feedViewModel.feedCategorySeriesDetailModel?.sessions ?? [], id: \.uid) { data in
+                                ForEach(data.episodes ?? [], id: \.uid) { episode in
+                                    EpisodesView(seriesImage: episode.series_thumbnail, episode: "S\(episode.session_number):E\(episode.episode_number)", title: episode.title, description: episode.description, icon: "download") {  }
+                                }
                             }
                         } else if selectedTab == .RECOMMENDED {
                             ForEach(1...5, id: \.self) { _ in
@@ -289,14 +287,14 @@ struct VideoPlayer: View {
         .padding(.leading, isRotated ? (horizontalSizeClass == .regular ? -44 : 32) : 0)
         .onAppear {
             isPlaying = true
-            player?.play()
+            player.play()
             guard !isObservedAdded else { return }
             /// Adding observer to update seeker when the video is playing
-            player?.addPeriodicTimeObserver(forInterval: .init(seconds: 1, preferredTimescale: 600), queue: .main) { time in
+            player.addPeriodicTimeObserver(forInterval: .init(seconds: 1, preferredTimescale: 600), queue: .main) { time in
                 /// calculating video prcess
-                if let currentPlayerItem = player?.currentItem {
+                if let currentPlayerItem = player.currentItem {
                     let totalDuration = currentPlayerItem.duration.seconds
-                    guard let currentDuration = player?.currentTime().seconds else { return }
+                    let currentDuration = player.currentTime().seconds
                     
                     let calculatedProgress = currentDuration / totalDuration
                     
@@ -315,7 +313,7 @@ struct VideoPlayer: View {
             isObservedAdded = true
             
             // Before generating thumbnail check if the video is loaded
-            playerStatusObserver = player?.observe(\.status, options: .new, changeHandler: { player, _ in
+            playerStatusObserver = player.observe(\.status, options: .new, changeHandler: { player, _ in
                 if player.status == .readyToPlay {
                     generateThumbnailFrames()
                 }
@@ -323,7 +321,7 @@ struct VideoPlayer: View {
         }
         .onDisappear {
             isPlaying = false
-            player?.pause()
+            player.pause()
             
             playerStatusObserver?.invalidate()
         }
@@ -344,7 +342,7 @@ struct VideoPlayer: View {
                     .frame(width: thumbSize.width, height: thumbSize.height)
                     .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
                     .overlay(alignment: .bottom, content: {
-                        if let currentTime = player?.currentItem {
+                        if let currentTime = player.currentItem {
                             Text(CMTime(seconds: progress * currentTime.duration.seconds, preferredTimescale: 600).toTimeString())
                                 .font(.callout)
                                 .fontWeight(.semibold)
@@ -387,12 +385,12 @@ struct VideoPlayer: View {
             Circle()
                 .fill(.red)
                 .frame(width: 15, height: 15)
-                /// showing drag knob only when dragging
+            /// showing drag knob only when dragging
                 .scaleEffect(showPlayerControlls || isDragging ? 1 : 0.001, anchor: progress * videoSize.width > 15 ? .trailing : .leading)
-                /// for more  Dragging Space
+            /// for more  Dragging Space
                 .frame(width: 50, height: 50)
                 .contentShape(Rectangle())
-                /// moving along side Genture
+            /// moving along side Genture
                 .offset(x: videoSize.width * progress)
                 .gesture(
                     DragGesture()
@@ -420,10 +418,10 @@ struct VideoPlayer: View {
                         .onEnded({ value in
                             lastDraggedProgress = progress
                             /// seeking video to dragged time
-                            if let currentPlayerTime = player?.currentItem {
+                            if let currentPlayerTime = player.currentItem {
                                 let totalDuration = currentPlayerTime.duration.seconds
                                 
-                                player?.seek(to: .init(seconds: totalDuration * progress, preferredTimescale: 600))
+                                player.seek(to: .init(seconds: totalDuration * progress, preferredTimescale: 600))
                                 
                                 /// Re-shooting Timeout Task
                                 if isPlaying {
@@ -465,19 +463,19 @@ struct VideoPlayer: View {
                 if isFinishedSeeking {
                     /// Setting Video To start and playing again
                     isFinishedSeeking = false
-                    player?.seek(to: .zero)
+                    player.seek(to: .zero)
                     progress = .zero
                     lastDraggedProgress = .zero
                 }
                 // Chainging Video status to play/puase based on user input
                 if isPlaying {
-                    player?.pause()
+                    player.pause()
                     
                     if let timeoutTask {
                         timeoutTask.cancel()
                     }
                 } else {
-                    player?.play()
+                    player.play()
                     timeoutControlls()
                 }
                 
@@ -511,7 +509,7 @@ struct VideoPlayer: View {
             }
             .disabled(true)
             .opacity(0.6)
-
+            
         }
         /// Hiding controlls when dragging
         .opacity(showPlayerControlls && !isDragging ? 1: 0)
@@ -539,7 +537,7 @@ struct VideoPlayer: View {
     // Generating thumbnail frames
     func generateThumbnailFrames() {
         Task.detached {
-            guard let asset = player?.currentItem?.asset else { return }
+            guard let asset = await player.currentItem?.asset else { return }
             let generator = AVAssetImageGenerator(asset: asset)
             generator.appliesPreferredTrackTransform = true
             /// Min size
@@ -570,6 +568,6 @@ struct VideoPlayer: View {
     }
 }
 
-#Preview {
-    VideoPlayerView()
-}
+//#Preview {
+//    VideoPlayerView()
+//}

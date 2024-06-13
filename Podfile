@@ -14,5 +14,6 @@ target 'FellasLoaded' do
   pod 'Alamofire'
   pod 'StripePaymentSheet'
   pod 'Kingfisher'
+  pod ‘MahsaHLSParser’
 
 end

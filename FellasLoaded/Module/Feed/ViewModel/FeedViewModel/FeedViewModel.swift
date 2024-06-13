@@ -14,6 +14,7 @@ protocol FeedDataProvider {
     func getFeedCategorySeries(id: String)
     func getCategoryEpisodes(id: String)
     func getFeedCategorySeriesDetail(id: String)
+    func getSeriesEpisodeDetail(id: String)
 }
 
 class FeedViewModel: ObservableObject {
@@ -37,7 +38,8 @@ class FeedViewModel: ObservableObject {
     var feedCategoriesModel: FeedCategoriesModel?
     var feedCategorySeriesModel: FeedCategorySeriesModel?
     var feedCategoryEpisodesModel: FeedCategoryEpisodesModel?
-    var feedCategorySeriesDatailModel: FeedCategorySeriesDetailModel? = nil
+    var feedCategorySeriesDetailModel: FeedCategorySeriesDetailModel?
+    var seriesEpisodeDetailModel: SeriesEpisodeDetailModel?
     
 }
 
@@ -143,8 +145,31 @@ extension FeedViewModel: FeedDataProvider {
                     }
                 }
             } receiveValue: { categorySeriesDatailData in
-                self.feedCategorySeriesDatailModel = categorySeriesDatailData
+                self.feedCategorySeriesDetailModel = categorySeriesDatailData
             }
             .store(in: &subscriptions)
     }
+    
+    func getSeriesEpisodeDetail(id: String) {
+        dataService.getServerData(url: FLAPIs.baseURL + FLAPIs.seriesEpisodeDetail + id, type: SeriesEpisodeDetailModel.self)
+            .sink { [weak self] completion in
+                DispatchQueue.main.async {
+                    switch completion {
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                        self?.showAlert = true
+                        self?.alertMessage = error.localizedDescription
+                        self?.showLoader = false
+                    case .finished:
+                        print("Series Episode Detail Success")
+                        self?.showLoader = false
+                    }
+                }
+            } receiveValue: { seriesEpisodeDetailData in
+//                print(String(describing: seriesEpisodeDetailData))
+                self.seriesEpisodeDetailModel = seriesEpisodeDetailData
+            }
+            .store(in: &subscriptions)
+    }
+    
 }

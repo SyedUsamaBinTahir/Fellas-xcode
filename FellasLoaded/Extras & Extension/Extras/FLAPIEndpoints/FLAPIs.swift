@@ -29,4 +29,5 @@ extension FLAPIs {
     static let feedCategorySeries = "/feed/categories/series/"
     static let feedCategoryEpisodes = "/feed/categories/episodes/"
     static let feedCategorySeriesDetail = "/series/series/"
+    static let seriesEpisodeDetail = "/series/episodes/detail/"
 }

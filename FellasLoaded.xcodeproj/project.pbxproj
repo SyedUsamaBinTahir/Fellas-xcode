@@ -89,6 +89,9 @@
 		9B8A183C2BFB78A000CF9FF1 /* DoubleTapSeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8A183B2BFB78A000CF9FF1 /* DoubleTapSeek.swift */; };
 		9B8A183F2BFB7BC100CF9FF1 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8A183E2BFB7BC100CF9FF1 /* VideoPlayerView.swift */; };
 		9BA6EC082C188146000D31CE /* BigBuckBunny.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 9BA6EC072C188146000D31CE /* BigBuckBunny.mp4 */; };
+		9BA7F9482C19987C00344FF8 /* SleepTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA7F9472C19987C00344FF8 /* SleepTimerView.swift */; };
+		9BA7F94B2C19C0EA00344FF8 /* SereisEpisodeDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA7F94A2C19C0EA00344FF8 /* SereisEpisodeDetailModel.swift */; };
+		9BB3DC6E2C1AFA0000DE32B8 /* CastButtonRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB3DC6D2C1AFA0000DE32B8 /* CastButtonRepresentable.swift */; };
 		9BC506CB2C0A189E00EAEF9B /* NewPasswordAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC506CA2C0A189E00EAEF9B /* NewPasswordAPIService.swift */; };
 		9BC506CE2C0A18C400EAEF9B /* NewPasswordRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC506CD2C0A18C400EAEF9B /* NewPasswordRequestModel.swift */; };
 		9BC6B7FA2BF34D2800E684AD /* CheckEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6B7F92BF34D2800E684AD /* CheckEmailView.swift */; };
@@ -262,6 +265,9 @@
 		9B8A183B2BFB78A000CF9FF1 /* DoubleTapSeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleTapSeek.swift; sourceTree = "<group>"; };
 		9B8A183E2BFB7BC100CF9FF1 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 		9BA6EC072C188146000D31CE /* BigBuckBunny.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = BigBuckBunny.mp4; path = ../../../Downloads/BigBuckBunny.mp4; sourceTree = "<group>"; };
+		9BA7F9472C19987C00344FF8 /* SleepTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepTimerView.swift; sourceTree = "<group>"; };
+		9BA7F94A2C19C0EA00344FF8 /* SereisEpisodeDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SereisEpisodeDetailModel.swift; sourceTree = "<group>"; };
+		9BB3DC6D2C1AFA0000DE32B8 /* CastButtonRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastButtonRepresentable.swift; sourceTree = "<group>"; };
 		9BC506CA2C0A189E00EAEF9B /* NewPasswordAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordAPIService.swift; sourceTree = "<group>"; };
 		9BC506CD2C0A18C400EAEF9B /* NewPasswordRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordRequestModel.swift; sourceTree = "<group>"; };
 		9BC6B7F92BF34D2800E684AD /* CheckEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckEmailView.swift; sourceTree = "<group>"; };
@@ -1301,6 +1307,8 @@
 		9B8A18332BFB782800CF9FF1 /* VideoPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				9BB3DC6C2C1AF9E700DE32B8 /* CastButtonRepresentable */,
+				9BA7F9462C19986300344FF8 /* SleepTimerView */,
 				9BEE716E2BFCF2BB0055760C /* AirPlayView */,
 				9B8A18342BFB783600CF9FF1 /* VideoPlayer.swift */,
 				9BEE716C2BFCD2CA0055760C /* Segments.swift */,
@@ -1415,6 +1423,30 @@
 				9B454B582BFE3152000786B6 /* AddCommentView.swift */,
 			);
 			path = AddCommentView;
+			sourceTree = "<group>";
+		};
+		9BA7F9462C19986300344FF8 /* SleepTimerView */ = {
+			isa = PBXGroup;
+			children = (
+				9BA7F9472C19987C00344FF8 /* SleepTimerView.swift */,
+			);
+			path = SleepTimerView;
+			sourceTree = "<group>";
+		};
+		9BA7F9492C19C0BC00344FF8 /* SeriesEpisodeDetailModel */ = {
+			isa = PBXGroup;
+			children = (
+				9BA7F94A2C19C0EA00344FF8 /* SereisEpisodeDetailModel.swift */,
+			);
+			path = SeriesEpisodeDetailModel;
+			sourceTree = "<group>";
+		};
+		9BB3DC6C2C1AF9E700DE32B8 /* CastButtonRepresentable */ = {
+			isa = PBXGroup;
+			children = (
+				9BB3DC6D2C1AFA0000DE32B8 /* CastButtonRepresentable.swift */,
+			);
+			path = CastButtonRepresentable;
 			sourceTree = "<group>";
 		};
 		9BC506C92C0A187600EAEF9B /* NewPasswordAPIService */ = {
@@ -1838,6 +1870,7 @@
 		9BE4BEB12C10773F0016E673 /* FeedModel */ = {
 			isa = PBXGroup;
 			children = (
+				9BA7F9492C19C0BC00344FF8 /* SeriesEpisodeDetailModel */,
 				9B11FC5C2C1735FB00AE80ED /* FeedCategorySeriesDetailModel */,
 				9B11FC592C17034100AE80ED /* FeedCategoryEpisodesModel */,
 				9BD0E4142C13482500BFBE6A /* FeedCategorySeriesModel */,
@@ -2288,6 +2321,7 @@
 				9B8A183C2BFB78A000CF9FF1 /* DoubleTapSeek.swift in Sources */,
 				9BC9F1EE2BF7B32700B0EE8E /* CommentCardView.swift in Sources */,
 				9BEB30332C0F4C0F002C7F82 /* AuthRegistrationAPIError.swift in Sources */,
+				9BA7F94B2C19C0EA00344FF8 /* SereisEpisodeDetailModel.swift in Sources */,
 				9B6D9DA52BF64A1B00365CE6 /* EpisodeDetailView.swift in Sources */,
 				9B7289002BFDFE5800EB1A90 /* RegistrationLablesView.swift in Sources */,
 				9B454B7A2BFE42B4000786B6 /* SearchTextFieldView.swift in Sources */,
@@ -2322,6 +2356,7 @@
 				9B454B732BFE3F11000786B6 /* FeedHeaderView.swift in Sources */,
 				9B454B592BFE3152000786B6 /* AddCommentView.swift in Sources */,
 				9B10F8582BFDF2CD005914BD /* AuthHeaderView.swift in Sources */,
+				9BA7F9482C19987C00344FF8 /* SleepTimerView.swift in Sources */,
 				9B3D10552BF22E84009AD6F2 /* FLFont.swift in Sources */,
 				9BE13A502C06320C00D69B66 /* AuthRegistrationRequest.swift in Sources */,
 				9B3D10412BF2177E009AD6F2 /* AppDelegate.swift in Sources */,
@@ -2403,6 +2438,7 @@
 				9BF767212C074B7300BDBC6A /* AuthVerfiyEmailAPIService.swift in Sources */,
 				9B454B6C2BFE366A000786B6 /* VaultLikeAndShareButtonView.swift in Sources */,
 				9B454B692BFE35F0000786B6 /* VaultDescriptionView.swift in Sources */,
+				9BB3DC6E2C1AFA0000DE32B8 /* CastButtonRepresentable.swift in Sources */,
 				9B7289162BFE053700EB1A90 /* CheckEmailFieldAndButtonView.swift in Sources */,
 				9B7289132BFE04B700EB1A90 /* CheckEmailLablesView.swift in Sources */,
 				9BCF3E992C08C5F80016B22C /* ForgotPasswordAPIService.swift in Sources */,

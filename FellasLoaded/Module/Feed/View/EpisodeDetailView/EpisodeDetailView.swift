@@ -11,7 +11,9 @@ struct EpisodeDetailView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.presentationMode) var presentationMode
     @StateObject var feedViewModel = FeedViewModel(_dataService: GetServerData.shared)
-    var feedCategorySeriesDatailModel: FeedCategorySeriesDetailModel?
+    @State var feedCategorySeriesDetailModel: FeedCategorySeriesDetailModel?
+    @State private var redirectVideoPlayer = false
+    @State var seriesEpisodeDetailId: String = ""
     @Binding var seriesDetailID: String
     
     var body: some View {
@@ -20,9 +22,9 @@ struct EpisodeDetailView: View {
                 ScrollView {
                     ZStack(alignment: horizontalSizeClass == .regular ? .topLeading : .center) {
                         if horizontalSizeClass == .regular {
-                            EpisodesDetailImageView(image: .constant(feedViewModel.feedCategorySeriesDatailModel?.horizontal_cover_photo ?? ""))
+                            EpisodesDetailImageView(image: .constant(feedViewModel.feedCategorySeriesDetailModel?.horizontal_cover_photo ?? ""))
                         } else {
-                            EpisodesDetailImageView(image: .constant(feedViewModel.feedCategorySeriesDatailModel?.vertical_cover_photo ?? ""))
+                            EpisodesDetailImageView(image: .constant(feedViewModel.feedCategorySeriesDetailModel?.vertical_cover_photo ?? ""))
                         }
                         
                         VStack(alignment: horizontalSizeClass == .regular ? .leading : .center) {
@@ -32,16 +34,16 @@ struct EpisodeDetailView: View {
                                 Spacer()
                                 
                                 
-                                EpisodesDetailLogoView(logo: .constant(feedViewModel.feedCategorySeriesDatailModel?.logo ?? ""))
+                                EpisodesDetailLogoView(logo: .constant(feedViewModel.feedCategorySeriesDetailModel?.logo ?? ""))
                             }
                             
                             if horizontalSizeClass == .regular {
                                 VStack(alignment: .leading, spacing: 16) {
-                                    EpisodesDetailLogoView(logo: .constant(feedViewModel.feedCategorySeriesDatailModel?.logo ?? ""))
+                                    EpisodesDetailLogoView(logo: .constant(feedViewModel.feedCategorySeriesDetailModel?.logo ?? ""))
                                     
-                                    PlayButtonView {  }
+                                    PlayButtonView { redirectVideoPlayer = true }
                                     
-                                    EpisodesDetailDescriptionView(seasonNumber: .constant("S\(feedViewModel.feedCategorySeriesDatailModel?.sessions_count ?? 0): E\(feedViewModel.feedCategorySeriesDatailModel?.episodes_count ?? 0)"), desctiption: .constant(feedViewModel.feedCategorySeriesDatailModel?.description ?? ""))
+                                    EpisodesDetailDescriptionView(seasonNumber: .constant("S\(feedViewModel.feedCategorySeriesDetailModel?.sessions_count ?? 0): E\(feedViewModel.feedCategorySeriesDetailModel?.episodes_count ?? 0)"), desctiption: .constant(feedViewModel.feedCategorySeriesDetailModel?.description ?? ""))
                                         .environmentObject(feedViewModel)
                                 }
                                 .frame(width: UIScreen.main.bounds.width * 0.60)
@@ -55,6 +57,7 @@ struct EpisodeDetailView: View {
                     VStack(alignment: .leading, spacing: 16) {
                         if horizontalSizeClass != .regular {
                             Button {
+                                redirectVideoPlayer = true
                                 
                             } label: {
                                 HStack {
@@ -75,8 +78,11 @@ struct EpisodeDetailView: View {
                             
                             WatchlistAndShareButtonView(watchlistAction: {}, shareAction: {})
                             
-                            EpisodesDetailDescriptionView(seasonNumber: .constant("S\(feedViewModel.feedCategorySeriesDatailModel?.sessions_count ?? 0): E\(feedViewModel.feedCategorySeriesDatailModel?.episodes_count ?? 0)"), desctiption: .constant(feedViewModel.feedCategorySeriesDatailModel?.description ?? ""))
+                            EpisodesDetailDescriptionView(seasonNumber: .constant("S\(feedViewModel.feedCategorySeriesDetailModel?.sessions_count ?? 0): E\(feedViewModel.feedCategorySeriesDetailModel?.episodes_count ?? 0)"), desctiption: .constant(feedViewModel.feedCategorySeriesDetailModel?.description ?? ""))
                                 .environmentObject(feedViewModel)
+                            
+                            
+
                         }
                         
                         VStack(alignment: .leading, spacing: 20) {
@@ -85,9 +91,20 @@ struct EpisodeDetailView: View {
                                 .foregroundStyle(Color.white)
                             
                             VStack(spacing: 20) {
-                                ForEach(feedViewModel.feedCategorySeriesDatailModel?.sessions ?? [], id: \.uid) { data in
+                                ForEach(feedViewModel.feedCategorySeriesDetailModel?.sessions ?? [], id: \.uid) { data in
                                     ForEach(data.episodes ?? [], id: \.uid) { episode in
-                                        EpisodesView(seriesImage: episode.series_thumbnail, episode: "S\(episode.session_number):E\(episode.episode_number)", title: episode.title, description: episode.description, icon: "download")
+                                        EpisodesView(seriesImage: episode.series_thumbnail, episode: "S\(episode.session_number):E\(episode.episode_number)", title: episode.title, description: episode.description, icon: "download") {
+                                            redirectVideoPlayer = true
+//                                            seriesEpisodeDetailId = episode.uid
+                                        }
+                                        
+                                        NavigationLink(isActive: $redirectVideoPlayer) {
+                                            VideoPlayerView(seriesEpisodeDetailId: episode, seriesDetailID: $seriesDetailID)
+                                                .environmentObject(feedViewModel)
+                                                .navigationBarBackButtonHidden(true)
+                                        } label: {
+                                            EmptyView()
+                                        }
                                     }
                                 }
                             }

@@ -26,6 +26,7 @@ extension GetServerData {
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "content-type")
         request.setValue("Bearer \(UserDefaults.standard.string(forKey: FLUserDefaultKeys.accesstoken.rawValue) ?? "N/A")", forHTTPHeaderField: "Authorization")
+//        print("Token --> ", UserDefaults.standard.string(forKey: FLUserDefaultKeys.accesstoken.rawValue) ?? "N/A")
         
         return URLSession.shared.dataTaskPublisher(for: request)
             .tryMap { result -> Data in
