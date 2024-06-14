@@ -1,5 +1,4 @@
 {
-  "originHash" : "5e4a639d50ac2d7df122d121e32705303f712e9dacd0cc6d81b6ad4a29d79edd",
   "pins" : [
     {
       "identity" : "acarousel",
@@ -11,5 +10,5 @@
       }
     }
   ],
-  "version" : 3
+  "version" : 2
 }

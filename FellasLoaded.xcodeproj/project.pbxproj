@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		857F2A222C1C41C500C38918 /* Barlow-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 857F2A1E2C1C41C500C38918 /* Barlow-Medium.ttf */; };
+		857F2A232C1C41C500C38918 /* Barlow-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 857F2A1F2C1C41C500C38918 /* Barlow-Bold.ttf */; };
+		857F2A242C1C41C500C38918 /* Barlow-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 857F2A202C1C41C500C38918 /* Barlow-SemiBold.ttf */; };
+		857F2A252C1C41C500C38918 /* Barlow-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 857F2A212C1C41C500C38918 /* Barlow-Regular.ttf */; };
 		9B10F8582BFDF2CD005914BD /* AuthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B10F8572BFDF2CD005914BD /* AuthHeaderView.swift */; };
 		9B11FC5B2C17036200AE80ED /* FeedCategoryEpisodesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B11FC5A2C17036100AE80ED /* FeedCategoryEpisodesModel.swift */; };
 		9B11FC5E2C17361600AE80ED /* FeedCategorySeriesDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B11FC5D2C17361600AE80ED /* FeedCategorySeriesDetailModel.swift */; };
@@ -88,7 +92,6 @@
 		9B8A18392BFB788200CF9FF1 /* CustomVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8A18382BFB788200CF9FF1 /* CustomVideoPlayer.swift */; };
 		9B8A183C2BFB78A000CF9FF1 /* DoubleTapSeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8A183B2BFB78A000CF9FF1 /* DoubleTapSeek.swift */; };
 		9B8A183F2BFB7BC100CF9FF1 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8A183E2BFB7BC100CF9FF1 /* VideoPlayerView.swift */; };
-		9BA6EC082C188146000D31CE /* BigBuckBunny.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 9BA6EC072C188146000D31CE /* BigBuckBunny.mp4 */; };
 		9BA7F9482C19987C00344FF8 /* SleepTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA7F9472C19987C00344FF8 /* SleepTimerView.swift */; };
 		9BA7F94B2C19C0EA00344FF8 /* SereisEpisodeDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA7F94A2C19C0EA00344FF8 /* SereisEpisodeDetailModel.swift */; };
 		9BB3DC6E2C1AFA0000DE32B8 /* CastButtonRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB3DC6D2C1AFA0000DE32B8 /* CastButtonRepresentable.swift */; };
@@ -102,10 +105,6 @@
 		9BC6B8062BF364BB00E684AD /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6B8052BF364BB00E684AD /* ForgotPasswordView.swift */; };
 		9BC6B8082BF368D800E684AD /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6B8072BF368D800E684AD /* ResetPasswordView.swift */; };
 		9BC6B80A2BF36A3A00E684AD /* NewPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6B8092BF36A3A00E684AD /* NewPasswordView.swift */; };
-		9BC6B8182BF37AE700E684AD /* Barlow-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9BC6B8142BF37AE700E684AD /* Barlow-Regular.ttf */; };
-		9BC6B8192BF37AE700E684AD /* Barlow-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9BC6B8152BF37AE700E684AD /* Barlow-Medium.ttf */; };
-		9BC6B81A2BF37AE700E684AD /* Barlow-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9BC6B8162BF37AE700E684AD /* Barlow-SemiBold.ttf */; };
-		9BC6B81B2BF37AE700E684AD /* Barlow-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9BC6B8172BF37AE700E684AD /* Barlow-Bold.ttf */; };
 		9BC6B81E2BF3878900E684AD /* Tabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6B81D2BF3878900E684AD /* Tabbar.swift */; };
 		9BC6B8262BF3A76300E684AD /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6B8252BF3A76200E684AD /* SettingsView.swift */; };
 		9BC6B8282BF3AE3300E684AD /* SettingsNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6B8272BF3AE3300E684AD /* SettingsNavigatorView.swift */; };
@@ -180,6 +179,10 @@
 
 /* Begin PBXFileReference section */
 		26944833114E4BB884AA0446 /* Pods-FellasLoaded.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FellasLoaded.release.xcconfig"; path = "Target Support Files/Pods-FellasLoaded/Pods-FellasLoaded.release.xcconfig"; sourceTree = "<group>"; };
+		857F2A1E2C1C41C500C38918 /* Barlow-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-Medium.ttf"; path = "../../../../../../../Downloads/Barlow-Medium.ttf"; sourceTree = "<group>"; };
+		857F2A1F2C1C41C500C38918 /* Barlow-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-Bold.ttf"; path = "../../../../../../../Downloads/Barlow-Bold.ttf"; sourceTree = "<group>"; };
+		857F2A202C1C41C500C38918 /* Barlow-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-SemiBold.ttf"; path = "../../../../../../../Downloads/Barlow-SemiBold.ttf"; sourceTree = "<group>"; };
+		857F2A212C1C41C500C38918 /* Barlow-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-Regular.ttf"; path = "../../../../../../../Downloads/Barlow-Regular.ttf"; sourceTree = "<group>"; };
 		959029D06F70831162C77BD0 /* Pods_FellasLoaded.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FellasLoaded.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B10F8572BFDF2CD005914BD /* AuthHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHeaderView.swift; sourceTree = "<group>"; };
 		9B11FC5A2C17036100AE80ED /* FeedCategoryEpisodesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCategoryEpisodesModel.swift; sourceTree = "<group>"; };
@@ -264,7 +267,6 @@
 		9B8A18382BFB788200CF9FF1 /* CustomVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVideoPlayer.swift; sourceTree = "<group>"; };
 		9B8A183B2BFB78A000CF9FF1 /* DoubleTapSeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleTapSeek.swift; sourceTree = "<group>"; };
 		9B8A183E2BFB7BC100CF9FF1 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
-		9BA6EC072C188146000D31CE /* BigBuckBunny.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = BigBuckBunny.mp4; path = ../../../Downloads/BigBuckBunny.mp4; sourceTree = "<group>"; };
 		9BA7F9472C19987C00344FF8 /* SleepTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepTimerView.swift; sourceTree = "<group>"; };
 		9BA7F94A2C19C0EA00344FF8 /* SereisEpisodeDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SereisEpisodeDetailModel.swift; sourceTree = "<group>"; };
 		9BB3DC6D2C1AFA0000DE32B8 /* CastButtonRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastButtonRepresentable.swift; sourceTree = "<group>"; };
@@ -282,10 +284,6 @@
 		9BC6B8102BF37AAB00E684AD /* Barlow-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-SemiBold.ttf"; path = "../../../Downloads/Barlow/Barlow-SemiBold.ttf"; sourceTree = "<group>"; };
 		9BC6B8112BF37AAB00E684AD /* Barlow-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-Medium.ttf"; path = "../../../Downloads/Barlow/Barlow-Medium.ttf"; sourceTree = "<group>"; };
 		9BC6B8122BF37AAB00E684AD /* Barlow-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-Bold.ttf"; path = "../../../Downloads/Barlow/Barlow-Bold.ttf"; sourceTree = "<group>"; };
-		9BC6B8142BF37AE700E684AD /* Barlow-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-Regular.ttf"; path = "../../../../../../../Downloads/Barlow/Barlow-Regular.ttf"; sourceTree = "<group>"; };
-		9BC6B8152BF37AE700E684AD /* Barlow-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-Medium.ttf"; path = "../../../../../../../Downloads/Barlow/Barlow-Medium.ttf"; sourceTree = "<group>"; };
-		9BC6B8162BF37AE700E684AD /* Barlow-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-SemiBold.ttf"; path = "../../../../../../../Downloads/Barlow/Barlow-SemiBold.ttf"; sourceTree = "<group>"; };
-		9BC6B8172BF37AE700E684AD /* Barlow-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-Bold.ttf"; path = "../../../../../../../Downloads/Barlow/Barlow-Bold.ttf"; sourceTree = "<group>"; };
 		9BC6B81D2BF3878900E684AD /* Tabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabbar.swift; sourceTree = "<group>"; };
 		9BC6B8252BF3A76200E684AD /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9BC6B8272BF3AE3300E684AD /* SettingsNavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNavigatorView.swift; sourceTree = "<group>"; };
@@ -293,7 +291,7 @@
 		9BC6B82D2BF3C44E00E684AD /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		9BC6B82F2BF3C60D00E684AD /* DeleteAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountView.swift; sourceTree = "<group>"; };
 		9BC95FB02C0DD48600BCC606 /* SubscribeTerms&ConditionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubscribeTerms&ConditionsView.swift"; sourceTree = "<group>"; };
-		9BC95FB32C0DD6F600BCC606 /* FLGetServerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FLGetServerData.swift; path = "FellasLoaded/Module/Authentication/View/Registration/SubscribeView/Assistance/SubscribeTerms&ConditionsView/FLGetServerData.swift"; sourceTree = SOURCE_ROOT; };
+		9BC95FB32C0DD6F600BCC606 /* FLGetServerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FLGetServerData.swift; path = "FellasLoaded/Extras & Extension/Extras/GLGetServerData/FLGetServerData.swift"; sourceTree = SOURCE_ROOT; };
 		9BC9F1DC2BF745F300B0EE8E /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		9BC9F1DE2BF76ECF00B0EE8E /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		9BC9F1E12BF78F5900B0EE8E /* RepliesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepliesView.swift; sourceTree = "<group>"; };
@@ -372,6 +370,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		85CCB5162C1C356700007354 /* GLGetServerData */ = {
+			isa = PBXGroup;
+			children = (
+				9BC95FB32C0DD6F600BCC606 /* FLGetServerData.swift */,
+			);
+			path = GLGetServerData;
+			sourceTree = "<group>";
+		};
 		9B10F8512BFDEFCC005914BD /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -497,7 +503,6 @@
 		9B3D10252BF21697009AD6F2 = {
 			isa = PBXGroup;
 			children = (
-				9BA6EC072C188146000D31CE /* BigBuckBunny.mp4 */,
 				9BEB302A2C0F141A002C7F82 /* storekit.storekit */,
 				9B3D10302BF21698009AD6F2 /* FellasLoaded */,
 				9B3D102F2BF21698009AD6F2 /* Products */,
@@ -1527,10 +1532,10 @@
 		9BC6B80C2BF3793B00E684AD /* Extras */ = {
 			isa = PBXGroup;
 			children = (
+				85CCB5162C1C356700007354 /* GLGetServerData */,
 				9BE4BEA72C1057F00016E673 /* FLAPIEndpoints */,
 				9BEB302B2C0F443C002C7F82 /* ViewControllerHolder */,
 				9B160A272C0E19380073B3F1 /* InAppPurchaseModel */,
-				9BC95FB22C0DD6DF00BCC606 /* FLGetServerData */,
 				9BF767282C0758F000BDBC6A /* FLImagePickerManager */,
 				9BE13A3C2C05CD1900D69B66 /* FLAuthTextFieldError */,
 				9BEC0A8A2C04E5CB00BDE169 /* FLToastAlert */,
@@ -1575,10 +1580,10 @@
 		9BC6B8132BF37ACD00E684AD /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				9BC6B8172BF37AE700E684AD /* Barlow-Bold.ttf */,
-				9BC6B8152BF37AE700E684AD /* Barlow-Medium.ttf */,
-				9BC6B8142BF37AE700E684AD /* Barlow-Regular.ttf */,
-				9BC6B8162BF37AE700E684AD /* Barlow-SemiBold.ttf */,
+				857F2A1F2C1C41C500C38918 /* Barlow-Bold.ttf */,
+				857F2A1E2C1C41C500C38918 /* Barlow-Medium.ttf */,
+				857F2A212C1C41C500C38918 /* Barlow-Regular.ttf */,
+				857F2A202C1C41C500C38918 /* Barlow-SemiBold.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -1657,14 +1662,6 @@
 				9BC95FB02C0DD48600BCC606 /* SubscribeTerms&ConditionsView.swift */,
 			);
 			path = "SubscribeTerms&ConditionsView";
-			sourceTree = "<group>";
-		};
-		9BC95FB22C0DD6DF00BCC606 /* FLGetServerData */ = {
-			isa = PBXGroup;
-			children = (
-				9BC95FB32C0DD6F600BCC606 /* FLGetServerData.swift */,
-			);
-			path = FLGetServerData;
 			sourceTree = "<group>";
 		};
 		9BC9F1E72BF7A98900B0EE8E /* DownloadsView */ = {
@@ -2223,13 +2220,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9BC6B81A2BF37AE700E684AD /* Barlow-SemiBold.ttf in Resources */,
 				9B3D103A2BF21699009AD6F2 /* Preview Assets.xcassets in Resources */,
-				9BC6B81B2BF37AE700E684AD /* Barlow-Bold.ttf in Resources */,
-				9BC6B8182BF37AE700E684AD /* Barlow-Regular.ttf in Resources */,
-				9BC6B8192BF37AE700E684AD /* Barlow-Medium.ttf in Resources */,
+				857F2A232C1C41C500C38918 /* Barlow-Bold.ttf in Resources */,
 				9B3D10362BF21699009AD6F2 /* Assets.xcassets in Resources */,
-				9BA6EC082C188146000D31CE /* BigBuckBunny.mp4 in Resources */,
+				857F2A222C1C41C500C38918 /* Barlow-Medium.ttf in Resources */,
+				857F2A242C1C41C500C38918 /* Barlow-SemiBold.ttf in Resources */,
+				857F2A252C1C41C500C38918 /* Barlow-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
