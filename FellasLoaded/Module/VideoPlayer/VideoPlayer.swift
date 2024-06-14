@@ -223,37 +223,7 @@ struct VideoPlayer: View {
                             .foregroundStyle(Color.theme.textGrayColor)
                         }
                         
-                        VStack(alignment: .leading) {
-                            HStack {
-                                Text("COMMENTS")
-                                    .font(.custom(Font.semiBold, size: 14))
-                                    .foregroundStyle(.white)
-                                Text("217")
-                                    .font(.custom(Font.regular, size: 14))
-                                    .foregroundStyle(Color.theme.textGrayColor)
-                            }
-                            
-                            HStack {
-                                Image("profile")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 24, height: 24, alignment: .center)
-                                Text("I swear this pod turned into cal bragging to chip about things chip wasn’t invited to 😂 ")
-                                    .font(.custom(Font.regular, size: 14))
-                                    .foregroundStyle(.white)
-                                
-                                Spacer()
-                                
-                                Image("expand-arrow-icon")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 18, height: 18, alignment: .center)
-                            }
-                        }
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.theme.tabbarColor)
-                        .cornerRadius(10)
+                        VaultCommentsCardView(numberOfComments: .constant("217"), profileImage: .constant("profile"), comment: .constant("I swear this pod turned into cal bragging to chip about things chip wasn’t invited to 😂 "))
                         .onTapGesture {
                             redirectComment = true
                         }

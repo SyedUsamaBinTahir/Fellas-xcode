@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProfileView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @StateObject var feedViewModel = FeedViewModel(_dataService: GetServerData.shared)
     @State private var redirectSettings = false
     @State private var redirectDownloads = false
     @State private var redirectWatchlist = false
@@ -19,7 +20,7 @@ struct ProfileView: View {
             
             ScrollView {
                 VStack(alignment: .leading) {
-                    ProfileImageView()
+                    ProfileImageView(profileImage: .constant(feedViewModel.userDetailModel?.avatar ?? ""))
                     
                     MembershipCardView {  }
                     
@@ -40,15 +41,15 @@ struct ProfileView: View {
                 .frame(width: horizontalSizeClass == .regular ? 472 : nil)
                 .padding(horizontalSizeClass == .regular ? 140 : 20)
                 
-//                .navigationDestination(isPresented: $redirectSettings) {
-//                    SettingsView().navigationBarBackButtonHidden(true)
-//                }
-//                .navigationDestination(isPresented: $redirectDownloads) {
-//                    DownloadsView().navigationBarBackButtonHidden(true)
-//                }
-//                .navigationDestination(isPresented: $redirectWatchlist) {
-//                    WatchlistView().navigationBarBackButtonHidden(true)
-//                }
+                //                .navigationDestination(isPresented: $redirectSettings) {
+                //                    SettingsView().navigationBarBackButtonHidden(true)
+                //                }
+                //                .navigationDestination(isPresented: $redirectDownloads) {
+                //                    DownloadsView().navigationBarBackButtonHidden(true)
+                //                }
+                //                .navigationDestination(isPresented: $redirectWatchlist) {
+                //                    WatchlistView().navigationBarBackButtonHidden(true)
+                //                }
                 
                 NavigationLink(isActive: $redirectSettings) {
                     SettingsView().navigationBarBackButtonHidden(true)
@@ -67,8 +68,11 @@ struct ProfileView: View {
                 } label: {
                     EmptyView()
                 }
-
+                
             }
+        }
+        .onAppear {
+            feedViewModel.getUserDetail()
         }
         .background {
             LinearGradient(gradient: Gradient(colors: [Color.black, Color.theme.appColor, Color.black]), startPoint: .topLeading, endPoint: .bottomTrailing)

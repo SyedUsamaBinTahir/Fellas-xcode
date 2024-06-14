@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8562A7A02C1C71EA000D8666 /* UserDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8562A79F2C1C71EA000D8666 /* UserDetailModel.swift */; };
 		857F2A222C1C41C500C38918 /* Barlow-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 857F2A1E2C1C41C500C38918 /* Barlow-Medium.ttf */; };
 		857F2A232C1C41C500C38918 /* Barlow-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 857F2A1F2C1C41C500C38918 /* Barlow-Bold.ttf */; };
 		857F2A242C1C41C500C38918 /* Barlow-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 857F2A202C1C41C500C38918 /* Barlow-SemiBold.ttf */; };
@@ -179,6 +180,7 @@
 
 /* Begin PBXFileReference section */
 		26944833114E4BB884AA0446 /* Pods-FellasLoaded.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FellasLoaded.release.xcconfig"; path = "Target Support Files/Pods-FellasLoaded/Pods-FellasLoaded.release.xcconfig"; sourceTree = "<group>"; };
+		8562A79F2C1C71EA000D8666 /* UserDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailModel.swift; sourceTree = "<group>"; };
 		857F2A1E2C1C41C500C38918 /* Barlow-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-Medium.ttf"; path = "../../../../../../../Downloads/Barlow-Medium.ttf"; sourceTree = "<group>"; };
 		857F2A1F2C1C41C500C38918 /* Barlow-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-Bold.ttf"; path = "../../../../../../../Downloads/Barlow-Bold.ttf"; sourceTree = "<group>"; };
 		857F2A202C1C41C500C38918 /* Barlow-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-SemiBold.ttf"; path = "../../../../../../../Downloads/Barlow-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -370,6 +372,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8562A79E2C1C71D5000D8666 /* UserDetailModel */ = {
+			isa = PBXGroup;
+			children = (
+				8562A79F2C1C71EA000D8666 /* UserDetailModel.swift */,
+			);
+			path = UserDetailModel;
+			sourceTree = "<group>";
+		};
 		85CCB5162C1C356700007354 /* GLGetServerData */ = {
 			isa = PBXGroup;
 			children = (
@@ -1829,6 +1839,7 @@
 		9BE4BEAB2C1061B00016E673 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8562A79E2C1C71D5000D8666 /* UserDetailModel */,
 				9B454B702BFE3EB3000786B6 /* FeedView */,
 				9B8A183D2BFB7BAF00CF9FF1 /* VideoPlayerView */,
 				9B454B762BFE408C000786B6 /* SearchView */,
@@ -2311,6 +2322,7 @@
 				9B454B972BFE48F3000786B6 /* EpisodesDetailLogoView.swift in Sources */,
 				9B7289442BFE113800EB1A90 /* ForgotPasswordLablesView.swift in Sources */,
 				9B7289622BFE188500EB1A90 /* MembershipCardView.swift in Sources */,
+				8562A7A02C1C71EA000D8666 /* UserDetailModel.swift in Sources */,
 				9BF767182C073A6F00BDBC6A /* CheckEmailAPiService.swift in Sources */,
 				9BEB30302C0F471E002C7F82 /* AuthLoginAPIError.swift in Sources */,
 				9BE13A472C06275000D69B66 /* AuthLoginRequest.swift in Sources */,

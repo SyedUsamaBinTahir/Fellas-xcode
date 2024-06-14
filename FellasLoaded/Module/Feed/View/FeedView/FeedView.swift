@@ -34,7 +34,7 @@ struct FeedView: View {
                 VStack {
                     
                     FeedHeaderView(redirectSearch: $redirectSearch, redirectNotifications: $redirectNotifications)
-                    ScrollView {
+                    ScrollView(showsIndicators: false) {
                         //                    CarousalView(redirectVideoPlayer: $redirectVideoPlayer)
                         //                        .environmentObject(feedViewModel)
                         
@@ -73,7 +73,7 @@ struct FeedView: View {
                                         FeedSwiperHeaderView(title: data.title) {
                                             redirectSpecialSeriesDetail = true
                                         }
-                                        ScrollView(.horizontal) {
+                                        ScrollView(.horizontal, showsIndicators: false) {
                                             LazyHStack(spacing: 3) {
                                                 ForEach(data.results, id: \.uid) { result in
                                                     FeedSwiperView(feedImage: result.thumbnail, description: nil, width: horizontalSizeClass == .regular ? 304 : 155, height: horizontalSizeClass == .regular ? 456 : 232, progressBarValue: nil) {
@@ -130,7 +130,7 @@ struct FeedView: View {
                                         FeedSwiperHeaderView(title: data.title) {
                                             redirectSeriesDetail = true
                                         }
-                                        ScrollView(.horizontal) {
+                                        ScrollView(.horizontal, showsIndicators: false) {
                                             LazyHStack(spacing: 3) {
                                                 ForEach(data.results, id: \.uid) { result in
                                                     FeedSwiperView(feedImage: result.thumbnail, description: nil, width: horizontalSizeClass == .regular ? 195 : 114, height: horizontalSizeClass == .regular ? 292 : 171, progressBarValue: nil) {
@@ -159,7 +159,7 @@ struct FeedView: View {
                                         FeedSwiperHeaderView(title: data.title) {
                                             redirectBonusContentSeriesDetail = true
                                         }
-                                        ScrollView(.horizontal) {
+                                        ScrollView(.horizontal, showsIndicators: false) {
                                             LazyHStack(spacing: 3) {
                                                 ForEach(data.results, id: \.uid) { result in
                                                     FeedSwiperView(feedImage: result.thumbnail, description: nil, width: horizontalSizeClass == .regular ? 195 : 114, height: horizontalSizeClass == .regular ? 292 : 171, progressBarValue: nil) {
@@ -188,7 +188,7 @@ struct FeedView: View {
                                         FeedSwiperHeaderView(title: data.title) {
                                             redirectPodcastSeriesDetail = true
                                         }
-                                        ScrollView(.horizontal) {
+                                        ScrollView(.horizontal, showsIndicators: false) {
                                             LazyHStack(spacing: 3) {
                                                 ForEach(data.results, id: \.uid) { result in
                                                     FeedSwiperView(feedImage: result.thumbnail, description: nil, width: horizontalSizeClass == .regular ? 195 : 114, height: horizontalSizeClass == .regular ? 292 : 171, progressBarValue: nil) {
@@ -245,30 +245,8 @@ struct FeedView: View {
                     feedViewModel.showLoader = true
                     feedViewModel.getFeedBanners()
                     feedViewModel.getFeedCategories()
+                    feedViewModel.getUserDetail()
                 }
-                
-//                .navigationDestination(isPresented: $redirectContinueWatchingDetail) {
-//                    ContinueWatchingDetailView().navigationBarBackButtonHidden(true)
-//                }
-//                .navigationDestination(isPresented: $redirectSeriesDetail) {
-//                    ShowAllSeriesView().navigationBarBackButtonHidden(true)
-//                }
-//                .navigationDestination(isPresented: $redirectEpisodeDetail) {
-//                    EpisodeDetailView().navigationBarBackButtonHidden(true)
-//                }
-//                .navigationDestination(isPresented: $redirectSearch) {
-//                    SearchView().navigationBarBackButtonHidden(true)
-//                }
-//                .navigationDestination(isPresented: $redirectVideoPlayer) {
-//                    VideoPlayerView().navigationBarBackButtonHidden(true)
-//                }
-                
-                
-                
-                
-                
-                
-                
                 NavigationLink(isActive: $redirectSearch) {
                     SearchView().navigationBarBackButtonHidden(true)
                 } label: {

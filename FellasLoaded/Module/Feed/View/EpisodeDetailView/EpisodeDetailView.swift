@@ -13,6 +13,7 @@ struct EpisodeDetailView: View {
     @StateObject var feedViewModel = FeedViewModel(_dataService: GetServerData.shared)
     @State var feedCategorySeriesDetailModel: FeedCategorySeriesDetailModel?
     @State private var redirectVideoPlayer = false
+    @State private var redirectVideoPlayerWithEpisode = false
     @State var seriesEpisodeDetailId: String = ""
     @Binding var seriesDetailID: String
     
@@ -57,7 +58,7 @@ struct EpisodeDetailView: View {
                     VStack(alignment: .leading, spacing: 16) {
                         if horizontalSizeClass != .regular {
                             Button {
-                                redirectVideoPlayer = true
+                                redirectVideoPlayerWithEpisode = true
                                 
                             } label: {
                                 HStack {
@@ -90,7 +91,7 @@ struct EpisodeDetailView: View {
                                 .font(.custom(Font.semiBold, size: 18))
                                 .foregroundStyle(Color.white)
                             
-                            VStack(spacing: 20) {
+                            VStack(spacing: 5) {
                                 ForEach(feedViewModel.feedCategorySeriesDetailModel?.sessions ?? [], id: \.uid) { data in
                                     ForEach(data.episodes ?? [], id: \.uid) { episode in
                                         EpisodesView(seriesImage: episode.series_thumbnail, episode: "S\(episode.session_number):E\(episode.episode_number)", title: episode.title, description: episode.description, icon: "download") {
@@ -99,6 +100,14 @@ struct EpisodeDetailView: View {
                                         }
                                         
                                         NavigationLink(isActive: $redirectVideoPlayer) {
+                                            VideoPlayerView(seriesEpisodeDetailId: episode, seriesDetailID: $seriesDetailID)
+                                                .environmentObject(feedViewModel)
+                                                .navigationBarBackButtonHidden(true)
+                                        } label: {
+                                            EmptyView()
+                                        }
+                                        
+                                        NavigationLink(isActive: $redirectVideoPlayerWithEpisode) {
                                             VideoPlayerView(seriesEpisodeDetailId: episode, seriesDetailID: $seriesDetailID)
                                                 .environmentObject(feedViewModel)
                                                 .navigationBarBackButtonHidden(true)
@@ -132,6 +141,6 @@ struct EpisodeDetailView: View {
     }
 }
 
-#Preview {
-    EpisodeDetailView(seriesDetailID: .constant(""))
-}
+//#Preview {
+//    EpisodeDetailView(seriesDetailID: .constant(""))
+//}

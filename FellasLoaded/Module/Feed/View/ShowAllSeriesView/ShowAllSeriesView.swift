@@ -63,11 +63,11 @@ struct ShowAllSeriesView: View {
                     print("Id -->", seriesID)
                 }
                 
-                NavigationLink(isActive: $redirectDetailPage) {
-                    EpisodeDetailView(seriesDetailID: $seriesID)
-                } label: {
-                    EmptyView()
-                }
+//                NavigationLink(isActive: $redirectDetailPage) {
+//                    EpisodeDetailView(seriesDetailID: $seriesID)
+//                } label: {
+//                    EmptyView()
+//                }
 
                 if feedViewModel.showLoader {
                     FLLoader()

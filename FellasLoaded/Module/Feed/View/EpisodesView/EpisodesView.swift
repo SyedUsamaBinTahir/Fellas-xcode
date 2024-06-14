@@ -39,12 +39,14 @@ struct EpisodesView: View {
                         .foregroundStyle(Color.theme.textGrayColor)
                     Text(title)
                         .font(.custom(Font.Medium, size: horizontalSizeClass == .regular ? 24 : 16))
+                        .multilineTextAlignment(.leading)
                         .foregroundStyle(.white)
                         .lineLimit(2)
                     
                     if horizontalSizeClass == .regular {
                         Text(description)
                             .font(.custom(Font.regular, size: 18))
+                            .multilineTextAlignment(.leading)
                             .foregroundStyle(Color.theme.textGrayColor)
                             .lineLimit(2)
                     }

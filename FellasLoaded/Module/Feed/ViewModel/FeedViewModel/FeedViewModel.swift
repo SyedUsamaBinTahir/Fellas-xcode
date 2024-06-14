@@ -41,6 +41,8 @@ class FeedViewModel: ObservableObject {
     var feedCategorySeriesDetailModel: FeedCategorySeriesDetailModel?
     var seriesEpisodeDetailModel: SeriesEpisodeDetailModel?
     
+    var userDetailModel: UserDetailModel?
+    
 }
 
 extension FeedViewModel: FeedDataProvider {
@@ -168,6 +170,28 @@ extension FeedViewModel: FeedDataProvider {
             } receiveValue: { seriesEpisodeDetailData in
 //                print(String(describing: seriesEpisodeDetailData))
                 self.seriesEpisodeDetailModel = seriesEpisodeDetailData
+            }
+            .store(in: &subscriptions)
+    }
+    
+    func getUserDetail() {
+        dataService.getServerData(url: FLAPIs.baseURL + FLAPIs.userDetails, type: UserDetailModel.self)
+            .sink { [weak self] completion in
+                DispatchQueue.main.async {
+                    switch completion {
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                        self?.showAlert = true
+                        self?.alertMessage = error.localizedDescription
+                        self?.showLoader = false
+                    case .finished:
+                        print("User detail success")
+                        self?.showLoader = false
+                    }
+                }
+            } receiveValue: { userDetailModel in
+//                print(String(describing: userDetailModel))
+                self.userDetailModel = userDetailModel
             }
             .store(in: &subscriptions)
     }
