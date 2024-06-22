@@ -26,13 +26,13 @@ struct RepliesView: View {
                 
                 CommunityGuidlineView()
                 
-                CommentCardView(isPinned: $isPinned, expandDescription: $expandDescription, showReportComment: $showReportComment, redirectReply: $redirectReply)
+//                CommentCardView(isPinned: $isPinned, expandDescription: $expandDescription, showReportComment: $showReportComment, redirectReply: $redirectReply)
             }
             .background(Color.theme.tabbarColor)
             
             ScrollView {
-                CommentCardView(isPinned: $isPinned, expandDescription: $expandDescription, showReportComment: $showReportComment, redirectReply: $redirectReply)
-                    .padding(.horizontal, 30)
+//                CommentCardView(isPinned: $isPinned, expandDescription: $expandDescription, showReportComment: $showReportComment, redirectReply: $redirectReply)
+//                    .padding(.horizontal, 30)
             }
             
             AddCommentView(addComment: $addComment) { }

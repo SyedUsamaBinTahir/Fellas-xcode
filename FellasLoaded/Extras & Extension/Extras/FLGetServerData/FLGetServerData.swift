@@ -13,7 +13,7 @@ protocol DataServiceBased {
 }
 
 class GetServerData: DataServiceBased {
-    static let shared = GetServerData()  
+    static let shared = GetServerData()
 }
 
 extension GetServerData {
@@ -26,7 +26,10 @@ extension GetServerData {
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "content-type")
         request.setValue("Bearer \(UserDefaults.standard.string(forKey: FLUserDefaultKeys.accesstoken.rawValue) ?? "N/A")", forHTTPHeaderField: "Authorization")
-//        print("Token --> ", UserDefaults.standard.string(forKey: FLUserDefaultKeys.accesstoken.rawValue) ?? "N/A")
+        
+        print("\(request.httpMethod!) \(request.url!)")
+        print(request.allHTTPHeaderFields!)
+        print(String(data: request.httpBody ?? Data(), encoding: .utf8)!)
         
         return URLSession.shared.dataTaskPublisher(for: request)
             .tryMap { result -> Data in

@@ -10,6 +10,7 @@ import SwiftUI
 struct AuthPasswordTextFieldView: View {
     @Binding var placeholder: String
     @Binding var field: String
+    @State private var showPassword = false
     
     var body: some View {
         HStack {
@@ -17,13 +18,21 @@ struct AuthPasswordTextFieldView: View {
                 Text(placeholder)
                     .font(.custom(Font.regular, size: 11))
                     .foregroundStyle(Color.theme.textGrayColor)
-                SecureField("", text: $field)
-                    .font(.custom(Font.regular, size: 16))
-                    .foregroundStyle(Color.white)
+                if !showPassword {
+                    SecureField("", text: $field)
+                        .font(.custom(Font.regular, size: 16))
+                        .foregroundStyle(Color.white)
+                        .textInputAutocapitalization(.never)
+                } else {
+                    TextField(placeholder, text: $field)
+                        .font(.custom(Font.regular, size: 16))
+                        .foregroundStyle(Color.white)
+                        .textInputAutocapitalization(.never)
+                }
             }
             
             Button {
-                
+                showPassword.toggle()
             } label: {
                 Image("eye-icon")
                     .resizable()

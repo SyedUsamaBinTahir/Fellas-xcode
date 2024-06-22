@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct VaultCommentsCardView: View {
     @Binding var numberOfComments: String
@@ -24,10 +25,20 @@ struct VaultCommentsCardView: View {
             }
             
             HStack {
-                Image(profileImage)
+                KFImage.init(URL(string: profileImage))
+                    .placeholder({ progress in
+                        Circle()
+                            .fill(Color.theme.appGrayColor)
+                            .frame(width: 24, height: 24, alignment: .center)
+                    })
+                    .loadDiskFileSynchronously()
+                    .cacheMemoryOnly()
+                    .fade(duration: 0.50)
                     .resizable()
                     .scaledToFit()
+                    .clipShape(Circle())
                     .frame(width: 24, height: 24, alignment: .center)
+                
                 Text(comment)
                     .font(.custom(Font.regular, size: 14))
                     .foregroundStyle(.white)

@@ -24,7 +24,7 @@ extension FLAPIError: LocalizedError {
         case .networkError:
             return NSLocalizedString("No Internet Connection", comment: "No Internet Connection")
         case .EncodeError:
-            return NSLocalizedString("Un unknown error accoured", comment: "Encoding Error")
+            return NSLocalizedString("An unknown error accoured", comment: "Encoding Error")
         }
     }
 }

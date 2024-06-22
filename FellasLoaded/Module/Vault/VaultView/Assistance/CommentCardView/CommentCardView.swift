@@ -6,48 +6,66 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct CommentCardView: View {
-    @Binding var isPinned: Bool
+//    @Binding var isPinned: Bool
     @Binding var expandDescription: Bool
     @Binding var showReportComment: Bool
     @Binding var redirectReply: Bool
+    @Binding var profileImage: String
+    @Binding var displayName: String
+    @Binding var commentDuration: String
+    @Binding var comment: String
+    @Binding var likes: Int
+    @Binding var replies: Int
+    
     var body: some View {
         HStack {
-            HStack(alignment: .top) {
-                Image("profile")
+            HStack(alignment: .top, spacing: 10) {
+                KFImage.init(URL(string: profileImage))
+                    .placeholder({ progress in
+                        Circle()
+                            .fill(Color.theme.appGrayColor)
+                            .frame(width: 24, height: 24, alignment: .center)
+                    })
+                    .loadDiskFileSynchronously()
+                    .cacheMemoryOnly()
+                    .fade(duration: 0.50)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 24, height: 24)
+                    .clipShape(Circle())
+                    .frame(width: 24, height: 24, alignment: .center)
+                
                 VStack(alignment: .leading, spacing: 10) {
-                    HStack {
-                        if isPinned {
-                            Image("pin-icon")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 18, height: 18)
-                        }
-                        Text("Pinned by Cal")
-                            .font(.custom(Font.regular, size: 14))
-                            .foregroundStyle(Color.theme.textGrayColor)
-                    }
+//                    HStack {
+//                        if isPinned {
+//                            Image("pin-icon")
+//                                .resizable()
+//                                .scaledToFit()
+//                                .frame(width: 18, height: 18)
+//                        }
+//                        Text("Pinned by Cal")
+//                            .font(.custom(Font.regular, size: 14))
+//                            .foregroundStyle(Color.theme.textGrayColor)
+//                    }
                     
                     VStack(alignment: .leading) {
                         HStack {
-                            Text("Display name")
+                            Text(displayName)
                                 .font(.custom(Font.regular, size: 14))
                                 .foregroundStyle(Color.theme.textGrayColor)
                             Image("dot-icon")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 5, height: 18)
-                            Text("2 days ago")
+                            Text(commentDuration)
                                 .font(.custom(Font.regular, size: 14))
                                 .foregroundStyle(Color.theme.textGrayColor)
                         }
                         
                         VStack(alignment: .leading) {
-                            Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut eet dolore magna aliqua. Ut")
+                            Text(comment)
                                 .font(.custom(Font.regular, size: 14))
                                 .foregroundStyle(Color.white)
                                 .lineLimit(expandDescription ? nil : 3)
@@ -66,7 +84,7 @@ struct CommentCardView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 16, height: 16)
-                            Text("12K")
+                            Text("\(likes)")
                                 .font(.custom(Font.bold, size: 14))
                                 .foregroundStyle(.white)
                         }
@@ -79,7 +97,7 @@ struct CommentCardView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 16, height: 16)
-                            Text("\(32) REPLIES")
+                            Text(replies > 1 ? "\(replies) REPLIES" : "\(replies) REPLY")
                                 .font(.custom(Font.bold, size: 14))
                                 .foregroundStyle(.white)
                         }
@@ -104,6 +122,8 @@ struct CommentCardView: View {
                 }
                 .padding(.top, 4)
                 
+                Spacer()
+                
                 Image("threedots-icon")
                     .resizable()
                     .scaledToFit()
@@ -115,7 +135,8 @@ struct CommentCardView: View {
                         }
                     }
             }
-            .padding()
+            .padding(.horizontal)
+            .padding(.vertical, 5)
         }
         .overlay {
             if showReportComment {
@@ -144,5 +165,5 @@ struct CommentCardView: View {
 }
 
 #Preview {
-    CommentCardView(isPinned: .constant(true), expandDescription: .constant(false), showReportComment: .constant(false), redirectReply: .constant(false))
+    CommentCardView(/*isPinned: .constant(true), */expandDescription: .constant(false), showReportComment: .constant(false), redirectReply: .constant(false), profileImage: .constant(""), displayName: .constant(""), commentDuration: .constant(""), comment: .constant(""), likes: .constant(0), replies: .constant(0))
 }

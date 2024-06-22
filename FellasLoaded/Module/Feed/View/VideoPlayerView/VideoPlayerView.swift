@@ -30,6 +30,9 @@ struct VideoPlayerView: View {
                 
                 feedViewModel.getFeedCategorySeriesDetail(id: seriesDetailID)
                 print("Series Detail ID -->", seriesDetailID)
+                
+                feedViewModel.getSeriesEpisodesComments(id: seriesEpisodeDetailId?.uid ?? "", commentOrderBy: "most_liked")
+                print("Series Episode Comments ID -->", seriesEpisodeDetailId?.uid ?? "")
             }
             
             if feedViewModel.showLoader {

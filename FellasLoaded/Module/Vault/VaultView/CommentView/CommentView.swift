@@ -26,6 +26,7 @@ enum CommentsState: Int, CaseIterable {
 
 struct CommentView: View {
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var feedViewModel: FeedViewModel
     @State private var isPinned = true
     @State private var expandDescription = false
     @State private var commentsToggle = false
@@ -65,7 +66,10 @@ struct CommentView: View {
                 CommunityGuidlineView()
                 
                 ScrollView {
-                    CommentCardView(isPinned: $isPinned, expandDescription: $expandDescription, showReportComment: $showReportComment, redirectReply: $redirectReply)
+                    ForEach(feedViewModel.seriesEpisodesCommentsModel?.results ?? [], id: \.uid) { data in
+                        CommentCardView(/*isPinned: $isPinned,*/ expandDescription: $expandDescription, showReportComment: $showReportComment, redirectReply: $redirectReply, profileImage: .constant(data.user.avatar ?? ""), displayName: .constant(data.user.name), commentDuration: .constant(""), comment: .constant(data.comment), likes: .constant(data.like_count), replies: .constant(data.replies_count))
+                            .padding(.top, 10)
+                    }
                 }
                 
                 AddCommentView(addComment: $addComment) {}

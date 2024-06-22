@@ -223,12 +223,17 @@ struct VideoPlayer: View {
                             .foregroundStyle(Color.theme.textGrayColor)
                         }
                         
-                        VaultCommentsCardView(numberOfComments: .constant("217"), profileImage: .constant("profile"), comment: .constant("I swear this pod turned into cal bragging to chip about things chip wasn’t invited to 😂 "))
+                        VaultCommentsCardView(numberOfComments: .constant("\(feedViewModel.seriesEpisodesCommentsModel?.count ?? 0)"),
+                                              profileImage: .constant(feedViewModel.seriesEpisodesCommentsModel?.results[0].user.avatar ?? ""),
+                                              comment: .constant(feedViewModel.seriesEpisodesCommentsModel?.results[0].comment ?? ""))
                         .onTapGesture {
                             redirectComment = true
                         }
                         .sheet(isPresented: $redirectComment, content: {
                             CommentView(dismissSheet: $redirectComment)
+                                .presentationDragIndicator(.visible)
+                                .environmentObject(feedViewModel)
+
                         })
                     }
                     .padding(.top, 5)

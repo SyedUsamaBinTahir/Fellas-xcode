@@ -15,6 +15,7 @@ protocol FeedDataProvider {
     func getCategoryEpisodes(id: String)
     func getFeedCategorySeriesDetail(id: String)
     func getSeriesEpisodeDetail(id: String)
+    func getSeriesEpisodesComments(id: String, commentOrderBy: String)
 }
 
 class FeedViewModel: ObservableObject {
@@ -40,6 +41,7 @@ class FeedViewModel: ObservableObject {
     var feedCategoryEpisodesModel: FeedCategoryEpisodesModel?
     var feedCategorySeriesDetailModel: FeedCategorySeriesDetailModel?
     var seriesEpisodeDetailModel: SeriesEpisodeDetailModel?
+    var seriesEpisodesCommentsModel: SeriesEpisodesCommentsModel?
     
     var userDetailModel: UserDetailModel?
     
@@ -168,8 +170,29 @@ extension FeedViewModel: FeedDataProvider {
                     }
                 }
             } receiveValue: { seriesEpisodeDetailData in
-//                print(String(describing: seriesEpisodeDetailData))
+//                print("Series Episode Detail Data -->", String(describing: seriesEpisodeDetailData))
                 self.seriesEpisodeDetailModel = seriesEpisodeDetailData
+            }
+            .store(in: &subscriptions)
+    }
+    
+    func getSeriesEpisodesComments(id: String, commentOrderBy: String) {
+        dataService.getServerData(url: FLAPIs.baseURL + FLAPIs.seriesEpisodesComments + id + "/?order_by=\(commentOrderBy)", type: SeriesEpisodesCommentsModel.self)
+            .sink { [weak self] completion in
+                DispatchQueue.main.async {
+                    switch completion {
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                        self?.showAlert = true
+                        self?.alertMessage = error.localizedDescription
+                        self?.showLoader = false
+                    case .finished:
+                        print("Series Episode Comments Success")
+                        self?.showLoader = false
+                    }
+                }
+            } receiveValue: { SeriesEpisodesCommentsData in
+                self.seriesEpisodesCommentsModel = SeriesEpisodesCommentsData
             }
             .store(in: &subscriptions)
     }
