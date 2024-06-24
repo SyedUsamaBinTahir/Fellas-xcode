@@ -21,7 +21,7 @@ extension GetServerData {
         guard let url = URL(string: url) else {
             return Fail(error: .urlError).eraseToAnyPublisher()
         }
-        
+        print(url)
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "content-type")

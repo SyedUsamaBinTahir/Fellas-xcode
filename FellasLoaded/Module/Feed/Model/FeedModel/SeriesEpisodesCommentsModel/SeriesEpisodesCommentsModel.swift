@@ -15,7 +15,7 @@ struct SeriesEpisodesCommentsModel: Codable {
 struct SeriesEpisodesCommentsResults: Codable {
     let uid: String
     let parent_user_name: String?
-    let user: User
+    let user: User?
     let reply_to: ReplyTo?
     let is_pinned: Bool
     let pinned_by: String?
@@ -29,20 +29,20 @@ struct SeriesEpisodesCommentsResults: Codable {
 
 struct User: Codable {
     let uid: String
-    let name: String
+    let name: String?
     let phone: String?
     let avatar: String?
-    let streak: UserStreak
+    let streak: UserStreak?
 }
 
 struct UserStreak: Codable {
     let uid: String
-    let title: String
-    let crown_type: String
-    let is_active: Bool
-    let total_months: Int
-    let is_achieved: Bool
-    let image: String
+    let title: String?
+    let crown_type: String?
+    let is_active: Bool?
+    let total_months: Int?
+    let is_achieved: Bool?
+    let image: String?
 }
 
 struct ReplyTo: Codable {

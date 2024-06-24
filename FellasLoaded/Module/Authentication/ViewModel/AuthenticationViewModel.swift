@@ -18,7 +18,7 @@ protocol AuthenticationBased {
     func setNewPasswordRequest(code: String, password: String)
 }
 
-class AuthenticationViewModel: ObservableObject, FLViewModelProtocol {
+class AuthenticationViewModel: ObservableObject, FLViewModelProtocol, AuthenticationBased {
     // Cancel subscription after success variable
     var subscriptions = Set<AnyCancellable>()
     // Navigate after success properties

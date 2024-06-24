@@ -67,8 +67,16 @@ struct CommentView: View {
                 
                 ScrollView {
                     ForEach(feedViewModel.seriesEpisodesCommentsModel?.results ?? [], id: \.uid) { data in
-                        CommentCardView(/*isPinned: $isPinned,*/ expandDescription: $expandDescription, showReportComment: $showReportComment, redirectReply: $redirectReply, profileImage: .constant(data.user.avatar ?? ""), displayName: .constant(data.user.name), commentDuration: .constant(""), comment: .constant(data.comment), likes: .constant(data.like_count), replies: .constant(data.replies_count))
+                        CommentCardView(/*isPinned: $isPinned,*/ expandDescription: $expandDescription, showReportComment: $showReportComment, redirectReply: $redirectReply, profileImage: .constant(data.user?.avatar ?? ""), displayName: .constant(data.user?.name ?? ""), commentDuration: .constant(""), comment: .constant(data.comment), likes: .constant(data.like_count), replies: .constant(data.replies_count))
                             .padding(.top, 10)
+                        
+                        NavigationLink(isActive: $redirectReply) {
+                            RepliesView(dismissSheet: $redirectReply, commentData: data)
+                                .navigationBarBackButtonHidden(true)
+                                .environmentObject(feedViewModel)
+                        } label: {
+                            EmptyView()
+                        }
                     }
                 }
                 

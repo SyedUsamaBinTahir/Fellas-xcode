@@ -16,6 +16,7 @@ protocol FeedDataProvider {
     func getFeedCategorySeriesDetail(id: String)
     func getSeriesEpisodeDetail(id: String)
     func getSeriesEpisodesComments(id: String, commentOrderBy: String)
+    func getSeriesEpisodesCommentsDetail(id: String)
 }
 
 class FeedViewModel: ObservableObject {
@@ -42,6 +43,7 @@ class FeedViewModel: ObservableObject {
     var feedCategorySeriesDetailModel: FeedCategorySeriesDetailModel?
     var seriesEpisodeDetailModel: SeriesEpisodeDetailModel?
     var seriesEpisodesCommentsModel: SeriesEpisodesCommentsModel?
+    var seriesEpisodesCommentsDetailModel: SeriesEpisodesCommentsDetailModel?
     
     var userDetailModel: UserDetailModel?
     
@@ -193,6 +195,27 @@ extension FeedViewModel: FeedDataProvider {
                 }
             } receiveValue: { SeriesEpisodesCommentsData in
                 self.seriesEpisodesCommentsModel = SeriesEpisodesCommentsData
+            }
+            .store(in: &subscriptions)
+    }
+    
+    func getSeriesEpisodesCommentsDetail(id: String) {
+        dataService.getServerData(url: FLAPIs.baseURL + FLAPIs.seriesEpisodesCommentsDetail + id, type: SeriesEpisodesCommentsDetailModel.self)
+            .sink { [weak self] completion in
+                DispatchQueue.main.async {
+                    switch completion {
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                        self?.showAlert = true
+                        self?.alertMessage = error.localizedDescription
+                        self?.showLoader = false
+                    case .finished:
+                        print("Series Episode Comments Success")
+                        self?.showLoader = false
+                    }
+                }
+            } receiveValue: { SeriesEpisodesCommentsDtailtData in
+                self.seriesEpisodesCommentsDetailModel = SeriesEpisodesCommentsDtailtData
             }
             .store(in: &subscriptions)
     }

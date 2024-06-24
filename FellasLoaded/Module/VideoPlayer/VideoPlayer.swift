@@ -224,7 +224,7 @@ struct VideoPlayer: View {
                         }
                         
                         VaultCommentsCardView(numberOfComments: .constant("\(feedViewModel.seriesEpisodesCommentsModel?.count ?? 0)"),
-                                              profileImage: .constant(feedViewModel.seriesEpisodesCommentsModel?.results[0].user.avatar ?? ""),
+                                              profileImage: .constant(feedViewModel.seriesEpisodesCommentsModel?.results[0].user?.avatar ?? ""),
                                               comment: .constant(feedViewModel.seriesEpisodesCommentsModel?.results[0].comment ?? ""))
                         .onTapGesture {
                             redirectComment = true
