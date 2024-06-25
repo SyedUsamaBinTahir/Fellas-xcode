@@ -91,13 +91,13 @@ struct CommentCardView: View {
                         .padding(10)
                         .background(Color.theme.appGrayColor)
                         .cornerRadius(8)
-                        
+
                         HStack(spacing: 10) {
                             Image("reply-icon")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 16, height: 16)
-                            Text(replies > 1 ? "\(replies) REPLIES" : "\(replies) REPLY")
+                            Text(replies > 1 ? "\(replies) REPLIES" : "REPLY")
                                 .font(.custom(Font.bold, size: 14))
                                 .foregroundStyle(.white)
                         }
@@ -108,9 +108,6 @@ struct CommentCardView: View {
                             redirectReply = true
                         }
                     }
-                    
-                    
-
                 }
                 .padding(.top, 4)
                 

@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import Alamofire
 
 protocol FeedDataProvider {
     func getFeedBanners()
@@ -200,7 +201,7 @@ extension FeedViewModel: FeedDataProvider {
     }
     
     func getSeriesEpisodesCommentsDetail(id: String) {
-        dataService.getServerData(url: FLAPIs.baseURL + FLAPIs.seriesEpisodesCommentsDetail + id, type: SeriesEpisodesCommentsDetailModel.self)
+        dataService.getServerData(url: FLAPIs.baseURL + FLAPIs.seriesEpisodesCommentsDetail + id + "/", type: SeriesEpisodesCommentsDetailModel.self)
             .sink { [weak self] completion in
                 DispatchQueue.main.async {
                     switch completion {
@@ -210,12 +211,12 @@ extension FeedViewModel: FeedDataProvider {
                         self?.alertMessage = error.localizedDescription
                         self?.showLoader = false
                     case .finished:
-                        print("Series Episode Comments Success")
+                        print("Series Episode Comments Detail Success")
                         self?.showLoader = false
                     }
                 }
-            } receiveValue: { SeriesEpisodesCommentsDtailtData in
-                self.seriesEpisodesCommentsDetailModel = SeriesEpisodesCommentsDtailtData
+            } receiveValue: { SeriesEpisodesCommentsDetailModel in
+                self.seriesEpisodesCommentsDetailModel = SeriesEpisodesCommentsDetailModel
             }
             .store(in: &subscriptions)
     }

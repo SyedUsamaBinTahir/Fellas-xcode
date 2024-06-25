@@ -21,7 +21,7 @@ extension GetServerData {
         guard let url = URL(string: url) else {
             return Fail(error: .urlError).eraseToAnyPublisher()
         }
-        print(url)
+        
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "content-type")
@@ -36,6 +36,7 @@ extension GetServerData {
                 guard let httpResponse = result.response as? HTTPURLResponse else {
                     throw FLAPIError.urlError
                 }
+                print(httpResponse.statusCode)
                 if  (200...299).contains(httpResponse.statusCode) {
                     return result.data
                 } else {

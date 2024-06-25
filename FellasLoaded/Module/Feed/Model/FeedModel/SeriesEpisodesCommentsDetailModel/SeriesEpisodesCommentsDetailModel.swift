@@ -9,5 +9,5 @@ import Foundation
 
 struct SeriesEpisodesCommentsDetailModel: Codable {
     let parent: SeriesEpisodesCommentsResults
-    let replies: [SeriesEpisodesCommentsResults]
+    let replies: [SeriesEpisodesCommentsResults]?
 }

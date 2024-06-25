@@ -71,9 +71,9 @@ struct CommentView: View {
                             .padding(.top, 10)
                         
                         NavigationLink(isActive: $redirectReply) {
-                            RepliesView(dismissSheet: $redirectReply, commentData: data)
-                                .navigationBarBackButtonHidden(true)
+                            RepliesView(dismissSheet: $redirectReply, commentData: data.uid)
                                 .environmentObject(feedViewModel)
+                                .navigationBarBackButtonHidden(true)
                         } label: {
                             EmptyView()
                         }
