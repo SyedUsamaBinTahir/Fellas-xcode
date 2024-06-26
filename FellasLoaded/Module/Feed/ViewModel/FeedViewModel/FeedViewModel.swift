@@ -18,6 +18,7 @@ protocol FeedDataProvider {
     func getSeriesEpisodeDetail(id: String)
     func getSeriesEpisodesComments(id: String, commentOrderBy: String)
     func getSeriesEpisodesCommentsDetail(id: String)
+    func getFeedSearchList(searchParam: String)
 }
 
 class FeedViewModel: ObservableObject {
@@ -45,6 +46,7 @@ class FeedViewModel: ObservableObject {
     var seriesEpisodeDetailModel: SeriesEpisodeDetailModel?
     var seriesEpisodesCommentsModel: SeriesEpisodesCommentsModel?
     var seriesEpisodesCommentsDetailModel: SeriesEpisodesCommentsDetailModel?
+    var feedSearchModel: FeedSearchModel?
     
     var userDetailModel: UserDetailModel?
     
@@ -173,7 +175,7 @@ extension FeedViewModel: FeedDataProvider {
                     }
                 }
             } receiveValue: { seriesEpisodeDetailData in
-//                print("Series Episode Detail Data -->", String(describing: seriesEpisodeDetailData))
+                print("Series Episode Detail Data -->", seriesEpisodeDetailData)
                 self.seriesEpisodeDetailModel = seriesEpisodeDetailData
             }
             .store(in: &subscriptions)
@@ -217,6 +219,28 @@ extension FeedViewModel: FeedDataProvider {
                 }
             } receiveValue: { SeriesEpisodesCommentsDetailModel in
                 self.seriesEpisodesCommentsDetailModel = SeriesEpisodesCommentsDetailModel
+            }
+            .store(in: &subscriptions)
+    }
+    
+    func getFeedSearchList(searchParam: String) {
+        dataService.getServerData(url: FLAPIs.baseURL + FLAPIs.feedSearch + searchParam, type: FeedSearchModel.self)
+            .sink { [weak self] completion in
+                DispatchQueue.main.async {
+                    switch completion {
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                        self?.showLoader = true
+                        self?.alertMessage = error.localizedDescription
+                        self?.showLoader = false
+                    case .finished:
+                        print("Feed Search Success")
+                        self?.showLoader = false
+                    }
+                }
+            } receiveValue: { FeedSearchData in
+                print(FeedSearchData)
+                self.feedSearchModel = FeedSearchData
             }
             .store(in: &subscriptions)
     }

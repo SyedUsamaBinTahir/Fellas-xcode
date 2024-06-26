@@ -36,7 +36,8 @@ struct SeriesEpisodeDetailModel: Codable {
 
 struct SeriesBvideo: Codable {
     let video_name, video_uid: String
-    let length, file_size: Int
+    let length: Int
+    let file_size: Double
     let file_ext: String
     let preview_image_url: String
     let created_at: String

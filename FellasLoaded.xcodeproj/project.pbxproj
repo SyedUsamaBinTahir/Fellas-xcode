@@ -15,6 +15,7 @@
 		046ADDE72C24E64900AF0E22 /* FLGetServerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046ADDE62C24E64900AF0E22 /* FLGetServerData.swift */; };
 		8562A7A02C1C71EA000D8666 /* UserDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8562A79F2C1C71EA000D8666 /* UserDetailModel.swift */; };
 		8588A0A72C29B542005F59F0 /* SeriesEpisodesCommentsDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8588A0A62C29B542005F59F0 /* SeriesEpisodesCommentsDetailModel.swift */; };
+		85A0DDCD2C2C395B00B8769B /* FeedSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A0DDCC2C2C395B00B8769B /* FeedSearchModel.swift */; };
 		9B10F8582BFDF2CD005914BD /* AuthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B10F8572BFDF2CD005914BD /* AuthHeaderView.swift */; };
 		9B11FC5B2C17036200AE80ED /* FeedCategoryEpisodesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B11FC5A2C17036100AE80ED /* FeedCategoryEpisodesModel.swift */; };
 		9B11FC5E2C17361600AE80ED /* FeedCategorySeriesDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B11FC5D2C17361600AE80ED /* FeedCategorySeriesDetailModel.swift */; };
@@ -190,6 +191,7 @@
 		26944833114E4BB884AA0446 /* Pods-FellasLoaded.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FellasLoaded.release.xcconfig"; path = "Target Support Files/Pods-FellasLoaded/Pods-FellasLoaded.release.xcconfig"; sourceTree = "<group>"; };
 		8562A79F2C1C71EA000D8666 /* UserDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailModel.swift; sourceTree = "<group>"; };
 		8588A0A62C29B542005F59F0 /* SeriesEpisodesCommentsDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesEpisodesCommentsDetailModel.swift; sourceTree = "<group>"; };
+		85A0DDCC2C2C395B00B8769B /* FeedSearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSearchModel.swift; sourceTree = "<group>"; };
 		959029D06F70831162C77BD0 /* Pods_FellasLoaded.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FellasLoaded.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B10F8572BFDF2CD005914BD /* AuthHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHeaderView.swift; sourceTree = "<group>"; };
 		9B11FC5A2C17036100AE80ED /* FeedCategoryEpisodesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCategoryEpisodesModel.swift; sourceTree = "<group>"; };
@@ -398,6 +400,14 @@
 				8588A0A62C29B542005F59F0 /* SeriesEpisodesCommentsDetailModel.swift */,
 			);
 			path = SeriesEpisodesCommentsDetailModel;
+			sourceTree = "<group>";
+		};
+		85A0DDCB2C2C394A00B8769B /* FeedSearchModel */ = {
+			isa = PBXGroup;
+			children = (
+				85A0DDCC2C2C395B00B8769B /* FeedSearchModel.swift */,
+			);
+			path = FeedSearchModel;
 			sourceTree = "<group>";
 		};
 		85CCB5162C1C356700007354 /* FLGetServerData */ = {
@@ -1898,6 +1908,7 @@
 		9BE4BEB12C10773F0016E673 /* FeedModel */ = {
 			isa = PBXGroup;
 			children = (
+				85A0DDCB2C2C394A00B8769B /* FeedSearchModel */,
 				8588A0A52C29B4FB005F59F0 /* SeriesEpisodesCommentsDetailModel */,
 				046ADDE32C244AB500AF0E22 /* SeriesEpisodesCommentsModel */,
 				9BA7F9492C19C0BC00344FF8 /* SeriesEpisodeDetailModel */,
@@ -2339,6 +2350,7 @@
 				9B6D9D9E2BF6271600365CE6 /* CarousalView.swift in Sources */,
 				9B8A18322BFB666000CF9FF1 /* ManageSubscriptionsView.swift in Sources */,
 				9B7289062BFE010F00EB1A90 /* AuthPasswordTextFieldView.swift in Sources */,
+				85A0DDCD2C2C395B00B8769B /* FeedSearchModel.swift in Sources */,
 				9B72890D2BFE036300EB1A90 /* CreatePasswordFieldsAndButtonView.swift in Sources */,
 				9B72894C2BFE11E500EB1A90 /* ResetPasswordHeaderView.swift in Sources */,
 				9B454B972BFE48F3000786B6 /* EpisodesDetailLogoView.swift in Sources */,

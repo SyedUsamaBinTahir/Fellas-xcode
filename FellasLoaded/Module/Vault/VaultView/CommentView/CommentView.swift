@@ -47,7 +47,7 @@ struct CommentView: View {
                     VStack(alignment: .leading) {
                         HStack(spacing: 6) {
                             ForEach(CommentsState.allCases, id: \.rawValue) { type in
-                                Text(type.state)
+                                Text(type.state.uppercased())
                                     .padding(.vertical, 5)
                                     .padding(.horizontal, 10)
                                     .font(.custom(Font.bold, size: 14))

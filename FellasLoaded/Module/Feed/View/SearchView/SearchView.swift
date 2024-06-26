@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SearchView: View {
     @Environment(\.presentationMode) var presentationMode
+    @StateObject var feedViewModel = FeedViewModel(_dataService: GetServerData.shared)
     @State var search: String = ""
     @State var isSearching: Bool = false
     
@@ -17,17 +18,29 @@ struct SearchView: View {
             VStack (alignment: .leading, spacing: 16) {
                 SearchTextFieldView(search: $search, isSearching: $isSearching)
                 
-                SearchResultAndRecommentdTextView(isSearching: $isSearching)
-                
-                ScrollView {
-                    VStack(spacing: 20) {
-                        ForEach(1...5, id: \.self) { data in
-                            EpisodesView(seriesImage: "series-image", episode: "S1:E1", title: "The Fellas & W2S Get Drunk in Amsterdam The Fellas & W2S Get Drunk in Amsterdam", description: "The Fellas head to the city of Amsterdam for some absolute CARNAGE! 24 hours was more than enough and you'll see why", icon: "download")
+                if feedViewModel.showLoader {
+                    FLLoader()
+                } else {
+                    SearchResultAndRecommentdTextView(isSearching: $isSearching)
+                    
+                    ScrollView {
+                        VStack(spacing: 20) {
+                            ForEach(feedViewModel.feedSearchModel?.results ?? [], id: \.uid) { data in
+                                EpisodesView(seriesImage: data.thumbnail, episode: "S\(data.sessionNumber ?? 0):E\(data.episodeNumber ?? 0)", title: data.title, description: data.description, icon: "download")
+                            }
                         }
                     }
                 }
             }
             .padding()
+            .onChange(of: search) { result in
+                feedViewModel.showLoader = true
+                feedViewModel.getFeedSearchList(searchParam: "?search=\(result)")
+            }
+            .onAppear {
+                feedViewModel.showLoader = true    
+                feedViewModel.getFeedSearchList(searchParam: "")
+            }
         }
         .background {
             LinearGradient(gradient: Gradient(colors: [Color.black, Color.theme.appColor, Color.black]), startPoint: .topLeading, endPoint: .bottomTrailing)
