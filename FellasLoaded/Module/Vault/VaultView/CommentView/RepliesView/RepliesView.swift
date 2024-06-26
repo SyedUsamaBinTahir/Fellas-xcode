@@ -14,7 +14,6 @@ struct RepliesView: View {
     @State private var isPinned = true
     @State private var expandDescription = false
     @State private var commentsToggle = false
-    @State private var selectedComment = CommentsState(rawValue: 0)
     @State private var showReportComment = false
     @State private var addComment: String = ""
     @State private var redirectReply = false

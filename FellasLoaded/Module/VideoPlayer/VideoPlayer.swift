@@ -16,11 +16,13 @@ struct VideoPlayer: View {
     var size: CGSize
     var safeArea: EdgeInsets?
     var url: URL
+    @Binding var commentOrder: String
     @State private var player: AVPlayer
-    init(size: CGSize, safeArea: EdgeInsets?, url: URL) {
+    init(size: CGSize, safeArea: EdgeInsets?, url: URL, commentOrder: Binding<String>) {
         self.size = size
         self.safeArea = safeArea
         self.url = url
+        self._commentOrder = commentOrder
         self._player = State(initialValue: AVPlayer(url: url))
     }
     @State private var showPlayerControlls: Bool = false
@@ -230,7 +232,7 @@ struct VideoPlayer: View {
                             redirectComment = true
                         }
                         .sheet(isPresented: $redirectComment, content: {
-                            CommentView(dismissSheet: $redirectComment)
+                            CommentView(dismissSheet: $redirectComment, commentOrder: $commentOrder)
                                 .presentationDragIndicator(.visible)
                                 .environmentObject(feedViewModel)
 

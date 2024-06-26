@@ -15,11 +15,11 @@ enum CommentsState: Int, CaseIterable {
     var state: String {
         switch self {
         case .top:
-            return "TOP"
+            return "most_liked"
         case .nowest:
-            return "NEWEST"
+            return "newest"
         case .oldest:
-            return "OLDEST"
+            return "oldest"
         }
     }
 }
@@ -36,6 +36,7 @@ struct CommentView: View {
     @State private var redirectReply = false
     @State private var commentid: String = ""
     @Binding var dismissSheet: Bool
+    @Binding var commentOrder: String
     
     var body: some View {
         NavigationView {
@@ -55,6 +56,7 @@ struct CommentView: View {
                                     .cornerRadius(5)
                                     .onTapGesture {
                                         selectedComment = type
+                                        commentOrder = type.state.description
                                     }
                             }
                             Spacer()
@@ -66,24 +68,28 @@ struct CommentView: View {
                 
                 CommunityGuidlineView()
                 
-                ScrollView {
-                    ForEach(feedViewModel.seriesEpisodesCommentsModel?.results ?? [], id: \.uid) { data in
+                if feedViewModel.showLoader {
+                    FLLoader()
+                } else {
+                    ScrollView {
+                        ForEach(feedViewModel.seriesEpisodesCommentsModel?.results ?? [], id: \.uid) { data in
                             CommentCardView(/*isPinned: $isPinned,*/ expandDescription: $expandDescription, showReportComment: $showReportComment, redirectReply: $redirectReply, profileImage: .constant(data.user?.avatar ?? ""), displayName: .constant(data.user?.name ?? ""), commentDuration: .constant(""), comment: .constant(data.comment), likes: .constant(data.like_count), replies: .constant(data.replies_count), action: {
                                 commentid = data.uid
                                 redirectReply = true
                             })
-                                .padding(.top, 10)
-
-                        
-                        
-                        NavigationLink(isActive: $redirectReply) {
-                            RepliesView(dismissSheet: $redirectReply, commentData: $commentid)
-                                .environmentObject(feedViewModel)
-                                .navigationBarBackButtonHidden(true)
-                        } label: {
-                            EmptyView()
+                            .padding(.top, 10)
+                            
+                            
                         }
                     }
+                }
+                
+                NavigationLink(isActive: $redirectReply) {
+                    RepliesView(dismissSheet: $redirectReply, commentData: $commentid)
+                        .environmentObject(feedViewModel)
+                        .navigationBarBackButtonHidden(true)
+                } label: {
+                    EmptyView()
                 }
                 
                 AddCommentView(addComment: $addComment) {}
@@ -97,7 +103,7 @@ struct CommentView: View {
         }
     }
 }
-
-#Preview {
-    CommentView(dismissSheet: .constant(true))
-}
+//
+//#Preview {
+//    CommentView(dismissSheet: .constant(true))
+//}
