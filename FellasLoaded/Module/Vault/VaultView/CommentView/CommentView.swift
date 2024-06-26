@@ -34,6 +34,7 @@ struct CommentView: View {
     @State private var showReportComment = false
     @State private var addComment: String = ""
     @State private var redirectReply = false
+    @State private var commentid: String = ""
     @Binding var dismissSheet: Bool
     
     var body: some View {
@@ -67,11 +68,16 @@ struct CommentView: View {
                 
                 ScrollView {
                     ForEach(feedViewModel.seriesEpisodesCommentsModel?.results ?? [], id: \.uid) { data in
-                        CommentCardView(/*isPinned: $isPinned,*/ expandDescription: $expandDescription, showReportComment: $showReportComment, redirectReply: $redirectReply, profileImage: .constant(data.user?.avatar ?? ""), displayName: .constant(data.user?.name ?? ""), commentDuration: .constant(""), comment: .constant(data.comment), likes: .constant(data.like_count), replies: .constant(data.replies_count))
-                            .padding(.top, 10)
+                            CommentCardView(/*isPinned: $isPinned,*/ expandDescription: $expandDescription, showReportComment: $showReportComment, redirectReply: $redirectReply, profileImage: .constant(data.user?.avatar ?? ""), displayName: .constant(data.user?.name ?? ""), commentDuration: .constant(""), comment: .constant(data.comment), likes: .constant(data.like_count), replies: .constant(data.replies_count), action: {
+                                commentid = data.uid
+                                redirectReply = true
+                            })
+                                .padding(.top, 10)
+
+                        
                         
                         NavigationLink(isActive: $redirectReply) {
-                            RepliesView(dismissSheet: $redirectReply, commentData: data.uid)
+                            RepliesView(dismissSheet: $redirectReply, commentData: $commentid)
                                 .environmentObject(feedViewModel)
                                 .navigationBarBackButtonHidden(true)
                         } label: {

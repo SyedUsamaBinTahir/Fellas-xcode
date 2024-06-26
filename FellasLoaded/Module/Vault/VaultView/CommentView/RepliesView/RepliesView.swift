@@ -20,7 +20,7 @@ struct RepliesView: View {
     @State private var redirectReply = false
     @Binding var dismissSheet: Bool
     
-    var commentData: String
+    @Binding var commentData: String
     
     var body: some View {
         VStack(spacing: 0) {
@@ -37,7 +37,10 @@ struct RepliesView: View {
                                                          commentDuration: .constant(""),
                                                          comment: .constant(feedViewModel.seriesEpisodesCommentsDetailModel?.parent.comment ?? ""),
                                                          likes: .constant(feedViewModel.seriesEpisodesCommentsDetailModel?.parent.like_count ?? 0),
-                                                         replies: .constant(feedViewModel.seriesEpisodesCommentsDetailModel?.parent.replies_count ?? 0))
+                                                         replies: .constant(feedViewModel.seriesEpisodesCommentsDetailModel?.parent.replies_count ?? 0),
+                                                         action: {
+                    
+                })
                 .padding(.top, 10)
             }
             .background(Color.theme.tabbarColor)
@@ -52,7 +55,9 @@ struct RepliesView: View {
                                                              commentDuration: .constant( ""),
                                                              comment: .constant(reply.comment),
                                                              likes: .constant(reply.like_count),
-                                                             replies: .constant(reply.replies_count))
+                                                             replies: .constant(reply.replies_count), action: {
+                        
+                    })
                 }
                 .padding(.horizontal, 30)
             }
@@ -61,6 +66,7 @@ struct RepliesView: View {
             
         }
         .onAppear {
+            feedViewModel.showLoader = true
             feedViewModel.getSeriesEpisodesCommentsDetail(id: commentData)
             print("comment detail id --> ", commentData)
         }
