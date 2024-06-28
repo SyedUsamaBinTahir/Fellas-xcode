@@ -12,16 +12,21 @@ struct VideoPlayerView: View {
     @State var seriesEpisodeDetailId: FeedCategoryEpisodesResults?
     @State var commentOrder: String = ""
     @Binding var seriesDetailID: String
-    
+    @State private var episodeDetail: SeriesEpisodeDetailModel? = nil
     var body: some View {
         ZStack {
             GeometryReader {
                 let size = $0.size
                 let safeArea = $0.safeAreaInsets
                 
-                VideoPlayer(size: size, safeArea: safeArea, url: URL(string: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")!, commentOrder: $commentOrder)
-                    .environmentObject(feedViewModel)
-                    .ignoresSafeArea()
+                if let urlString = feedViewModel.seriesEpisodeDetailModel?.bvideo.hls_video_playlist_url,
+                   let url = URL(string: urlString) {
+                    VideoPlayer(size: size, safeArea: safeArea, url: url, commentOrder: $commentOrder)
+                        .environmentObject(feedViewModel)
+                        .ignoresSafeArea()
+                } else {
+                    Text("Failed to load video")
+                }
                 
             }
             .onChange(of: commentOrder) { _ in
@@ -39,6 +44,7 @@ struct VideoPlayerView: View {
                 
                 feedViewModel.getSeriesEpisodesComments(id: seriesEpisodeDetailId?.uid ?? "", commentOrderBy: commentOrder)
                 print("Series Episode Comments ID -->", seriesEpisodeDetailId?.uid ?? "")
+                
             }
             
             if feedViewModel.showLoader {
@@ -46,6 +52,7 @@ struct VideoPlayerView: View {
             }
         }
     }
+    
 }
 
 //#Preview {

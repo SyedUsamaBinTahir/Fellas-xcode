@@ -9,7 +9,7 @@ import Foundation
 
 struct SeriesEpisodeDetailModel: Codable {
     let uid: String
-    let series_uid: String
+    let series_uid: String?
     let series_thumbnail: String
     let session_uid: String
     let title: String

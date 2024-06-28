@@ -1,0 +1,31 @@
+{
+  "name": "M3UKit",
+  "version": "0.8.1",
+  "summary": "Modern framework for parsing m3u files",
+  "description": "A modern framework for parsing m3u files.",
+  "homepage": "https://github.com/omaralbeik/M3UKit",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Omar Albeik": "https://twitter.com/omaralbeik"
+  },
+  "module_name": "M3UKit",
+  "source": {
+    "git": "https://github.com/omaralbeik/M3UKit.git",
+    "tag": "0.8.1"
+  },
+  "source_files": "Sources/**/*.swift",
+  "swift_versions": [
+    "5.5",
+    "5.6",
+    "5.7"
+  ],
+  "platforms": {
+    "ios": "11.0",
+    "osx": "10.13",
+    "tvos": "11.0"
+  },
+  "swift_version": "5.7"
+}

@@ -1,0 +1,6 @@
+framework module M3UKit {
+  umbrella header "M3UKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

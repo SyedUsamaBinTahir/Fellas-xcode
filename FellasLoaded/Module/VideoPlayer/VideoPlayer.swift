@@ -47,6 +47,7 @@ struct VideoPlayer: View {
     @State private var selectedTab: SegmentsTab = .EPISODES
     
     @State private var showSleepTimer = false
+    @State private var showVidoQualityLisit = false
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -125,7 +126,15 @@ struct VideoPlayer: View {
                                     .foregroundColor(.white)
                             }
                             
-                            
+                            Button {
+                                showVidoQualityLisit.toggle()
+                            } label: {
+                                Image("settings-icon")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 20, height: 20)
+                                    .foregroundColor(.white)
+                            }
                         }
                     }
                 }
@@ -135,6 +144,14 @@ struct VideoPlayer: View {
                 SleepTimerView()
                     .presentationDetents([.medium])
                     .presentationDragIndicator(.visible)
+            }
+            .sheet(isPresented: $showVidoQualityLisit) {
+                VideoQualitySelectionView {
+                    
+                }
+                .presentationDetents([.medium])
+                .presentationDragIndicator(.visible)
+                .environmentObject(feedViewModel)
             }
             .background(content: {
                 Rectangle()
@@ -169,6 +186,15 @@ struct VideoPlayer: View {
                     Text(feedViewModel.seriesEpisodeDetailModel?.title ?? "")
                         .font(.custom(Font.semiBold, size: 24))
                         .foregroundStyle(.white)
+                    
+                    Text("Quality: \(currentQuality())")
+                        .font(.custom(Font.semiBold, size: 24))
+                        .foregroundStyle(.white)
+                    
+                    Text("Caption: \(currentCaption())")
+                        .font(.custom(Font.semiBold, size: 24))
+                        .foregroundStyle(.white)
+                    
                     
                     VStack(alignment: .leading, spacing: 16) {
                         HStack(spacing: 16) {
@@ -308,6 +334,20 @@ struct VideoPlayer: View {
         .ignoresSafeArea()
     }
     
+    func currentQuality() -> String {
+            // Retrieve the current quality (resolution) from the player
+            guard let asset = player.currentItem?.asset as? AVURLAsset else { return "Unknown" }
+            let bitrate = asset.tracks.first?.estimatedDataRate ?? 0
+            return "\(bitrate / 1000) kbps"
+        }
+
+        func currentCaption() -> String {
+            // Retrieve the current caption (subtitles) from the player
+            guard let group = player.currentItem?.asset.mediaSelectionGroup(forMediaCharacteristic: .legible) else { return "None" }
+            let selectedOption = player.currentItem?.currentMediaSelection.selectedMediaOption(in: group)
+            return selectedOption?.displayName ?? "None"
+        }
+    
     @ViewBuilder
     func seekerThumbnailView(_ videoSize: CGSize) -> some View {
         let thumbSize: CGSize = .init(width: 175, height: 100)
@@ -386,7 +426,7 @@ struct VideoPlayer: View {
                             progress = max(min(calculatedProgress, 1), 0)
                             isSeeking = true
                             
-                            let dragIndex = Int(progress / 0.01)
+                            let dragIndex = Int(progress * 100)
                             // checking if frameThumbnails contain the frame
                             if thumbnailsFrames.indices.contains(dragIndex) {
                                 draggingImage = thumbnailsFrames[dragIndex]
@@ -525,7 +565,7 @@ struct VideoPlayer: View {
                 var frameTimes: [CMTime] = []
                 // frame timing
                 // 1/0.1 = 100 (Frames)
-                for progress in stride(from: 0, to: 1, by: 0.1) {
+                for progress in stride(from: 0, to: 1, by: 0.01) {
                     let time = CMTime(seconds: progress * totalDuration, preferredTimescale: 600)
                     frameTimes.append(time)
                 }

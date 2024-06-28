@@ -160,7 +160,7 @@ extension FeedViewModel: FeedDataProvider {
     }
     
     func getSeriesEpisodeDetail(id: String) {
-        dataService.getServerData(url: FLAPIs.baseURL + FLAPIs.seriesEpisodeDetail + id, type: SeriesEpisodeDetailModel.self)
+        dataService.getServerData(url: FLAPIs.baseURL + FLAPIs.seriesEpisodeDetail + id + "/", type: SeriesEpisodeDetailModel.self)
             .sink { [weak self] completion in
                 DispatchQueue.main.async {
                     switch completion {
@@ -175,7 +175,7 @@ extension FeedViewModel: FeedDataProvider {
                     }
                 }
             } receiveValue: { seriesEpisodeDetailData in
-                print("Series Episode Detail Data -->", seriesEpisodeDetailData)
+//                print("Series Episode Detail Data -->", seriesEpisodeDetailData)
                 self.seriesEpisodeDetailModel = seriesEpisodeDetailData
             }
             .store(in: &subscriptions)
