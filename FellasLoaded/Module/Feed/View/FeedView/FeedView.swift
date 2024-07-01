@@ -24,6 +24,7 @@ struct FeedView: View {
     
     @State private var seriesDetailID: String = ""
     @State private var seriesEpisodeDetailId: String = ""
+    @State private var episodeCategoryID: String = ""
     
     // services model properties
     @StateObject var feedViewModel = FeedViewModel(_dataService: GetServerData.shared)
@@ -108,10 +109,20 @@ struct FeedView: View {
                                                 ForEach(data.results, id: \.uid) { result in
                                                     FeedSwiperView(feedImage: result.thumbnail, description: result.title, width: horizontalSizeClass == .regular ? 523 : 277, height: horizontalSizeClass == .regular ? 294 : 155, progressBarValue: nil) {
                                                         redirectVideoPlayer = true
+                                                        episodeCategoryID = result.uid
+                                                    }
+                                                    
+                                                    NavigationLink(isActive: $redirectVideoPlayer) {
+                                                        VideoPlayerView(seriesDetailID: $seriesDetailID, episodeCategoryID: episodeCategoryID, seriesUid: result)
+                                                            .environmentObject(feedViewModel)
+                                                            .navigationBarBackButtonHidden(true)
+                                                    } label: {
+                                                        EmptyView()
                                                     }
                                                     
                                                     NavigationLink(isActive: $redirectContinueWatchingDetail) {
-                                                        ContinueWatchingDetailView(title: data.title ,episodeID: result.categoryUUID ?? "").navigationBarBackButtonHidden(true)
+                                                        ContinueWatchingDetailView(title: data.title, episodeID: result.categoryUUID ?? "")
+                                                            .navigationBarBackButtonHidden(true)
                                                     } label: {
                                                         EmptyView()
                                                     }
@@ -252,13 +263,6 @@ struct FeedView: View {
                 } label: {
                     EmptyView()
                 }
-                
-                NavigationLink(isActive: $redirectVideoPlayer) {
-//                    VideoPlayerView(seriesEpisodeDetailId: $seriesEpisodeDetailId).navigationBarBackButtonHidden(true)
-                } label: {
-                    EmptyView()
-                }
-
                 
                 if feedViewModel.showLoader {
                     FLLoader()

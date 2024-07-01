@@ -12,6 +12,9 @@ struct ContinueWatchingDetailView: View {
     @StateObject var feedViewModel = FeedViewModel(_dataService: GetServerData.shared)
     @State var title: String = ""
     @State var episodeID: String = ""
+    @State private var redirectVideoPlayer = false
+    @State private var seriesDetailID: String = ""
+    @State private var episodeCategoryID: String = ""
     
     var body: some View {
         VStack {
@@ -23,7 +26,18 @@ struct ContinueWatchingDetailView: View {
                     ScrollView {
                         LazyVStack(spacing: 20) {
                             ForEach(feedViewModel.feedCategoryEpisodesModel?.results ?? [], id: \.uid) { data in
-                                EpisodesView(seriesImage: data.series_thumbnail, episode: "\(data.session_number):\(data.episode_number)", title: data.title, description: data.description, icon: "download")
+                                EpisodesView(seriesImage: data.series_thumbnail, episode: "\(data.session_number):\(data.episode_number)", title: data.title, description: data.description, icon: "download") {
+                                    redirectVideoPlayer = true
+                                    episodeCategoryID = data.uid
+                                }
+                                
+                                NavigationLink(isActive: $redirectVideoPlayer) {
+                                    VideoPlayerView(seriesDetailID: $seriesDetailID, episodeCategoryID: episodeCategoryID, feedCategoryEpisodeId: data)
+                                        .environmentObject(feedViewModel)
+                                        .navigationBarBackButtonHidden(true)
+                                } label: {
+                                    EmptyView()
+                                }
                             }
                         }
                     }

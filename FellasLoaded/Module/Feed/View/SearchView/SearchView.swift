@@ -12,6 +12,9 @@ struct SearchView: View {
     @StateObject var feedViewModel = FeedViewModel(_dataService: GetServerData.shared)
     @State var search: String = ""
     @State var isSearching: Bool = false
+    @State private var redirectVideoPlayer = false
+    @State private var seriesDetailID: String = ""
+    @State private var episodeCategoryID: String = ""
     
     var body: some View {
         VStack {
@@ -26,7 +29,18 @@ struct SearchView: View {
                     ScrollView {
                         VStack(spacing: 20) {
                             ForEach(feedViewModel.feedSearchModel?.results ?? [], id: \.uid) { data in
-                                EpisodesView(seriesImage: data.thumbnail, episode: "S\(data.sessionNumber ?? 0):E\(data.episodeNumber ?? 0)", title: data.title, description: data.description, icon: "download")
+                                EpisodesView(seriesImage: data.thumbnail, episode: "S\(data.sessionNumber ?? 0):E\(data.episodeNumber ?? 0)", title: data.title, description: data.description, icon: "download") {
+                                    redirectVideoPlayer = true
+                                    episodeCategoryID = data.uid
+                                }
+                                
+                                NavigationLink(isActive: $redirectVideoPlayer) {
+                                    VideoPlayerView(seriesDetailID: $seriesDetailID, episodeCategoryID: episodeCategoryID, feedSearchEpisodeId: data)
+                                        .environmentObject(feedViewModel)
+                                        .navigationBarBackButtonHidden(true)
+                                } label: {
+                                    EmptyView()
+                                }
                             }
                         }
                     }

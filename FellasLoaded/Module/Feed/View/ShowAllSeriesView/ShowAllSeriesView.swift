@@ -14,6 +14,7 @@ struct ShowAllSeriesView: View {
     @StateObject var feedViewModel = FeedViewModel(_dataService: GetServerData.shared)
     @State var title: String = ""
     @State var seriesID: String = ""
+    @State var seriesDetailID: String = ""
     @State private var redirectDetailPage = false
     
     var body: some View {
@@ -50,6 +51,7 @@ struct ShowAllSeriesView: View {
                                         .cornerRadius(10)
                                         .onTapGesture {
                                             redirectDetailPage = true
+                                            seriesDetailID = data.uid
                                         }
 //                                }
                                 }
@@ -63,11 +65,12 @@ struct ShowAllSeriesView: View {
                     print("Id -->", seriesID)
                 }
                 
-//                NavigationLink(isActive: $redirectDetailPage) {
-//                    EpisodeDetailView(seriesDetailID: $seriesID)
-//                } label: {
-//                    EmptyView()
-//                }
+                NavigationLink(isActive: $redirectDetailPage) {
+                    EpisodeDetailView(seriesDetailID: $seriesDetailID)
+                        .navigationBarBackButtonHidden(true)
+                } label: {
+                    EmptyView()
+                }
 
                 if feedViewModel.showLoader {
                     FLLoader()
