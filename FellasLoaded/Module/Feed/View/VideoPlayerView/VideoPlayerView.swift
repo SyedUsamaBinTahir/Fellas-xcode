@@ -24,13 +24,15 @@ struct VideoPlayerView: View {
                 let size = $0.size
                 let safeArea = $0.safeAreaInsets
                 
-                if let url = URL(string: feedViewModel.seriesEpisodeDetailModel?.bvideo.hls_video_playlist_url ?? "") {
-                    VideoPlayer(size: size, safeArea: safeArea, url: url, commentOrder: $commentOrder)
-                        .environmentObject(feedViewModel)
-                        .ignoresSafeArea()
-                }
-                else {
-                    FLLoader()
+                if !feedViewModel.showLoader {
+                    if let url = URL(string: feedViewModel.seriesEpisodeDetailModel?.bvideo.hls_video_playlist_url ?? "") {
+                        VideoPlayer(size: size, safeArea: safeArea, url: url, commentOrder: $commentOrder)
+                            .environmentObject(feedViewModel)
+                            .ignoresSafeArea()
+                    }
+//                    else {
+//                        FLLoader()
+//                    }
                 }
                 
             }

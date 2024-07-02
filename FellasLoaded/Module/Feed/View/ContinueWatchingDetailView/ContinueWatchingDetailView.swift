@@ -26,7 +26,7 @@ struct ContinueWatchingDetailView: View {
                     ScrollView {
                         LazyVStack(spacing: 20) {
                             ForEach(feedViewModel.feedCategoryEpisodesModel?.results ?? [], id: \.uid) { data in
-                                EpisodesView(seriesImage: data.series_thumbnail, episode: "\(data.session_number):\(data.episode_number)", title: data.title, description: data.description, icon: "download") {
+                                EpisodesView(seriesImage: data.thumbnail, episode: "\(data.session_number):\(data.episode_number)", title: data.title, description: data.description, icon: "download") {
                                     redirectVideoPlayer = true
                                     episodeCategoryID = data.uid
                                 }

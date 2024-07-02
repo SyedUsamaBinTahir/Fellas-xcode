@@ -266,13 +266,13 @@ struct VideoPlayer: View {
                     }
                     .padding(.top, 5)
                     
-                    VStack(alignment: .leading, spacing: 20) {
+                    LazyVStack(alignment: .leading, spacing: 20) {
                         Segments(selectedTab: $selectedTab)
                         
                         if selectedTab == .EPISODES {
                             ForEach(feedViewModel.feedCategorySeriesDetailModel?.sessions ?? [], id: \.uid) { data in
                                 ForEach(data.episodes ?? [], id: \.uid) { episode in
-                                    EpisodesView(seriesImage: episode.series_thumbnail, episode: "S\(episode.session_number):E\(episode.episode_number)", title: episode.title, description: episode.description, icon: "download") {  }
+                                    EpisodesView(seriesImage: episode.thumbnail, episode: "S\(episode.session_number):E\(episode.episode_number)", title: episode.title, description: episode.description, icon: "download") {  }
                                 }
                             }
                         } else if selectedTab == .RECOMMENDED {
@@ -335,18 +335,18 @@ struct VideoPlayer: View {
     }
     
     func currentQuality() -> String {
-            // Retrieve the current quality (resolution) from the player
-            guard let asset = player.currentItem?.asset as? AVURLAsset else { return "Unknown" }
-            let bitrate = asset.tracks.first?.estimatedDataRate ?? 0
-            return "\(bitrate / 1000) kbps"
-        }
-
-        func currentCaption() -> String {
-            // Retrieve the current caption (subtitles) from the player
-            guard let group = player.currentItem?.asset.mediaSelectionGroup(forMediaCharacteristic: .legible) else { return "None" }
-            let selectedOption = player.currentItem?.currentMediaSelection.selectedMediaOption(in: group)
-            return selectedOption?.displayName ?? "None"
-        }
+        // Retrieve the current quality (resolution) from the player
+        guard let asset = player.currentItem?.asset as? AVURLAsset else { return "Unknown" }
+        let bitrate = asset.tracks.first?.estimatedDataRate ?? 0
+        return "\(bitrate / 1000) kbps"
+    }
+    
+    func currentCaption() -> String {
+        // Retrieve the current caption (subtitles) from the player
+        guard let group = player.currentItem?.asset.mediaSelectionGroup(forMediaCharacteristic: .legible) else { return "None" }
+        let selectedOption = player.currentItem?.currentMediaSelection.selectedMediaOption(in: group)
+        return selectedOption?.displayName ?? "None"
+    }
     
     @ViewBuilder
     func seekerThumbnailView(_ videoSize: CGSize) -> some View {

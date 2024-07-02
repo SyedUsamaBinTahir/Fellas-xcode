@@ -94,7 +94,7 @@ struct EpisodeDetailView: View {
                             VStack(spacing: 5) {
                                 ForEach(feedViewModel.feedCategorySeriesDetailModel?.sessions ?? [], id: \.uid) { data in
                                     ForEach(data.episodes ?? [], id: \.uid) { episode in
-                                        EpisodesView(seriesImage: episode.series_thumbnail, episode: "S\(episode.session_number):E\(episode.episode_number)", title: episode.title, description: episode.description, icon: "download") {
+                                        EpisodesView(seriesImage: episode.thumbnail, episode: "S\(episode.session_number):E\(episode.episode_number)", title: episode.title, description: episode.description, icon: "download") {
                                             redirectVideoPlayer = true
 //                                            seriesEpisodeDetailId = episode.uid
                                         }

@@ -165,7 +165,7 @@ extension FeedViewModel: FeedDataProvider {
                 DispatchQueue.main.async {
                     switch completion {
                     case .failure(let error):
-                        print(error.localizedDescription)
+                        print("Series Episode Detail Faliure", error.localizedDescription)
                         self?.showAlert = true
                         self?.alertMessage = error.localizedDescription
                         self?.showLoader = false
@@ -187,7 +187,7 @@ extension FeedViewModel: FeedDataProvider {
                 DispatchQueue.main.async {
                     switch completion {
                     case .failure(let error):
-                        print(error.localizedDescription)
+                        print("Series Episode Comments Faliure", error.localizedDescription)
                         self?.showAlert = true
                         self?.alertMessage = error.localizedDescription
                         self?.showLoader = false

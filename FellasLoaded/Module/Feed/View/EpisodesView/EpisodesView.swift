@@ -20,7 +20,7 @@ struct EpisodesView: View {
     var body: some View {
         Button (action: action) {
             HStack(spacing: 16) {
-                KFImage.init(URL(string: FLAPIs.imageURL + seriesImage))
+                KFImage.init(URL(string: seriesImage))
                     .placeholder({ _ in
                         RoundedRectangle(cornerRadius: 8)
                             .fill(Color.theme.appGrayColor)

@@ -59,7 +59,7 @@ struct FeedView: View {
                                                 .stroke(Color.white, lineWidth: 0.3)
                                         }
                                         .onTapGesture {
-                                            redirectVideoPlayer = true
+//                                            redirectVideoPlayer = true
                                         }
                                 }
                             }
