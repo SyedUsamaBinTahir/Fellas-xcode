@@ -22,8 +22,8 @@ struct EpisodesView: View {
             HStack(spacing: 16) {
                 KFImage.init(URL(string: seriesImage))
                     .placeholder({ _ in
-                        RoundedRectangle(cornerRadius: 8)
-                            .fill(Color.theme.appGrayColor)
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color.theme.appCardsColor)
                     })
                     .loadDiskFileSynchronously()
                     .cacheMemoryOnly()

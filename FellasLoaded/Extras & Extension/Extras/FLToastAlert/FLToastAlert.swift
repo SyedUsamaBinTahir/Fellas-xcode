@@ -22,7 +22,15 @@ struct FLToastAlert: View {
         .frame(width: 350, height: 50)
         .background(Color.theme.appGrayColor)
         .foregroundColor(.white)
-        .cornerRadius(10)
+        .cornerRadius(8)
+        .overlay(content: {
+            RoundedRectangle(cornerRadius: 8)
+                .stroke(lineWidth: 0.4)
+        })
         .padding(.top, 50)
     }
+}
+
+#Preview {
+    FLToastAlert(image: .constant(""), message: .constant("asdf sdfsd asdfsd"))
 }

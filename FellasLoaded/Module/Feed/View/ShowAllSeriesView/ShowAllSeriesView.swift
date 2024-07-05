@@ -38,8 +38,8 @@ struct ShowAllSeriesView: View {
                                 ForEach(feedViewModel.feedCategorySeriesModel?.results ?? [], id: \.uid) { data in
                                     KFImage.init(URL(string: data.thumbnail))
                                         .placeholder({ _ in
-                                            RoundedRectangle(cornerRadius: 8)
-                                                .fill(Color.theme.appGrayColor)
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .fill(Color.theme.appCardsColor)
                                         })
                                         .loadDiskFileSynchronously()
                                         .cacheMemoryOnly()

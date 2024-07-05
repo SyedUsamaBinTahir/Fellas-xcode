@@ -34,13 +34,13 @@ struct SearchView: View {
                                     episodeCategoryID = data.uid
                                 }
                                 
-                                NavigationLink(isActive: $redirectVideoPlayer) {
-                                    VideoPlayerView(seriesDetailID: $seriesDetailID, episodeCategoryID: episodeCategoryID, feedSearchEpisodeId: data)
-                                        .environmentObject(feedViewModel)
-                                        .navigationBarBackButtonHidden(true)
-                                } label: {
-                                    EmptyView()
-                                }
+//                                NavigationLink(isActive: $redirectVideoPlayer) {
+//                                    VideoPlayerView(seriesDetailID: $seriesDetailID, episodeCategoryID: episodeCategoryID, feedSearchEpisodeId: data)
+//                                        .environmentObject(feedViewModel)
+//                                        .navigationBarBackButtonHidden(true)
+//                                } label: {
+//                                    EmptyView()
+//                                }
                             }
                         }
                     }

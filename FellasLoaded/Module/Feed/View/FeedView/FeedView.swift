@@ -22,6 +22,7 @@ struct FeedView: View {
     @State private var redirectNotifications = false
     @State private var redirectVideoPlayer = false
     
+    // assigned properties to json
     @State private var seriesDetailID: String = ""
     @State private var seriesEpisodeDetailId: String = ""
     @State private var episodeCategoryID: String = ""
@@ -36,38 +37,10 @@ struct FeedView: View {
                     
                     FeedHeaderView(redirectSearch: $redirectSearch, redirectNotifications: $redirectNotifications)
                     ScrollView(showsIndicators: false) {
-                        //                    CarousalView(redirectVideoPlayer: $redirectVideoPlayer)
-                        //                        .environmentObject(feedViewModel)
+                        CarousalView(redirectVideoPlayer: $redirectVideoPlayer)
+                            .environmentObject(feedViewModel)
                         
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            LazyHStack(spacing: 10) {
-                                ForEach(feedViewModel.feedBannerModel?.results ?? [], id: \.uid) { data in
-                                    KFImage.init(URL(string: data.cover_art))
-                                        .placeholder({ progress in
-                                            RoundedRectangle(cornerRadius: 8)
-                                                .fill(Color.theme.appGrayColor)
-                                        })
-                                        .loadDiskFileSynchronously()
-                                        .cacheMemoryOnly()
-                                        .fade(duration: 0.50)
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(height: horizontalSizeClass == .regular ? UIScreen.main.bounds.height * 0.32 : UIScreen.main.bounds.height * 0.22)
-                                        .cornerRadius(10)
-                                        .overlay {
-                                            RoundedRectangle(cornerRadius: 10)
-                                                .stroke(Color.white, lineWidth: 0.3)
-                                        }
-                                        .onTapGesture {
-//                                            redirectVideoPlayer = true
-                                        }
-                                }
-                            }
-                            .frame(height: horizontalSizeClass == .regular ? UIScreen.main.bounds.height * 0.32 : UIScreen.main.bounds.height * 0.22)
-                            .padding(.horizontal)
-                        }
-                        
-                        LazyVStack(spacing: 20) {
+                        VStack(spacing: 20) {
                             ForEach(feedViewModel.feedCategoriesModel?.results ?? [], id: \.uid) { data in
                                 if data.order == 1 {
                                     VStack(alignment: .leading, spacing: 10) {
@@ -181,7 +154,7 @@ struct FeedView: View {
                                                     NavigationLink(isActive: $redirectBonusContentSeriesDetail) {
                                                         ShowAllSeriesView(title: data.title, seriesID: result.categoryUUID ?? "").navigationBarBackButtonHidden(true)
                                                     } label: {
-                                                        EmptyView()		
+                                                        EmptyView()
                                                     }
                                                     
                                                     NavigationLink(isActive: $redirectEpisodeDetail) {
@@ -234,6 +207,15 @@ struct FeedView: View {
                                                 ForEach(data.results, id: \.uid) { result in
                                                     FeedSwiperView(feedImage: result.thumbnail, description: result.title, width: horizontalSizeClass == .regular ? 523 : 277, height: horizontalSizeClass == .regular ? 294 : 155, progressBarValue: nil) {
                                                         redirectVideoPlayer = true
+                                                        episodeCategoryID = result.uid
+                                                    }
+                                                    
+                                                    NavigationLink(isActive: $redirectVideoPlayer) {
+                                                        VideoPlayerView(seriesDetailID: $seriesDetailID, episodeCategoryID: episodeCategoryID, seriesUid: result)
+                                                            .environmentObject(feedViewModel)
+                                                            .navigationBarBackButtonHidden(true)
+                                                    } label: {
+                                                        EmptyView()
                                                     }
                                                     
                                                     NavigationLink(isActive: $redirectContinueWatchingDetail) {
@@ -268,7 +250,6 @@ struct FeedView: View {
                     FLLoader()
                 }
             }
-            
         }
         .background {
             LinearGradient(gradient: Gradient(colors: [Color.black, Color.theme.appColor, Color.black]), startPoint: .topLeading, endPoint: .bottomTrailing)

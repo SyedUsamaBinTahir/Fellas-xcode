@@ -23,12 +23,12 @@ struct FeedSwiperView: View {
                     KFImage.init(URL(string: "\(feedImage)"))
                         .placeholder({ progress in
                             RoundedRectangle(cornerRadius: 8)
-                                .fill(Color.theme.appGrayColor)
+                                .fill(Color.theme.appCardsColor)
                                 
                         })
                         .loadDiskFileSynchronously()
                         .cacheMemoryOnly()
-                        .fade(duration: 0.50)
+                        .fade(duration: 0.75)
                         .resizable()
                         .scaledToFill()
                         .frame(width: width, height: height)

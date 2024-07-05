@@ -51,13 +51,10 @@ struct SubscribeView: View {
                     
                     Spacer()
                 }
-                .onAppear {
-                    viewModel.showLoader = true
-                    viewModel.getStripePaymentPrices()
-                }
-//                .navigationDestination(isPresented: $redirectToTabbarView, destination: {
-//                    Tabbar().navigationBarBackButtonHidden(true)
-//                })
+//                .onAppear {
+//                    viewModel.showLoader = true
+//                    viewModel.getStripePaymentPrices()
+//                }
                 .popup(isPresented: $viewModel.showAlert) {
                     FLToastAlert(image: .constant(""), message: .constant(viewModel.alertMessage))
                 } customize: {
@@ -69,10 +66,6 @@ struct SubscribeView: View {
                         .backgroundColor(.black.opacity(0.5))
                         .autohideIn(3)
                         .appearFrom(.top)
-                }
-                
-                if viewModel.showLoader {
-                    FLLoader()
                 }
                 
                 NavigationLink(isActive: $redirectToTabbarView) {

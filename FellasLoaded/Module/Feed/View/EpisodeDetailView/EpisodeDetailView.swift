@@ -20,7 +20,7 @@ struct EpisodeDetailView: View {
     var body: some View {
         VStack {
             ZStack {
-                ScrollView {
+                ScrollView(showsIndicators: false) {
                     ZStack(alignment: horizontalSizeClass == .regular ? .topLeading : .center) {
                         if horizontalSizeClass == .regular {
                             EpisodesDetailImageView(image: .constant(feedViewModel.feedCategorySeriesDetailModel?.horizontal_cover_photo ?? ""))
@@ -53,7 +53,7 @@ struct EpisodeDetailView: View {
                         }
                     }
                     .frame(height: 488)
-                    .padding(.top, 50)
+//                    .padding(.top, 50)
                     
                     VStack(alignment: .leading, spacing: 16) {
                         if horizontalSizeClass != .regular {
@@ -120,7 +120,7 @@ struct EpisodeDetailView: View {
                         }
                         .padding(.top)
                     }
-                    .padding()
+                    .padding(.horizontal)
                     
                     //
                 }
@@ -137,10 +137,10 @@ struct EpisodeDetailView: View {
         .background {
             LinearGradient(gradient: Gradient(colors: [Color.black, Color.theme.appColor, Color.black]), startPoint: .topLeading, endPoint: .bottomTrailing)
         }
-        .ignoresSafeArea()
+        .ignoresSafeArea(edges: .bottom)
     }
 }
 
-//#Preview {
-//    EpisodeDetailView(seriesDetailID: .constant(""))
-//}
+#Preview {
+    EpisodeDetailView(seriesDetailID: .constant(""))
+}

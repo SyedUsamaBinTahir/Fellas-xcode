@@ -9,6 +9,7 @@ import SwiftUI
 
 struct VideoPlayerView: View {
     @EnvironmentObject var feedViewModel: FeedViewModel
+    @State var videoURL: URL?
     @State var seriesEpisodeDetailId: FeedCategoryEpisodesResults?
     @State var commentOrder: String = ""
     @Binding var seriesDetailID: String
@@ -24,16 +25,21 @@ struct VideoPlayerView: View {
                 let size = $0.size
                 let safeArea = $0.safeAreaInsets
                 
-                if !feedViewModel.showLoader {
-                    if let url = URL(string: feedViewModel.seriesEpisodeDetailModel?.bvideo.hls_video_playlist_url ?? "") {
-                        VideoPlayer(size: size, safeArea: safeArea, url: url, commentOrder: $commentOrder)
+//                if !feedViewModel.showLoader {
+                    //                    if let url = URL(string: feedViewModel.seriesEpisodeDetailModel?.bvideo.hls_video_playlist_url ?? "") {
+                    //                        VideoPlayer(size: size, safeArea: safeArea, url: url, commentOrder: $commentOrder)
+                    //                            .environmentObject(feedViewModel)
+                    //                            .ignoresSafeArea()
+                    //                    }
+                    if let videoURL = videoURL {
+                        VideoPlayer(size: size, safeArea: safeArea, url: videoURL, commentOrder: $commentOrder, seriesEpisodeDetailId: .constant(seriesEpisodeDetailId?.uid ?? ""), episodeCategoryID: .constant(episodeCategoryID ?? ""))
                             .environmentObject(feedViewModel)
                             .ignoresSafeArea()
                     }
-//                    else {
-//                        FLLoader()
-//                    }
-                }
+                    //                    else {
+                    //                        FLLoader()
+                    //                    }
+//                }
                 
             }
             .onChange(of: commentOrder) { _ in
@@ -46,13 +52,26 @@ struct VideoPlayerView: View {
                     print("Episode Comments ID -->", episodeCategoryID ?? "")
                 }
             }
+            .onReceive(feedViewModel.$commentCreated) { _ in
+                if seriesEpisodeDetailId != nil {
+                    feedViewModel.getSeriesEpisodesComments(id: seriesEpisodeDetailId?.uid ?? "", commentOrderBy: commentOrder)
+                    print("Series Episode Comments ID -->", seriesEpisodeDetailId?.uid ?? "")
+                } else {
+                    feedViewModel.getSeriesEpisodesComments(id: episodeCategoryID ?? "", commentOrderBy: commentOrder)
+                    print("Episode Comments ID -->", episodeCategoryID ?? "")
+                }
+            }
             .onAppear {
                 feedViewModel.showLoader = true
                 if seriesEpisodeDetailId != nil {
-                    feedViewModel.getSeriesEpisodeDetail(id: seriesEpisodeDetailId?.uid ?? "")
+                    feedViewModel.getSeriesEpisodeDetail(id: seriesEpisodeDetailId?.uid ?? "") { url in
+                        self.videoURL = url
+                    }
                     print("Series Episode Detail ID -->", seriesEpisodeDetailId?.uid ?? "")
                 } else {
-                    feedViewModel.getSeriesEpisodeDetail(id: episodeCategoryID ?? "")
+                    feedViewModel.getSeriesEpisodeDetail(id: episodeCategoryID ?? "") { url in
+                        self.videoURL = url
+                    }
                     print("Episode Detail ID -->", episodeCategoryID ?? "")
                 }
                 

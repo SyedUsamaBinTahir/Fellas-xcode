@@ -33,6 +33,7 @@ extension FLAPIs {
     static let seriesEpisodeDetail = "/series/episodes/detail/"
     static let seriesEpisodesComments = "/series/episodes/comments/"
     static let seriesEpisodesCommentsDetail = "/series/episodes/comments/detail/"
+    static let seriesEpisodesCreateComments = "/series/episodes/create/comments/"
     
     // User details
     static let userDetails = "/user/detail/"

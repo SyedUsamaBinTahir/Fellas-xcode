@@ -38,6 +38,7 @@ class AuthLoginAPIService {
                         FLUserJourney.shared.subscribedUserLoggedin()
                         return result.data
                     } else {
+                        print("Result Response", result.response)
                         throw AuthLoginAPIError.EncodeError
                     }
                 }

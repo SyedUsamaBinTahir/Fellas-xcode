@@ -10,6 +10,7 @@ import SwiftUI
 struct NewPasswordView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.viewController) private var viewControllerHolder: UIViewController?
     @Binding var code: String
     @State private var currentPassword: String = ""
     @State private var newPassword: String = ""
@@ -41,7 +42,7 @@ struct NewPasswordView: View {
                             }
                             
                             VStack(spacing: 20) {
-                                AuthPasswordTextFieldView(placeholder: .constant("Retype Password"), field: $currentPassword)
+                                AuthPasswordTextFieldView(placeholder: .constant("Retype Password"), field: $newPassword)
                                 
                                 AuthButtonView(action: {
                                     viewModel.showLoader = true
@@ -55,6 +56,11 @@ struct NewPasswordView: View {
                     
                     Spacer()
                 }
+                .onChange(of: viewModel.redirectToWelcomPage, perform: { _ in
+                    self.viewControllerHolder?.present(style: .overFullScreen) {
+                        WelcomeScreen()
+                    }
+                })
                 .popup(isPresented: $viewModel.showAlert) {
                     FLToastAlert(image: .constant(""), message: .constant(viewModel.alertMessage))
                 } customize: {

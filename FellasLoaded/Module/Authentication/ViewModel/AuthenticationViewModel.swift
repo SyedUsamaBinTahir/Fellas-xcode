@@ -27,6 +27,7 @@ class AuthenticationViewModel: ObservableObject, FLViewModelProtocol, Authentica
     @Published var redirectToDisplayNameAndImageView = false
     @Published var redirectToResetPasswordView = false
     @Published var redirectToNewPasswordView = false
+    @Published var redirectToWelcomPage = false
     
     // show loader after api calls properties
     @Published var showLoader = false
@@ -194,8 +195,10 @@ extension AuthenticationViewModel {
                     }
                 case .finished:
                     print("success")
-                    self?.showLoader = false
-                    self?.redirectToNewPasswordView = true
+                    DispatchQueue.main.async {
+                        self?.showLoader = false
+                        self?.redirectToWelcomPage = true
+                    }
                 }
             } receiveValue: { _ in
                 

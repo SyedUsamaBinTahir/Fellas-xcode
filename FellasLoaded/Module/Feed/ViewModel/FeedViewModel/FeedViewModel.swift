@@ -15,10 +15,11 @@ protocol FeedDataProvider {
     func getFeedCategorySeries(id: String)
     func getCategoryEpisodes(id: String)
     func getFeedCategorySeriesDetail(id: String)
-    func getSeriesEpisodeDetail(id: String)
+    func getSeriesEpisodeDetail(id: String, completion: @escaping (URL?) -> Void)
     func getSeriesEpisodesComments(id: String, commentOrderBy: String)
     func getSeriesEpisodesCommentsDetail(id: String)
     func getFeedSearchList(searchParam: String)
+    func createComment(episode: String, comment: String)
 }
 
 class FeedViewModel: ObservableObject {
@@ -36,6 +37,9 @@ class FeedViewModel: ObservableObject {
     @Published var showLoader = false
     @Published var showAlert = false
     @Published var alertMessage = ""
+    
+    // this will reload the comments after new comment is created
+    @Published var commentCreated = false
     
     // Api Models
     var feedBannerModel: FeedBannerModel?
@@ -159,7 +163,7 @@ extension FeedViewModel: FeedDataProvider {
             .store(in: &subscriptions)
     }
     
-    func getSeriesEpisodeDetail(id: String) {
+    func getSeriesEpisodeDetail(id: String, completion: @escaping (URL?) -> Void) {
         dataService.getServerData(url: FLAPIs.baseURL + FLAPIs.seriesEpisodeDetail + id + "/", type: SeriesEpisodeDetailModel.self)
             .sink { [weak self] completion in
                 DispatchQueue.main.async {
@@ -175,8 +179,13 @@ extension FeedViewModel: FeedDataProvider {
                     }
                 }
             } receiveValue: { seriesEpisodeDetailData in
-//                print("Series Episode Detail Data -->", seriesEpisodeDetailData)
+                //                print("Series Episode Detail Data -->", seriesEpisodeDetailData)
                 self.seriesEpisodeDetailModel = seriesEpisodeDetailData
+                if let url = URL(string: seriesEpisodeDetailData.bvideo.hls_video_playlist_url ?? "") {
+                    completion(url)
+                } else {
+                    completion(nil)
+                }
             }
             .store(in: &subscriptions)
     }
@@ -267,4 +276,27 @@ extension FeedViewModel: FeedDataProvider {
             .store(in: &subscriptions)
     }
     
+    func createComment(episode: String, comment: String) {
+        SeriesEpisodesCreateCommentsAPIService.shared.createCommnet(episode: episode, comment: comment)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completion in
+                switch completion {
+                case .failure(let  error):
+                    print("error:", error.localizedDescription)
+                    DispatchQueue.main.async {
+                        self?.alertMessage = error.localizedDescription
+                        self?.showAlert = true
+                        self?.showLoader = false
+                    }
+                case .finished:
+                    print("success")
+                    self?.commentCreated = true
+                    self?.showLoader = false
+                }
+            } receiveValue: { _ in
+                
+            }
+            .store(in: &self.subscriptions)
+        
+    }
 }

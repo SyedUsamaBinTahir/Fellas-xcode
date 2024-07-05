@@ -18,4 +18,5 @@ struct ColorTheme {
     let textGrayColor = Color("text-gray-color")
     let tabbarColor = Color("tabbar-color")
     let appRedColor = Color("app-red-color")
+    let appCardsColor = Color("app-cards-color")
 }

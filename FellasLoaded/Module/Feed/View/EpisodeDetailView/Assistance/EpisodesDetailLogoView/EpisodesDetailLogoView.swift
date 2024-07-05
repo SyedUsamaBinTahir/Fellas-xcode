@@ -14,8 +14,8 @@ struct EpisodesDetailLogoView: View {
     var body: some View {
         KFImage.init(URL(string: logo))
             .placeholder({ _ in
-                RoundedRectangle(cornerRadius: 8)
-                    .fill(Color.theme.appGrayColor)
+//                RoundedRectangle(cornerRadius: 10)
+//                    .fill(Color.theme.appCardsColor)
             })
             .loadDiskFileSynchronously()
             .cacheMemoryOnly()

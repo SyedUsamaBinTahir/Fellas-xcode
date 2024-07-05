@@ -23,7 +23,7 @@ struct FLLoader: View {
                                                 0.7).repeatForever (autoreverses: false))
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.black.opacity(0.45))
+//        .background(Color.black.opacity(0.45))
         .onAppear {
             animate.toggle()
         }

@@ -16,6 +16,9 @@
 		8562A7A02C1C71EA000D8666 /* UserDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8562A79F2C1C71EA000D8666 /* UserDetailModel.swift */; };
 		8588A0A72C29B542005F59F0 /* SeriesEpisodesCommentsDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8588A0A62C29B542005F59F0 /* SeriesEpisodesCommentsDetailModel.swift */; };
 		85A0DDCD2C2C395B00B8769B /* FeedSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A0DDCC2C2C395B00B8769B /* FeedSearchModel.swift */; };
+		85DA37BD2C36EB1200E1E3A2 /* SeriesEpisodesCreateCommentsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DA37BC2C36EB1200E1E3A2 /* SeriesEpisodesCreateCommentsRequest.swift */; };
+		85DA37C12C36EBF200E1E3A2 /* SeriesEpisodesCreateCommentsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DA37C02C36EBF200E1E3A2 /* SeriesEpisodesCreateCommentsAPIService.swift */; };
+		85DA37C42C36ECB600E1E3A2 /* SeriesEpisodesCreateCommentsAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DA37C32C36ECB500E1E3A2 /* SeriesEpisodesCreateCommentsAPIError.swift */; };
 		85E86E9E2C2DAC6C0042A1E9 /* VideoQualitySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E86E9D2C2DAC6C0042A1E9 /* VideoQualitySelectionView.swift */; };
 		9B10F8582BFDF2CD005914BD /* AuthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B10F8572BFDF2CD005914BD /* AuthHeaderView.swift */; };
 		9B11FC5B2C17036200AE80ED /* FeedCategoryEpisodesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B11FC5A2C17036100AE80ED /* FeedCategoryEpisodesModel.swift */; };
@@ -193,6 +196,9 @@
 		8562A79F2C1C71EA000D8666 /* UserDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailModel.swift; sourceTree = "<group>"; };
 		8588A0A62C29B542005F59F0 /* SeriesEpisodesCommentsDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesEpisodesCommentsDetailModel.swift; sourceTree = "<group>"; };
 		85A0DDCC2C2C395B00B8769B /* FeedSearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSearchModel.swift; sourceTree = "<group>"; };
+		85DA37BC2C36EB1200E1E3A2 /* SeriesEpisodesCreateCommentsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesEpisodesCreateCommentsRequest.swift; sourceTree = "<group>"; };
+		85DA37C02C36EBF200E1E3A2 /* SeriesEpisodesCreateCommentsAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesEpisodesCreateCommentsAPIService.swift; sourceTree = "<group>"; };
+		85DA37C32C36ECB500E1E3A2 /* SeriesEpisodesCreateCommentsAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesEpisodesCreateCommentsAPIError.swift; sourceTree = "<group>"; };
 		85E86E9D2C2DAC6C0042A1E9 /* VideoQualitySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoQualitySelectionView.swift; sourceTree = "<group>"; };
 		959029D06F70831162C77BD0 /* Pods_FellasLoaded.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FellasLoaded.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B10F8572BFDF2CD005914BD /* AuthHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHeaderView.swift; sourceTree = "<group>"; };
@@ -418,6 +424,40 @@
 				046ADDE62C24E64900AF0E22 /* FLGetServerData.swift */,
 			);
 			path = FLGetServerData;
+			sourceTree = "<group>";
+		};
+		85DA37BB2C36EADF00E1E3A2 /* SeriesEpisodesCreateCommentsModel */ = {
+			isa = PBXGroup;
+			children = (
+				85DA37C22C36EC9400E1E3A2 /* SeriesEpisodesCreateCommentsAPIError */,
+				85DA37BF2C36EBC300E1E3A2 /* SeriesEpisodesCreateCommentsAPIService */,
+				85DA37BE2C36EBAF00E1E3A2 /* SeriesEpisodesCreateCommentsRequest */,
+			);
+			path = SeriesEpisodesCreateCommentsModel;
+			sourceTree = "<group>";
+		};
+		85DA37BE2C36EBAF00E1E3A2 /* SeriesEpisodesCreateCommentsRequest */ = {
+			isa = PBXGroup;
+			children = (
+				85DA37BC2C36EB1200E1E3A2 /* SeriesEpisodesCreateCommentsRequest.swift */,
+			);
+			path = SeriesEpisodesCreateCommentsRequest;
+			sourceTree = "<group>";
+		};
+		85DA37BF2C36EBC300E1E3A2 /* SeriesEpisodesCreateCommentsAPIService */ = {
+			isa = PBXGroup;
+			children = (
+				85DA37C02C36EBF200E1E3A2 /* SeriesEpisodesCreateCommentsAPIService.swift */,
+			);
+			path = SeriesEpisodesCreateCommentsAPIService;
+			sourceTree = "<group>";
+		};
+		85DA37C22C36EC9400E1E3A2 /* SeriesEpisodesCreateCommentsAPIError */ = {
+			isa = PBXGroup;
+			children = (
+				85DA37C32C36ECB500E1E3A2 /* SeriesEpisodesCreateCommentsAPIError.swift */,
+			);
+			path = SeriesEpisodesCreateCommentsAPIError;
 			sourceTree = "<group>";
 		};
 		85E86E9C2C2DAC510042A1E9 /* VideoQualitySelectionView */ = {
@@ -1919,6 +1959,7 @@
 		9BE4BEB12C10773F0016E673 /* FeedModel */ = {
 			isa = PBXGroup;
 			children = (
+				85DA37BB2C36EADF00E1E3A2 /* SeriesEpisodesCreateCommentsModel */,
 				85A0DDCB2C2C394A00B8769B /* FeedSearchModel */,
 				8588A0A52C29B4FB005F59F0 /* SeriesEpisodesCommentsDetailModel */,
 				046ADDE32C244AB500AF0E22 /* SeriesEpisodesCommentsModel */,
@@ -2352,6 +2393,7 @@
 			files = (
 				9BCED2132BF4D3C6007D02B3 /* FeedView.swift in Sources */,
 				9B72893C2BFE0BF100EB1A90 /* PasswordFieldAndButtonView.swift in Sources */,
+				85DA37C42C36ECB600E1E3A2 /* SeriesEpisodesCreateCommentsAPIError.swift in Sources */,
 				9B72891B2BFE068000EB1A90 /* DisplayNameAndImageLablesView.swift in Sources */,
 				9BF7672A2C07590800BDBC6A /* FLImagePicker.swift in Sources */,
 				9BC9F1EC2BF7AB2000B0EE8E /* WatchlistView.swift in Sources */,
@@ -2470,6 +2512,7 @@
 				9BF226632C00B1E500149850 /* FLUserJourney.swift in Sources */,
 				9BC95FB12C0DD48600BCC606 /* SubscribeTerms&ConditionsView.swift in Sources */,
 				9B3D105C2BF253CF009AD6F2 /* RegistrationView.swift in Sources */,
+				85DA37BD2C36EB1200E1E3A2 /* SeriesEpisodesCreateCommentsRequest.swift in Sources */,
 				9BC6B81E2BF3878900E684AD /* Tabbar.swift in Sources */,
 				9B7289262BFE087200EB1A90 /* SubscribeLablesView.swift in Sources */,
 				9B454B5C2BFE321A000786B6 /* CommunityGuidlineView.swift in Sources */,
@@ -2488,6 +2531,7 @@
 				9BE13A3B2C05CADB00D69B66 /* String+.swift in Sources */,
 				9BF2266E2C00BFF600149850 /* SystemReachability.swift in Sources */,
 				9BD0E4132C1317D400BFBE6A /* FeedSwiperHeaderView.swift in Sources */,
+				85DA37C12C36EBF200E1E3A2 /* SeriesEpisodesCreateCommentsAPIService.swift in Sources */,
 				9B8A18392BFB788200CF9FF1 /* CustomVideoPlayer.swift in Sources */,
 				9BF2265D2C00ACA800149850 /* AuthLoginAPIService.swift in Sources */,
 				9BCF3EA52C08DC6A0016B22C /* CodeVerficationRequestModel.swift in Sources */,
@@ -2652,6 +2696,10 @@
 				EXCLUDED_ARCHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FellasLoaded/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Fellas Loaded would like to access you bluetooth";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Fellas need access to your camera to allow you to take photo for your profile";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Fellas Loaded uses the local network to discover Cast-enabled devices on your WiFi\n    network.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -2662,6 +2710,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
@@ -2694,6 +2743,10 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FellasLoaded/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Fellas Loaded would like to access you bluetooth";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Fellas need access to your camera to allow you to take photo for your profile";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Fellas Loaded uses the local network to discover Cast-enabled devices on your WiFi\n    network.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -2704,6 +2757,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";

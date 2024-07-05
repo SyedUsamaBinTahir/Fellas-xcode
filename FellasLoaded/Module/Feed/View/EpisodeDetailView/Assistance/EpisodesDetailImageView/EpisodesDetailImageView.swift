@@ -16,7 +16,7 @@ struct EpisodesDetailImageView: View {
         KFImage.init(URL(string: image))
             .placeholder({ _ in
                 RoundedRectangle(cornerRadius: 8)
-                    .fill(Color.theme.appGrayColor)
+                    .fill(Color.theme.appCardsColor)
             })
             .loadDiskFileSynchronously()
             .cacheMemoryOnly()
@@ -24,5 +24,7 @@ struct EpisodesDetailImageView: View {
             .resizable()
             .scaledToFill()
             .frame(width: UIScreen.main.bounds.width, height: horizontalSizeClass == .regular ? UIScreen.main.bounds.height * 0.40 : 488)
+            .clipShape(.rect(topLeadingRadius: 10, topTrailingRadius: 10, style: .continuous))
+                    LinearGradient(gradient: Gradient(colors: [Color.black, Color.white.opacity(0.1)]), startPoint: .bottom, endPoint: .center)
     }
 }

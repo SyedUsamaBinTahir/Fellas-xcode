@@ -17,12 +17,16 @@ struct VideoPlayer: View {
     var safeArea: EdgeInsets?
     var url: URL
     @Binding var commentOrder: String
+    @Binding var seriesEpisodeDetailId: String
+    @Binding var episodeCategoryID: String
     @State private var player: AVPlayer
-    init(size: CGSize, safeArea: EdgeInsets?, url: URL, commentOrder: Binding<String>) {
+    init(size: CGSize, safeArea: EdgeInsets?, url: URL, commentOrder: Binding<String>, seriesEpisodeDetailId: Binding<String>, episodeCategoryID: Binding<String>) {
         self.size = size
         self.safeArea = safeArea
         self.url = url
         self._commentOrder = commentOrder
+        self._seriesEpisodeDetailId = seriesEpisodeDetailId
+        self._episodeCategoryID = episodeCategoryID
         self._player = State(initialValue: AVPlayer(url: url))
     }
     @State private var showPlayerControlls: Bool = false
@@ -54,132 +58,139 @@ struct VideoPlayer: View {
             let videoPlayerSize: CGSize = .init(width: isRotated ? size.height : size.width, height: isRotated ? size.width : (size.height / 3.5))
             
             // Custom Video Player
-            ZStack(alignment: .topLeading) {
-                CustomVideoPlayer(player: player)
-                    .overlay {
-                        Rectangle()
-                            .fill(.black.opacity(0.4))
-                            .opacity(showPlayerControlls || isDragging ? 1 : 0)
-                        /// Animating Dragging State
-                            .animation(.easeIn(duration: 0.35), value: isDragging)
-                            .overlay {
-                                playerbackControlls()
+            if feedViewModel.showLoader {
+                FLLoader()
+                    .frame(width: videoPlayerSize.width, height: videoPlayerSize.height)
+                    /// To avoid other view expansion set it's native view height
+                    .frame(width: size.width, height: size.height / 3, alignment: .bottomLeading)
+            } else {
+                ZStack(alignment: .topLeading) {
+                    CustomVideoPlayer(player: player)
+                        .overlay {
+                            Rectangle()
+                                .fill(.black.opacity(0.4))
+                                .opacity(showPlayerControlls || isDragging ? 1 : 0)
+                            /// Animating Dragging State
+                                .animation(.easeIn(duration: 0.35), value: isDragging)
+                                .overlay {
+                                    playerbackControlls()
+                                }
+                        }
+                        .overlay(content: {
+                            HStack(spacing: 60) {
+                                DoubleTapSeek {
+                                    /// seeking 15 seconds backward
+                                    let seconds = player.currentTime().seconds - 15
+                                    player.seek(to: .init(seconds: seconds, preferredTimescale: 600))
+                                }
+                                
+                                DoubleTapSeek(isForward: true) {
+                                    /// seeking 15 seconds farward
+                                    let seconds = player.currentTime().seconds + 15
+                                    player.seek(to: .init(seconds: seconds, preferredTimescale: 600))
+                                }
                             }
-                    }
-                    .overlay(content: {
-                        HStack(spacing: 60) {
-                            DoubleTapSeek {
-                                /// seeking 15 seconds backward
-                                let seconds = player.currentTime().seconds - 15
-                                player.seek(to: .init(seconds: seconds, preferredTimescale: 600))
+                        })
+                        .onTapGesture {
+                            withAnimation(.easeInOut(duration: 0.35)) {
+                                showPlayerControlls.toggle()
                             }
                             
-                            DoubleTapSeek(isForward: true) {
-                                /// seeking 15 seconds farward
-                                let seconds = player.currentTime().seconds + 15
-                                player.seek(to: .init(seconds: seconds, preferredTimescale: 600))
+                            if isPlaying {
+                                timeoutControlls()
                             }
                         }
-                    })
-                    .onTapGesture {
-                        withAnimation(.easeInOut(duration: 0.35)) {
-                            showPlayerControlls.toggle()
+                        .overlay(alignment: .leading ,content: {
+                            seekerThumbnailView(videoPlayerSize)
+                        })
+                        .overlay(alignment: .bottom) {
+                            if showPlayerControlls {
+                                videoSeekerView(videoPlayerSize)
+                            }
+                        }
+                    
+                    HStack {
+                        Button {
+                            presentationMode.wrappedValue.dismiss()
+                        } label: {
+                            Image("back-icon")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 32, height: 32)
+                                .opacity(0.8)
                         }
                         
-                        if isPlaying {
-                            timeoutControlls()
-                        }
-                    }
-                    .overlay(alignment: .leading ,content: {
-                        seekerThumbnailView(videoPlayerSize)
-                    })
-                    .overlay(alignment: .bottom) {
+                        Spacer()
                         if showPlayerControlls {
-                            videoSeekerView(videoPlayerSize)
-                        }
-                    }
-                
-                HStack {
-                    Button {
-                        presentationMode.wrappedValue.dismiss()
-                    } label: {
-                        Image("back-icon")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 32, height: 32)
-                            .opacity(0.8)
-                    }
-                    
-                    Spacer()
-                    if showPlayerControlls {
-                        HStack {
-                            AirPlayView()
-                                .frame(width: 32, height: 32)
-                            CastButtonRepresentable()
-                                .frame(width: 32, height: 32)
-                                .foregroundColor(.white)
-                            Button {
-                                showSleepTimer.toggle()
-                            } label: {
-                                Image(systemName: "clock")
+                            HStack {
+                                AirPlayView()
+                                    .frame(width: 32, height: 32)
+                                CastButtonRepresentable()
                                     .frame(width: 32, height: 32)
                                     .foregroundColor(.white)
-                            }
-                            
-                            Button {
-                                showVidoQualityLisit.toggle()
-                            } label: {
-                                Image("settings-icon")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 20, height: 20)
-                                    .foregroundColor(.white)
+                                Button {
+                                    showSleepTimer.toggle()
+                                } label: {
+                                    Image(systemName: "clock")
+                                        .frame(width: 32, height: 32)
+                                        .foregroundColor(.white)
+                                }
+                                
+                                Button {
+                                    showVidoQualityLisit.toggle()
+                                } label: {
+                                    Image("settings-icon")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 20, height: 20)
+                                        .foregroundColor(.white)
+                                }
                             }
                         }
                     }
+                    .padding(10)
                 }
-                .padding(10)
-            }
-            .sheet(isPresented: $showSleepTimer) {
-                SleepTimerView()
+                .sheet(isPresented: $showSleepTimer) {
+                    SleepTimerView()
+                        .presentationDetents([.medium])
+                        .presentationDragIndicator(.visible)
+                }
+                .sheet(isPresented: $showVidoQualityLisit) {
+                    VideoQualitySelectionView {
+                        
+                    }
                     .presentationDetents([.medium])
                     .presentationDragIndicator(.visible)
-            }
-            .sheet(isPresented: $showVidoQualityLisit) {
-                VideoQualitySelectionView {
-                    
+                    .environmentObject(feedViewModel)
                 }
-                .presentationDetents([.medium])
-                .presentationDragIndicator(.visible)
-                .environmentObject(feedViewModel)
+                .background(content: {
+                    Rectangle()
+                        .fill(.black)
+                        .padding(.trailing, isRotated ? -safeArea!.bottom : 0)
+                })
+                .gesture(
+                    DragGesture()
+                        .onEnded({ value in
+                            if -value.translation.height > 100 {
+                                /// Rotate Player
+                                withAnimation(.easeInOut(duration: 0.2)) {
+                                    isRotated = true
+                                }
+                            } else {
+                                withAnimation(.easeInOut(duration: 0.2)) {
+                                    isRotated = false
+                                }
+                            }
+                        })
+                )
+                .frame(width: videoPlayerSize.width, height: videoPlayerSize.height)
+                /// To avoid other view expansion set it's native view height
+                .frame(width: size.width, height: size.height / 3, alignment: .bottomLeading)
+                .offset(y: isRotated ? -((size.width / 2) + safeArea!.bottom) : 0)
+                .rotationEffect(.init(degrees: isRotated ? 90 : 0), anchor: .topLeading)
+                /// Making it top view
+                .zIndex(10000)
             }
-            .background(content: {
-                Rectangle()
-                    .fill(.black)
-                    .padding(.trailing, isRotated ? -safeArea!.bottom : 0)
-            })
-            .gesture(
-                DragGesture()
-                    .onEnded({ value in
-                        if -value.translation.height > 100 {
-                            /// Rotate Player
-                            withAnimation(.easeInOut(duration: 0.2)) {
-                                isRotated = true
-                            }
-                        } else {
-                            withAnimation(.easeInOut(duration: 0.2)) {
-                                isRotated = false
-                            }
-                        }
-                    })
-            )
-            .frame(width: videoPlayerSize.width, height: videoPlayerSize.height)
-            /// To avoid other view expansion set it's native view height
-            .frame(width: size.width, height: size.height / 3, alignment: .bottomLeading)
-            .offset(y: isRotated ? -((size.width / 2) + safeArea!.bottom) : 0)
-            .rotationEffect(.init(degrees: isRotated ? 90 : 0), anchor: .topLeading)
-            /// Making it top view
-            .zIndex(10000)
             
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading) {
@@ -258,7 +269,7 @@ struct VideoPlayer: View {
                             redirectComment = true
                         }
                         .sheet(isPresented: $redirectComment, content: {
-                            CommentView(dismissSheet: $redirectComment, commentOrder: $commentOrder)
+                            CommentView(dismissSheet: $redirectComment, commentOrder: $commentOrder, seriesEpisodeDetailId: $seriesEpisodeDetailId, episodeCategoryID: $episodeCategoryID)
                                 .presentationDragIndicator(.visible)
                                 .environmentObject(feedViewModel)
 

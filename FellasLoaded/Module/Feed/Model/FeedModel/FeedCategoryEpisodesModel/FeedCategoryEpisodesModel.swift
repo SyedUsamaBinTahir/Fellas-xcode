@@ -30,6 +30,6 @@ struct FeedCategoryEpisodesResults: Codable {
     let is_watch_later: Bool
     let playable_from: String
     let release_date: String
-    let bvideo: Bvideo?
+    let bvideo: SeriesBvideo?
     let created_at: String
 }
