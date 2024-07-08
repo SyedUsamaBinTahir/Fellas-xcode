@@ -198,13 +198,13 @@ struct VideoPlayer: View {
                         .font(.custom(Font.semiBold, size: 24))
                         .foregroundStyle(.white)
                     
-                    Text("Quality: \(currentQuality())")
-                        .font(.custom(Font.semiBold, size: 24))
-                        .foregroundStyle(.white)
-                    
-                    Text("Caption: \(currentCaption())")
-                        .font(.custom(Font.semiBold, size: 24))
-                        .foregroundStyle(.white)
+//                    Text("Quality: \(currentQuality())")
+//                        .font(.custom(Font.semiBold, size: 24))
+//                        .foregroundStyle(.white)
+//                    
+//                    Text("Caption: \(currentCaption())")
+//                        .font(.custom(Font.semiBold, size: 24))
+//                        .foregroundStyle(.white)
                     
                     
                     VStack(alignment: .leading, spacing: 16) {

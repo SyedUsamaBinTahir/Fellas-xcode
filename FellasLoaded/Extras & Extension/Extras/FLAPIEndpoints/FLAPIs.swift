@@ -8,7 +8,10 @@
 import Foundation
 
 class FLAPIs {
-    static let baseURL = "https://api.fellasloaded.com/api"
+    // Production URL
+//    static let baseURL = "https://api.fellasloaded.com/api"
+    // Stagging URL
+    static let baseURL = "https://api.staging.fellas.gitwork.tech/api"
     static let imageURL = "https://storage.googleapis.com/fellas_media/"
 }
 

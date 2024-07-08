@@ -18,8 +18,9 @@ struct RepliesView: View {
     @State private var addComment: String = ""
     @State private var redirectReply = false
     @Binding var dismissSheet: Bool
-    
     @Binding var commentData: String
+    @Binding var seriesEpisodeDetailId: String
+    @Binding var episodeCategoryID: String
     
     var body: some View {
         VStack(spacing: 0) {
@@ -28,47 +29,86 @@ struct RepliesView: View {
                 
                 CommunityGuidlineView()
                 
-                CommentCardView(/*isPinned: $isPinned,*/ expandDescription: $expandDescription,
-                                                         showReportComment: $showReportComment,
-                                                         redirectReply: $redirectReply,
-                                                         profileImage: .constant(feedViewModel.seriesEpisodesCommentsDetailModel?.parent.user?.avatar ?? ""),
-                                                         displayName: .constant(feedViewModel.seriesEpisodesCommentsDetailModel?.parent.user?.name ?? ""),
-                                                         commentDuration: .constant(""),
-                                                         comment: .constant(feedViewModel.seriesEpisodesCommentsDetailModel?.parent.comment ?? ""),
-                                                         likes: .constant(feedViewModel.seriesEpisodesCommentsDetailModel?.parent.like_count ?? 0),
-                                                         replies: .constant(feedViewModel.seriesEpisodesCommentsDetailModel?.parent.replies_count ?? 0),
-                                                         action: {
-                    
-                })
-                .padding(.top, 10)
             }
             .background(Color.theme.tabbarColor)
             
-            ScrollView {
-                ForEach(feedViewModel.seriesEpisodesCommentsDetailModel?.replies ?? [], id: \.uid) { reply in
+            if feedViewModel.showLoader {
+                FLLoader()
+            } else {
+                ScrollView {
+                    
                     CommentCardView(/*isPinned: $isPinned,*/ expandDescription: $expandDescription,
                                                              showReportComment: $showReportComment,
                                                              redirectReply: $redirectReply,
-                                                             profileImage: .constant(reply.user?.avatar ?? ""),
-                                                             displayName: .constant(reply.user?.name ?? ""),
-                                                             commentDuration: .constant( ""),
-                                                             comment: .constant(reply.comment),
-                                                             likes: .constant(reply.like_count),
-                                                             replies: .constant(reply.replies_count), action: {
+                                                             profileImage: .constant(feedViewModel.seriesEpisodesCommentsDetailModel?.parent.user?.avatar ?? ""),
+                                                             displayName: .constant(feedViewModel.seriesEpisodesCommentsDetailModel?.parent.user?.name ?? ""),
+                                                             commentDuration: .constant(""),
+                                                             comment: .constant(feedViewModel.seriesEpisodesCommentsDetailModel?.parent.comment ?? ""),
+                                                             likes: .constant(feedViewModel.seriesEpisodesCommentsDetailModel?.parent.like_count ?? 0),
+                                                             replies: .constant(feedViewModel.seriesEpisodesCommentsDetailModel?.parent.replies_count ?? 0),
+                                                             action: {
                         
                     })
+                    .padding(.top, 10)
+                    .background(Color.theme.tabbarColor)
+                    
+                    ForEach(feedViewModel.seriesEpisodesCommentsDetailModel?.replies?.reversed() ?? [], id: \.uid) { reply in
+                        CommentCardView(/*isPinned: $isPinned,*/ expandDescription: $expandDescription,
+                                                                 showReportComment: $showReportComment,
+                                                                 redirectReply: $redirectReply,
+                                                                 profileImage: .constant(reply.user?.avatar ?? ""),
+                                                                 displayName: .constant(reply.user?.name ?? ""),
+                                                                 commentDuration: .constant( ""),
+                                                                 comment: .constant(reply.comment),
+                                                                 likes: .constant(reply.like_count),
+                                                                 replies: .constant(reply.replies_count), action: {
+                            
+                        })
+                    }
+                    .padding(.horizontal, 30)
                 }
-                .padding(.horizontal, 30)
             }
             
-            AddCommentView(addComment: $addComment) { }
+            AddCommentView(addComment: $addComment) {
+                feedViewModel.createReplies(episode: seriesEpisodeDetailId != "" ? seriesEpisodeDetailId : episodeCategoryID, parent: feedViewModel.seriesEpisodesCommentsDetailModel?.parent.uid ?? "", replyTo: feedViewModel.seriesEpisodesCommentsDetailModel?.parent.uid ?? "", comment: addComment)
+                addComment = ""
+            }
             
+        }
+        .onReceive(feedViewModel.$commentCreated) { _ in
+            feedViewModel.getSeriesEpisodesCommentsDetail(id: commentData)
+            print("comment Reply id --> ", commentData)
         }
         .onAppear {
             feedViewModel.showLoader = true
             feedViewModel.getSeriesEpisodesCommentsDetail(id: commentData)
-            print("comment detail id --> ", commentData)
+            print("comment Reply id --> ", commentData)
         }
+        .popup(isPresented: $feedViewModel.showAlert) {
+            FLToastAlert(image: .constant(""), message: .constant(feedViewModel.alertMessage))
+        } customize: {
+            $0
+                .type(.floater(useSafeAreaInset: true))
+                .position(.top)
+                .animation(.spring())
+                .closeOnTapOutside(true)
+                .backgroundColor(.black.opacity(0.5))
+                .autohideIn(3)
+                .appearFrom(.top)
+        }
+        .popup(isPresented: $feedViewModel.commentCreated) {
+            FLToastAlert(image: .constant(""), message: .constant("Comment Added"))
+        } customize: {
+            $0
+                .type(.floater(useSafeAreaInset: true))
+                .position(.top)
+                .animation(.spring())
+                .closeOnTapOutside(true)
+                .backgroundColor(.black.opacity(0.5))
+                .autohideIn(3)
+                .appearFrom(.top)
+        }
+        
         .background {
             LinearGradient(gradient: Gradient(colors: [Color.black, Color.theme.appColor, Color.black]), startPoint: .topLeading, endPoint: .bottomTrailing)
         }

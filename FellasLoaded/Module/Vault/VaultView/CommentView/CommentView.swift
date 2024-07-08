@@ -76,7 +76,7 @@ struct CommentView: View {
                         FLLoader()
                     } else {
                         ScrollView {
-                            ForEach(feedViewModel.seriesEpisodesCommentsModel?.results ?? [], id: \.uid) { data in
+                            ForEach(feedViewModel.seriesEpisodesCommentsModel?.results.reversed() ?? [], id: \.uid) { data in
                                 CommentCardView(/*isPinned: $isPinned,*/ expandDescription: $expandDescription, showReportComment: $showReportComment, redirectReply: $redirectReply, profileImage: .constant(data.user?.avatar ?? ""), displayName: .constant(data.user?.name ?? ""), commentDuration: .constant(""), comment: .constant(data.comment), likes: .constant(data.like_count), replies: .constant(data.replies_count), action: {
                                     commentid = data.uid
                                     redirectReply = true
@@ -89,7 +89,7 @@ struct CommentView: View {
                     }
                     
                     NavigationLink(isActive: $redirectReply) {
-                        RepliesView(dismissSheet: $redirectReply, commentData: $commentid)
+                        RepliesView(dismissSheet: $redirectReply, commentData: $commentid, seriesEpisodeDetailId: $seriesEpisodeDetailId, episodeCategoryID: $episodeCategoryID)
                             .environmentObject(feedViewModel)
                             .navigationBarBackButtonHidden(true)
                     } label: {

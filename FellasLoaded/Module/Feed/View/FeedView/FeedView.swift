@@ -32,9 +32,10 @@ struct FeedView: View {
     
     var body: some View {
         VStack {
-            ZStack {
-                VStack {
-                    
+            VStack {
+                if feedViewModel.showLoader {
+                    FLLoader()
+                } else {
                     FeedHeaderView(redirectSearch: $redirectSearch, redirectNotifications: $redirectNotifications)
                     ScrollView(showsIndicators: false) {
                         CarousalView(redirectVideoPlayer: $redirectVideoPlayer)
@@ -233,22 +234,18 @@ struct FeedView: View {
                         .padding()
                     }
                 }
-                .padding(.top, 30)
-                .onAppear {
-                    feedViewModel.showLoader = true
-                    feedViewModel.getFeedBanners()
-                    feedViewModel.getFeedCategories()
-                    feedViewModel.getUserDetail()
-                }
-                NavigationLink(isActive: $redirectSearch) {
-                    SearchView().navigationBarBackButtonHidden(true)
-                } label: {
-                    EmptyView()
-                }
-                
-                if feedViewModel.showLoader {
-                    FLLoader()
-                }
+            }
+            .padding(.top, 30)
+            .onAppear {
+                feedViewModel.showLoader = true
+                feedViewModel.getFeedBanners()
+                feedViewModel.getFeedCategories()
+                //                    feedViewModel.getUserDetail()
+            }
+            NavigationLink(isActive: $redirectSearch) {
+                SearchView().navigationBarBackButtonHidden(true)
+            } label: {
+                EmptyView()
             }
         }
         .background {

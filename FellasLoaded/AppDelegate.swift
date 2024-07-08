@@ -27,7 +27,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, GCKLoggerDelegate
         IQKeyboardManager.shared().isEnabled = true
         IQKeyboardManager.shared().shouldResignOnTouchOutside = true
         IQKeyboardManager.shared().isEnableAutoToolbar = true
-        IQKeyboardManager.shared().keyboardDistanceFromTextField = 10
+        IQKeyboardManager.shared().keyboardDistanceFromTextField = 0
         
         // MARK: - AVKit
         let audioSession = AVAudioSession.sharedInstance()

@@ -19,7 +19,9 @@ struct EpisodeDetailView: View {
     
     var body: some View {
         VStack {
-            ZStack {
+            if feedViewModel.showLoader {
+                FLLoader()
+            } else {
                 ScrollView(showsIndicators: false) {
                     ZStack(alignment: horizontalSizeClass == .regular ? .topLeading : .center) {
                         if horizontalSizeClass == .regular {
@@ -53,7 +55,7 @@ struct EpisodeDetailView: View {
                         }
                     }
                     .frame(height: 488)
-//                    .padding(.top, 50)
+                    //                    .padding(.top, 50)
                     
                     VStack(alignment: .leading, spacing: 16) {
                         if horizontalSizeClass != .regular {
@@ -83,7 +85,7 @@ struct EpisodeDetailView: View {
                                 .environmentObject(feedViewModel)
                             
                             
-
+                            
                         }
                         
                         VStack(alignment: .leading, spacing: 20) {
@@ -96,7 +98,7 @@ struct EpisodeDetailView: View {
                                     ForEach(data.episodes ?? [], id: \.uid) { episode in
                                         EpisodesView(seriesImage: episode.thumbnail, episode: "S\(episode.session_number):E\(episode.episode_number)", title: episode.title, description: episode.description, icon: "download") {
                                             redirectVideoPlayer = true
-//                                            seriesEpisodeDetailId = episode.uid
+                                            //                                            seriesEpisodeDetailId = episode.uid
                                         }
                                         
                                         NavigationLink(isActive: $redirectVideoPlayer) {
@@ -121,16 +123,11 @@ struct EpisodeDetailView: View {
                         .padding(.top)
                     }
                     .padding(.horizontal)
-                    
-                    //
                 }
-            }
-            
-            if feedViewModel.showLoader {
-                FLLoader()
             }
         }
         .onAppear {
+            feedViewModel.showLoader = true
             feedViewModel.getFeedCategorySeriesDetail(id: seriesDetailID)
             print("series detail id --> ", seriesDetailID)
         }

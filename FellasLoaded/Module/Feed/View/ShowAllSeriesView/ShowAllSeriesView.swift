@@ -28,39 +28,43 @@ struct ShowAllSeriesView: View {
             GridItem(.adaptive(minimum: 150)),
         ]
         VStack {
-            ZStack {
                 VStack(alignment: .leading, spacing: 30) {
                     ShowAllSeriesHeaderView(title: $title)
                     
-                    GeometryReader(content: { geometry in
-                        ScrollView {
-                            LazyVGrid(columns: horizontalSizeClass == .regular ? horizontalGridColumn : gridColomn, spacing: 14) {
-                                ForEach(feedViewModel.feedCategorySeriesModel?.results ?? [], id: \.uid) { data in
-                                    KFImage.init(URL(string: data.thumbnail))
-                                        .placeholder({ _ in
-                                            RoundedRectangle(cornerRadius: 10)
-                                                .fill(Color.theme.appCardsColor)
-                                        })
-                                        .loadDiskFileSynchronously()
-                                        .cacheMemoryOnly()
-                                        .fade(duration: 0.50)
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(width: horizontalSizeClass == .regular ? geometry.size.width * 0.32 : geometry.size.width * 0.48, height: horizontalSizeClass == .regular ? geometry.size.height * 0.37 : geometry.size.height * 0.35)
-                                        .clipped()
-                                        .cornerRadius(10)
-                                        .onTapGesture {
-                                            redirectDetailPage = true
-                                            seriesDetailID = data.uid
-                                        }
-//                                }
+                    if feedViewModel.showLoader {
+                        FLLoader()
+                    } else {
+                        GeometryReader(content: { geometry in
+                            ScrollView {
+                                LazyVGrid(columns: horizontalSizeClass == .regular ? horizontalGridColumn : gridColomn, spacing: 14) {
+                                    ForEach(feedViewModel.feedCategorySeriesModel?.results ?? [], id: \.uid) { data in
+                                        KFImage.init(URL(string: data.thumbnail))
+                                            .placeholder({ _ in
+                                                RoundedRectangle(cornerRadius: 10)
+                                                    .fill(Color.theme.appCardsColor)
+                                            })
+                                            .loadDiskFileSynchronously()
+                                            .cacheMemoryOnly()
+                                            .fade(duration: 0.50)
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: horizontalSizeClass == .regular ? geometry.size.width * 0.32 : geometry.size.width * 0.48, height: horizontalSizeClass == .regular ? geometry.size.height * 0.37 : geometry.size.height * 0.35)
+                                            .clipped()
+                                            .cornerRadius(10)
+                                            .onTapGesture {
+                                                redirectDetailPage = true
+                                                seriesDetailID = data.uid
+                                            }
+                                        //                                }
+                                    }
                                 }
                             }
-                        }
-                    })
+                        })
+                    }
                 }
                 .padding()
                 .onAppear {
+                    feedViewModel.showLoader = true
                     feedViewModel.getFeedCategorySeries(id: seriesID)
                     print("Id -->", seriesID)
                 }
@@ -71,11 +75,6 @@ struct ShowAllSeriesView: View {
                 } label: {
                     EmptyView()
                 }
-
-                if feedViewModel.showLoader {
-                    FLLoader()
-                }
-            }
         }
         .background {
             LinearGradient(gradient: Gradient(colors: [Color.black, Color.theme.appColor, Color.black]), startPoint: .topLeading, endPoint: .bottomTrailing)

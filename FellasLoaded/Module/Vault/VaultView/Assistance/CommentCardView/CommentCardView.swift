@@ -99,7 +99,7 @@ struct CommentCardView: View {
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 16, height: 16)
-                                Text(replies > 1 ? "\(replies) REPLIES" : "REPLY")
+                                Text(replies > 0 ? "\(replies) REPLIES" : "REPLY")
                                     .font(.custom(Font.bold, size: 14))
                                     .foregroundStyle(.white)
                             }
@@ -125,7 +125,7 @@ struct CommentCardView: View {
                     }
             }
             .padding(.horizontal)
-            .padding(.vertical, 5)
+            .padding(.vertical, 10)
         }
         .overlay {
             if showReportComment {

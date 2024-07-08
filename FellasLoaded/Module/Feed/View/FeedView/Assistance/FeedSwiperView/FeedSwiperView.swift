@@ -24,7 +24,7 @@ struct FeedSwiperView: View {
                         .placeholder({ progress in
                             RoundedRectangle(cornerRadius: 8)
                                 .fill(Color.theme.appCardsColor)
-                                
+
                         })
                         .loadDiskFileSynchronously()
                         .cacheMemoryOnly()

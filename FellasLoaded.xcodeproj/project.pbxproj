@@ -16,6 +16,7 @@
 		8562A7A02C1C71EA000D8666 /* UserDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8562A79F2C1C71EA000D8666 /* UserDetailModel.swift */; };
 		8588A0A72C29B542005F59F0 /* SeriesEpisodesCommentsDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8588A0A62C29B542005F59F0 /* SeriesEpisodesCommentsDetailModel.swift */; };
 		85A0DDCD2C2C395B00B8769B /* FeedSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A0DDCC2C2C395B00B8769B /* FeedSearchModel.swift */; };
+		85A478842C3BE350005B438B /* SeriesEpisodesCreateRepliesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A478832C3BE350005B438B /* SeriesEpisodesCreateRepliesRequest.swift */; };
 		85DA37BD2C36EB1200E1E3A2 /* SeriesEpisodesCreateCommentsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DA37BC2C36EB1200E1E3A2 /* SeriesEpisodesCreateCommentsRequest.swift */; };
 		85DA37C12C36EBF200E1E3A2 /* SeriesEpisodesCreateCommentsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DA37C02C36EBF200E1E3A2 /* SeriesEpisodesCreateCommentsAPIService.swift */; };
 		85DA37C42C36ECB600E1E3A2 /* SeriesEpisodesCreateCommentsAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DA37C32C36ECB500E1E3A2 /* SeriesEpisodesCreateCommentsAPIError.swift */; };
@@ -196,6 +197,7 @@
 		8562A79F2C1C71EA000D8666 /* UserDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailModel.swift; sourceTree = "<group>"; };
 		8588A0A62C29B542005F59F0 /* SeriesEpisodesCommentsDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesEpisodesCommentsDetailModel.swift; sourceTree = "<group>"; };
 		85A0DDCC2C2C395B00B8769B /* FeedSearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSearchModel.swift; sourceTree = "<group>"; };
+		85A478832C3BE350005B438B /* SeriesEpisodesCreateRepliesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesEpisodesCreateRepliesRequest.swift; sourceTree = "<group>"; };
 		85DA37BC2C36EB1200E1E3A2 /* SeriesEpisodesCreateCommentsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesEpisodesCreateCommentsRequest.swift; sourceTree = "<group>"; };
 		85DA37C02C36EBF200E1E3A2 /* SeriesEpisodesCreateCommentsAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesEpisodesCreateCommentsAPIService.swift; sourceTree = "<group>"; };
 		85DA37C32C36ECB500E1E3A2 /* SeriesEpisodesCreateCommentsAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesEpisodesCreateCommentsAPIError.swift; sourceTree = "<group>"; };
@@ -418,6 +420,14 @@
 			path = FeedSearchModel;
 			sourceTree = "<group>";
 		};
+		85A478822C3BE325005B438B /* SeriesEpisodesCreateRepliesRequest */ = {
+			isa = PBXGroup;
+			children = (
+				85A478832C3BE350005B438B /* SeriesEpisodesCreateRepliesRequest.swift */,
+			);
+			path = SeriesEpisodesCreateRepliesRequest;
+			sourceTree = "<group>";
+		};
 		85CCB5162C1C356700007354 /* FLGetServerData */ = {
 			isa = PBXGroup;
 			children = (
@@ -429,6 +439,7 @@
 		85DA37BB2C36EADF00E1E3A2 /* SeriesEpisodesCreateCommentsModel */ = {
 			isa = PBXGroup;
 			children = (
+				85A478822C3BE325005B438B /* SeriesEpisodesCreateRepliesRequest */,
 				85DA37C22C36EC9400E1E3A2 /* SeriesEpisodesCreateCommentsAPIError */,
 				85DA37BF2C36EBC300E1E3A2 /* SeriesEpisodesCreateCommentsAPIService */,
 				85DA37BE2C36EBAF00E1E3A2 /* SeriesEpisodesCreateCommentsRequest */,
@@ -2396,6 +2407,7 @@
 				85DA37C42C36ECB600E1E3A2 /* SeriesEpisodesCreateCommentsAPIError.swift in Sources */,
 				9B72891B2BFE068000EB1A90 /* DisplayNameAndImageLablesView.swift in Sources */,
 				9BF7672A2C07590800BDBC6A /* FLImagePicker.swift in Sources */,
+				85A478842C3BE350005B438B /* SeriesEpisodesCreateRepliesRequest.swift in Sources */,
 				9BC9F1EC2BF7AB2000B0EE8E /* WatchlistView.swift in Sources */,
 				9BC6B8262BF3A76300E684AD /* SettingsView.swift in Sources */,
 				9B160A292C0E194D0073B3F1 /* InAppPurchaseModel.swift in Sources */,

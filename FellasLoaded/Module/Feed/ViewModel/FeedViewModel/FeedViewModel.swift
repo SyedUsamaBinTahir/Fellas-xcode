@@ -20,6 +20,7 @@ protocol FeedDataProvider {
     func getSeriesEpisodesCommentsDetail(id: String)
     func getFeedSearchList(searchParam: String)
     func createComment(episode: String, comment: String)
+    func createReplies(episode: String, parent: String, replyTo: String, comment: String)
 }
 
 class FeedViewModel: ObservableObject {
@@ -70,7 +71,7 @@ extension FeedViewModel: FeedDataProvider {
                         self?.showLoader = false
                     case .finished:
                         print("success")
-                        self?.showLoader = false
+//                        self?.showLoader = false
                     }
                 }
             } receiveValue: { FeedBannerModelData in
@@ -297,6 +298,28 @@ extension FeedViewModel: FeedDataProvider {
                 
             }
             .store(in: &self.subscriptions)
-        
+    }
+    
+    func createReplies(episode: String, parent: String, replyTo: String, comment: String) {
+        SeriesEpisodesCreateCommentsAPIService.shared.createReply(episode: episode, parent: parent, replyTo: replyTo, comment: comment)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completion in
+                switch completion {
+                case .failure(let  error):
+                    print("error:", error.localizedDescription)
+                    DispatchQueue.main.async {
+                        self?.alertMessage = error.localizedDescription
+                        self?.showAlert = true
+                        self?.showLoader = false
+                    }
+                case .finished:
+                    print("success")
+                    self?.commentCreated = true
+                    self?.showLoader = false
+                }
+            } receiveValue: { _ in
+                
+            }
+            .store(in: &self.subscriptions)
     }
 }
