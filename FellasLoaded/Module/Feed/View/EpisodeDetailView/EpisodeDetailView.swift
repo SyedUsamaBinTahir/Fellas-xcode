@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ExytePopupView
 
 struct EpisodeDetailView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
@@ -55,7 +56,6 @@ struct EpisodeDetailView: View {
                         }
                     }
                     .frame(height: 488)
-                    //                    .padding(.top, 50)
                     
                     VStack(alignment: .leading, spacing: 16) {
                         if horizontalSizeClass != .regular {
@@ -79,12 +79,16 @@ struct EpisodeDetailView: View {
                                 .cornerRadius(10)
                             }
                             
-                            WatchlistAndShareButtonView(watchlistAction: {}, shareAction: {})
+                            WatchlistAndShareButtonView(Loader: $feedViewModel.showButtonLoader, watchlistAdded: $feedViewModel.watchListAdded, watchlistAction: {
+                                feedViewModel.showButtonLoader = true
+                                feedViewModel.addSeriesWatchLater(seriesUid: seriesDetailID)
+                            }, shareAction: {}, removeWatchlist: {
+                                feedViewModel.showButtonLoader = true
+                                feedViewModel.removeSeriesWatchLater(seriesUid: seriesDetailID)
+                            })
                             
                             EpisodesDetailDescriptionView(seasonNumber: .constant("S\(feedViewModel.feedCategorySeriesDetailModel?.sessions_count ?? 0): E\(feedViewModel.feedCategorySeriesDetailModel?.episodes_count ?? 0)"), desctiption: .constant(feedViewModel.feedCategorySeriesDetailModel?.description ?? ""))
                                 .environmentObject(feedViewModel)
-                            
-                            
                             
                         }
                         
@@ -125,6 +129,42 @@ struct EpisodeDetailView: View {
                     .padding(.horizontal)
                 }
             }
+        }
+        .popup(isPresented: $feedViewModel.watchListSuccess) {
+            FLToastAlert(image: .constant("popup-success-icon"), message: .constant("Added to watchlist"))
+        } customize: {
+            $0
+                .type(.floater(useSafeAreaInset: true))
+                .position(.top)
+                .animation(.spring())
+                .closeOnTapOutside(true)
+                .backgroundColor(.black.opacity(0.5))
+                .autohideIn(3)
+                .appearFrom(.top)
+        }
+        .popup(isPresented: $feedViewModel.watchListRemovedSuccess) {
+            FLToastAlert(image: .constant("popup-success-icon"), message: .constant("Removed from watchlist"))
+        } customize: {
+            $0
+                .type(.floater(useSafeAreaInset: true))
+                .position(.top)
+                .animation(.spring())
+                .closeOnTapOutside(true)
+                .backgroundColor(.black.opacity(0.5))
+                .autohideIn(3)
+                .appearFrom(.top)
+        }
+        .popup(isPresented: $feedViewModel.showAlert) {
+            FLToastAlert(image: .constant("popup-failure-icon"), message: .constant(feedViewModel.alertMessage))
+        } customize: {
+            $0
+                .type(.floater(useSafeAreaInset: true))
+                .position(.top)
+                .animation(.spring())
+                .closeOnTapOutside(true)
+                .backgroundColor(.black.opacity(0.5))
+                .autohideIn(3)
+                .appearFrom(.top)
         }
         .onAppear {
             feedViewModel.showLoader = true

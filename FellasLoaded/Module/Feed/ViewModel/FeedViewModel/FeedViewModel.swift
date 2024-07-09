@@ -21,6 +21,12 @@ protocol FeedDataProvider {
     func getFeedSearchList(searchParam: String)
     func createComment(episode: String, comment: String)
     func createReplies(episode: String, parent: String, replyTo: String, comment: String)
+    func addSeriesWatchLater(seriesUid: String)
+    func removeSeriesWatchLater(seriesUid: String)
+    func addEpisodeWatchLater(episodeUid: String)
+    func removeEpisodeWatchLater(episodeUid: String)
+    func likeCommnet(comment: String)
+    func deleteLikeComment(comment: String)
 }
 
 class FeedViewModel: ObservableObject {
@@ -38,9 +44,19 @@ class FeedViewModel: ObservableObject {
     @Published var showLoader = false
     @Published var showAlert = false
     @Published var alertMessage = ""
+    @Published var showButtonLoader = false
     
     // this will reload the comments after new comment is created
     @Published var commentCreated = false
+    
+    // watch list success popup
+    @Published var watchListAdded = false
+    @Published var watchListRemoved = false
+    // changes watchlist icon after success
+    @Published var watchListSuccess = false
+    @Published var watchListRemovedSuccess = false
+    // like comments properties
+    @Published var likeCommentAdded = false
     
     // Api Models
     var feedBannerModel: FeedBannerModel?
@@ -316,6 +332,142 @@ extension FeedViewModel: FeedDataProvider {
                     print("success")
                     self?.commentCreated = true
                     self?.showLoader = false
+                }
+            } receiveValue: { _ in
+                
+            }
+            .store(in: &self.subscriptions)
+    }
+    
+    func addSeriesWatchLater(seriesUid: String) {
+        AddSeriesWatchLaterAPIService.shared.addSeriesWatchLater(seriesUid: seriesUid)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completion in
+                switch completion {
+                case .failure(let  error):
+                    print("error:", error.localizedDescription)
+                    DispatchQueue.main.async {
+                        self?.alertMessage = error.localizedDescription
+                        self?.showAlert = true
+                        self?.showButtonLoader = false
+                    }
+                case .finished:
+                    print("success")
+                    self?.showButtonLoader = false
+                    self?.watchListAdded = true
+                    self?.watchListSuccess = true
+                }
+            } receiveValue: { _ in
+                
+            }
+            .store(in: &self.subscriptions)
+    }
+    
+    func removeSeriesWatchLater(seriesUid: String) {
+        AddSeriesWatchLaterAPIService.shared.removeSeriesWatchLater(seriesUid: seriesUid)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completion in
+                switch completion {
+                case .failure(let  error):
+                    print("error:", error.localizedDescription)
+                    DispatchQueue.main.async {
+                        self?.alertMessage = error.localizedDescription
+                        self?.showAlert = true
+                        self?.showButtonLoader = false
+                    }
+                case .finished:
+                    print("success")
+                    self?.showButtonLoader = false
+                    self?.watchListAdded = false
+                    self?.watchListRemovedSuccess = true
+                }
+            } receiveValue: { _ in
+                
+            }
+            .store(in: &self.subscriptions)
+    }
+    
+    func addEpisodeWatchLater(episodeUid: String) {
+        AddEpisodeWatchLaterAPIService.shared.addEpisodeWatchLater(episodeUid: episodeUid)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completion in
+                switch completion {
+                case .failure(let  error):
+                    print("error:", error.localizedDescription)
+                    DispatchQueue.main.async {
+                        self?.alertMessage = error.localizedDescription
+                        self?.showAlert = true
+                        self?.showButtonLoader = false
+                    }
+                case .finished:
+                    print("success")
+                    self?.showButtonLoader = false
+                    self?.watchListAdded = true
+                    self?.watchListSuccess = true
+                }
+            } receiveValue: { _ in
+                
+            }
+            .store(in: &self.subscriptions)
+    }
+    
+    func removeEpisodeWatchLater(episodeUid: String) {
+        AddEpisodeWatchLaterAPIService.shared.removeEpisodeWatchLater(episodeUid: episodeUid)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completion in
+                switch completion {
+                case .failure(let  error):
+                    print("error:", error.localizedDescription)
+                    DispatchQueue.main.async {
+                        self?.alertMessage = error.localizedDescription
+                        self?.showAlert = true
+                        self?.showButtonLoader = false
+                    }
+                case .finished:
+                    print("success")
+                    self?.showButtonLoader = false
+                    self?.watchListAdded = false
+                    self?.watchListRemovedSuccess = true
+                }
+            } receiveValue: { _ in
+                
+            }
+            .store(in: &self.subscriptions)
+    }
+    
+    func likeCommnet(comment: String) {
+        SeriesEpisodeLikeCommentsAPIService.shared.likeComment(comment: comment)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completion in
+                switch completion {
+                case .failure(let  error):
+                    print("error:", error.localizedDescription)
+                    DispatchQueue.main.async {
+                        self?.alertMessage = error.localizedDescription
+                    }
+                case .finished:
+                    print("success")
+                    self?.likeCommentAdded = true
+                }
+            } receiveValue: { _ in
+                
+            }
+            .store(in: &self.subscriptions)
+    }
+    
+    func deleteLikeComment(comment: String) {
+        SeriesEpisodeLikeCommentsAPIService.shared.DeleteLikeComment(comment: comment)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completion in
+                switch completion {
+                case .failure(let  error):
+                    print("error:", error.localizedDescription)
+                    DispatchQueue.main.async {
+                        self?.alertMessage = error.localizedDescription
+                    }
+                case .finished:
+                    print("success")
+                    self?.likeCommentAdded = true
                 }
             } receiveValue: { _ in
                 

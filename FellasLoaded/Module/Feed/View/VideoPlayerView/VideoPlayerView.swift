@@ -61,6 +61,15 @@ struct VideoPlayerView: View {
                     print("Episode Comments ID -->", episodeCategoryID ?? "")
                 }
             }
+            .onReceive(feedViewModel.$likeCommentAdded) { _ in
+                if seriesEpisodeDetailId != nil {
+                    feedViewModel.getSeriesEpisodesComments(id: seriesEpisodeDetailId?.uid ?? "", commentOrderBy: commentOrder)
+                    print("Series Episode Comments ID -->", seriesEpisodeDetailId?.uid ?? "")
+                } else {
+                    feedViewModel.getSeriesEpisodesComments(id: episodeCategoryID ?? "", commentOrderBy: commentOrder)
+                    print("Episode Comments ID -->", episodeCategoryID ?? "")
+                }
+            }
             .onAppear {
                 feedViewModel.showLoader = true
                 if seriesEpisodeDetailId != nil {

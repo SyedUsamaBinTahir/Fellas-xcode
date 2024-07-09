@@ -8,6 +8,7 @@
 import SwiftUI
 import AVKit
 import GoogleCast
+import ExytePopupView
 
 struct VideoPlayer: View {
     @Environment(\.presentationMode) var presentationMode
@@ -209,13 +210,52 @@ struct VideoPlayer: View {
                     
                     VStack(alignment: .leading, spacing: 16) {
                         HStack(spacing: 16) {
-                            Button {
-                                
-                            } label: {
-                                Image("add-to-watchlist-icon")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 40, height: 40)
+                            if !feedViewModel.watchListAdded {
+                                Button {
+                                    feedViewModel.showButtonLoader = true
+                                    feedViewModel.addEpisodeWatchLater(episodeUid: episodeCategoryID)
+                                } label: {
+                                    if feedViewModel.showButtonLoader {
+                                        ZStack {
+                                            FLButtonLoader()
+                                        }
+                                        .padding(10)
+                                        .background(Color.theme.appGrayColor)
+                                        .clipShape(.circle)
+                                        .frame(width: 40, height: 40)
+                                    } else {
+                                        Image("add-to-watchlist-icon")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 40, height: 40)
+                                    }
+                                }
+                            } else {
+                                Button {
+                                    feedViewModel.showButtonLoader = true
+                                    feedViewModel.removeEpisodeWatchLater(episodeUid: episodeCategoryID)
+                                } label: {
+                                    if feedViewModel.showButtonLoader {
+                                        ZStack {
+                                            FLButtonLoader()
+                                        }
+                                        .padding(10)
+                                        .background(Color.theme.appGrayColor)
+                                        .clipShape(.circle)
+                                        .frame(width: 40, height: 40)
+                                    } else {
+                                        ZStack {
+                                            Image("watchlist-added-icon")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 24, height: 24)
+                                        }
+                                        .padding(10)
+                                        .background(Color.theme.appGrayColor)
+                                        .clipShape(.circle)
+                                        .frame(width: 40, height: 40)
+                                    }
+                                }
                             }
                             
                             Button {
@@ -338,6 +378,42 @@ struct VideoPlayer: View {
             player.pause()
             
             playerStatusObserver?.invalidate()
+        }
+        .popup(isPresented: $feedViewModel.watchListSuccess) {
+            FLToastAlert(image: .constant("popup-success-icon"), message: .constant("Added to watchlist"))
+        } customize: {
+            $0
+                .type(.floater(useSafeAreaInset: true))
+                .position(.top)
+                .animation(.spring())
+                .closeOnTapOutside(true)
+                .backgroundColor(.black.opacity(0.5))
+                .autohideIn(3)
+                .appearFrom(.top)
+        }
+        .popup(isPresented: $feedViewModel.watchListRemovedSuccess) {
+            FLToastAlert(image: .constant("popup-success-icon"), message: .constant("Removed from watchlist"))
+        } customize: {
+            $0
+                .type(.floater(useSafeAreaInset: true))
+                .position(.top)
+                .animation(.spring())
+                .closeOnTapOutside(true)
+                .backgroundColor(.black.opacity(0.5))
+                .autohideIn(3)
+                .appearFrom(.top)
+        }
+        .popup(isPresented: $feedViewModel.showAlert) {
+            FLToastAlert(image: .constant("popup-failure-icon"), message: .constant(feedViewModel.alertMessage))
+        } customize: {
+            $0
+                .type(.floater(useSafeAreaInset: true))
+                .position(.top)
+                .animation(.spring())
+                .closeOnTapOutside(true)
+                .backgroundColor(.black.opacity(0.5))
+                .autohideIn(3)
+                .appearFrom(.top)
         }
         .background {
             LinearGradient(gradient: Gradient(colors: [Color.black, Color.theme.appColor, Color.black]), startPoint: .topLeading, endPoint: .bottomTrailing)

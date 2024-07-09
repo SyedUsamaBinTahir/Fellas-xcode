@@ -14,7 +14,9 @@ struct FLToastAlert: View {
     var body: some View {
         HStack {
             Image(image)
-                .frame(width: 30, height: 30)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 20, height: 20)
             Text(message)
             Spacer()
         }

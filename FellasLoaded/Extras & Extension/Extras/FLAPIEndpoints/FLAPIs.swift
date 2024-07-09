@@ -16,7 +16,8 @@ class FLAPIs {
 }
 
 extension FLAPIs {
-    // Authentication
+    
+    // MARK: - Authentication
     static let login = "/user/auth/email/"
     static let registration = "/user/registration/email/"
     static let emailRequest = "/user/email/verify/request/"
@@ -26,17 +27,25 @@ extension FLAPIs {
     static let codeVerification = "/user/password/reset/check_code/"
     static let newPassword = "/user/password/reset/submit/"
     
-    // Feeds
+    // MARK: - Feeds
     static let feedBanner = "/feed/banners/"
     static let feedCategoriesGroup = "/feed/categories/group/"
     static let feedCategorySeries = "/feed/categories/series/"
     static let feedCategoryEpisodes = "/feed/categories/episodes/"
     static let feedCategorySeriesDetail = "/series/series/"
     static let feedSearch = "/series/search/"
+    // Series Endpoints
     static let seriesEpisodeDetail = "/series/episodes/detail/"
     static let seriesEpisodesComments = "/series/episodes/comments/"
     static let seriesEpisodesCommentsDetail = "/series/episodes/comments/detail/"
     static let seriesEpisodesCreateComments = "/series/episodes/create/comments/"
+    static let seriesEpisodesLikeComments = "/series/episodes/like/comments/"
+    static let seriesEpisodesDeleteLikeComments = "/series/episodes/delete/like/comments/"
+    // History Endpoints
+    static let addSeriesWatchLater = "/history/add-series-watch-later/"
+    static let addWatchLater = "/history/add-watch-later/"
+    static let removerSeriesWatchLater = "/history/remove-watch-later-series/"
+    static let removeWatchLater = "/history/remove-watch-later/"
     
     // User details
     static let userDetails = "/user/detail/"

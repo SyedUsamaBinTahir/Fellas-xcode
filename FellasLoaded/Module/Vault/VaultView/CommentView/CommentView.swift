@@ -80,6 +80,8 @@ struct CommentView: View {
                                 CommentCardView(/*isPinned: $isPinned,*/ expandDescription: $expandDescription, showReportComment: $showReportComment, redirectReply: $redirectReply, profileImage: .constant(data.user?.avatar ?? ""), displayName: .constant(data.user?.name ?? ""), commentDuration: .constant(""), comment: .constant(data.comment), likes: .constant(data.like_count), replies: .constant(data.replies_count), action: {
                                     commentid = data.uid
                                     redirectReply = true
+                                }, likeAction: {
+                                    feedViewModel.likeCommnet(comment: data.uid)
                                 })
                                 .padding(.top, 10)
                                 

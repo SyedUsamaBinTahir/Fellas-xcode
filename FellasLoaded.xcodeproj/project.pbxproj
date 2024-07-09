@@ -15,6 +15,14 @@
 		046ADDE72C24E64900AF0E22 /* FLGetServerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046ADDE62C24E64900AF0E22 /* FLGetServerData.swift */; };
 		8562A7A02C1C71EA000D8666 /* UserDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8562A79F2C1C71EA000D8666 /* UserDetailModel.swift */; };
 		8588A0A72C29B542005F59F0 /* SeriesEpisodesCommentsDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8588A0A62C29B542005F59F0 /* SeriesEpisodesCommentsDetailModel.swift */; };
+		859ADCA72C3D3043006AD042 /* AddSeriesWatchLaterAPIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859ADCA62C3D3043006AD042 /* AddSeriesWatchLaterAPIRequest.swift */; };
+		859ADCAA2C3D3094006AD042 /* AddSeriesWatchLaterAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859ADCA92C3D3094006AD042 /* AddSeriesWatchLaterAPIError.swift */; };
+		859ADCAD2C3D315F006AD042 /* AddSeriesWatchLaterAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859ADCAC2C3D315F006AD042 /* AddSeriesWatchLaterAPIService.swift */; };
+		859ADCAF2C3D42D0006AD042 /* FLButtonLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859ADCAE2C3D42D0006AD042 /* FLButtonLoader.swift */; };
+		859ADCB42C3D782A006AD042 /* AddEpisodeWatchLaterAPIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859ADCB32C3D782A006AD042 /* AddEpisodeWatchLaterAPIRequest.swift */; };
+		859ADCB72C3D7876006AD042 /* AddEpisodeWatchLaterAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859ADCB62C3D7876006AD042 /* AddEpisodeWatchLaterAPIService.swift */; };
+		859ADCBB2C3D8DB4006AD042 /* SeriesEpisodeLikeCommentsAPIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859ADCBA2C3D8DB4006AD042 /* SeriesEpisodeLikeCommentsAPIRequest.swift */; };
+		859ADCBE2C3D8ED2006AD042 /* SeriesEpisodeLikeCommentsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859ADCBD2C3D8ED2006AD042 /* SeriesEpisodeLikeCommentsAPIService.swift */; };
 		85A0DDCD2C2C395B00B8769B /* FeedSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A0DDCC2C2C395B00B8769B /* FeedSearchModel.swift */; };
 		85A478842C3BE350005B438B /* SeriesEpisodesCreateRepliesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A478832C3BE350005B438B /* SeriesEpisodesCreateRepliesRequest.swift */; };
 		85DA37BD2C36EB1200E1E3A2 /* SeriesEpisodesCreateCommentsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DA37BC2C36EB1200E1E3A2 /* SeriesEpisodesCreateCommentsRequest.swift */; };
@@ -196,6 +204,14 @@
 		26944833114E4BB884AA0446 /* Pods-FellasLoaded.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FellasLoaded.release.xcconfig"; path = "Target Support Files/Pods-FellasLoaded/Pods-FellasLoaded.release.xcconfig"; sourceTree = "<group>"; };
 		8562A79F2C1C71EA000D8666 /* UserDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailModel.swift; sourceTree = "<group>"; };
 		8588A0A62C29B542005F59F0 /* SeriesEpisodesCommentsDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesEpisodesCommentsDetailModel.swift; sourceTree = "<group>"; };
+		859ADCA62C3D3043006AD042 /* AddSeriesWatchLaterAPIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSeriesWatchLaterAPIRequest.swift; sourceTree = "<group>"; };
+		859ADCA92C3D3094006AD042 /* AddSeriesWatchLaterAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSeriesWatchLaterAPIError.swift; sourceTree = "<group>"; };
+		859ADCAC2C3D315F006AD042 /* AddSeriesWatchLaterAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSeriesWatchLaterAPIService.swift; sourceTree = "<group>"; };
+		859ADCAE2C3D42D0006AD042 /* FLButtonLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLButtonLoader.swift; sourceTree = "<group>"; };
+		859ADCB32C3D782A006AD042 /* AddEpisodeWatchLaterAPIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEpisodeWatchLaterAPIRequest.swift; sourceTree = "<group>"; };
+		859ADCB62C3D7876006AD042 /* AddEpisodeWatchLaterAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEpisodeWatchLaterAPIService.swift; sourceTree = "<group>"; };
+		859ADCBA2C3D8DB4006AD042 /* SeriesEpisodeLikeCommentsAPIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesEpisodeLikeCommentsAPIRequest.swift; sourceTree = "<group>"; };
+		859ADCBD2C3D8ED2006AD042 /* SeriesEpisodeLikeCommentsAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesEpisodeLikeCommentsAPIService.swift; sourceTree = "<group>"; };
 		85A0DDCC2C2C395B00B8769B /* FeedSearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSearchModel.swift; sourceTree = "<group>"; };
 		85A478832C3BE350005B438B /* SeriesEpisodesCreateRepliesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesEpisodesCreateRepliesRequest.swift; sourceTree = "<group>"; };
 		85DA37BC2C36EB1200E1E3A2 /* SeriesEpisodesCreateCommentsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesEpisodesCreateCommentsRequest.swift; sourceTree = "<group>"; };
@@ -410,6 +426,90 @@
 				8588A0A62C29B542005F59F0 /* SeriesEpisodesCommentsDetailModel.swift */,
 			);
 			path = SeriesEpisodesCommentsDetailModel;
+			sourceTree = "<group>";
+		};
+		859ADCA42C3D3003006AD042 /* AddSeriesWatchLaterModel */ = {
+			isa = PBXGroup;
+			children = (
+				859ADCAB2C3D3140006AD042 /* AddSeriesWatchLaterAPIService */,
+				859ADCA82C3D3080006AD042 /* AddSeriesWatchLaterAPIError */,
+				859ADCA52C3D3021006AD042 /* AddSeriesWatchLaterApiRequest */,
+			);
+			path = AddSeriesWatchLaterModel;
+			sourceTree = "<group>";
+		};
+		859ADCA52C3D3021006AD042 /* AddSeriesWatchLaterApiRequest */ = {
+			isa = PBXGroup;
+			children = (
+				859ADCA62C3D3043006AD042 /* AddSeriesWatchLaterAPIRequest.swift */,
+			);
+			path = AddSeriesWatchLaterApiRequest;
+			sourceTree = "<group>";
+		};
+		859ADCA82C3D3080006AD042 /* AddSeriesWatchLaterAPIError */ = {
+			isa = PBXGroup;
+			children = (
+				859ADCA92C3D3094006AD042 /* AddSeriesWatchLaterAPIError.swift */,
+			);
+			path = AddSeriesWatchLaterAPIError;
+			sourceTree = "<group>";
+		};
+		859ADCAB2C3D3140006AD042 /* AddSeriesWatchLaterAPIService */ = {
+			isa = PBXGroup;
+			children = (
+				859ADCAC2C3D315F006AD042 /* AddSeriesWatchLaterAPIService.swift */,
+			);
+			path = AddSeriesWatchLaterAPIService;
+			sourceTree = "<group>";
+		};
+		859ADCB12C3D77F2006AD042 /* EpisodeWatchLaterModel */ = {
+			isa = PBXGroup;
+			children = (
+				859ADCB52C3D784C006AD042 /* AddEpisodeWatchLaterAPIService */,
+				859ADCB22C3D7807006AD042 /* AddEpisodeWatchLaterAPIRequest */,
+			);
+			path = EpisodeWatchLaterModel;
+			sourceTree = "<group>";
+		};
+		859ADCB22C3D7807006AD042 /* AddEpisodeWatchLaterAPIRequest */ = {
+			isa = PBXGroup;
+			children = (
+				859ADCB32C3D782A006AD042 /* AddEpisodeWatchLaterAPIRequest.swift */,
+			);
+			path = AddEpisodeWatchLaterAPIRequest;
+			sourceTree = "<group>";
+		};
+		859ADCB52C3D784C006AD042 /* AddEpisodeWatchLaterAPIService */ = {
+			isa = PBXGroup;
+			children = (
+				859ADCB62C3D7876006AD042 /* AddEpisodeWatchLaterAPIService.swift */,
+			);
+			path = AddEpisodeWatchLaterAPIService;
+			sourceTree = "<group>";
+		};
+		859ADCB82C3D8D61006AD042 /* SeriesEpisodeLikeCommentsModel */ = {
+			isa = PBXGroup;
+			children = (
+				859ADCBC2C3D8EB7006AD042 /* SeriesEpisodeLikeCommentsAPIService */,
+				859ADCB92C3D8D79006AD042 /* SeriesEpisodeLikeCommentsAPIRequest */,
+			);
+			path = SeriesEpisodeLikeCommentsModel;
+			sourceTree = "<group>";
+		};
+		859ADCB92C3D8D79006AD042 /* SeriesEpisodeLikeCommentsAPIRequest */ = {
+			isa = PBXGroup;
+			children = (
+				859ADCBA2C3D8DB4006AD042 /* SeriesEpisodeLikeCommentsAPIRequest.swift */,
+			);
+			path = SeriesEpisodeLikeCommentsAPIRequest;
+			sourceTree = "<group>";
+		};
+		859ADCBC2C3D8EB7006AD042 /* SeriesEpisodeLikeCommentsAPIService */ = {
+			isa = PBXGroup;
+			children = (
+				859ADCBD2C3D8ED2006AD042 /* SeriesEpisodeLikeCommentsAPIService.swift */,
+			);
+			path = SeriesEpisodeLikeCommentsAPIService;
 			sourceTree = "<group>";
 		};
 		85A0DDCB2C2C394A00B8769B /* FeedSearchModel */ = {
@@ -1970,8 +2070,11 @@
 		9BE4BEB12C10773F0016E673 /* FeedModel */ = {
 			isa = PBXGroup;
 			children = (
+				859ADCB12C3D77F2006AD042 /* EpisodeWatchLaterModel */,
+				859ADCA42C3D3003006AD042 /* AddSeriesWatchLaterModel */,
 				85DA37BB2C36EADF00E1E3A2 /* SeriesEpisodesCreateCommentsModel */,
 				85A0DDCB2C2C394A00B8769B /* FeedSearchModel */,
+				859ADCB82C3D8D61006AD042 /* SeriesEpisodeLikeCommentsModel */,
 				8588A0A52C29B4FB005F59F0 /* SeriesEpisodesCommentsDetailModel */,
 				046ADDE32C244AB500AF0E22 /* SeriesEpisodesCommentsModel */,
 				9BA7F9492C19C0BC00344FF8 /* SeriesEpisodeDetailModel */,
@@ -2068,6 +2171,7 @@
 			isa = PBXGroup;
 			children = (
 				9BEC0A882C04D15900BDE169 /* FLLoader.swift */,
+				859ADCAE2C3D42D0006AD042 /* FLButtonLoader.swift */,
 			);
 			path = FLLoader;
 			sourceTree = "<group>";
@@ -2410,6 +2514,7 @@
 				85A478842C3BE350005B438B /* SeriesEpisodesCreateRepliesRequest.swift in Sources */,
 				9BC9F1EC2BF7AB2000B0EE8E /* WatchlistView.swift in Sources */,
 				9BC6B8262BF3A76300E684AD /* SettingsView.swift in Sources */,
+				859ADCAD2C3D315F006AD042 /* AddSeriesWatchLaterAPIService.swift in Sources */,
 				9B160A292C0E194D0073B3F1 /* InAppPurchaseModel.swift in Sources */,
 				9BF226602C00AFA200149850 /* FLApiError.swift in Sources */,
 				9B6D9D9E2BF6271600365CE6 /* CarousalView.swift in Sources */,
@@ -2450,12 +2555,14 @@
 				8588A0A72C29B542005F59F0 /* SeriesEpisodesCommentsDetailModel.swift in Sources */,
 				9B7289342BFE0A8A00EB1A90 /* EmailFieldAndButtonView.swift in Sources */,
 				9BF2266B2C00BC8A00149850 /* AuthenticationViewModel.swift in Sources */,
+				859ADCBE2C3D8ED2006AD042 /* SeriesEpisodeLikeCommentsAPIService.swift in Sources */,
 				9BE4BEB32C1077590016E673 /* FeedViewModel.swift in Sources */,
 				9B454B7D2BFE436F000786B6 /* SearchResultAndRecommentdTextView.swift in Sources */,
 				9B72896A2BFE1BF400EB1A90 /* SettingsHeaderView.swift in Sources */,
 				85E86E9E2C2DAC6C0042A1E9 /* VideoQualitySelectionView.swift in Sources */,
 				9B7289292BFE08BF00EB1A90 /* SubscribeFieldAndButtonView.swift in Sources */,
 				9B11FC5E2C17361600AE80ED /* FeedCategorySeriesDetailModel.swift in Sources */,
+				859ADCA72C3D3043006AD042 /* AddSeriesWatchLaterAPIRequest.swift in Sources */,
 				9B8A183F2BFB7BC100CF9FF1 /* VideoPlayerView.swift in Sources */,
 				9BEB303F2C0F54A1002C7F82 /* CodeVerificationAPIError.swift in Sources */,
 				9BF7671B2C073A9400BDBC6A /* CheckEmailRequest.swift in Sources */,
@@ -2474,9 +2581,11 @@
 				9B7289522BFE125200EB1A90 /* ResetPasswordFieldAndButtonView.swift in Sources */,
 				9BEE716D2BFCD2CA0055760C /* Segments.swift in Sources */,
 				9BEE716B2BFC993E0055760C /* CMTime+.swift in Sources */,
+				859ADCB72C3D7876006AD042 /* AddEpisodeWatchLaterAPIService.swift in Sources */,
 				9BF767272C0758BC00BDBC6A /* View+.swift in Sources */,
 				9BEB30362C0F4EB9002C7F82 /* CheckEmailApiError.swift in Sources */,
 				9BE13A3E2C05CD3100D69B66 /* FLAuthTextFieldError.swift in Sources */,
+				859ADCAA2C3D3094006AD042 /* AddSeriesWatchLaterAPIError.swift in Sources */,
 				9BC6B7FE2BF3530D00E684AD /* SubscribeView.swift in Sources */,
 				9B454B662BFE3546000786B6 /* VaultMainImageView.swift in Sources */,
 				9BCF3E9F2C08C62F0016B22C /* ForgotPasswordRequest.swift in Sources */,
@@ -2500,6 +2609,7 @@
 				9B72895C2BFE17CD00EB1A90 /* SettingsButtonView.swift in Sources */,
 				9B7289212BFE07A000EB1A90 /* DisplayNameAndImageFieldAndButtonsView.swift in Sources */,
 				9B6D9DA32BF63FC100365CE6 /* EpisodesView.swift in Sources */,
+				859ADCBB2C3D8DB4006AD042 /* SeriesEpisodeLikeCommentsAPIRequest.swift in Sources */,
 				9B72890A2BFE026C00EB1A90 /* CreatedPasswordLablesView.swift in Sources */,
 				9BF226662C00B35F00149850 /* FLUserDefaultKeys.swift in Sources */,
 				9B3D10342BF21698009AD6F2 /* ContentView.swift in Sources */,
@@ -2560,6 +2670,7 @@
 				9B17F6822BFB48B600F861CA /* PushNotificationsView.swift in Sources */,
 				9B8A18302BFB654D00CF9FF1 /* VideoPlaybackView.swift in Sources */,
 				9BC9F1EA2BF7A9A500B0EE8E /* DownloadsView.swift in Sources */,
+				859ADCB42C3D782A006AD042 /* AddEpisodeWatchLaterAPIRequest.swift in Sources */,
 				9BE13A4A2C06313D00D69B66 /* AuthRegistraionAPIService.swift in Sources */,
 				9B160A262C0E04170073B3F1 /* SubscribeDiscountLableView.swift in Sources */,
 				9B3D10472BF22AF3009AD6F2 /* FLColor.swift in Sources */,
@@ -2568,6 +2679,7 @@
 				9B454B8A2BFE4512000786B6 /* ContinueWatchingDetailHeaderView.swift in Sources */,
 				9B454B942BFE4895000786B6 /* EpisodesDetaulBackButtonView.swift in Sources */,
 				9B454B5F2BFE32CC000786B6 /* CommentsHeaderView.swift in Sources */,
+				859ADCAF2C3D42D0006AD042 /* FLButtonLoader.swift in Sources */,
 				9BC6B8082BF368D800E684AD /* ResetPasswordView.swift in Sources */,
 				9B8A18352BFB783600CF9FF1 /* VideoPlayer.swift in Sources */,
 				9BEC0A892C04D15900BDE169 /* FLLoader.swift in Sources */,
@@ -2700,7 +2812,7 @@
 				CODE_SIGN_ENTITLEMENTS = FellasLoaded/FellasLoaded.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"FellasLoaded/Preview Content\"";
 				DEVELOPMENT_TEAM = HAG8AD6Y2K;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -2748,7 +2860,7 @@
 				CODE_SIGN_ENTITLEMENTS = FellasLoaded/FellasLoaded.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"FellasLoaded/Preview Content\"";
 				DEVELOPMENT_TEAM = HAG8AD6Y2K;
 				ENABLE_HARDENED_RUNTIME = YES;

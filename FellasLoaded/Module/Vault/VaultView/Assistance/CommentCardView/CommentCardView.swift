@@ -19,7 +19,9 @@ struct CommentCardView: View {
     @Binding var comment: String
     @Binding var likes: Int
     @Binding var replies: Int
+    @Binding var likeCommentAdded: Bool
     @State var action: () -> Void
+    @State var likeAction: () -> Void = {}
     
     var body: some View {
         HStack {
@@ -80,18 +82,21 @@ struct CommentCardView: View {
                     }
                     
                     HStack {
-                        HStack(spacing: 10) {
-                            Image("like-icon")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 16, height: 16)
-                            Text("\(likes)")
-                                .font(.custom(Font.bold, size: 14))
-                                .foregroundStyle(.white)
+                        
+                        Button (action: likeAction) {
+                            HStack(spacing: 10) {
+                                Image("like-icon")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 16, height: 16)
+                                Text("\(likes)")
+                                    .font(.custom(Font.bold, size: 14))
+                                    .foregroundStyle(.white)
+                            }
+                            .padding(10)
+                            .background(Color.theme.appGrayColor)
+                            .cornerRadius(8)
                         }
-                        .padding(10)
-                        .background(Color.theme.appGrayColor)
-                        .cornerRadius(8)
 
                         Button (action: action) {
                             HStack(spacing: 10) {
@@ -152,5 +157,5 @@ struct CommentCardView: View {
 }
 
 #Preview {
-    CommentCardView(/*isPinned: .constant(true), */expandDescription: .constant(false), showReportComment: .constant(false), redirectReply: .constant(false), profileImage: .constant(""), displayName: .constant(""), commentDuration: .constant(""), comment: .constant(""), likes: .constant(0), replies: .constant(0), action: {})
+    CommentCardView(/*isPinned: .constant(true), */expandDescription: .constant(false), showReportComment: .constant(false), redirectReply: .constant(false), profileImage: .constant(""), displayName: .constant(""), commentDuration: .constant(""), comment: .constant(""), likes: .constant(0), replies: .constant(0), action: {}, likeAction: {})
 }
