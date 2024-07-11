@@ -467,7 +467,7 @@ extension FeedViewModel: FeedDataProvider {
                     }
                 case .finished:
                     print("success")
-                    self?.likeCommentAdded = true
+                    self?.likeCommentAdded = false
                 }
             } receiveValue: { _ in
                 

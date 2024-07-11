@@ -17,6 +17,8 @@ struct RepliesView: View {
     @State private var showReportComment = false
     @State private var addComment: String = ""
     @State private var redirectReply = false
+    @State private var likeAdded: Bool = false
+    @State private var replyLikeAdded: Bool = false
     @Binding var dismissSheet: Bool
     @Binding var commentData: String
     @Binding var seriesEpisodeDetailId: String
@@ -45,7 +47,7 @@ struct RepliesView: View {
                                                              commentDuration: .constant(""),
                                                              comment: .constant(feedViewModel.seriesEpisodesCommentsDetailModel?.parent.comment ?? ""),
                                                              likes: .constant(feedViewModel.seriesEpisodesCommentsDetailModel?.parent.like_count ?? 0),
-                                                             replies: .constant(feedViewModel.seriesEpisodesCommentsDetailModel?.parent.replies_count ?? 0),
+                                                             replies: .constant(feedViewModel.seriesEpisodesCommentsDetailModel?.parent.replies_count ?? 0), likeAdded: $likeAdded,
                                                              action: {
                         
                     })
@@ -61,7 +63,7 @@ struct RepliesView: View {
                                                                  commentDuration: .constant( ""),
                                                                  comment: .constant(reply.comment),
                                                                  likes: .constant(reply.like_count),
-                                                                 replies: .constant(reply.replies_count), action: {
+                                                                 replies: .constant(reply.replies_count), likeAdded: $replyLikeAdded, action: {
                             
                         })
                     }

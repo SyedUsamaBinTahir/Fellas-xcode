@@ -28,8 +28,8 @@ struct FeedCategoryEpisodesResults: Codable {
     let is_fully_watched: Bool
     let comments_count: Int
     let is_watch_later: Bool
-    let playable_from: String
-    let release_date: String
+    let playable_from: String?
+    let release_date: String?
     let bvideo: SeriesBvideo?
     let created_at: String
 }

@@ -8,6 +8,15 @@
         "revision" : "8a322513580f21288fd87eb3a1341c247b3e2a76",
         "version" : "0.2.0"
       }
+    },
+    {
+      "identity" : "m3u8decoder",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ikhvorost/M3U8Decoder.git",
+      "state" : {
+        "revision" : "e12b9b19a26808f74fc52810a3d09e7c33890fe6",
+        "version" : "1.2.0"
+      }
     }
   ],
   "version" : 2

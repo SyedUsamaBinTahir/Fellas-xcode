@@ -25,21 +25,21 @@ struct VideoPlayerView: View {
                 let size = $0.size
                 let safeArea = $0.safeAreaInsets
                 
-//                if !feedViewModel.showLoader {
-                    //                    if let url = URL(string: feedViewModel.seriesEpisodeDetailModel?.bvideo.hls_video_playlist_url ?? "") {
-                    //                        VideoPlayer(size: size, safeArea: safeArea, url: url, commentOrder: $commentOrder)
-                    //                            .environmentObject(feedViewModel)
-                    //                            .ignoresSafeArea()
-                    //                    }
-                    if let videoURL = videoURL {
-                        VideoPlayer(size: size, safeArea: safeArea, url: videoURL, commentOrder: $commentOrder, seriesEpisodeDetailId: .constant(seriesEpisodeDetailId?.uid ?? ""), episodeCategoryID: .constant(episodeCategoryID ?? ""))
-                            .environmentObject(feedViewModel)
-                            .ignoresSafeArea()
-                    }
-                    //                    else {
-                    //                        FLLoader()
-                    //                    }
-//                }
+                //                if !feedViewModel.showLoader {
+                //                    if let url = URL(string: feedViewModel.seriesEpisodeDetailModel?.bvideo.hls_video_playlist_url ?? "") {
+                //                        VideoPlayer(size: size, safeArea: safeArea, url: url, commentOrder: $commentOrder)
+                //                            .environmentObject(feedViewModel)
+                //                            .ignoresSafeArea()
+                //                    }
+                if let videoURL = videoURL {
+                    VideoPlayer(size: size, safeArea: safeArea, url: videoURL, commentOrder: $commentOrder, seriesEpisodeDetailId: .constant(seriesEpisodeDetailId?.uid ?? ""), episodeCategoryID: .constant(episodeCategoryID ?? ""))
+                        .environmentObject(feedViewModel)
+                        .ignoresSafeArea()
+                }
+                //                    else {
+                //                        FLLoader()
+                //                    }
+                //                }
                 
             }
             .onChange(of: commentOrder) { _ in
@@ -105,7 +105,6 @@ struct VideoPlayerView: View {
                     feedViewModel.getSeriesEpisodesComments(id: episodeCategoryID ?? "", commentOrderBy: commentOrder)
                     print("Episode Comments ID -->", episodeCategoryID ?? "")
                 }
-                
             }
             
             if feedViewModel.showLoader {

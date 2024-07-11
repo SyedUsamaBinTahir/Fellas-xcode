@@ -14,6 +14,7 @@ struct VideoPlayer: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @EnvironmentObject var feedViewModel: FeedViewModel
+    @StateObject private var viewModel = M3u8ParserViewModel()
     var size: CGSize
     var safeArea: EdgeInsets?
     var url: URL
@@ -138,6 +139,7 @@ struct VideoPlayer: View {
                                 }
                                 
                                 Button {
+//                                    viewModel.fetchResolutions(urlString: "\(url)")
                                     showVidoQualityLisit.toggle()
                                 } label: {
                                     Image("settings-icon")
@@ -157,9 +159,9 @@ struct VideoPlayer: View {
                         .presentationDragIndicator(.visible)
                 }
                 .sheet(isPresented: $showVidoQualityLisit) {
-                    VideoQualitySelectionView {
+                    VideoQualitySelectionView(url: url, action: {
                         
-                    }
+                    })
                     .presentationDetents([.medium])
                     .presentationDragIndicator(.visible)
                     .environmentObject(feedViewModel)
@@ -421,19 +423,19 @@ struct VideoPlayer: View {
         .ignoresSafeArea()
     }
     
-    func currentQuality() -> String {
-        // Retrieve the current quality (resolution) from the player
-        guard let asset = player.currentItem?.asset as? AVURLAsset else { return "Unknown" }
-        let bitrate = asset.tracks.first?.estimatedDataRate ?? 0
-        return "\(bitrate / 1000) kbps"
-    }
-    
-    func currentCaption() -> String {
-        // Retrieve the current caption (subtitles) from the player
-        guard let group = player.currentItem?.asset.mediaSelectionGroup(forMediaCharacteristic: .legible) else { return "None" }
-        let selectedOption = player.currentItem?.currentMediaSelection.selectedMediaOption(in: group)
-        return selectedOption?.displayName ?? "None"
-    }
+//    func currentQuality() -> String {
+//        // Retrieve the current quality (resolution) from the player
+//        guard let asset = player.currentItem?.asset as? AVURLAsset else { return "Unknown" }
+//        let bitrate = asset.tracks.first?.estimatedDataRate ?? 0
+//        return "\(bitrate / 1000) kbps"
+//    }
+//    
+//    func currentCaption() -> String {
+//        // Retrieve the current caption (subtitles) from the player
+//        guard let group = player.currentItem?.asset.mediaSelectionGroup(forMediaCharacteristic: .legible) else { return "None" }
+//        let selectedOption = player.currentItem?.currentMediaSelection.selectedMediaOption(in: group)
+//        return selectedOption?.displayName ?? "None"
+//    }
     
     @ViewBuilder
     func seekerThumbnailView(_ videoSize: CGSize) -> some View {

@@ -36,6 +36,7 @@ struct CommentView: View {
     @State private var addComment: String = ""
     @State private var redirectReply = false
     @State private var commentid: String = ""
+    @State private var likeAdded: Bool = false
     @Binding var dismissSheet: Bool
     @Binding var commentOrder: String
     @Binding var seriesEpisodeDetailId: String
@@ -77,15 +78,15 @@ struct CommentView: View {
                     } else {
                         ScrollView {
                             ForEach(feedViewModel.seriesEpisodesCommentsModel?.results.reversed() ?? [], id: \.uid) { data in
-                                CommentCardView(/*isPinned: $isPinned,*/ expandDescription: $expandDescription, showReportComment: $showReportComment, redirectReply: $redirectReply, profileImage: .constant(data.user?.avatar ?? ""), displayName: .constant(data.user?.name ?? ""), commentDuration: .constant(""), comment: .constant(data.comment), likes: .constant(data.like_count), replies: .constant(data.replies_count), action: {
+                                CommentCardView(/*isPinned: $isPinned,*/ expandDescription: $expandDescription, showReportComment: $showReportComment, redirectReply: $redirectReply, profileImage: .constant(data.user?.avatar ?? ""), displayName: .constant(data.user?.name ?? ""), commentDuration: .constant(""), comment: .constant(data.comment), likes: .constant(data.like_count), replies: .constant(data.replies_count), likeAdded: $feedViewModel.likeCommentAdded, action: {
                                     commentid = data.uid
                                     redirectReply = true
-                                }, likeAction: {
+                                }, addLikeAction: {
                                     feedViewModel.likeCommnet(comment: data.uid)
+                                }, deleteLikeAction: {
+                                    feedViewModel.deleteLikeComment(comment: data.uid)
                                 })
                                 .padding(.top, 10)
-                                
-                                
                             }
                         }
                     }
