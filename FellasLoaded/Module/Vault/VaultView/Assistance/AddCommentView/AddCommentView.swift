@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AddCommentView: View {
     @Binding var addComment: String
+    @Binding var loader: Bool
     @State var action: () -> Void
     
     var body: some View {
@@ -26,10 +27,20 @@ struct AddCommentView: View {
                     .cornerRadius(5)
             
             Button(action: action) {
-                Image("send-comment-icon")
-                    .resizable()
-                    .scaledToFit()
+                if loader {
+                    ZStack {
+                        FLButtonLoader()
+                    }
+                    .padding(10)
+                    .background(Color.theme.appGrayColor)
+                    .clipShape(.circle)
                     .frame(width: 40, height: 40)
+                } else {
+                    Image("send-comment-icon")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 40, height: 40)
+                }
             }
         }
         .padding()

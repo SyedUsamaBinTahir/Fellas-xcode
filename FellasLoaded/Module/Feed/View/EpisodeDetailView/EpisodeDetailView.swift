@@ -20,9 +20,9 @@ struct EpisodeDetailView: View {
     
     var body: some View {
         VStack {
-            if feedViewModel.showLoader {
-                FLLoader()
-            } else {
+//            if feedViewModel.showLoader {
+//                FLLoader()
+//            } else {
                 ScrollView(showsIndicators: false) {
                     ZStack(alignment: horizontalSizeClass == .regular ? .topLeading : .center) {
                         if horizontalSizeClass == .regular {
@@ -128,7 +128,7 @@ struct EpisodeDetailView: View {
                     }
                     .padding(.horizontal)
                 }
-            }
+//            }
         }
         .popup(isPresented: $feedViewModel.watchListSuccess) {
             FLToastAlert(image: .constant("popup-success-icon"), message: .constant("Added to watchlist"))

@@ -54,18 +54,19 @@ struct VideoPlayer: View {
     
     @State private var showSleepTimer = false
     @State private var showVidoQualityLisit = false
+    @State private var showDownlaodUrlsList = false
     
     var body: some View {
         VStack(alignment: .leading) {
             let videoPlayerSize: CGSize = .init(width: isRotated ? size.height : size.width, height: isRotated ? size.width : (size.height / 3.5))
             
             // Custom Video Player
-            if feedViewModel.showLoader {
-                FLLoader()
-                    .frame(width: videoPlayerSize.width, height: videoPlayerSize.height)
-                    /// To avoid other view expansion set it's native view height
-                    .frame(width: size.width, height: size.height / 3, alignment: .bottomLeading)
-            } else {
+//            if feedViewModel.showLoader {
+//                FLLoader()
+//                    .frame(width: videoPlayerSize.width, height: videoPlayerSize.height)
+//                    /// To avoid other view expansion set it's native view height
+//                    .frame(width: size.width, height: size.height / 3, alignment: .bottomLeading)
+//            } else {
                 ZStack(alignment: .topLeading) {
                     CustomVideoPlayer(player: player)
                         .overlay {
@@ -193,7 +194,7 @@ struct VideoPlayer: View {
                 .rotationEffect(.init(degrees: isRotated ? 90 : 0), anchor: .topLeading)
                 /// Making it top view
                 .zIndex(10000)
-            }
+//            }
             
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading) {
@@ -261,7 +262,7 @@ struct VideoPlayer: View {
                             }
                             
                             Button {
-                                
+                                showDownlaodUrlsList.toggle()
                             } label: {
                                 Image("download-icon")
                                     .resizable()
@@ -273,6 +274,14 @@ struct VideoPlayer: View {
                         Rectangle()
                             .fill(Color.theme.appGrayColor.opacity(0.4))
                             .frame(maxWidth: .infinity, maxHeight: 2)
+                    }
+                    .sheet(isPresented: $showDownlaodUrlsList) {
+                        DownloadVideoUrlsView(action: {
+                            
+                        })
+                        .presentationDetents([.medium])
+                        .presentationDragIndicator(.visible)
+                        .environmentObject(feedViewModel)
                     }
                     
                     VStack(alignment: .leading, spacing: 14) {
@@ -319,13 +328,15 @@ struct VideoPlayer: View {
                     }
                     .padding(.top, 5)
                     
-                    LazyVStack(alignment: .leading, spacing: 20) {
+                    VStack(alignment: .leading, spacing: 20) {
                         Segments(selectedTab: $selectedTab)
                         
                         if selectedTab == .EPISODES {
-                            ForEach(feedViewModel.feedCategorySeriesDetailModel?.sessions ?? [], id: \.uid) { data in
-                                ForEach(data.episodes ?? [], id: \.uid) { episode in
-                                    EpisodesView(seriesImage: episode.thumbnail, episode: "S\(episode.session_number):E\(episode.episode_number)", title: episode.title, description: episode.description, icon: "download") {  }
+                            LazyVStack {
+                                ForEach(feedViewModel.feedCategorySeriesDetailModel?.sessions ?? [], id: \.uid) { data in
+                                    ForEach(data.episodes ?? [], id: \.uid) { episode in
+                                        EpisodesView(seriesImage: episode.thumbnail, episode: "S\(episode.session_number):E\(episode.episode_number)", title: episode.title, description: episode.description, icon: "download") {  }
+                                    }
                                 }
                             }
                         } else if selectedTab == .RECOMMENDED {

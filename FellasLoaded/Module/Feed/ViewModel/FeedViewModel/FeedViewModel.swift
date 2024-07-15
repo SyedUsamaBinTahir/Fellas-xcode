@@ -76,6 +76,7 @@ class FeedViewModel: ObservableObject {
 extension FeedViewModel: FeedDataProvider {
     // MARK: - Getting feed's data functions
     func getFeedBanners() {
+        showLoader = true
         dataService.getServerData(url: FLAPIs.baseURL + FLAPIs.feedBanner, type: FeedBannerModel.self)
             .sink { [weak self] completion in
                 DispatchQueue.main.async {
@@ -303,12 +304,12 @@ extension FeedViewModel: FeedDataProvider {
                     DispatchQueue.main.async {
                         self?.alertMessage = error.localizedDescription
                         self?.showAlert = true
-                        self?.showLoader = false
+                        self?.showButtonLoader = false
                     }
                 case .finished:
                     print("success")
                     self?.commentCreated = true
-                    self?.showLoader = false
+                    self?.showButtonLoader = false
                 }
             } receiveValue: { _ in
                 

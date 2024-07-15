@@ -28,6 +28,8 @@
 		859ADCBE2C3D8ED2006AD042 /* SeriesEpisodeLikeCommentsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859ADCBD2C3D8ED2006AD042 /* SeriesEpisodeLikeCommentsAPIService.swift */; };
 		85A0DDCD2C2C395B00B8769B /* FeedSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A0DDCC2C2C395B00B8769B /* FeedSearchModel.swift */; };
 		85A478842C3BE350005B438B /* SeriesEpisodesCreateRepliesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A478832C3BE350005B438B /* SeriesEpisodesCreateRepliesRequest.swift */; };
+		85A85C702C4538B500217829 /* DownloadVideoUrlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A85C6F2C4538B500217829 /* DownloadVideoUrlsView.swift */; };
+		85A85C732C453FE100217829 /* DownoadVideoVIewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A85C722C453FE100217829 /* DownoadVideoVIewModel.swift */; };
 		85DA37BD2C36EB1200E1E3A2 /* SeriesEpisodesCreateCommentsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DA37BC2C36EB1200E1E3A2 /* SeriesEpisodesCreateCommentsRequest.swift */; };
 		85DA37C12C36EBF200E1E3A2 /* SeriesEpisodesCreateCommentsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DA37C02C36EBF200E1E3A2 /* SeriesEpisodesCreateCommentsAPIService.swift */; };
 		85DA37C42C36ECB600E1E3A2 /* SeriesEpisodesCreateCommentsAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DA37C32C36ECB500E1E3A2 /* SeriesEpisodesCreateCommentsAPIError.swift */; };
@@ -219,6 +221,8 @@
 		859ADCBD2C3D8ED2006AD042 /* SeriesEpisodeLikeCommentsAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesEpisodeLikeCommentsAPIService.swift; sourceTree = "<group>"; };
 		85A0DDCC2C2C395B00B8769B /* FeedSearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSearchModel.swift; sourceTree = "<group>"; };
 		85A478832C3BE350005B438B /* SeriesEpisodesCreateRepliesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesEpisodesCreateRepliesRequest.swift; sourceTree = "<group>"; };
+		85A85C6F2C4538B500217829 /* DownloadVideoUrlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadVideoUrlsView.swift; sourceTree = "<group>"; };
+		85A85C722C453FE100217829 /* DownoadVideoVIewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownoadVideoVIewModel.swift; sourceTree = "<group>"; };
 		85DA37BC2C36EB1200E1E3A2 /* SeriesEpisodesCreateCommentsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesEpisodesCreateCommentsRequest.swift; sourceTree = "<group>"; };
 		85DA37C02C36EBF200E1E3A2 /* SeriesEpisodesCreateCommentsAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesEpisodesCreateCommentsAPIService.swift; sourceTree = "<group>"; };
 		85DA37C32C36ECB500E1E3A2 /* SeriesEpisodesCreateCommentsAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesEpisodesCreateCommentsAPIError.swift; sourceTree = "<group>"; };
@@ -548,6 +552,22 @@
 				85A478832C3BE350005B438B /* SeriesEpisodesCreateRepliesRequest.swift */,
 			);
 			path = SeriesEpisodesCreateRepliesRequest;
+			sourceTree = "<group>";
+		};
+		85A85C6E2C45389A00217829 /* DownloadVideoUrlsView */ = {
+			isa = PBXGroup;
+			children = (
+				85A85C6F2C4538B500217829 /* DownloadVideoUrlsView.swift */,
+			);
+			path = DownloadVideoUrlsView;
+			sourceTree = "<group>";
+		};
+		85A85C712C453FC300217829 /* DownloadVideoViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				85A85C722C453FE100217829 /* DownoadVideoVIewModel.swift */,
+			);
+			path = DownloadVideoViewModel;
 			sourceTree = "<group>";
 		};
 		85CCB5162C1C356700007354 /* FLGetServerData */ = {
@@ -1535,6 +1555,7 @@
 		9B8A18332BFB782800CF9FF1 /* VideoPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				85A85C6E2C45389A00217829 /* DownloadVideoUrlsView */,
 				85E86E9C2C2DAC510042A1E9 /* VideoQualitySelectionView */,
 				9BB3DC6C2C1AF9E700DE32B8 /* CastButtonRepresentable */,
 				9BA7F9462C19986300344FF8 /* SleepTimerView */,
@@ -2046,6 +2067,7 @@
 		9BE4BEAA2C1061970016E673 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				85A85C712C453FC300217829 /* DownloadVideoViewModel */,
 				858F086D2C3FF02200202394 /* M3u8ParserViewModel */,
 				9BE4BEB02C1077330016E673 /* FeedViewModel */,
 			);
@@ -2610,6 +2632,7 @@
 				859ADCB72C3D7876006AD042 /* AddEpisodeWatchLaterAPIService.swift in Sources */,
 				9BF767272C0758BC00BDBC6A /* View+.swift in Sources */,
 				9BEB30362C0F4EB9002C7F82 /* CheckEmailApiError.swift in Sources */,
+				85A85C702C4538B500217829 /* DownloadVideoUrlsView.swift in Sources */,
 				9BE13A3E2C05CD3100D69B66 /* FLAuthTextFieldError.swift in Sources */,
 				859ADCAA2C3D3094006AD042 /* AddSeriesWatchLaterAPIError.swift in Sources */,
 				9BC6B7FE2BF3530D00E684AD /* SubscribeView.swift in Sources */,
@@ -2644,6 +2667,7 @@
 				9B11FC5B2C17036200AE80ED /* FeedCategoryEpisodesModel.swift in Sources */,
 				9B72892E2BFE09E600EB1A90 /* EmailHeaderView.swift in Sources */,
 				9B7289652BFE19CF00EB1A90 /* ConfesstionBoxButtonView.swift in Sources */,
+				85A85C732C453FE100217829 /* DownoadVideoVIewModel.swift in Sources */,
 				858F086C2C3FE1FD00202394 /* FLM3u8Helper.swift in Sources */,
 				9BEC0A862C049DF200BDE169 /* Data+.swift in Sources */,
 				9BF767242C074B8A00BDBC6A /* AuthVerifyEmailRequest.swift in Sources */,
@@ -2840,7 +2864,7 @@
 				CODE_SIGN_ENTITLEMENTS = FellasLoaded/FellasLoaded.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"FellasLoaded/Preview Content\"";
 				DEVELOPMENT_TEAM = HAG8AD6Y2K;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -2852,6 +2876,7 @@
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Fellas Loaded would like to access you bluetooth";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Fellas need access to your camera to allow you to take photo for your profile";
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Fellas Loaded uses the local network to discover Cast-enabled devices on your WiFi\n    network.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow permission to save videos";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -2888,7 +2913,7 @@
 				CODE_SIGN_ENTITLEMENTS = FellasLoaded/FellasLoaded.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"FellasLoaded/Preview Content\"";
 				DEVELOPMENT_TEAM = HAG8AD6Y2K;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -2899,6 +2924,7 @@
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Fellas Loaded would like to access you bluetooth";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Fellas need access to your camera to allow you to take photo for your profile";
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Fellas Loaded uses the local network to discover Cast-enabled devices on your WiFi\n    network.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow permission to save videos";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

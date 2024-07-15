@@ -71,7 +71,8 @@ struct RepliesView: View {
                 }
             }
             
-            AddCommentView(addComment: $addComment) {
+            AddCommentView(addComment: $addComment, loader: $feedViewModel.showButtonLoader) {
+                feedViewModel.showButtonLoader = true
                 feedViewModel.createReplies(episode: seriesEpisodeDetailId != "" ? seriesEpisodeDetailId : episodeCategoryID, parent: feedViewModel.seriesEpisodesCommentsDetailModel?.parent.uid ?? "", replyTo: feedViewModel.seriesEpisodesCommentsDetailModel?.parent.uid ?? "", comment: addComment)
                 addComment = ""
             }

@@ -44,7 +44,8 @@ class MediaPlaylistViewModel: ObservableObject {
                     print("Play list --> ", self?.playList ?? "")
                     print(playlist.ext_x_version)
                     print(playlist.ext_x_stream_inf)
-                    print(playlist.uris[0])
+                    print(playlist.uris)
+                    print(playlist.variantStreams[0].uri)
                 }
             )
     }
@@ -85,7 +86,7 @@ struct VideoQualitySelectionView: View {
             VStack(alignment: .leading ,spacing: 30) {
                 ForEach(viewModel.playList?.ext_x_stream_inf ?? [], id: \.bandwidth) { resolution in
                     Button(action: action) {
-                        Text("\(resolution.resolution?.height ?? 0)")
+                        Text(String(resolution.resolution?.height ?? 0))
                             .font(.custom(Font.semiBold, size: 16))
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }

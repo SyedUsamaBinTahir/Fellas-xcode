@@ -99,7 +99,8 @@ struct CommentView: View {
                         EmptyView()
                     }
                     
-                    AddCommentView(addComment: $addComment) {
+                    AddCommentView(addComment: $addComment, loader: $feedViewModel.showButtonLoader) {
+                        feedViewModel.showButtonLoader = true
                         feedViewModel.createComment(episode: seriesEpisodeDetailId != "" ? seriesEpisodeDetailId : episodeCategoryID, comment: addComment)
                         addComment = ""
                     }

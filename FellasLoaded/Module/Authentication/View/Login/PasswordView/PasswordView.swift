@@ -91,6 +91,9 @@ struct PasswordView: View {
                 }
             }
         }
+        .onDisappear {
+            password = ""
+        }
         .background {
             LinearGradient(gradient: Gradient(colors: [Color.black, Color.theme.appColor, Color.black]), startPoint: .topLeading, endPoint: .bottomTrailing)
         }

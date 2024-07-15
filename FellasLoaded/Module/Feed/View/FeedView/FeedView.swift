@@ -33,9 +33,9 @@ struct FeedView: View {
     var body: some View {
         VStack {
             VStack {
-                if feedViewModel.showLoader {
-                    FLLoader()
-                } else {
+//                if feedViewModel.showLoader {
+//                    FLLoader()
+//                } else {
                     FeedHeaderView(redirectSearch: $redirectSearch, redirectNotifications: $redirectNotifications)
                     ScrollView(showsIndicators: false) {
                         CarousalView(redirectVideoPlayer: $redirectVideoPlayer)
@@ -233,11 +233,10 @@ struct FeedView: View {
                         }
                         .padding()
                     }
-                }
+//                }
             }
             .padding(.top, 30)
             .onAppear {
-                feedViewModel.showLoader = true
                 feedViewModel.getFeedBanners()
                 feedViewModel.getFeedCategories()
                 //                    feedViewModel.getUserDetail()

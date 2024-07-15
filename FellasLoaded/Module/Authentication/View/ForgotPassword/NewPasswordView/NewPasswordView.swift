@@ -34,7 +34,7 @@ struct NewPasswordView: View {
                         
                         VStack(alignment: .leading, spacing: 30) {
                             VStack(alignment: .leading, spacing: 18) {
-                                AuthPasswordTextFieldView(placeholder: .constant("Current password"), field: $currentPassword)
+                                AuthPasswordTextFieldView(placeholder: .constant("Password"), field: $currentPassword)
                                                                 
                                 Text("Use a minimum of 8 characters with a combination of uppercase & lowercase letters, numbers, and special characters.")
                                     .font(.custom(Font.Medium, size: 14))
