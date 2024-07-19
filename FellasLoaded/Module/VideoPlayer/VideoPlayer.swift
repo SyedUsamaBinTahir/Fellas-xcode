@@ -15,6 +15,7 @@ struct VideoPlayer: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @EnvironmentObject var feedViewModel: FeedViewModel
     @StateObject private var viewModel = M3u8ParserViewModel()
+    @StateObject var downloadModel = DownloadTaskModel()
     var size: CGSize
     var safeArea: EdgeInsets?
     var url: URL
@@ -139,16 +140,16 @@ struct VideoPlayer: View {
                                         .foregroundColor(.white)
                                 }
                                 
-                                Button {
-//                                    viewModel.fetchResolutions(urlString: "\(url)")
-                                    showVidoQualityLisit.toggle()
-                                } label: {
-                                    Image("settings-icon")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 20, height: 20)
-                                        .foregroundColor(.white)
-                                }
+//                                Button {
+////                                    viewModel.fetchResolutions(urlString: "\(url)")
+//                                    showVidoQualityLisit.toggle()
+//                                } label: {
+//                                    Image("settings-icon")
+//                                        .resizable()
+//                                        .scaledToFit()
+//                                        .frame(width: 20, height: 20)
+//                                        .foregroundColor(.white)
+//                                }
                             }
                         }
                     }
@@ -159,14 +160,14 @@ struct VideoPlayer: View {
                         .presentationDetents([.medium])
                         .presentationDragIndicator(.visible)
                 }
-                .sheet(isPresented: $showVidoQualityLisit) {
-                    VideoQualitySelectionView(url: url, action: {
-                        
-                    })
-                    .presentationDetents([.medium])
-                    .presentationDragIndicator(.visible)
-                    .environmentObject(feedViewModel)
-                }
+//                .sheet(isPresented: $showVidoQualityLisit) {
+//                    VideoQualitySelectionView(url: url, action: {
+//                        
+//                    })
+//                    .presentationDetents([.medium])
+//                    .presentationDragIndicator(.visible)
+//                    .environmentObject(feedViewModel)
+//                }
                 .background(content: {
                     Rectangle()
                         .fill(.black)
@@ -201,15 +202,6 @@ struct VideoPlayer: View {
                     Text(feedViewModel.seriesEpisodeDetailModel?.title ?? "")
                         .font(.custom(Font.semiBold, size: 24))
                         .foregroundStyle(.white)
-                    
-//                    Text("Quality: \(currentQuality())")
-//                        .font(.custom(Font.semiBold, size: 24))
-//                        .foregroundStyle(.white)
-//                    
-//                    Text("Caption: \(currentCaption())")
-//                        .font(.custom(Font.semiBold, size: 24))
-//                        .foregroundStyle(.white)
-                    
                     
                     VStack(alignment: .leading, spacing: 16) {
                         HStack(spacing: 16) {
@@ -261,14 +253,19 @@ struct VideoPlayer: View {
                                 }
                             }
                             
-                            Button {
-                                showDownlaodUrlsList.toggle()
-                            } label: {
-                                Image("download-icon")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 40, height: 40)
-                            }
+                                if downloadModel.showDownloadProgress {
+                                    DownloadProgressView(progress: $downloadModel.downloadProgress)
+                                        .environmentObject(downloadModel)
+                                } else {
+                                    Button {
+                                        showDownlaodUrlsList.toggle()
+                                    } label: {
+                                        Image("download-icon")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 40, height: 40)
+                                    }
+                                }
                         }
                         
                         Rectangle()
@@ -276,9 +273,7 @@ struct VideoPlayer: View {
                             .frame(maxWidth: .infinity, maxHeight: 2)
                     }
                     .sheet(isPresented: $showDownlaodUrlsList) {
-                        DownloadVideoUrlsView(action: {
-                            
-                        })
+                        DownloadVideoUrlsView()
                         .presentationDetents([.medium])
                         .presentationDragIndicator(.visible)
                         .environmentObject(feedViewModel)

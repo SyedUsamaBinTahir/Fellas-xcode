@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DownloadVideoUrlsView: View {
     @EnvironmentObject var feedViewModel: FeedViewModel
-    @State var action: () -> Void
+    @StateObject var downloadModel = DownloadTaskModel()
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -39,7 +39,19 @@ struct DownloadVideoUrlsView: View {
             
             VStack(alignment: .leading ,spacing: 30) {
                 ForEach(feedViewModel.seriesEpisodeDetailModel?.bvideo.download_urls?.compactMap { $0 } ?? [], id: \.key) { key, downloadURL in
-                    Button(action: action) {
+                    Button(action: {
+                        downloadModel.startDownload(urlString: downloadURL?.url ?? "")
+                        do {
+                            var videoObject = [SeriesBvideo]()
+                            if let bVideo = feedViewModel.seriesEpisodeDetailModel?.bvideo {
+                                videoObject.append(bVideo)
+                            }
+                            let data = try JSONEncoder().encode(videoObject)
+                            UserDefaults.standard.setValue(data, forKey: FLUserDefaultKeys.videoData.rawValue)
+                        } catch {
+                            print(String(describing: error))
+                        }
+                    }) {
                         Text(key)
                             .font(.custom(Font.semiBold, size: 16))
                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -70,5 +82,5 @@ struct DownloadVideoUrlsView: View {
 }
 
 #Preview {
-    DownloadVideoUrlsView(action: {})
+    DownloadVideoUrlsView()
 }
