@@ -16,6 +16,8 @@ struct SettingsView: View {
     @State private var dismissLogout = false
     @State private var redirectPushNotifications = false
     @State private var redirectvideoPlayback = false
+    @State private var redirectEditProfile: Bool = false
+    @Binding var userEmail: String
     
     var body: some View {
         VStack {
@@ -32,13 +34,13 @@ struct SettingsView: View {
                             }
                             
                             VStack(spacing: 26) {
-                                SettingsNavigatorView(icon: "profile", title: "Edit Profile", description: nil, forwardIcon: "chevron-icon") { }
-                                SettingsNavigatorView(icon: "account", title: "Account", description: "Subscription renews on Aug 26, 2024  ", forwardIcon: "chevron-icon") { redirectAccount = true }
-                                SettingsNavigatorView(icon: "video-player-controls", title: "Video playback", description: nil, forwardIcon: "chevron-icon") { redirectvideoPlayback = true }
-                                SettingsNavigatorView(icon: "notifications", title: "Push notifications", description: nil, forwardIcon: "chevron-icon") { redirectPushNotifications = true }
-                                SettingsNavigatorView(icon: "terms", title: "Terms & conditions", description: nil, forwardIcon: "chevron-icon") { }
-                                SettingsNavigatorView(icon: "privacy-policy", title: "Privacy policy", description: nil, forwardIcon: "chevron-icon") { }
-                                SettingsNavigatorView(icon: "logout", title: "log out", description: nil, forwardIcon: "chevron-icon") {
+                                SettingsNavigatorView(icon: "profile", title: "Edit Profile", description: nil, forwardIcon: "chevron.right") {redirectEditProfile = true}
+                                SettingsNavigatorView(icon: "account", title: "Account", description: "Subscription renews on Aug 26, 2024  ", forwardIcon: "chevron.right") { redirectAccount = true }
+                                SettingsNavigatorView(icon: "video-player-controls", title: "Video playback", description: nil, forwardIcon: "chevron.right") { redirectvideoPlayback = true }
+                                SettingsNavigatorView(icon: "notifications", title: "Push notifications", description: nil, forwardIcon: "chevron.right") { redirectPushNotifications = true }
+                                SettingsNavigatorView(icon: "terms", title: "Terms & conditions", description: nil, forwardIcon: "chevron.right") { }
+                                SettingsNavigatorView(icon: "privacy-policy", title: "Privacy policy", description: nil, forwardIcon: "chevron.right") { }
+                                SettingsNavigatorView(icon: "logout", title: "log out", description: nil, forwardIcon: "chevron.right") {
                                     withAnimation(.easeInOut(duration: 0.2)) {
                                         dismissLogout = true
                                     }
@@ -73,9 +75,15 @@ struct SettingsView: View {
 //            .navigationDestination(isPresented: $redirectvideoPlayback) {
 //                VideoPlaybackView().navigationBarBackButtonHidden(true)
 //            }
+
+            NavigationLink(isActive: $redirectEditProfile) {
+                EditProfile().navigationBarBackButtonHidden(true)
+            } label: {
+                EmptyView()
+            }
             
             NavigationLink(isActive: $redirectAccount) {
-                AccountView().navigationBarBackButtonHidden(true)
+                AccountView(userEmail: .constant(userEmail)).navigationBarBackButtonHidden(true)
             } label: {
                 EmptyView()
             }
@@ -101,5 +109,5 @@ struct SettingsView: View {
 }
 
 #Preview {
-    SettingsView()
+    SettingsView(userEmail: .constant(""))
 }

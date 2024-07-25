@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct DownloadsView: View {
-    var feedSeriesEpisodeDetailModel: SeriesEpisodeDetailModel?
     @Environment(\.presentationMode) var presentationMode
+    @StateObject var downloadModel = DownloadTaskModel()
+    @StateObject var downloadDataViewModel = DownloadedDataViewModel()
+    @State private var seriesDetails: [SeriesEpisodeDetailModel] = []
+    @State private var seriesEpisodeDetailModel: SeriesEpisodeDetailModel?
+    @State private var downloadedFiles: [URL] = []
+    @State private var redirectToDownloadsVideoPlayer = false
     
     var body: some View {
         VStack {
@@ -53,33 +58,73 @@ struct DownloadsView: View {
                 
                 ScrollView {
                     VStack(spacing: 20) {
-//                        ForEach(1...5, id: \.self) { data in
-//                            EpisodesView(seriesImage: "series-image", episode: "S1:E1", title: "The Fellas & W2S Get Drunk in Amsterdam The Fellas & W2S Get Drunk in Amsterdam", description: "The Fellas head to the city of Amsterdam for some absolute CARNAGE! 24 hours was more than enough and you'll see why", icon: "downloaded-icon")
-//                        }
-                        DownloadedFilesView()
+                        ForEach(seriesDetails, id: \.uid) { data in
+                            ForEach(downloadedFiles, id: \.self) { fileULR in
+                                HStack {
+                                    EpisodesView(seriesImage: data.bvideo.preview_image_url,
+                                                 episode: "\(data.bvideo.length)",
+                                                 title: data.bvideo.video_name,
+                                                 icon: "downloaded-icon",
+                                                 action: {
+                                        redirectToDownloadsVideoPlayer = true
+                                    })
+                                    
+                                    Spacer()
+                                    
+                                    Button(action: {
+                                        deleteSeriesDetail(id: data.uid)
+                                    }) {
+                                        Image(systemName: "trash")
+                                            .foregroundColor(.red)
+                                    }
+                                }
+                                NavigationLink(destination: DownloadsVideoPlayerView(url: fileULR).navigationBarBackButtonHidden(true), isActive: $redirectToDownloadsVideoPlayer) {
+                                    EmptyView()
+                                }
+                            }
+                        }
+                        
+                        
+//                        DownloadedFilesView()
                     }
                 }
             }
             .padding()
         }
         .onAppear {
-            guard let data = UserDefaults.standard.data(forKey: FLUserDefaultKeys.videoData.rawValue) else {
-                return
-            }
-            
-            do {
-                let decoder = try JSONDecoder().decode([SeriesBvideo].self, from: data)
-                print(decoder)
-            } catch {
-                print(String(describing: error))
-            }
-            
-            print("User defaults data -->", String(data: data, encoding: .utf8) ?? "")
+//            downloadDataViewModel.loadVideoData()
+            loadFiles()
+            loadSeriesDetails()
         }
         .background {
             LinearGradient(gradient: Gradient(colors: [Color.black, Color.theme.appColor, Color.black]), startPoint: .topLeading, endPoint: .bottomTrailing)
         }
         .ignoresSafeArea()
+    }
+    
+    private func loadFiles() {
+        downloadedFiles = downloadModel.getDownloadedFiles()
+    }
+    
+    private func deleteFile(at url: URL) {
+        downloadModel.deleteFile(at: url)
+        loadFiles()  // Refresh the file list
+    }
+    
+    private func loadSeriesDetails() {
+        if let loadedDetails = downloadModel.loadSeriesDetailsFromFile() {
+            seriesDetails = loadedDetails
+            print("series detail -->" ,seriesDetails)
+        }
+    }
+    
+    func deleteSeriesDetail(id: String) {
+        var seriesDetails = downloadModel.loadSeriesDetailsFromFile() ?? []
+        seriesDetails.removeAll { $0.uid == id }  // Assuming 'id' is a unique identifier in SeriesEpisodeDetailModel
+        
+        if let jsonData = try? JSONEncoder().encode(seriesDetails) {
+            downloadModel.saveJSONToFile(data: jsonData, fileName: "seriesDetails.json")
+        }
     }
 }
 

@@ -27,6 +27,7 @@ struct SettingsNavigatorView: View {
                     VStack(alignment: .leading) {
                         Text(title)
                             .font(.custom(Font.semiBold, size: 16))
+                            .foregroundColor(Color.white)
                         if let description = description {
                             Text(description)
                                 .font(.custom(Font.Medium, size: 14))
@@ -37,10 +38,12 @@ struct SettingsNavigatorView: View {
                     Spacer()
                     
                     if let forwardIcon = forwardIcon {
-                        Image(forwardIcon)
+                        Image(systemName: forwardIcon)
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 24, height: 24)
+                            .frame(width: 15, height: 15)
+                            .foregroundColor(Color.white)
+                            .fontWeight(.bold)
                     }
                 }
                 .foregroundStyle(Color.white)

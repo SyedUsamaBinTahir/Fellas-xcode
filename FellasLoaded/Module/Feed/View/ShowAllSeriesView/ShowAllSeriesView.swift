@@ -38,7 +38,7 @@ struct ShowAllSeriesView: View {
                             ScrollView {
                                 LazyVGrid(columns: horizontalSizeClass == .regular ? horizontalGridColumn : gridColomn, spacing: 14) {
                                     ForEach(feedViewModel.feedCategorySeriesModel?.results ?? [], id: \.uid) { data in
-                                        KFImage.init(URL(string: data.thumbnail))
+                                        KFImage.init(URL(string: data.thumbnail ?? ""))
                                             .placeholder({ _ in
                                                 RoundedRectangle(cornerRadius: 10)
                                                     .fill(Color.theme.appCardsColor)

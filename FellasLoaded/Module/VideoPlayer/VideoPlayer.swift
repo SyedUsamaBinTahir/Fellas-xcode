@@ -18,18 +18,24 @@ struct VideoPlayer: View {
     @StateObject var downloadModel = DownloadTaskModel()
     var size: CGSize
     var safeArea: EdgeInsets?
-    var url: URL
+    @State var url: URL
     @Binding var commentOrder: String
     @Binding var seriesEpisodeDetailId: String
     @Binding var episodeCategoryID: String
+    @Binding var bannerUid: String
+    @Binding var reloadVideo: Bool
+    @Binding var episodeSeriesUid: String?
     @State private var player: AVPlayer
-    init(size: CGSize, safeArea: EdgeInsets?, url: URL, commentOrder: Binding<String>, seriesEpisodeDetailId: Binding<String>, episodeCategoryID: Binding<String>) {
+    init(size: CGSize, safeArea: EdgeInsets?, url: URL, commentOrder: Binding<String>, seriesEpisodeDetailId: Binding<String>, episodeCategoryID: Binding<String>, bannerUid: Binding<String>, reloadVideo: Binding<Bool>, episodeSeriesUid: Binding<String?>) {
         self.size = size
         self.safeArea = safeArea
-        self.url = url
+        self._url = State(initialValue: url)
         self._commentOrder = commentOrder
         self._seriesEpisodeDetailId = seriesEpisodeDetailId
         self._episodeCategoryID = episodeCategoryID
+        self._bannerUid = bannerUid
+        self._reloadVideo = reloadVideo
+        self._episodeSeriesUid = episodeSeriesUid
         self._player = State(initialValue: AVPlayer(url: url))
     }
     @State private var showPlayerControlls: Bool = false
@@ -253,6 +259,7 @@ struct VideoPlayer: View {
                                 }
                             }
                             
+                            ZStack {
                                 if downloadModel.showDownloadProgress {
                                     DownloadProgressView(progress: $downloadModel.downloadProgress)
                                         .environmentObject(downloadModel)
@@ -266,6 +273,7 @@ struct VideoPlayer: View {
                                             .frame(width: 40, height: 40)
                                     }
                                 }
+                            }
                         }
                         
                         Rectangle()
@@ -273,7 +281,7 @@ struct VideoPlayer: View {
                             .frame(maxWidth: .infinity, maxHeight: 2)
                     }
                     .sheet(isPresented: $showDownlaodUrlsList) {
-                        DownloadVideoUrlsView()
+                        DownloadVideoUrlsView(isPresented: $showDownlaodUrlsList)
                         .presentationDetents([.medium])
                         .presentationDragIndicator(.visible)
                         .environmentObject(feedViewModel)
@@ -309,13 +317,13 @@ struct VideoPlayer: View {
                         }
                         
                         VaultCommentsCardView(numberOfComments: .constant("\(feedViewModel.seriesEpisodesCommentsModel?.count ?? 0)"),
-                                              profileImage: .constant(feedViewModel.seriesEpisodesCommentsModel?.results[0].user?.avatar ?? ""),
-                                              comment: .constant(feedViewModel.seriesEpisodesCommentsModel?.results[0].comment ?? ""))
+                                              profileImage: .constant(feedViewModel.seriesEpisodesCommentsModel?.results.first?.user?.avatar ?? ""),
+                                              comment: .constant(feedViewModel.seriesEpisodesCommentsModel?.results.first?.comment ?? ""))
                         .onTapGesture {
                             redirectComment = true
                         }
                         .sheet(isPresented: $redirectComment, content: {
-                            CommentView(dismissSheet: $redirectComment, commentOrder: $commentOrder, seriesEpisodeDetailId: $seriesEpisodeDetailId, episodeCategoryID: $episodeCategoryID)
+                            CommentView(dismissSheet: $redirectComment, commentOrder: $commentOrder, seriesEpisodeDetailId: $seriesEpisodeDetailId, episodeCategoryID: $episodeCategoryID, bannerUid: $bannerUid)
                                 .presentationDragIndicator(.visible)
                                 .environmentObject(feedViewModel)
 
@@ -330,7 +338,10 @@ struct VideoPlayer: View {
                             LazyVStack {
                                 ForEach(feedViewModel.feedCategorySeriesDetailModel?.sessions ?? [], id: \.uid) { data in
                                     ForEach(data.episodes ?? [], id: \.uid) { episode in
-                                        EpisodesView(seriesImage: episode.thumbnail, episode: "S\(episode.session_number):E\(episode.episode_number)", title: episode.title, description: episode.description, icon: "download") {  }
+                                        EpisodesView(seriesImage: episode.thumbnail, episode: "S\(episode.session_number):E\(episode.episode_number)", title: episode.title, description: episode.description, icon: "download") { 
+                                            reloadVideo = true
+                                            episodeSeriesUid = episode.uid
+                                        }
                                     }
                                 }
                             }

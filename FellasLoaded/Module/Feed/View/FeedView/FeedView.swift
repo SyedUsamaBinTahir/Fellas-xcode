@@ -41,6 +41,8 @@ struct FeedView: View {
                         CarousalView(redirectVideoPlayer: $redirectVideoPlayer)
                             .environmentObject(feedViewModel)
                         
+                        
+                        
                         VStack(spacing: 20) {
                             ForEach(feedViewModel.feedCategoriesModel?.results ?? [], id: \.uid) { data in
                                 if data.order == 1 {
@@ -51,7 +53,7 @@ struct FeedView: View {
                                         ScrollView(.horizontal, showsIndicators: false) {
                                             LazyHStack(spacing: 3) {
                                                 ForEach(data.results, id: \.uid) { result in
-                                                    FeedSwiperView(feedImage: result.thumbnail, description: nil, width: horizontalSizeClass == .regular ? 304 : 155, height: horizontalSizeClass == .regular ? 456 : 232, progressBarValue: nil) {
+                                                    FeedSwiperView(feedImage: result.thumbnail ?? "", description: nil, width: horizontalSizeClass == .regular ? 304 : 155, height: horizontalSizeClass == .regular ? 456 : 232, progressBarValue: nil) {
                                                         redirectEpisodeDetail = true
                                                         seriesDetailID = result.uid
                                                     }
@@ -81,7 +83,7 @@ struct FeedView: View {
                                         ScrollView(.horizontal, showsIndicators: false) {
                                             LazyHStack(spacing: 3) {
                                                 ForEach(data.results, id: \.uid) { result in
-                                                    FeedSwiperView(feedImage: result.thumbnail, description: result.title, width: horizontalSizeClass == .regular ? 523 : 277, height: horizontalSizeClass == .regular ? 294 : 155, progressBarValue: nil) {
+                                                    FeedSwiperView(feedImage: result.thumbnail ?? "", description: result.title, width: horizontalSizeClass == .regular ? 523 : 277, height: horizontalSizeClass == .regular ? 294 : 155, progressBarValue: nil) {
                                                         redirectVideoPlayer = true
                                                         episodeCategoryID = result.uid
                                                     }
@@ -118,7 +120,7 @@ struct FeedView: View {
                                         ScrollView(.horizontal, showsIndicators: false) {
                                             LazyHStack(spacing: 3) {
                                                 ForEach(data.results, id: \.uid) { result in
-                                                    FeedSwiperView(feedImage: result.thumbnail, description: nil, width: horizontalSizeClass == .regular ? 195 : 114, height: horizontalSizeClass == .regular ? 292 : 171, progressBarValue: nil) {
+                                                    FeedSwiperView(feedImage: result.thumbnail ?? "", description: nil, width: horizontalSizeClass == .regular ? 195 : 114, height: horizontalSizeClass == .regular ? 292 : 171, progressBarValue: nil) {
                                                         redirectEpisodeDetail = true
                                                         seriesDetailID = result.uid
                                                     }
@@ -147,7 +149,7 @@ struct FeedView: View {
                                         ScrollView(.horizontal, showsIndicators: false) {
                                             LazyHStack(spacing: 3) {
                                                 ForEach(data.results, id: \.uid) { result in
-                                                    FeedSwiperView(feedImage: result.thumbnail, description: nil, width: horizontalSizeClass == .regular ? 195 : 114, height: horizontalSizeClass == .regular ? 292 : 171, progressBarValue: nil) {
+                                                    FeedSwiperView(feedImage: result.thumbnail ?? "", description: nil, width: horizontalSizeClass == .regular ? 195 : 114, height: horizontalSizeClass == .regular ? 292 : 171, progressBarValue: nil) {
                                                         redirectEpisodeDetail = true
                                                         seriesDetailID = result.uid
                                                     }
@@ -176,7 +178,7 @@ struct FeedView: View {
                                         ScrollView(.horizontal, showsIndicators: false) {
                                             LazyHStack(spacing: 3) {
                                                 ForEach(data.results, id: \.uid) { result in
-                                                    FeedSwiperView(feedImage: result.thumbnail, description: nil, width: horizontalSizeClass == .regular ? 195 : 114, height: horizontalSizeClass == .regular ? 292 : 171, progressBarValue: nil) {
+                                                    FeedSwiperView(feedImage: result.thumbnail ?? "", description: nil, width: horizontalSizeClass == .regular ? 195 : 114, height: horizontalSizeClass == .regular ? 292 : 171, progressBarValue: nil) {
                                                         redirectEpisodeDetail = true
                                                         seriesDetailID = result.uid
                                                     }
@@ -206,7 +208,7 @@ struct FeedView: View {
                                         ScrollView(.horizontal, showsIndicators: false) {
                                             LazyHStack(spacing: 3) {
                                                 ForEach(data.results, id: \.uid) { result in
-                                                    FeedSwiperView(feedImage: result.thumbnail, description: result.title, width: horizontalSizeClass == .regular ? 523 : 277, height: horizontalSizeClass == .regular ? 294 : 155, progressBarValue: nil) {
+                                                    FeedSwiperView(feedImage: result.thumbnail ?? "", description: result.title, width: horizontalSizeClass == .regular ? 523 : 277, height: horizontalSizeClass == .regular ? 294 : 155, progressBarValue: nil) {
                                                         redirectVideoPlayer = true
                                                         episodeCategoryID = result.uid
                                                     }
@@ -239,7 +241,6 @@ struct FeedView: View {
             .onAppear {
                 feedViewModel.getFeedBanners()
                 feedViewModel.getFeedCategories()
-                //                    feedViewModel.getUserDetail()
             }
             NavigationLink(isActive: $redirectSearch) {
                 SearchView().navigationBarBackButtonHidden(true)

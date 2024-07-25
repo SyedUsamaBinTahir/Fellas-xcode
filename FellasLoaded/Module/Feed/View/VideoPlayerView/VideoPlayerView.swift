@@ -18,6 +18,9 @@ struct VideoPlayerView: View {
     @State var seriesUid: CategoriesResults?
     @State var feedCategoryEpisodeId: FeedCategoryEpisodesResults?
     @State var feedSearchEpisodeId: FeedSearchResults?
+    @State var bannerUid: FeedBannerResults?
+    @State var reloadVideo = false
+    @State var episodeSeriesUid: String?
     
     var body: some View {
         VStack {
@@ -26,9 +29,17 @@ struct VideoPlayerView: View {
                 let safeArea = $0.safeAreaInsets
                 
                 if let videoURL = videoURL {
-                    VideoPlayer(size: size, safeArea: safeArea, url: videoURL, commentOrder: $commentOrder, seriesEpisodeDetailId: .constant(seriesEpisodeDetailId?.uid ?? ""), episodeCategoryID: .constant(episodeCategoryID ?? ""))
-                        .environmentObject(feedViewModel)
-                        .ignoresSafeArea()
+                    VideoPlayer(size: size,
+                                safeArea: safeArea,
+                                url: videoURL,
+                                commentOrder: $commentOrder,
+                                seriesEpisodeDetailId: .constant(seriesEpisodeDetailId?.uid ?? ""),
+                                episodeCategoryID: .constant(episodeCategoryID ?? ""),
+                                bannerUid: .constant(bannerUid?.object_uid ?? ""),
+                                reloadVideo: $reloadVideo,
+                                episodeSeriesUid: $episodeSeriesUid)
+                    .environmentObject(feedViewModel)
+                    .ignoresSafeArea()
                 }
                 else {
                     FLLoader()
@@ -41,6 +52,9 @@ struct VideoPlayerView: View {
             if seriesEpisodeDetailId != nil {
                 feedViewModel.getSeriesEpisodesComments(id: seriesEpisodeDetailId?.uid ?? "", commentOrderBy: commentOrder)
                 print("Series Episode Comments ID -->", seriesEpisodeDetailId?.uid ?? "")
+            } else if bannerUid != nil {
+                feedViewModel.getSeriesEpisodesComments(id: bannerUid?.object_uid ?? "", commentOrderBy: commentOrder)
+                print("Series comments banner uid -->", bannerUid?.object_uid ?? "")
             } else {
                 feedViewModel.getSeriesEpisodesComments(id: episodeCategoryID ?? "", commentOrderBy: commentOrder)
                 print("Episode Comments ID -->", episodeCategoryID ?? "")
@@ -50,6 +64,21 @@ struct VideoPlayerView: View {
             if seriesEpisodeDetailId != nil {
                 feedViewModel.getSeriesEpisodesComments(id: seriesEpisodeDetailId?.uid ?? "", commentOrderBy: commentOrder)
                 print("Series Episode Comments ID -->", seriesEpisodeDetailId?.uid ?? "")
+            } else if bannerUid != nil {
+                feedViewModel.getSeriesEpisodesComments(id: bannerUid?.object_uid ?? "", commentOrderBy: commentOrder)
+                print("Series comments banner uid -->", bannerUid?.object_uid ?? "")
+            } else {
+                feedViewModel.getSeriesEpisodesComments(id: episodeCategoryID ?? "", commentOrderBy: commentOrder)
+                print("Episode Comments ID -->", episodeCategoryID ?? "")
+            }
+        }
+        .onReceive(feedViewModel.$commentDeleted) { _ in
+            if seriesEpisodeDetailId != nil {
+                feedViewModel.getSeriesEpisodesComments(id: seriesEpisodeDetailId?.uid ?? "", commentOrderBy: commentOrder)
+                print("Series Episode Comments ID -->", seriesEpisodeDetailId?.uid ?? "")
+            } else if bannerUid != nil {
+                feedViewModel.getSeriesEpisodesComments(id: bannerUid?.object_uid ?? "", commentOrderBy: commentOrder)
+                print("Series comments banner uid -->", bannerUid?.object_uid ?? "")
             } else {
                 feedViewModel.getSeriesEpisodesComments(id: episodeCategoryID ?? "", commentOrderBy: commentOrder)
                 print("Episode Comments ID -->", episodeCategoryID ?? "")
@@ -59,10 +88,26 @@ struct VideoPlayerView: View {
             if seriesEpisodeDetailId != nil {
                 feedViewModel.getSeriesEpisodesComments(id: seriesEpisodeDetailId?.uid ?? "", commentOrderBy: commentOrder)
                 print("Series Episode Comments ID -->", seriesEpisodeDetailId?.uid ?? "")
+            } else if bannerUid != nil {
+                feedViewModel.getSeriesEpisodesComments(id: bannerUid?.object_uid ?? "", commentOrderBy: commentOrder)
+                print("Series comments banner uid -->", bannerUid?.object_uid ?? "")
             } else {
                 feedViewModel.getSeriesEpisodesComments(id: episodeCategoryID ?? "", commentOrderBy: commentOrder)
                 print("Episode Comments ID -->", episodeCategoryID ?? "")
             }
+        }
+        .onChange(of: reloadVideo) { _ in
+            // issue: video url is not changing
+            feedViewModel.showLoader = true
+            feedViewModel.getSeriesEpisodeDetail(id: episodeSeriesUid ?? "") { url in
+                self.videoURL = url
+            }
+            print("reload url -->", self.videoURL ?? "")
+            print("Episode series Uid -->", episodeSeriesUid ?? "")
+            reloadVideo = false
+            
+            feedViewModel.getSeriesEpisodesComments(id: episodeSeriesUid ?? "", commentOrderBy: commentOrder)
+            print("Series Episode Comments ID -->", episodeSeriesUid ?? "")
         }
         .onAppear {
             feedViewModel.showLoader = true
@@ -71,11 +116,28 @@ struct VideoPlayerView: View {
                     self.videoURL = url
                 }
                 print("Series Episode Detail ID -->", seriesEpisodeDetailId?.uid ?? "")
+            } else if bannerUid != nil {
+                feedViewModel.getSeriesEpisodeDetail(id: bannerUid?.object_uid ?? "") { url in
+                    self.videoURL = url
+                }
+                print("Banner Uid -->", bannerUid?.object_uid ?? "")
             } else {
                 feedViewModel.getSeriesEpisodeDetail(id: episodeCategoryID ?? "") { url in
                     self.videoURL = url
+                    print("url --> ", self.videoURL ?? "")
                 }
                 print("Episode Detail ID -->", episodeCategoryID ?? "")
+            }
+            
+            if seriesEpisodeDetailId != nil {
+                feedViewModel.getSeriesEpisodesComments(id: seriesEpisodeDetailId?.uid ?? "", commentOrderBy: commentOrder)
+                print("Series Episode Comments ID -->", seriesEpisodeDetailId?.uid ?? "")
+            } else if bannerUid != nil {
+                feedViewModel.getSeriesEpisodesComments(id: bannerUid?.object_uid ?? "", commentOrderBy: commentOrder)
+                print("Series comments banner uid -->", bannerUid?.object_uid ?? "")
+            } else {
+                feedViewModel.getSeriesEpisodesComments(id: episodeCategoryID ?? "", commentOrderBy: commentOrder)
+                print("Episode Comments ID -->", episodeCategoryID ?? "")
             }
             
             if seriesUid != nil {
@@ -87,18 +149,16 @@ struct VideoPlayerView: View {
             } else if feedSearchEpisodeId != nil {
                 feedViewModel.getFeedCategorySeriesDetail(id: feedSearchEpisodeId?.seriesUid ?? "")
                 print("Series ID -->",  feedSearchEpisodeId?.seriesUid ?? "")
+            } else if bannerUid != nil {
+                feedViewModel.getFeedCategorySeriesDetail(id: "6c9fd73e-59c6-4018-9cea-afcfd995f78f")
+                print("Series Detail ID -->", seriesDetailID)
             } else {
                 feedViewModel.getFeedCategorySeriesDetail(id: seriesDetailID)
                 print("Series Detail ID -->", seriesDetailID)
             }
             
-            if seriesEpisodeDetailId != nil {
-                feedViewModel.getSeriesEpisodesComments(id: seriesEpisodeDetailId?.uid ?? "", commentOrderBy: commentOrder)
-                print("Series Episode Comments ID -->", seriesEpisodeDetailId?.uid ?? "")
-            } else {
-                feedViewModel.getSeriesEpisodesComments(id: episodeCategoryID ?? "", commentOrderBy: commentOrder)
-                print("Episode Comments ID -->", episodeCategoryID ?? "")
-            }
+            UserDefaults.standard.removeObject(forKey: FLUserDefaultKeys.commentCreated.rawValue)
+            
         }
     }
 }

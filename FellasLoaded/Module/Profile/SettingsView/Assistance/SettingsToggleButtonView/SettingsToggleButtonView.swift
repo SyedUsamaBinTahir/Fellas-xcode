@@ -28,6 +28,7 @@ struct SettingsToggleButtonView: View {
                     VStack(alignment: .leading) {
                         Text(title)
                             .font(.custom(Font.semiBold, size: 16))
+                            .foregroundColor(Color.white)
                         if let description = description {
                             Text(description)
                                 .font(.custom(Font.Medium, size: 14))
@@ -41,6 +42,7 @@ struct SettingsToggleButtonView: View {
                                     .toggleStyle(SwitchToggleStyle(tint: .red))
                                     .frame(width: 52, height: 32)
                                     .padding(.trailing)
+                                    .tint(Color.theme.appRedColor)
                 }
                 .foregroundStyle(Color.white)
                 

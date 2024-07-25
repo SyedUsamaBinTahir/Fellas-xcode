@@ -67,8 +67,8 @@ struct FileDetailView: View {
             let size = $0.size
             let safeArea = $0.safeAreaInsets
             
-            VideoPlayer(size: size, safeArea: safeArea, url: fileURL, commentOrder: .constant(""), seriesEpisodeDetailId: .constant(""), episodeCategoryID: .constant(""))
-                .environmentObject(feedViewModel)
+//            VideoPlayer(size: size, safeArea: safeArea, url: fileURL, commentOrder: .constant(""), seriesEpisodeDetailId: .constant(""), episodeCategoryID: .constant(""))
+//                .environmentObject(feedViewModel)
             // Here you can add code to display more details or play the video
         }
     }

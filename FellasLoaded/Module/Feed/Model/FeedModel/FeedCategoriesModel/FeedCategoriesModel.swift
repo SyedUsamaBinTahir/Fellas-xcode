@@ -44,7 +44,7 @@ struct CategoriesResults: Codable {
     let watchLaterAddedAt: JSONNull?
     let isNotificationSubscribed: Bool?
     let coverArt: String?
-    let thumbnail: String
+    let thumbnail: String?
     let verticalCoverPhoto: String?
     let horizontalCoverPhoto: String?
     let logo: String?

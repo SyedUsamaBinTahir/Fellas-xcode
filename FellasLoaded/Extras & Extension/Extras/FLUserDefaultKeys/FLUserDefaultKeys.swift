@@ -14,4 +14,6 @@ public enum FLUserDefaultKeys: String, CaseIterable {
     case refreshToken = "refreshToken"
     case registrationToken = "AuthRegistrationToken"
     case videoData = "VideoData"
+    case savePassword = "SavePassword"
+    case commentCreated = "CommentCreated"
 }

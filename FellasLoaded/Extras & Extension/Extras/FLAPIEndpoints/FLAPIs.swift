@@ -9,9 +9,9 @@ import Foundation
 
 class FLAPIs {
     // Production URL
-//    static let baseURL = "https://api.fellasloaded.com/api"
+    static let baseURL = "https://api.fellasloaded.com/api"
     // Stagging URL
-    static let baseURL = "https://api.staging.fellas.gitwork.tech/api"
+//    static let baseURL = "https://api.staging.fellas.gitwork.tech/api"
     static let imageURL = "https://storage.googleapis.com/fellas_media/"
 }
 
@@ -36,9 +36,12 @@ extension FLAPIs {
     static let feedSearch = "/series/search/"
     // Series Endpoints
     static let seriesEpisodeDetail = "/series/episodes/detail/"
+    static let seriesEpisodes = "/series/episodes/"
     static let seriesEpisodesComments = "/series/episodes/comments/"
     static let seriesEpisodesCommentsDetail = "/series/episodes/comments/detail/"
     static let seriesEpisodesCreateComments = "/series/episodes/create/comments/"
+    static let seriesEpisodesDeleteComments = "/series/episodes/delete/comments/"
+    static let seriesEpisodesEditComments = "/series/episodes/update/comments/"
     static let seriesEpisodesLikeComments = "/series/episodes/like/comments/"
     static let seriesEpisodesDeleteLikeComments = "/series/episodes/delete/like/comments/"
     // History Endpoints
@@ -47,6 +50,18 @@ extension FLAPIs {
     static let removerSeriesWatchLater = "/history/remove-watch-later-series/"
     static let removeWatchLater = "/history/remove-watch-later/"
     
-    // User details
-    static let userDetails = "/user/detail/"
+    //MARK: Vault
+      static let vaultPost = "/vault/posts/"
+      static let vaultPostLike = "/vault/like/post/"
+      static let vaultPostDislike = "/vault/remove/like/post/"
+      static let vaultComments = "/vault/post/comments/"
+      static let vaultCommentsReply = "/vault/comment/detail/"
+      static let vaultAddComment = "/vault/add/comment/"
+      static let vaultLikeComment = "/vault/like/comment/"
+      static let vaultCommentDislike = "/vault/remove/like/comment/"
+      // User details
+      static let userDetails = "/user/detail/"
+      static let editProfile = "/user/update/"
+      static let changePassword = "/user/password/change/"
+      static let deleteUser = "/user/delete/"
 }

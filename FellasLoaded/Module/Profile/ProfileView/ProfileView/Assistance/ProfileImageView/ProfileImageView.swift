@@ -10,6 +10,7 @@ import Kingfisher
 
 struct ProfileImageView: View {
     @Binding var profileImage: String
+    @Binding var name: String
     
     var body: some View {
         VStack(alignment: .center) {
@@ -31,7 +32,7 @@ struct ProfileImageView: View {
                 .cacheMemoryOnly()
                 .fade(duration: 0.50)
                 .resizable()
-                .scaledToFit()
+                .scaledToFill()
                 .frame(width: 108, height: 108, alignment: .center)
                 .cornerRadius(60)
                 .frame(maxWidth: .infinity, alignment: .center)
@@ -39,7 +40,7 @@ struct ProfileImageView: View {
                     Circle()
                         .stroke(Color.white)
                 }
-            Text("Title")
+            Text(name)
                 .font(.custom(Font.semiBold, size: 24))
                 .foregroundStyle(Color.white)
         }
@@ -47,5 +48,5 @@ struct ProfileImageView: View {
 }
 
 #Preview {
-    ProfileImageView(profileImage: .constant(""))
+    ProfileImageView(profileImage: .constant(""), name: .constant(""))
 }

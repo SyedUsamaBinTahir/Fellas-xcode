@@ -20,10 +20,15 @@ struct SubscribesSeriesView: View {
                         Button(action: {
                             presentationMode.wrappedValue.dismiss()
                         }, label: {
-                            Image("back-icon")
+                            Image(systemName: "arrow.left")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 32, height: 32)
+                                .frame(width: 10, height: 10)
+                                .foregroundColor(.white)
+                                .fontWeight(.medium)
+                                .padding(10)
+                                .background(Color.theme.appGrayColor)
+                                .clipShape(Circle())
                         }).padding(.leading)
                         
                         Spacer()
@@ -57,7 +62,7 @@ struct SubscribesSeriesView: View {
                                                 .frame(width: 38, height: 48)
                                             Text("Fellas Studios")
                                                 .font(.custom(Font.semiBold, size: 16))
-                                                .foregroundStyle(.white)
+                                                .foregroundStyle(Color.white)
                                             Spacer()
                                             Toggle("", isOn: $toggle)
                                                 .toggleStyle(SwitchToggleStyle(tint: .red))

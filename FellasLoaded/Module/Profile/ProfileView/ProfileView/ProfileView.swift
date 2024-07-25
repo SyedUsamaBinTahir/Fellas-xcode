@@ -20,7 +20,8 @@ struct ProfileView: View {
             
             ScrollView {
                 VStack(alignment: .leading) {
-                    ProfileImageView(profileImage: .constant(feedViewModel.userDetailModel?.avatar ?? ""))
+                    ProfileImageView(profileImage: .constant(feedViewModel.userDetailModel?.avatar ?? ""),
+                                     name: .constant(feedViewModel.userDetailModel?.name ?? ""))
                     
                     MembershipCardView {  }
                     
@@ -52,7 +53,7 @@ struct ProfileView: View {
                 //                }
                 
                 NavigationLink(isActive: $redirectSettings) {
-                    SettingsView().navigationBarBackButtonHidden(true)
+                    SettingsView(userEmail: .constant(feedViewModel.userDetailModel?.email ?? "")).navigationBarBackButtonHidden(true)
                 } label: {
                     EmptyView()
                 }

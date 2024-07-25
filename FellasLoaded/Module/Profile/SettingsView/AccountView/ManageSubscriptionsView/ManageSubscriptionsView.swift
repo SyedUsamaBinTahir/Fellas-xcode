@@ -19,10 +19,15 @@ struct ManageSubscriptionsView: View {
                         Button(action: {
                             presentationMode.wrappedValue.dismiss()
                         }, label: {
-                            Image("back-icon")
+                            Image(systemName: "arrow.left")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 32, height: 32)
+                                .frame(width: 10, height: 10)
+                                .foregroundColor(.white)
+                                .fontWeight(.medium)
+                                .padding(10)
+                                .background(Color.theme.appGrayColor)
+                                .clipShape(Circle())
                         }).padding(.leading)
                         
                         Spacer()
@@ -63,7 +68,7 @@ struct ManageSubscriptionsView: View {
                         
                         AuthButtonView(action: {
                             
-                        }, title: "REDEEM SUBSCRIPTION", background: Color.theme.appGrayColor, foreground: .white)
+                        }, title: "REDEEM SUBSCRIPTION", background: Color.theme.appGrayColor, foreground: Color.white)
                     }
                                         
                     

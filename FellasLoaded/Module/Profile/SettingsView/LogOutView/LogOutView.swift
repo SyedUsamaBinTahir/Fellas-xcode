@@ -19,7 +19,7 @@ struct LogOutView: View {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Log Out")
                         .font(.custom(Font.semiBold, size: 24))
-                        .foregroundStyle(.white)
+                        .foregroundStyle(Color.white)
                     
                     Text("Are you sure you want to log out?")
                         .font(.custom(Font.Medium, size: 14))
@@ -32,6 +32,8 @@ struct LogOutView: View {
                             .font(.custom(Font.bold, size: 16))
                             .frame(maxWidth: .infinity, maxHeight: 48, alignment: .center)
                             .foregroundStyle(.white)
+                            .background(Color.black)
+                            .cornerRadius(10)
                             .overlay {
                                 RoundedRectangle(cornerRadius: 10)
                                     .stroke(Color.theme.textGrayColor, lineWidth: 1)
@@ -43,14 +45,14 @@ struct LogOutView: View {
                             .font(.custom(Font.bold, size: 16))
                             .frame(maxWidth: .infinity, maxHeight: 48, alignment: .center)
                             .background(Color.white)
-                            .foregroundStyle(.black)
+                            .foregroundStyle(Color.black)
                             .cornerRadius(10)
                     }
 
                 }
             }
             .padding()
-            .background(Color.theme.tabbarColor)
+            .background(Color.theme.appGrayColor)
             .cornerRadius(10)
             .overlay {
                 RoundedRectangle(cornerRadius: 10)

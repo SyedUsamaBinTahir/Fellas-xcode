@@ -29,8 +29,8 @@ struct PushNotificationsView: View {
                             }
                             
                             VStack(spacing: 26) {
-                                SettingsNavigatorView(icon: nil, title: "Media upates", description: "Content related notifications", forwardIcon: "chevron-icon") { redirectMediaUpdates = true }
-                                SettingsNavigatorView(icon: nil, title: "Interactions", description: "Content related notifications", forwardIcon: "chevron-icon") { redirectInteraction  = true }
+                                SettingsNavigatorView(icon: nil, title: "Media upates", description: "Content related notifications", forwardIcon: "chevron.right") { redirectMediaUpdates = true }
+                                SettingsNavigatorView(icon: nil, title: "Interactions", description: "Content related notifications", forwardIcon: "chevron.right") { redirectInteraction  = true }
                                 SettingsToggleButtonView(icon: nil, title: "Confession box", description: "Notify me when the confession box is opened.", toggle: $confessionBoxToggle)
                                 SettingsToggleButtonView(icon: nil, title: "App updates", description: "Notify me when a new app updates is released.", toggle: $appUpdateToggle)
                             }

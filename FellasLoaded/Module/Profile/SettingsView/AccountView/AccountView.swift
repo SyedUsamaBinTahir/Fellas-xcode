@@ -15,6 +15,7 @@ struct AccountView: View {
     @State private var redirectChangePassword = false
     @State private var redirectManageSubscriptions = false
     @State private var dismissLogout = false
+    @Binding var userEmail: String
     
     var body: some View {
         VStack {
@@ -31,11 +32,11 @@ struct AccountView: View {
                             }
                             
                             VStack(spacing: 26) {
-                                SettingsNavigatorView(icon: nil, title: "Email", description: "user@gmail.com", forwardIcon: nil) { }
-                                SettingsNavigatorView(icon: nil, title: "Change you password", description: "", forwardIcon: "chevron-icon") { redirectChangePassword = true
+                                SettingsNavigatorView(icon: nil, title: "Email", description: userEmail, forwardIcon: nil) { }
+                                SettingsNavigatorView(icon: nil, title: "Change your password", description: "", forwardIcon: "chevron.right") { redirectChangePassword = true
                                 }
-                                SettingsNavigatorView(icon: nil, title: "Manage Subscription", description: "View details, or end subscription", forwardIcon: "chevron-icon") { redirectManageSubscriptions = true }
-                                SettingsNavigatorView(icon: nil, title: "Delete your account", description: "Permanently delete your account.", forwardIcon: "chevron-icon") {
+                                SettingsNavigatorView(icon: nil, title: "Manage Subscription", description: "View details, or end subscription", forwardIcon: "chevron.right") { redirectManageSubscriptions = true }
+                                SettingsNavigatorView(icon: nil, title: "Delete your account", description: "Permanently delete your account.", forwardIcon: "chevron.right") {
                                     redirectDeleteAccount = true
                                 }
                             }
@@ -91,5 +92,5 @@ struct AccountView: View {
 }
 
 #Preview {
-    AccountView()
+    AccountView(userEmail: .constant(""))
 }

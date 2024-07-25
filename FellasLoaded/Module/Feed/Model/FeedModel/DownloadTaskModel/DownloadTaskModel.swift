@@ -20,6 +20,84 @@ class DownloadTaskModel: NSObject, ObservableObject, URLSessionDownloadDelegate,
     @Published var showDownloadProgress = false
     
     // Get downloaded from Document Directory
+    
+    func appendSeriesDetailToFile(_ newDetail: SeriesEpisodeDetailModel) {
+        var seriesDetails = loadSeriesDetailsFromFile() ?? []
+        seriesDetails.append(newDetail)
+        
+        if let jsonData = try? JSONEncoder().encode(seriesDetails) {
+            saveJSONToFile(data: jsonData, fileName: "seriesDetails.json")
+        }
+    }
+    
+    func loadSeriesDetailsFromFile() -> [SeriesEpisodeDetailModel]? {
+        guard let data = readJSONFromFile(fileName: "seriesDetails.json") else {
+            return nil
+        }
+        
+        return decodeJSONArray(data: data)
+    }
+    
+    func saveJSONToFile(data: Data, fileName: String) {
+        guard let documentsDirectory = getDocumentsDirectory() else {
+            print("Unable to access documents directory")
+            return
+        }
+        
+        let fileURL = documentsDirectory.appendingPathComponent(fileName)
+        
+        do {
+            try data.write(to: fileURL)
+            print("File saved: \(fileURL)")
+        } catch {
+            print("Error saving file: \(error.localizedDescription)")
+        }
+    }
+    
+    func readJSONFromFile(fileName: String) -> Data? {
+        guard let documentsDirectory = getDocumentsDirectory() else {
+            print("Unable to access documents directory")
+            return nil
+        }
+        
+        let fileURL = documentsDirectory.appendingPathComponent(fileName)
+        
+        do {
+            let data = try Data(contentsOf: fileURL)
+            return data
+        } catch {
+            print("Error reading file: \(error.localizedDescription)")
+            return nil
+        }
+    }
+    
+    func deleteJsonFile(fileName: String) {
+        guard let documentsDirectory = getDocumentsDirectory() else {
+            print("Unable to access documents directory")
+            return
+        }
+        
+        let fileURL = documentsDirectory.appendingPathComponent(fileName)
+        
+        do {
+            try FileManager.default.removeItem(at: fileURL)
+            print("File deleted: \(fileURL)")
+        } catch {
+            print("Error deleting file: \(error.localizedDescription)")
+        }
+    }
+    
+    func decodeJSONArray(data: Data) -> [SeriesEpisodeDetailModel]? {
+        let decoder = JSONDecoder()
+        do {
+            let decodedData = try decoder.decode([SeriesEpisodeDetailModel].self, from: data)
+            return decodedData
+        } catch {
+            print("Error decoding JSON array: \(error.localizedDescription)")
+            return nil
+        }
+    }
+    
     func getDocumentsDirectory() -> URL? {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths.last
@@ -64,13 +142,13 @@ class DownloadTaskModel: NSObject, ObservableObject, URLSessionDownloadDelegate,
     }
     
     func deleteFile(at url: URL) {
-            do {
-                try FileManager.default.removeItem(at: url)
-                print("File deleted successfully: \(url)")
-            } catch {
-                print("Error deleting file: \(error.localizedDescription)")
-            }
+        do {
+            try FileManager.default.removeItem(at: url)
+            print("File deleted successfully: \(url)")
+        } catch {
+            print("Error deleting file: \(error.localizedDescription)")
         }
+    }
     
     // Implementing URL Session functions...
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
@@ -103,39 +181,6 @@ class DownloadTaskModel: NSObject, ObservableObject, URLSessionDownloadDelegate,
         } catch {
             self.reportError(error: "Please try again later")
         }
-        
-        // directory path...
-//        let directryPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-//        
-//        // creating one for storing file...
-//        // destination Url
-//        // getting like injustine.mp4...
-//        let destinationURL = directryPath.appendingPathComponent(url.lastPathComponent)
-//        
-//        // if already file is there removing it
-//                try? FileManager.default.removeItem(at: destinationURL)
-//        
-//        do {
-//            try FileManager.default.copyItem(at: location, to: destinationURL)
-//            print("Destination URL --> ", destinationURL)
-//            // if success
-//            print("Success")
-//            // closing progress view...
-//            DispatchQueue.main.async {
-//                withAnimation {
-//                    self.showDownloadProgress = false
-//                }
-//                
-//                // presenting the file with help of document interaction controller from controller
-//                //                let controller = UIDocumentInteractionController(url: destinationURL)
-//                //
-//                //                // it needs a delegate
-//                //                controller.delegate = self
-//                //                controller.presentPreview(animated: true)
-//            }
-//        } catch {
-//            self.reportError(error: "Please try again later")
-//        }
     }
     
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {

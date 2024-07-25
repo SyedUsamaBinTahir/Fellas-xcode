@@ -8,13 +8,24 @@
 import Foundation
 import SwiftUI
 
-class DownloadTaskViewModel: ObservableObject {
-    
-    func getURLs() {
-        guard let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+class DownloadedDataViewModel: ObservableObject {
+    @Published var feedSeriesBVideoModel: [SeriesBvideo]?
+
+    func loadVideoData() {
+        guard let data = UserDefaults.standard.data(forKey: FLUserDefaultKeys.videoData.rawValue) else {
             return
         }
-        print(url.path)
+        
+        do {
+            let decoder = try JSONDecoder().decode([SeriesBvideo].self, from: data)
+            feedSeriesBVideoModel = decoder
+            print("Decoded Data --> " ,feedSeriesBVideoModel)
+            print("Decoder --> ", decoder)
+        } catch {
+            print(String(describing: error))
+        }
+        
+        print("User defaults data -->", String(data: data, encoding: .utf8) ?? "")
     }
     
 }

@@ -18,8 +18,11 @@ protocol FeedDataProvider {
     func getSeriesEpisodeDetail(id: String, completion: @escaping (URL?) -> Void)
     func getSeriesEpisodesComments(id: String, commentOrderBy: String)
     func getSeriesEpisodesCommentsDetail(id: String)
+    func getFeedSeriesEpisodes(id: String)
     func getFeedSearchList(searchParam: String)
     func createComment(episode: String, comment: String)
+    func deleteComment(commentUid: String)
+    func editComment(commentUid: String, comment: String)
     func createReplies(episode: String, parent: String, replyTo: String, comment: String)
     func addSeriesWatchLater(seriesUid: String)
     func removeSeriesWatchLater(seriesUid: String)
@@ -55,8 +58,11 @@ class FeedViewModel: ObservableObject {
     // changes watchlist icon after success
     @Published var watchListSuccess = false
     @Published var watchListRemovedSuccess = false
-    // like comments properties
+    // comments properties
     @Published var likeCommentAdded = false
+    @Published var commentDeleted = false
+    @Published var commentEdited = false
+    @Published var editCommentTapped = false
     
     // Api Models
     var feedBannerModel: FeedBannerModel?
@@ -67,6 +73,7 @@ class FeedViewModel: ObservableObject {
     var seriesEpisodeDetailModel: SeriesEpisodeDetailModel?
     var seriesEpisodesCommentsModel: SeriesEpisodesCommentsModel?
     var seriesEpisodesCommentsDetailModel: SeriesEpisodesCommentsDetailModel?
+    var seriesEpisodesModel: SeriesEpisodesModel?
     var feedSearchModel: FeedSearchModel?
     
     var userDetailModel: UserDetailModel?
@@ -181,13 +188,34 @@ extension FeedViewModel: FeedDataProvider {
             .store(in: &subscriptions)
     }
     
+    func getFeedSeriesEpisodes(id: String) {
+        dataService.getServerData(url: FLAPIs.baseURL + FLAPIs.seriesEpisodes + id, type: SeriesEpisodesModel.self)
+            .sink { [weak self] completion in
+                DispatchQueue.main.async {
+                    switch completion {
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                        self?.showAlert = true
+                        self?.alertMessage = error.localizedDescription
+                        self?.showLoader = false
+                    case .finished:
+                        print("Feed Categories Episodes Success")
+                        self?.showLoader = false
+                    }
+                }
+            } receiveValue: { seriesEpisodesData in
+                self.seriesEpisodesModel = seriesEpisodesData
+            }
+            .store(in: &subscriptions)
+    }
+    
     func getSeriesEpisodeDetail(id: String, completion: @escaping (URL?) -> Void) {
         dataService.getServerData(url: FLAPIs.baseURL + FLAPIs.seriesEpisodeDetail + id + "/", type: SeriesEpisodeDetailModel.self)
             .sink { [weak self] completion in
                 DispatchQueue.main.async {
                     switch completion {
                     case .failure(let error):
-                        print("Series Episode Detail Faliure", error.localizedDescription)
+                        print("Series Episode Detail Faliure -->", error.localizedDescription)
                         self?.showAlert = true
                         self?.alertMessage = error.localizedDescription
                         self?.showLoader = false
@@ -309,6 +337,52 @@ extension FeedViewModel: FeedDataProvider {
                 case .finished:
                     print("success")
                     self?.commentCreated = true
+                    self?.showButtonLoader = false
+                }
+            } receiveValue: { _ in
+                
+            }
+            .store(in: &self.subscriptions)
+    }
+    
+    func deleteComment(commentUid: String) {
+        SeriesEpisodesDeleteCommentsAPIService.shared.deleteComment(commentUid: commentUid)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completion in
+                switch completion {
+                case .failure(let  error):
+                    print("error:", error.localizedDescription)
+                    DispatchQueue.main.async {
+                        self?.alertMessage = error.localizedDescription
+                        self?.showAlert = true
+                        self?.showButtonLoader = false
+                    }
+                case .finished:
+                    print("success")
+                    self?.commentDeleted = true
+                    self?.showButtonLoader = false
+                }
+            } receiveValue: { _ in
+                
+            }
+            .store(in: &self.subscriptions)
+    }
+    
+    func editComment(commentUid: String, comment: String) {
+        SeriesEpisodesEditCommentsAPIService.shared.editComment(commentUid: commentUid, comment: comment)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completion in
+                switch completion {
+                case .failure(let  error):
+                    print("error:", error.localizedDescription)
+                    DispatchQueue.main.async {
+                        self?.alertMessage = error.localizedDescription
+                        self?.showAlert = true
+                        self?.showButtonLoader = false
+                    }
+                case .finished:
+                    print("success")
+                    self?.commentEdited = true
                     self?.showButtonLoader = false
                 }
             } receiveValue: { _ in

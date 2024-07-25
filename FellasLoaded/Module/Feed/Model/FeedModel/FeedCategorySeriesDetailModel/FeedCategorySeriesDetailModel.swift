@@ -11,7 +11,7 @@ struct FeedCategorySeriesDetailModel: Codable {
     let uid: String
     let title: String
     let description: String
-    let cover_art: String
+    let cover_art: String?
     let thumbnail: String
     let horizontal_thumbnail: String
     let vertical_cover_photo: String
@@ -45,7 +45,7 @@ struct FeedCategorySeriesDetailSessions: Codable {
     let uid: String
     let title: String
     let description: String
-    let cover_art: String
+    let cover_art: String?
     let session_number: Int
     let total_episodes: Int
     let episodes_count: Int

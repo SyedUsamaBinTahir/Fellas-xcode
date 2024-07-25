@@ -82,6 +82,7 @@ extension AuthenticationViewModel {
                     print("success")
                     self?.showLoader = false
                     self?.redirectToCheckEmailView = true
+                    UserDefaults.standard.setValue(password, forKey: FLUserDefaultKeys.savePassword.rawValue)
                 }
             } receiveValue: { _ in
                 

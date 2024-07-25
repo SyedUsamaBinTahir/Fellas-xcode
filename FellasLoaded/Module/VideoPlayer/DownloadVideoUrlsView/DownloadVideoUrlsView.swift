@@ -10,6 +10,7 @@ import SwiftUI
 struct DownloadVideoUrlsView: View {
     @EnvironmentObject var feedViewModel: FeedViewModel
     @StateObject var downloadModel = DownloadTaskModel()
+    @Binding var isPresented: Bool
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -41,16 +42,23 @@ struct DownloadVideoUrlsView: View {
                 ForEach(feedViewModel.seriesEpisodeDetailModel?.bvideo.download_urls?.compactMap { $0 } ?? [], id: \.key) { key, downloadURL in
                     Button(action: {
                         downloadModel.startDownload(urlString: downloadURL?.url ?? "")
-                        do {
-                            var videoObject = [SeriesBvideo]()
-                            if let bVideo = feedViewModel.seriesEpisodeDetailModel?.bvideo {
-                                videoObject.append(bVideo)
-                            }
-                            let data = try JSONEncoder().encode(videoObject)
-                            UserDefaults.standard.setValue(data, forKey: FLUserDefaultKeys.videoData.rawValue)
-                        } catch {
-                            print(String(describing: error))
+                        //                        do {
+                        //                            var videoObject = [SeriesBvideo]()
+                        //                            if let bVideo = feedViewModel.seriesEpisodeDetailModel?.bvideo {
+                        //                                videoObject.append(bVideo)
+                        //                            }
+                        //                            let data = try JSONEncoder().encode(videoObject)
+                        //                            UserDefaults.standard.setValue(data, forKey: FLUserDefaultKeys.videoData.rawValue)
+                        //                        } catch {
+                        //                            print(String(describing: error))
+                        //                        }
+//                        if let jsonData = try? JSONEncoder().encode(feedViewModel.seriesEpisodeDetailModel) {
+//                            downloadModel.saveJSONToFile(data: jsonData, fileName: "seriesDetail.json")
+//                        }
+                        if let seriesEpisodeDetailData = feedViewModel.seriesEpisodeDetailModel {
+                            downloadModel.appendSeriesDetailToFile(seriesEpisodeDetailData)
                         }
+                        isPresented = false
                     }) {
                         Text(key)
                             .font(.custom(Font.semiBold, size: 16))
@@ -82,5 +90,5 @@ struct DownloadVideoUrlsView: View {
 }
 
 #Preview {
-    DownloadVideoUrlsView()
+    DownloadVideoUrlsView(isPresented: .constant(false))
 }

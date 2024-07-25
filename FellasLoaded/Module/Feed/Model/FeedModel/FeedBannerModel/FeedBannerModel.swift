@@ -21,7 +21,7 @@ struct FeedBannerResults: Codable, Identifiable {
     let title: String
     let order: Int
     let banner_type: String
-    let cover_art: String
+    let cover_art: String?
     let web_desktop_cover_art: String
     let created_at: String
     var id: String { uid }

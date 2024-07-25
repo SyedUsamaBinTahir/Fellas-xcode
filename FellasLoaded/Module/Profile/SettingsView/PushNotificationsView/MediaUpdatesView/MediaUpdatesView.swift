@@ -25,10 +25,15 @@ struct MediaUpdatesView: View {
                         Button(action: {
                             presentationMode.wrappedValue.dismiss()
                         }, label: {
-                            Image("back-icon")
+                            Image(systemName: "arrow.left")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 32, height: 32)
+                                .frame(width: 10, height: 10)
+                                .foregroundColor(.white)
+                                .fontWeight(.medium)
+                                .padding(10)
+                                .background(Color.theme.appGrayColor)
+                                .clipShape(Circle())
                         }).padding(.leading)
                         
                         Spacer()
@@ -55,7 +60,7 @@ struct MediaUpdatesView: View {
                             VStack(spacing: 26) {
                                 SettingsToggleButtonView(icon: nil, title: "Live Streams", description: "Notify me when a live stream starts.", toggle: $liveStramToggle)
                                 SettingsToggleButtonView(icon: nil, title: "Episodes", description: "Notify me about all new general episodes.", toggle: $EpisodesToggle)
-                                SettingsNavigatorView(icon: nil, title: "Subscribed series", description: "Tap to manage push notifications for each series you subscribed to.", forwardIcon: "chevron-icon") { redirectSubscriptionSeries = true }
+                                SettingsNavigatorView(icon: nil, title: "Subscribed series", description: "Tap to manage push notifications for each series you subscribed to.", forwardIcon: "chevron.right") { redirectSubscriptionSeries = true }
                                 SettingsToggleButtonView(icon: nil, title: "Upcoming releases", description: "Notify me a week prior upcoming releases.", toggle: $upcommingSeriesToggle)
                                 SettingsToggleButtonView(icon: nil, title: "Vault", description: "Notify me when new Vault content is uploaded.", toggle: $valutToggle)
                                 SettingsToggleButtonView(icon: nil, title: "Shop", description: "Notify me when new merchandise is added.", toggle: $shop)
