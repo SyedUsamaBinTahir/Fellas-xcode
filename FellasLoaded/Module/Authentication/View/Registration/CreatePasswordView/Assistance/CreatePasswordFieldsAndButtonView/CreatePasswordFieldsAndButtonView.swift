@@ -13,6 +13,7 @@ struct CreatePasswordFieldsAndButtonView: View {
     @Binding var isValidPassword: Bool
     @Binding var isDisabled: Bool
     @Binding var setOpacity: Double
+    @Binding var showButtonLoader: Bool
     @State var action: () -> Void
     
     var body: some View {
@@ -34,11 +35,20 @@ struct CreatePasswordFieldsAndButtonView: View {
             VStack(spacing: 20) {
                 AuthPasswordTextFieldView(placeholder: .constant("Retype password"), field: $retypePassword)
                 
-                AuthButtonView(action: {
-                    action()
-                }, title: "CONTINUE", background: Color.white, foreground: Color.black)
-                .disabled(isDisabled)
-                .opacity(setOpacity)
+                if showButtonLoader {
+                    FLButtonLoader(color: .constant(Color.theme.textGrayColor))
+                        .font(.custom(Font.bold, size: 16))
+                        .frame(maxWidth: .infinity, maxHeight: 48, alignment: .center)
+                        .background(Color.white)
+                        .foregroundColor(Color.black)
+                        .cornerRadius(10)
+                } else {
+                    AuthButtonView(action: {
+                        action()
+                    }, title: "CONTINUE", background: Color.white, foreground: Color.black)
+                    .disabled(isDisabled)
+                    .opacity(setOpacity)
+                }
             }
         }
         .padding(.top, 20)

@@ -59,6 +59,8 @@ extension FLAPIs {
       static let vaultAddComment = "/vault/add/comment/"
       static let vaultLikeComment = "/vault/like/comment/"
       static let vaultCommentDislike = "/vault/remove/like/comment/"
+      static let vaultDeleteComent = "/vault/remove/comment/"
+    static let vaultEditComment = "/vault/edit/comment/"
       // User details
       static let userDetails = "/user/detail/"
       static let editProfile = "/user/update/"

@@ -401,12 +401,12 @@ extension FeedViewModel: FeedDataProvider {
                     DispatchQueue.main.async {
                         self?.alertMessage = error.localizedDescription
                         self?.showAlert = true
-                        self?.showLoader = false
+                        self?.showButtonLoader = false
                     }
                 case .finished:
                     print("success")
                     self?.commentCreated = true
-                    self?.showLoader = false
+                    self?.showButtonLoader = false
                 }
             } receiveValue: { _ in
                 

@@ -28,6 +28,7 @@ enum CommentsState: Int, CaseIterable {
 struct CommentView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var feedViewModel: FeedViewModel
+    @FocusState var keyboardFocus: Bool
     @State private var isPinned = true
     @State private var expandDescription = false
     @State private var commentsToggle = false
@@ -81,7 +82,7 @@ struct CommentView: View {
                     } else {
                         ScrollView {
                             ForEach(feedViewModel.seriesEpisodesCommentsModel?.results.reversed() ?? [], id: \.uid) { data in
-                                CommentCardView(/*isPinned: $isPinned,*/ expandDescription: $expandDescription, redirectReply: $redirectReply, profileImage: .constant(data.user?.avatar ?? ""), displayName: .constant(data.user?.name ?? ""), commentDuration: .constant(""), comment: .constant(data.comment), likes: .constant(data.like_count), replies: .constant(data.replies_count), likeAdded: $feedViewModel.likeCommentAdded, commentCreated: $feedViewModel.commentCreated, action: {
+                                CommentCardView(/*isPinned: $isPinned,*/ expandDescription: $expandDescription, showReportComment: showReportComment, redirectReply: $redirectReply, profileImage: .constant(data.user?.avatar ?? ""), displayName: .constant(data.user?.name ?? ""), commentDuration: .constant(""), comment: .constant(data.comment), likes: .constant(data.like_count), replies: .constant(data.replies_count), likeAdded: $feedViewModel.likeCommentAdded, action: {
                                     commentid = data.uid
                                     redirectReply = true
                                 }, addLikeAction: {
@@ -94,7 +95,6 @@ struct CommentView: View {
                                     editCommentId = data.uid
                                     keyboardFocused = true
                                 })
-                                .environmentObject(feedViewModel)
                                 .padding(.top, 10)
                             }
                         }
@@ -109,17 +109,16 @@ struct CommentView: View {
                     }
                     
                     AddCommentView(addComment: $addComment, loader: $feedViewModel.showButtonLoader, keyboardFocused: $keyboardFocused) {
-//                        if keyboardFocused {
-//                            feedViewModel.showButtonLoader = true
-//                            feedViewModel.editComment(commentUid: editCommentId, comment: addComment)
-//                            addComment = ""
-//                            keyboardFocused = false
-//                        } else {
-                            feedViewModel.showButtonLoader = true
-                            feedViewModel.createComment(episode: seriesEpisodeDetailId != "" ? seriesEpisodeDetailId : episodeCategoryID, comment: addComment)
-                            addComment = ""
-                            keyboardFocused = false
-//                        }
+                        //                        if keyboardFocused {
+                        //                            feedViewModel.showButtonLoader = true
+                        //                            feedViewModel.editComment(commentUid: editCommentId, comment: addComment)
+                        //                            addComment = ""
+                        //                            keyboardFocused = false
+                        //                        } else {
+                        feedViewModel.showButtonLoader = true
+                        feedViewModel.createComment(episode: seriesEpisodeDetailId != "" ? seriesEpisodeDetailId : episodeCategoryID, comment: addComment)
+                        addComment = ""
+                        keyboardFocused = false
                     }
                     
                 }

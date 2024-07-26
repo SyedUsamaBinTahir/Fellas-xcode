@@ -18,6 +18,8 @@ protocol VaultDataProvider {
     func vaultPostDislike(postId: String)
     func vaultCommentLike(commentId: String)
     func vaultCommentDislike(commentId: String)
+    func vaultDeleteComment(commentId: String)
+    func vaultEditComment(commentId: String, comment: String)
 }
 
 class VaultViewModel: ObservableObject {
@@ -33,12 +35,15 @@ class VaultViewModel: ObservableObject {
     @Published var showLoader = false
     @Published var showAlert = false
     @Published var alertMessage = ""
+    @Published var onTap = false
     // for comment status change
-    @Published var isRecieved: Bool = false
-    @Published var commentAdded: Bool = false
-    @Published var replyAdded: Bool = false
-    @Published var isLike: Bool = false
-    @Published var isCommentLike = false
+//    @Published var isRecieved: Bool = false
+//    @Published var commentAdded: Bool = false
+//    @Published var replyAdded: Bool = false
+//    @Published var isLike: Bool = false
+//    @Published var isCommentLike = false
+//    @Published var isDeleted = false
+    @Published var isSuccess = false
     
     var vaulPostModel: VaultPostModel?
     var vaultCommentsModel: VaultCommentsModel?
@@ -104,7 +109,7 @@ extension VaultViewModel : VaultDataProvider {
                     case .finished:
                         print("SUCCESS")
                         self?.showLoader = false
-                        self?.commentAdded = true
+                        self?.isSuccess = true
                     }
                 }
             } receiveValue: { VaultCommentReplyModelData in
@@ -129,7 +134,9 @@ extension VaultViewModel : VaultDataProvider {
                 case .finished:
                     print("SUCCESS")
                     self?.showLoader = false
-                    self?.commentAdded = true
+                    self?.alertMessage = "Comment Added"
+                    self?.showAlert = true
+                    self?.isSuccess = true
                 }
             } receiveValue: { _ in
                 
@@ -152,7 +159,10 @@ extension VaultViewModel : VaultDataProvider {
                 case .finished:
                     print("SUCCESS")
                     self?.showLoader = false
-                    self?.replyAdded = true
+                    self?.showAlert = true
+                    self?.alertMessage = "Reply Added"
+
+                    self?.isSuccess = true
                 }
             } receiveValue: { _ in
                 
@@ -175,7 +185,7 @@ extension VaultViewModel : VaultDataProvider {
                 case .finished:
                     print("SUCCESS")
                     self?.showLoader = false
-                    self?.isLike = true
+                    self?.isSuccess = true
                 }
             } receiveValue: { _ in
                 
@@ -199,7 +209,7 @@ extension VaultViewModel : VaultDataProvider {
                 case .finished:
                     print("SUCCESS")
                     self?.showLoader = false
-                    self?.isLike = false
+                    self?.isSuccess = false
                 }
                 
             } receiveValue: { _ in
@@ -224,7 +234,7 @@ extension VaultViewModel : VaultDataProvider {
                 case .finished:
                     print("SUCCESS")
                     self?.showLoader = false
-                    self?.isCommentLike = true
+                    self?.isSuccess = true
                 }
             } receiveValue: { _ in
                 
@@ -247,7 +257,59 @@ extension VaultViewModel : VaultDataProvider {
                 case .finished:
                     print("SUCCESS")
                     self?.showLoader = false
-                    self?.isCommentLike = false
+                    self?.isSuccess = false
+                }
+            } receiveValue: { _ in
+                
+            }
+            .store(in: &self.subscription)
+    }
+    
+    func vaultDeleteComment(commentId: String) {
+        VaultDeleteCommentApiService.shared.vaultDeleteComment(commentId: commentId)
+            .receive(on: DispatchQueue.main)
+            .sink{[weak self] completion in
+                switch completion {
+                case .failure(let error):
+                    print("error", error.localizedDescription)
+                    DispatchQueue.main.async {
+                        self?.alertMessage = error.localizedDescription
+                        self?.showAlert = true
+                        self?.showLoader = false
+                    }
+                case .finished:
+                    print("COMMENT DELETE SUCCESS")
+                    self?.showLoader = false
+                    self?.alertMessage = "Comment Deleted"
+                    self?.showAlert = true
+                    self?.isSuccess = true
+                }
+                 
+                
+            } receiveValue: { _ in
+                
+            }
+            .store(in: &self.subscription)
+    }
+    
+    func vaultEditComment(commentId: String, comment: String) {
+        VaultEditCommentApiService.shared.vaultEditComment(commentId: commentId, comment: comment)
+            .receive(on: DispatchQueue.main)
+            .sink{[weak self] completion in
+                switch completion {
+                case .failure(let error):
+                    print("error", error.localizedDescription)
+                    DispatchQueue.main.async {
+                        self?.alertMessage = error.localizedDescription
+                        self?.showAlert = true
+                        self?.showLoader = false
+                    }
+                case.finished:
+                    print("COMMENT EDITED SUCCESSFULLy")
+                    self?.showLoader = false
+                    self?.alertMessage = "Edited Successfully"
+                    self?.showAlert = true
+                    self?.isSuccess = true
                 }
             } receiveValue: { _ in
                 

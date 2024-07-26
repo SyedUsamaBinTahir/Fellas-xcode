@@ -218,7 +218,7 @@ struct VideoPlayer: View {
                                 } label: {
                                     if feedViewModel.showButtonLoader {
                                         ZStack {
-                                            FLButtonLoader()
+                                            FLButtonLoader(color: .constant(Color.white))
                                         }
                                         .padding(10)
                                         .background(Color.theme.appGrayColor)
@@ -238,7 +238,7 @@ struct VideoPlayer: View {
                                 } label: {
                                     if feedViewModel.showButtonLoader {
                                         ZStack {
-                                            FLButtonLoader()
+                                            FLButtonLoader(color: .constant(Color.white))
                                         }
                                         .padding(10)
                                         .background(Color.theme.appGrayColor)
@@ -346,9 +346,24 @@ struct VideoPlayer: View {
                                 }
                             }
                         } else if selectedTab == .RECOMMENDED {
-                            ForEach(1...5, id: \.self) { _ in
-                                EpisodesView(seriesImage: "series-image", episode: "S1:E1", title: "The Fellas & W2S Get Drunk", description: "The Fellas head to the city of Amsterdam for some absolute CARNAGE! 24 hours was more than enough and you'll see why")
+                            
+                            ForEach(feedViewModel.feedSearchModel?.results ?? [], id: \.uid) { data in
+                                EpisodesView(seriesImage: data.thumbnail, episode: "S\(data.sessionNumber ?? 0):E\(data.episodeNumber ?? 0)", title: data.title, description: data.description, icon: "download") {
+//                                    episodeCategoryID = data.uid
+                                }
+                                
+//                                NavigationLink(isActive: $redirectVideoPlayer) {
+//                                    VideoPlayerView(seriesDetailID: $seriesDetailID, episodeCategoryID: episodeCategoryID, feedSearchEpisodeId: data)
+//                                        .environmentObject(feedViewModel)
+//                                        .navigationBarBackButtonHidden(true)
+//                                } label: {
+//                                    EmptyView()
+//                                }
                             }
+                            
+//                            ForEach(1...5, id: \.self) { _ in
+//                                EpisodesView(seriesImage: "series-image", episode: "S1:E1", title: "The Fellas & W2S Get Drunk", description: "The Fellas head to the city of Amsterdam for some absolute CARNAGE! 24 hours was more than enough and you'll see why")
+//                            }
                         }
                     }
                     .padding(.top)

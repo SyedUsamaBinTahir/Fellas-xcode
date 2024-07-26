@@ -21,7 +21,7 @@ struct WatchlistAndShareButtonView: View {
                     Button (action: watchlistAction) {
                         if Loader {
                             ZStack {
-                                FLButtonLoader()
+                                FLButtonLoader(color: .constant(Color.white))
                             }
                             .padding(10)
                             .background(Color.theme.appGrayColor)
@@ -38,7 +38,7 @@ struct WatchlistAndShareButtonView: View {
                     Button (action: removeWatchlist) {
                         if Loader {
                             ZStack {
-                                FLButtonLoader()
+                                FLButtonLoader(color: .constant(Color.white))
                             }
                             .padding(10)
                             .background(Color.theme.appGrayColor)

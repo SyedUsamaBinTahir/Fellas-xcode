@@ -30,7 +30,7 @@ struct CreatePasswordView: View {
                         
                         CreatePasswordLablesView()
                         
-                        CreatePasswordFieldsAndButtonView(password: $password, retypePassword: $retypePassword, isValidPassword: $isValidPassword, isDisabled: $isDisabled, setOpacity: $setOpacity) {
+                        CreatePasswordFieldsAndButtonView(password: $password, retypePassword: $retypePassword, isValidPassword: $isValidPassword, isDisabled: $isDisabled, setOpacity: $setOpacity, showButtonLoader: $viewModel.showLoader) {
                             viewModel.showLoader = true
                             viewModel.registerUser(email: email, password: password)
                         }
@@ -75,11 +75,6 @@ struct CreatePasswordView: View {
                     CheckEmailView(email: $email).navigationBarBackButtonHidden(true)
                 } label: {
                     EmptyView()
-                }
-
-                
-                if viewModel.showLoader {
-                    FLLoader()
                 }
             }
         }

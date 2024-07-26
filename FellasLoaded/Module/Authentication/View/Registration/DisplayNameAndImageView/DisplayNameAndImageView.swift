@@ -30,7 +30,7 @@ struct DisplayNameAndImageView: View {
                             showImagePicker.toggle()
                         }
                         
-                        DisplayNameAndImageFieldAndButtonsView(name: $name, redirectToSubscribeView: $redirectToSubscribeView) {
+                        DisplayNameAndImageFieldAndButtonsView(name: $name, redirectToSubscribeView: $redirectToSubscribeView, showButtonLoader: $viewModel.showLoader) {
                             if let selectedImage = selectedImage {
                                 viewModel.showLoader = true
                                 viewModel.uploadImageToServer(image: selectedImage, name: name)
@@ -66,10 +66,6 @@ struct DisplayNameAndImageView: View {
                 .navigationDestination(isPresented: $viewModel.redirectToSubscribeView) {
                     SubscribeView()
                         .navigationBarBackButtonHidden(true)
-                }
-                
-                if viewModel.showLoader {
-                    FLLoader()
                 }
                 
                 NavigationLink(isActive: $viewModel.redirectToSubscribeView) {

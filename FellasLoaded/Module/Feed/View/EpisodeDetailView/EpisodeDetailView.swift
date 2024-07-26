@@ -82,7 +82,9 @@ struct EpisodeDetailView: View {
                             WatchlistAndShareButtonView(Loader: $feedViewModel.showButtonLoader, watchlistAdded: $feedViewModel.watchListAdded, watchlistAction: {
                                 feedViewModel.showButtonLoader = true
                                 feedViewModel.addSeriesWatchLater(seriesUid: seriesDetailID)
-                            }, shareAction: {}, removeWatchlist: {
+                            }, shareAction: {
+                                ShareLink(item: URL(string: "https://www.hackingwithswift.com")!)
+                            }, removeWatchlist: {
                                 feedViewModel.showButtonLoader = true
                                 feedViewModel.removeSeriesWatchLater(seriesUid: seriesDetailID)
                             })
@@ -114,7 +116,7 @@ struct EpisodeDetailView: View {
                                         }
                                         
                                         NavigationLink(isActive: $redirectVideoPlayerWithEpisode) {
-                                            VideoPlayerView(seriesEpisodeDetailId: episode, seriesDetailID: $seriesDetailID)
+                                            VideoPlayerView(seriesEpisodeDetailId: data.episodes?.first, seriesDetailID: $seriesDetailID)
                                                 .environmentObject(feedViewModel)
                                                 .navigationBarBackButtonHidden(true)
                                         } label: {

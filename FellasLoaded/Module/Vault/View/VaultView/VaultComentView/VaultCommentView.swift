@@ -30,6 +30,7 @@ enum VaultCommentsState: Int, CaseIterable {
 struct VaultCommentView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var vaultViewModel: VaultViewModel
+    @FocusState var keyboardFocus: Bool
     @State private var isPinned = true
     @State private var expandDescription = false
     @State private var commentsToggle = false
@@ -43,105 +44,115 @@ struct VaultCommentView: View {
     @State var isRecieved: Bool = false
     @Binding var postId: String
     @State var isLike: Bool = false
-    @FocusState var keyboardFocused: Bool
+    @State var outSideTap: Bool = false
+    @State var id: String = ""
+    @State var editTrigger: Bool = false
     
     var body: some View {
         NavigationView {
-            VStack(spacing: 0) {
-                VStack {
-                    CommentsHeaderView(backIcon: .constant("multiply"), title: .constant("Comments"), dismissSheet: $dismissSheet)
-                    
-                    VStack(alignment: .leading) {
-                        HStack(spacing: 6) {
-                            ForEach(CommentsState.allCases, id: \.rawValue) { type in
-                                Text(type.state.uppercased())
-                                    .padding(.vertical, 5)
-                                    .padding(.horizontal, 10)
-                                    .font(.custom(Font.bold, size: 14))
-                                    .foregroundStyle(selectedComment == type ? .black : .white)
-                                    .background(selectedComment == type ? .white : Color.theme.appGrayColor)
-                                    .cornerRadius(5)
-                                    .onTapGesture {
-                                        selectedComment = type
-                                        commentOrder = type.state.description
-                                    }
+            ZStack {
+                VStack(spacing: 0) {
+                    VStack {
+                        CommentsHeaderView(backIcon: .constant("multiply"), title: .constant("Comments"), dismissSheet: $dismissSheet)
+                        
+                        VStack(alignment: .leading) {
+                            HStack(spacing: 6) {
+                                ForEach(CommentsState.allCases, id: \.rawValue) { type in
+                                    Text(type.state.uppercased())
+                                        .padding(.vertical, 5)
+                                        .padding(.horizontal, 10)
+                                        .font(.custom(Font.bold, size: 14))
+                                        .foregroundStyle(selectedComment == type ? .black : .white)
+                                        .background(selectedComment == type ? .white : Color.theme.appGrayColor)
+                                        .cornerRadius(5)
+                                        .onTapGesture {
+                                            selectedComment = type
+                                            commentOrder = type.state.description
+                                        }
+                                }
+                                Spacer()
                             }
-                            Spacer()
+                        }
+                        .padding()
+                    }
+                    .background(Color.theme.tabbarColor)
+                    
+                    CommunityGuidlineView()
+                    
+                    //                if feedViewModel.showLoader || vaultViewModel.showLoader {
+                    //                    FLLoader()
+                    //                } else {
+                    ScrollView {
+                        ForEach(vaultViewModel.vaultCommentsModel?.results?.reversed() ?? [], id: \.uid) { data in
+                            VaultsCommentsCard(/*isPinned: $isPinned,*/ expandDescription: $expandDescription,
+                                                                        showReportComment: $showReportComment,
+                                                                        redirectReply: $redirectReply,
+                                                                        profileImage: .constant(data.user?.avatar ?? ""),
+                                                                        displayName: .constant(data.user?.name ?? ""),
+                                                                        commentDuration: .constant(""),
+                                                                        comment: .constant(data.comment),
+                                                                        likes: .constant(data.like_count),
+                                                                        replies: .constant(data.replies_count),
+                                                                        isLike: $isLike,
+                                                                        action: {
+                                commentid = data.uid
+                                redirectReply = true
+                            },
+                                                                        likeAction: {
+                                vaultViewModel.vaultCommentLike(commentId: data.uid)
+                                isLike.toggle()
+                            },
+                                                                        dislikeAction:  {
+                                vaultViewModel.vaultCommentDislike(commentId: data.uid)
+                            },
+                                                                        commentDeleteAction: .constant {
+                                vaultViewModel.vaultDeleteComment(commentId: data.uid)
+                            },
+                                                                        editCommentAction: .constant {
+                                id = data.uid
+                                keyboardFocus = true
+                                editTrigger = true
+                            },
+                                                                        reportCommentAction: .constant {
+                                print("Report")
+                            }, tap: $outSideTap
+                            )
+                            .padding(.top, 10)
+                            .animation(.snappy)
+                        }
+                        
+                    }
+                    
+                    NavigationLink(isActive: $redirectReply) {
+                        VaultRepliesView(dismissSheet: $redirectReply, isRecieved: $vaultViewModel.isSuccess , commentData: $commentid, postId: $postId)
+                            .environmentObject(vaultViewModel)
+                            .navigationBarBackButtonHidden(true)
+                    } label: {
+                        EmptyView()
+                    }
+                    
+                    AddCommentView(addComment: $addComment, loader: .constant(false), keyboardFocused: $keyboardFocus) {
+                        withAnimation(.snappy) {
+                            if editTrigger {
+                                vaultViewModel.vaultEditComment(commentId: id, comment:  addComment)
+                                editTrigger = false
+                                addComment = ""
+                                print("ID --->", id)
+
+                            } else {
+                                vaultViewModel.vaultCreateComment(comment: addComment, post: postId)
+                                addComment = ""
+                            }
                         }
                     }
-                    .padding()
                 }
-                .background(Color.theme.tabbarColor)
-                
-                CommunityGuidlineView()
-                
-                //                if feedViewModel.showLoader || vaultViewModel.showLoader {
-                //                    FLLoader()
-                //                } else {
-                ScrollView {
-                    //                    if vaultViewModel.isRecieved {
-                    ForEach(vaultViewModel.vaultCommentsModel?.results?.reversed() ?? [], id: \.uid) { data in
-                        VaultsCommentsCard(/*isPinned: $isPinned,*/ expandDescription: $expandDescription,
-                                                                    showReportComment: $showReportComment,
-                                                                    redirectReply: $redirectReply,
-                                                                    profileImage: .constant(data.user?.avatar ?? ""),
-                                                                    displayName: .constant(data.user?.name ?? ""),
-                                                                    commentDuration: .constant(""),
-                                                                    comment: .constant(data.comment),
-                                                                    likes: .constant(data.like_count),
-                                                                    replies: .constant(data.replies_count),
-                                                                    isLike: $isLike,
-                                                                    action: {
-                            commentid = data.uid
-                            redirectReply = true
-                        },
-                                                                    likeAction: {
-                            vaultViewModel.vaultCommentLike(commentId: data.uid)
-                            isLike.toggle()
-                        },
-                                                                    dislikeAction:  {
-                            vaultViewModel.vaultCommentDislike(commentId: data.uid)
-                        })
-                        .padding(.top, 10)
+                .onTapGesture {
+                    outSideTap = true
+                    print("TAP")
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                        outSideTap = false
                     }
-                    //                    } else {
-                    //                        ForEach(feedViewModel.seriesEpisodesCommentsModel?.results.reversed() ?? [], id: \.uid) { data in
-                    //                            VaultsCommentsCard(/*isPinned: $isPinned,*/ expandDescription: $expandDescription,
-                    //                                                                     showReportComment: $showReportComment,
-                    //                                                                     redirectReply: $redirectReply,
-                    //                                                                     profileImage: .constant(data.user?.avatar ?? ""),
-                    //                                                                     displayName: .constant(data.user?.name ?? ""),
-                    //                                                                     commentDuration: .constant(""),
-                    //                                                                     comment: .constant(data.comment),
-                    //                                                                     likes: .constant(data.like_count),
-                    //                                                                     replies: .constant(data.replies_count),
-                    //                                                                     isLike: .constant(true),
-                    //                                                                     action: {
-                    //                                commentid = data.uid
-                    //                                redirectReply = true
-                    //                            },
-                    //                                                                     likeAction: {},
-                    //                                                                     dislikeAction: {}
-                    //                            )
-                    //                            .padding(.top, 10)
-                    //                        }
-                    //                    }
                 }
-                //                }
-                
-                NavigationLink(isActive: $redirectReply) {
-                    VaultRepliesView(dismissSheet: $redirectReply, isRecieved: $vaultViewModel.isRecieved , commentData: $commentid, postId: $postId)
-                        .environmentObject(vaultViewModel)
-                        .navigationBarBackButtonHidden(true)
-                } label: {
-                    EmptyView()
-                }
-                
-                AddCommentView(addComment: $addComment, loader: .constant(false), keyboardFocused: $keyboardFocused) {
-                    vaultViewModel.vaultCreateComment(comment: addComment, post: postId)
-                    addComment = ""
-                }
-                
             }
             .background {
                 LinearGradient(gradient: Gradient(colors: [Color.black, Color.theme.appColor, Color.black]), startPoint: .topLeading, endPoint: .bottomTrailing)
@@ -149,8 +160,8 @@ struct VaultCommentView: View {
             .ignoresSafeArea()
             .navigationBarHidden(true)
             
-            .popup(isPresented: $vaultViewModel.commentAdded) {
-                FLToastAlert(image: .constant(""), message: .constant("Comment Added"))
+            .popup(isPresented: $vaultViewModel.showAlert) {
+                FLToastAlert(image: .constant(""), message: $vaultViewModel.alertMessage)
             } customize: {
                 $0
                     .type(.floater(useSafeAreaInset: true))
@@ -163,12 +174,13 @@ struct VaultCommentView: View {
             }
             
             .onAppear {
+                keyboardFocus = false
                 //                vaultViewModel.showLoader = true
-                print("STATUS ---> \(vaultViewModel.isRecieved)")
+                print("STATUS ---> \(vaultViewModel.isSuccess)")
                 vaultViewModel.vaultCommentsDetails(postId: postId)
                 print("ID ---> \(postId)")
             }
-            .onReceive(vaultViewModel.$commentAdded){ _ in
+            .onReceive(vaultViewModel.$isSuccess){ _ in
                 vaultViewModel.vaultCommentsDetails(postId: postId)
             }
         }

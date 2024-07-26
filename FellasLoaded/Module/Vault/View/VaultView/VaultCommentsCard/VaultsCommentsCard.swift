@@ -24,6 +24,12 @@ struct VaultsCommentsCard: View {
     @State var action: () -> Void
     @State var likeAction: () -> Void
     @State var dislikeAction: () -> Void
+    @State var selection1: String? = nil
+    @Binding var commentDeleteAction: () -> Void
+    @Binding var editCommentAction: () -> Void
+    @Binding var reportCommentAction: () -> Void
+    @Binding var tap: Bool
+
     
     var body: some View {
         HStack {
@@ -95,7 +101,7 @@ struct VaultsCommentsCard: View {
                                     .font(.custom(Font.bold, size: 14))
                                     .foregroundStyle(.white)
                             }
-                            .padding(10)
+                            .padding(8)
                             .background(Color.theme.appGrayColor)
                             .cornerRadius(8)
                         }
@@ -111,7 +117,7 @@ struct VaultsCommentsCard: View {
                                     .font(.custom(Font.bold, size: 14))
                                     .foregroundStyle(.white)
                             }
-                            .padding(10)
+                            .padding(8)
                             .background(Color.theme.appGrayColor)
                             .cornerRadius(8)
                         }
@@ -121,44 +127,57 @@ struct VaultsCommentsCard: View {
                 
                 Spacer()
                 
-                Image("threedots-icon")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 16, height: 16)
-                    .padding(.top, 5)
-                    .onTapGesture {
-                        withAnimation(.easeInOut(duration: 0.2)) {
-                            showReportComment.toggle()
-                        }
-                    }
+                DropDownPicker(selection: $selection1, 
+                               deleteAction: .constant {
+                    commentDeleteAction()
+                },
+                               editAction: .constant {
+                    editCommentAction()
+                },
+                               report: .constant {
+                    reportCommentAction()
+                }, outSideTap: $tap
+                )
+                
+//                Button {
+//                    withAnimation{
+//                        showReportComment.toggle()
+//                    }
+//                } label: {
+//                    Image("threedots-icon")
+//                        .resizable()
+//                        .scaledToFit()
+//                        .frame(width: 16, height: 16)
+//                        .padding(.top, 5)
+//                }
+//                .overlay(alignment: .bottom) {
+//                    if showReportComment {
+//                        Button {
+//                            
+//                        } label: {
+//                            Text("Report Comment")
+//                                .padding(14)
+//                                .font(.custom(Font.regular, size: 14))
+//                                .foregroundStyle(.white)
+//                                .background(Color.theme.appGrayColor)
+//                                .cornerRadius(5)
+//                                .overlay {
+//                                    RoundedRectangle(cornerRadius: 5)
+//                                        .stroke(Color.white, lineWidth: 0.6)
+//                                }
+//                                .frame(maxWidth: .infinity, alignment: .trailing)
+//                                .padding()
+//                                .padding(.bottom, 40)
+//                        }
+//                    }
+//                }
             }
             .padding(.horizontal)
             .padding(.vertical, 5)
         }
-        .overlay {
-            if showReportComment {
-                Button {
-                    
-                } label: {
-                    Text("Report Comment")
-                        .padding(14)
-                        .font(.custom(Font.regular, size: 14))
-                        .foregroundStyle(.white)
-                        .background(Color.theme.appGrayColor)
-                        .cornerRadius(5)
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 5)
-                                .stroke(Color.white, lineWidth: 0.6)
-                        }
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                        .padding()
-                        .padding(.bottom, 40)
-                }
-            }
-        }
     }
 }
 
-#Preview {
-    VaultsCommentsCard(/*isPinned: .constant(true), */expandDescription: .constant(false), showReportComment: .constant(false), redirectReply: .constant(false), profileImage: .constant(""), displayName: .constant(""), commentDuration: .constant(""), comment: .constant(""), likes: .constant(0), replies: .constant(0), isLike: .constant(true), action: {}, likeAction: {}, dislikeAction: {})
-}
+//#Preview {
+//    VaultsCommentsCard(/*isPinned: .constant(true), */expandDescription: .constant(false), showReportComment: .constant(false), redirectReply: .constant(false), profileImage: .constant(""), displayName: .constant(""), commentDuration: .constant(""), comment: .constant(""), likes: .constant(0), replies: .constant(0), isLike: .constant(true), action: {}, likeAction: {}, dislikeAction: {})
+//}

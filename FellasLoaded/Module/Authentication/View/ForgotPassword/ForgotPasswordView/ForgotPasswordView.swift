@@ -24,7 +24,7 @@ struct ForgotPasswordView: View {
                         
                         ForgotPasswordLablesView()
                         
-                        ForgotPasswordFieldAndButtonView(email: $email, redirectToResetPasswordView: $redirectToResetPasswordView) {
+                        ForgotPasswordFieldAndButtonView(email: $email, redirectToResetPasswordView: $redirectToResetPasswordView, showButtonLoader: $viewModel.showLoader) {
                             viewModel.showLoader = true
                             viewModel.sendForgotPasswordCodeRequest(email: email)
                         }
@@ -59,10 +59,6 @@ struct ForgotPasswordView: View {
 
                     
                     Spacer()
-                }
-                
-                if viewModel.showLoader {
-                    FLLoader()
                 }
             }
         }

@@ -29,12 +29,11 @@ struct AddCommentView: View {
                     .focused($keyboardFocused)
             
             Button(action: {
-//                keyboardFocused.toggle()
                 action()
             }) {
                 if loader {
                     ZStack {
-                        FLButtonLoader()
+                        FLButtonLoader(color: .constant(Color.white))
                     }
                     .padding(10)
                     .background(Color.theme.appGrayColor)

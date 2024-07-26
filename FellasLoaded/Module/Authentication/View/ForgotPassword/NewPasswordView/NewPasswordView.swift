@@ -44,10 +44,19 @@ struct NewPasswordView: View {
                             VStack(spacing: 20) {
                                 AuthPasswordTextFieldView(placeholder: .constant("Retype Password"), field: $newPassword)
                                 
-                                AuthButtonView(action: {
-                                    viewModel.showLoader = true
-                                    viewModel.setNewPasswordRequest(code: code, password: currentPassword)
-                                }, title: "CHANGE PASSWORD", background: Color.white, foreground: Color.black)
+                                if viewModel.showLoader {
+                                    FLButtonLoader(color: .constant(Color.theme.textGrayColor))
+                                        .font(.custom(Font.bold, size: 16))
+                                        .frame(maxWidth: .infinity, maxHeight: 48, alignment: .center)
+                                        .background(Color.white)
+                                        .foregroundColor(Color.black)
+                                        .cornerRadius(10)
+                                } else {
+                                    AuthButtonView(action: {
+                                        viewModel.showLoader = true
+                                        viewModel.setNewPasswordRequest(code: code, password: currentPassword)
+                                    }, title: "CHANGE PASSWORD", background: Color.white, foreground: Color.black)
+                                }
                             }
                         }
                     }

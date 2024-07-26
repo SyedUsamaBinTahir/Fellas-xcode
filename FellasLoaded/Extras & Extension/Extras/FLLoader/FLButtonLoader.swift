@@ -9,15 +9,16 @@ import SwiftUI
 
 struct FLButtonLoader: View {
     @State var animate = false
+    @Binding var color: Color
     
     var body: some View {
         VStack {
             Circle()
                 .trim(from: 0, to: 0.8)
-                .stroke (AngularGradient(gradient: .init(colors: [Color.white]),
+                .stroke (AngularGradient(gradient: .init(colors: [color]),
                                           center: .center), style: StrokeStyle(lineWidth: 2, lineCap:
                                                 .square))
-                .frame (width: 16, height: 16)
+                .frame (width: 18, height: 18)
                 .rotationEffect (.init(degrees: self.animate ? 360 : 0))
                 .animation (Animation.linear (duration:
                                                 0.7).repeatForever (autoreverses: false))
@@ -31,5 +32,5 @@ struct FLButtonLoader: View {
 }
 
 #Preview {
-    FLButtonLoader()
+    FLButtonLoader(color: .constant(Color.black))
 }

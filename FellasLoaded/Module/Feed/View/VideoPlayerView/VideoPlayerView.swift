@@ -141,24 +141,29 @@ struct VideoPlayerView: View {
             }
             
             if seriesUid != nil {
+                // Feed Episodes list
                 feedViewModel.getFeedCategorySeriesDetail(id: seriesUid?.seriesUid ?? "")
                 print("Series ID -->",  seriesUid?.seriesUid ?? "")
             } else if feedCategoryEpisodeId != nil {
+                // Feed Episodes Detail page episodes list
                 feedViewModel.getFeedCategorySeriesDetail(id: feedCategoryEpisodeId?.series_uid ?? "")
                 print("Series ID -->",  feedCategoryEpisodeId?.series_uid ?? "")
             } else if feedSearchEpisodeId != nil {
+                // Feed Search Episodes list
                 feedViewModel.getFeedCategorySeriesDetail(id: feedSearchEpisodeId?.seriesUid ?? "")
                 print("Series ID -->",  feedSearchEpisodeId?.seriesUid ?? "")
             } else if bannerUid != nil {
+                // Feed banner Episodes List
                 feedViewModel.getFeedCategorySeriesDetail(id: "6c9fd73e-59c6-4018-9cea-afcfd995f78f")
                 print("Series Detail ID -->", seriesDetailID)
             } else {
+                // Feed Series Episodes list
                 feedViewModel.getFeedCategorySeriesDetail(id: seriesDetailID)
                 print("Series Detail ID -->", seriesDetailID)
             }
             
-            UserDefaults.standard.removeObject(forKey: FLUserDefaultKeys.commentCreated.rawValue)
-            
+            feedViewModel.getFeedSearchList(searchParam: "")
+                    
         }
     }
 }

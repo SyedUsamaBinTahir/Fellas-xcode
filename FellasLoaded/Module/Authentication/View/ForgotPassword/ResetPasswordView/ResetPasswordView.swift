@@ -25,7 +25,7 @@ struct ResetPasswordView: View {
                         
                         ResetPasswordLablesView()
                         
-                        ResetPasswordFieldAndButtonView(code: $code, redirectToNewPasswordView: $redirectToNewPasswordView) {
+                        ResetPasswordFieldAndButtonView(code: $code, redirectToNewPasswordView: $redirectToNewPasswordView, showButtonLoader: $viewModel.showLoader) {
                             viewModel.showLoader = true
                             viewModel.verifyForgotPasswordCodeRequest(email: email, code: code)
                         }

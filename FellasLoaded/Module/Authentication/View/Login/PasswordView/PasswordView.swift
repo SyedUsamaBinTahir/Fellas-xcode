@@ -30,7 +30,7 @@ struct PasswordView: View {
                         
                         PasswordLablesView()
                         
-                        PasswordFieldAndButtonView(password: $password, redirectTabbarView: $viewModel.redirectTabbarView, redirectToForgotPassword: $redirectToForgotPassword, isValidPassword: $isValidPassword, isDisabled: $isDisabled, setOpacity: $setOpacity) {
+                        PasswordFieldAndButtonView(password: $password, redirectTabbarView: $viewModel.redirectTabbarView, redirectToForgotPassword: $redirectToForgotPassword, isValidPassword: $isValidPassword, isDisabled: $isDisabled, setOpacity: $setOpacity, showButtonLoader: $viewModel.showLoader) {
                             viewModel.showLoader = true
                             viewModel.getAccessToken(email: email, password: password)
                         }
@@ -86,9 +86,9 @@ struct PasswordView: View {
                     EmptyView()
                 }
                 
-                if viewModel.showLoader {
-                    FLLoader()
-                }
+//                if viewModel.showLoader {
+//                    FLLoader()
+//                }
             }
         }
         .onDisappear {

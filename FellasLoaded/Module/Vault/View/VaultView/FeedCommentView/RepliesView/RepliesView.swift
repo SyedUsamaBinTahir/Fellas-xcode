@@ -10,6 +10,7 @@ import SwiftUI
 struct RepliesView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var feedViewModel: FeedViewModel
+    @FocusState var keyboardFocus: Bool
     @State private var backIcon = ""
     @State private var isPinned = true
     @State private var expandDescription = false
@@ -23,8 +24,7 @@ struct RepliesView: View {
     @Binding var commentData: String
     @Binding var seriesEpisodeDetailId: String
     @Binding var episodeCategoryID: String
-    @FocusState var keyboardFocused: Bool
-
+    
     var body: some View {
         VStack(spacing: 0) {
             VStack {
@@ -41,13 +41,14 @@ struct RepliesView: View {
                 ScrollView {
                     
                     CommentCardView(/*isPinned: $isPinned,*/ expandDescription: $expandDescription,
+                                                             showReportComment: showReportComment,
                                                              redirectReply: $redirectReply,
                                                              profileImage: .constant(feedViewModel.seriesEpisodesCommentsDetailModel?.parent.user?.avatar ?? ""),
                                                              displayName: .constant(feedViewModel.seriesEpisodesCommentsDetailModel?.parent.user?.name ?? ""),
                                                              commentDuration: .constant(""),
                                                              comment: .constant(feedViewModel.seriesEpisodesCommentsDetailModel?.parent.comment ?? ""),
                                                              likes: .constant(feedViewModel.seriesEpisodesCommentsDetailModel?.parent.like_count ?? 0),
-                                                             replies: .constant(feedViewModel.seriesEpisodesCommentsDetailModel?.parent.replies_count ?? 0), likeAdded: $likeAdded,commentCreated: $feedViewModel.commentCreated ,
+                                                             replies: .constant(feedViewModel.seriesEpisodesCommentsDetailModel?.parent.replies_count ?? 0), likeAdded: $likeAdded,
                                                              action: {
                         
                     })
@@ -56,23 +57,25 @@ struct RepliesView: View {
                     
                     ForEach(feedViewModel.seriesEpisodesCommentsDetailModel?.replies?.reversed() ?? [], id: \.uid) { reply in
                         CommentCardView(/*isPinned: $isPinned,*/ expandDescription: $expandDescription,
+                                                                 showReportComment: showReportComment,
                                                                  redirectReply: $redirectReply,
                                                                  profileImage: .constant(reply.user?.avatar ?? ""),
                                                                  displayName: .constant(reply.user?.name ?? ""),
                                                                  commentDuration: .constant( ""),
                                                                  comment: .constant(reply.comment),
                                                                  likes: .constant(reply.like_count),
-                                                                 replies: .constant(reply.replies_count), likeAdded: $replyLikeAdded, commentCreated: $feedViewModel.commentCreated, action: {
+                                                                 replies: .constant(reply.replies_count), likeAdded: $replyLikeAdded, action: {
                             
                         }, deleteCommentAction: {
                             feedViewModel.deleteComment(commentUid: reply.uid)
+                        }, editCommentAction: {
                         })
                     }
                     .padding(.horizontal, 30)
                 }
             }
             
-            AddCommentView(addComment: $addComment, loader: $feedViewModel.showButtonLoader, keyboardFocused: $keyboardFocused) {
+            AddCommentView(addComment: $addComment, loader: $feedViewModel.showButtonLoader, keyboardFocused: $keyboardFocus) {
                 feedViewModel.showButtonLoader = true
                 feedViewModel.createReplies(episode: seriesEpisodeDetailId != "" ? seriesEpisodeDetailId : episodeCategoryID, parent: feedViewModel.seriesEpisodesCommentsDetailModel?.parent.uid ?? "", replyTo: feedViewModel.seriesEpisodesCommentsDetailModel?.parent.uid ?? "", comment: addComment)
                 addComment = ""

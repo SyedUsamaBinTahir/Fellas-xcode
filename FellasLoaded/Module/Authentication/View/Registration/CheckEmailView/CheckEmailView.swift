@@ -25,7 +25,7 @@ struct CheckEmailView: View {
                         
                         CheckEmailLablesView()
                         
-                        CheckEmailFieldAndButtonView(code: $code, redirectToDisplayNameAndImageView: $redirectToDisplayNameAndImageView) {
+                        CheckEmailFieldAndButtonView(code: $code, redirectToDisplayNameAndImageView: $redirectToDisplayNameAndImageView, showButtonLoader: $viewModel.showLoader) {
                             viewModel.showLoader = true
                             viewModel.checkEamilResendCode(email: email)
                         } verifyEmailAction: {
@@ -62,10 +62,6 @@ struct CheckEmailView: View {
                         .backgroundColor(.black.opacity(0.5))
                         .autohideIn(3)
                         .appearFrom(.top)
-                }
-                
-                if viewModel.showLoader {
-                    FLLoader()
                 }
             }
         }
