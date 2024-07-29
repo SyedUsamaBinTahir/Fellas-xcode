@@ -33,20 +33,34 @@ struct SettingsView: View {
                                     .foregroundStyle(Color.white)
                             }
                             
-                            VStack(spacing: 26) {
-                                SettingsNavigatorView(icon: "profile", title: "Edit Profile", description: nil, forwardIcon: "chevron.right") {redirectEditProfile = true}
-                                SettingsNavigatorView(icon: "account", title: "Account", description: "Subscription renews on Aug 26, 2024  ", forwardIcon: "chevron.right") { redirectAccount = true }
-                                SettingsNavigatorView(icon: "video-player-controls", title: "Video playback", description: nil, forwardIcon: "chevron.right") { redirectvideoPlayback = true }
-                                SettingsNavigatorView(icon: "notifications", title: "Push notifications", description: nil, forwardIcon: "chevron.right") { redirectPushNotifications = true }
+                            if FLUserJourney.shared.isSubscibedUserLoggedIn ?? false {
+                                VStack(spacing: 26) {
+                                    SettingsNavigatorView(icon: "profile", title: "Edit Profile", description: nil, forwardIcon: "chevron.right") {redirectEditProfile = true}
+                                    SettingsNavigatorView(icon: "account", title: "Account", description: "Subscription renews on Aug 26, 2024  ", forwardIcon: "chevron.right") { redirectAccount = true }
+                                    SettingsNavigatorView(icon: "video-player-controls", title: "Video playback", description: nil, forwardIcon: "chevron.right") { redirectvideoPlayback = true }
+                                    SettingsNavigatorView(icon: "notifications", title: "Push notifications", description: nil, forwardIcon: "chevron.right") { redirectPushNotifications = true }
+                                    SettingsNavigatorView(icon: "terms", title: "Terms & conditions", description: nil, forwardIcon: "chevron.right") { }
+                                    SettingsNavigatorView(icon: "privacy-policy", title: "Privacy policy", description: nil, forwardIcon: "chevron.right") { }
+                                    SettingsNavigatorView(icon: "logout", title: "log out", description: nil, forwardIcon: "chevron.right") {
+                                        withAnimation(.easeInOut(duration: 0.2)) {
+                                            dismissLogout = true
+                                        }
+                                    }
+                                }
+                                .padding(.top)
+                            } else {
+                                MembershipCardView {  }
                                 SettingsNavigatorView(icon: "terms", title: "Terms & conditions", description: nil, forwardIcon: "chevron.right") { }
+                                    .padding(.top)
                                 SettingsNavigatorView(icon: "privacy-policy", title: "Privacy policy", description: nil, forwardIcon: "chevron.right") { }
-                                SettingsNavigatorView(icon: "logout", title: "log out", description: nil, forwardIcon: "chevron.right") {
+                                SettingsNavigatorView(icon: "logout", title: "Exit", description: nil, forwardIcon: "chevron.right") {
                                     withAnimation(.easeInOut(duration: 0.2)) {
-                                        dismissLogout = true
+                                        self.viewControllerHolder?.present(style: .overFullScreen) {
+                                            WelcomeScreen()
+                                        }
                                     }
                                 }
                             }
-                            .padding(.top)
                         }
                     }
                 }
@@ -66,15 +80,6 @@ struct SettingsView: View {
                     })
                 }
             }
-//            .navigationDestination(isPresented: $redirectAccount) {
-//                AccountView().navigationBarBackButtonHidden(true)
-//            }
-//            .navigationDestination(isPresented: $redirectPushNotifications) {
-//                PushNotificationsView().navigationBarBackButtonHidden(true)
-//            }
-//            .navigationDestination(isPresented: $redirectvideoPlayback) {
-//                VideoPlaybackView().navigationBarBackButtonHidden(true)
-//            }
 
             NavigationLink(isActive: $redirectEditProfile) {
                 EditProfile().navigationBarBackButtonHidden(true)

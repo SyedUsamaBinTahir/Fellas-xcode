@@ -59,31 +59,50 @@ struct EpisodeDetailView: View {
                     
                     VStack(alignment: .leading, spacing: 16) {
                         if horizontalSizeClass != .regular {
-                            Button {
-                                redirectVideoPlayerWithEpisode = true
-                                
-                            } label: {
-                                HStack {
-                                    Image("play-icon")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 24, height: 24)
-                                    Text("PLAY")
-                                        .font(.custom(Font.bold, size: 16))
+                            if FLUserJourney.shared.isSubscibedUserLoggedIn ?? false {
+                                Button {
+                                    redirectVideoPlayerWithEpisode = true
                                     
+                                } label: {
+                                    HStack {
+                                        Image("play-icon")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 24, height: 24)
+                                        Text("PLAY")
+                                            .font(.custom(Font.bold, size: 16))
+                                        
+                                    }
+                                    .frame(maxWidth: .infinity, alignment: .center)
+                                    .frame(height: 48)
+                                    .background(Color.white)
+                                    .foregroundColor(Color.black)
+                                    .cornerRadius(8)
                                 }
-                                .frame(maxWidth: .infinity, alignment: .center)
-                                .frame(height: 48)
-                                .background(Color.white)
-                                .foregroundColor(Color.black)
-                                .cornerRadius(10)
+                            } else {
+                                Button {
+                                    
+                                } label: {
+                                    HStack {
+                                        Image("lock-icon")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 24, height: 24)
+                                        Text("BECOME A MEMBER")
+                                            .font(.custom(Font.bold, size: 16))
+                                        
+                                    }
+                                    .frame(maxWidth: .infinity, alignment: .center)
+                                    .frame(height: 48)
+                                    .background(Color.theme.appGrayColor)
+                                    .foregroundColor(Color.white)
+                                    .cornerRadius(8)
+                                }
                             }
                             
                             WatchlistAndShareButtonView(Loader: $feedViewModel.showButtonLoader, watchlistAdded: $feedViewModel.watchListAdded, watchlistAction: {
                                 feedViewModel.showButtonLoader = true
                                 feedViewModel.addSeriesWatchLater(seriesUid: seriesDetailID)
-                            }, shareAction: {
-                                ShareLink(item: URL(string: "https://www.hackingwithswift.com")!)
                             }, removeWatchlist: {
                                 feedViewModel.showButtonLoader = true
                                 feedViewModel.removeSeriesWatchLater(seriesUid: seriesDetailID)

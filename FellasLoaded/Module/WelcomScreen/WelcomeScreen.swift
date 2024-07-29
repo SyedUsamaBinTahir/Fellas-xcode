@@ -65,18 +65,16 @@ struct WelcomeScreen: View {
                         }, title: "EXPLORE CONTENT", background: Color.theme.appGrayColor, foreground: Color.white)
                     }
                     .padding(.bottom)
-//                    .navigationDestination(isPresented: $redirectSignUp) {
-//                        RegistrationView().navigationBarBackButtonHidden(true)
-//                    }
-//                    .navigationDestination(isPresented: $redirectLogin) {
-//                        EmailView().navigationBarBackButtonHidden(true)
-//                    }
                     
                     NavigationLink(destination: RegistrationView().navigationBarBackButtonHidden(true), isActive: $redirectSignUp) {
                         EmptyView()
                     }
                     
                     NavigationLink(destination: EmailView().navigationBarBackButtonHidden(true), isActive: $redirectLogin) {
+                        EmptyView()
+                    }
+                    
+                    NavigationLink(destination: Tabbar(), isActive: $redirectExplore) {
                         EmptyView()
                     }
                 }

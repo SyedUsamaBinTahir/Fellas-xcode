@@ -9,6 +9,7 @@ import SwiftUI
 import AVKit
 import GoogleCast
 import ExytePopupView
+import Kingfisher
 
 struct VideoPlayer: View {
     @Environment(\.presentationMode) var presentationMode
@@ -74,6 +75,7 @@ struct VideoPlayer: View {
 //                    /// To avoid other view expansion set it's native view height
 //                    .frame(width: size.width, height: size.height / 3, alignment: .bottomLeading)
 //            } else {
+            if FLUserJourney.shared.isSubscibedUserLoggedIn ?? false {
                 ZStack(alignment: .topLeading) {
                     CustomVideoPlayer(player: player)
                         .overlay {
@@ -146,16 +148,16 @@ struct VideoPlayer: View {
                                         .foregroundColor(.white)
                                 }
                                 
-//                                Button {
-////                                    viewModel.fetchResolutions(urlString: "\(url)")
-//                                    showVidoQualityLisit.toggle()
-//                                } label: {
-//                                    Image("settings-icon")
-//                                        .resizable()
-//                                        .scaledToFit()
-//                                        .frame(width: 20, height: 20)
-//                                        .foregroundColor(.white)
-//                                }
+                                //                                Button {
+                                ////                                    viewModel.fetchResolutions(urlString: "\(url)")
+                                //                                    showVidoQualityLisit.toggle()
+                                //                                } label: {
+                                //                                    Image("settings-icon")
+                                //                                        .resizable()
+                                //                                        .scaledToFit()
+                                //                                        .frame(width: 20, height: 20)
+                                //                                        .foregroundColor(.white)
+                                //                                }
                             }
                         }
                     }
@@ -166,14 +168,14 @@ struct VideoPlayer: View {
                         .presentationDetents([.medium])
                         .presentationDragIndicator(.visible)
                 }
-//                .sheet(isPresented: $showVidoQualityLisit) {
-//                    VideoQualitySelectionView(url: url, action: {
-//                        
-//                    })
-//                    .presentationDetents([.medium])
-//                    .presentationDragIndicator(.visible)
-//                    .environmentObject(feedViewModel)
-//                }
+                //                .sheet(isPresented: $showVidoQualityLisit) {
+                //                    VideoQualitySelectionView(url: url, action: {
+                //
+                //                    })
+                //                    .presentationDetents([.medium])
+                //                    .presentationDragIndicator(.visible)
+                //                    .environmentObject(feedViewModel)
+                //                }
                 .background(content: {
                     Rectangle()
                         .fill(.black)
@@ -201,6 +203,56 @@ struct VideoPlayer: View {
                 .rotationEffect(.init(degrees: isRotated ? 90 : 0), anchor: .topLeading)
                 /// Making it top view
                 .zIndex(10000)
+            } else {
+                ZStack(alignment: .topLeading) {
+                    KFImage.init(URL(string: feedViewModel.seriesEpisodeDetailModel?.thumbnail ?? ""))
+                        .placeholder({ _ in
+                            RoundedRectangle(cornerRadius: 0)
+                                .fill(Color.theme.appCardsColor)
+                        })
+                        .loadDiskFileSynchronously()
+                        .cacheMemoryOnly()
+                        .fade(duration: 0.50)
+                        .resizable()
+                        .scaledToFit()
+                        .overlay(content: {
+                            Color.black.opacity(0.6)
+                        })
+                        .overlay {
+                            HStack(spacing: 10) {
+                                Image("lock-icon")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 16, height: 16)
+                                    .padding(.leading, 10)
+                                
+                                Text("BECOME A MEMBER TO WATCH")
+                                    .font(.custom(Font.bold, size: 12))
+                                    .padding(.trailing, 10)
+                            }
+                            .frame(height: 36)
+                            .background(Color.black.opacity(0.9))
+                            .foregroundColor(Color.white)
+                            .cornerRadius(6)
+                        }
+                    
+                    Button {
+                        presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Image("back-icon")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 32, height: 32)
+                            .opacity(0.8)
+                    }
+                    .padding(10)
+                }
+                .frame(width: videoPlayerSize.width, height: videoPlayerSize.height)
+                /// To avoid other view expansion set it's native view height
+                .frame(width: size.width, height: size.height / 3, alignment: .bottomLeading)
+                /// Making it top view
+                .zIndex(10000)
+            }
 //            }
             
             ScrollView(showsIndicators: false) {
@@ -211,68 +263,77 @@ struct VideoPlayer: View {
                     
                     VStack(alignment: .leading, spacing: 16) {
                         HStack(spacing: 16) {
-                            if !feedViewModel.watchListAdded {
-                                Button {
-                                    feedViewModel.showButtonLoader = true
-                                    feedViewModel.addEpisodeWatchLater(episodeUid: episodeCategoryID)
-                                } label: {
-                                    if feedViewModel.showButtonLoader {
-                                        ZStack {
-                                            FLButtonLoader(color: .constant(Color.white))
-                                        }
-                                        .padding(10)
-                                        .background(Color.theme.appGrayColor)
-                                        .clipShape(.circle)
-                                        .frame(width: 40, height: 40)
-                                    } else {
-                                        Image("add-to-watchlist-icon")
-                                            .resizable()
-                                            .scaledToFit()
+                            if FLUserJourney.shared.isSubscibedUserLoggedIn ?? false {
+                                if !feedViewModel.watchListAdded {
+                                    Button {
+                                        feedViewModel.showButtonLoader = true
+                                        feedViewModel.addEpisodeWatchLater(episodeUid: episodeCategoryID)
+                                    } label: {
+                                        if feedViewModel.showButtonLoader {
+                                            ZStack {
+                                                FLButtonLoader(color: .constant(Color.white))
+                                            }
+                                            .padding(10)
+                                            .background(Color.theme.appGrayColor)
+                                            .clipShape(.circle)
                                             .frame(width: 40, height: 40)
-                                    }
-                                }
-                            } else {
-                                Button {
-                                    feedViewModel.showButtonLoader = true
-                                    feedViewModel.removeEpisodeWatchLater(episodeUid: episodeCategoryID)
-                                } label: {
-                                    if feedViewModel.showButtonLoader {
-                                        ZStack {
-                                            FLButtonLoader(color: .constant(Color.white))
-                                        }
-                                        .padding(10)
-                                        .background(Color.theme.appGrayColor)
-                                        .clipShape(.circle)
-                                        .frame(width: 40, height: 40)
-                                    } else {
-                                        ZStack {
-                                            Image("watchlist-added-icon")
+                                        } else {
+                                            Image("add-to-watchlist-icon")
                                                 .resizable()
                                                 .scaledToFit()
-                                                .frame(width: 24, height: 24)
+                                                .frame(width: 40, height: 40)
                                         }
-                                        .padding(10)
-                                        .background(Color.theme.appGrayColor)
-                                        .clipShape(.circle)
-                                        .frame(width: 40, height: 40)
+                                    }
+                                } else {
+                                    Button {
+                                        feedViewModel.showButtonLoader = true
+                                        feedViewModel.removeEpisodeWatchLater(episodeUid: episodeCategoryID)
+                                    } label: {
+                                        if feedViewModel.showButtonLoader {
+                                            ZStack {
+                                                FLButtonLoader(color: .constant(Color.white))
+                                            }
+                                            .padding(10)
+                                            .background(Color.theme.appGrayColor)
+                                            .clipShape(.circle)
+                                            .frame(width: 40, height: 40)
+                                        } else {
+                                            ZStack {
+                                                Image("watchlist-added-icon")
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(width: 24, height: 24)
+                                            }
+                                            .padding(10)
+                                            .background(Color.theme.appGrayColor)
+                                            .clipShape(.circle)
+                                            .frame(width: 40, height: 40)
+                                        }
+                                    }
+                                }
+                                
+                                ZStack {
+                                    if downloadModel.showDownloadProgress {
+                                        DownloadProgressView(progress: $downloadModel.downloadProgress)
+                                            .environmentObject(downloadModel)
+                                    } else {
+                                        Button {
+                                            showDownlaodUrlsList.toggle()
+                                        } label: {
+                                            Image("download-icon")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 40, height: 40)
+                                        }
                                     }
                                 }
                             }
                             
-                            ZStack {
-                                if downloadModel.showDownloadProgress {
-                                    DownloadProgressView(progress: $downloadModel.downloadProgress)
-                                        .environmentObject(downloadModel)
-                                } else {
-                                    Button {
-                                        showDownlaodUrlsList.toggle()
-                                    } label: {
-                                        Image("download-icon")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 40, height: 40)
-                                    }
-                                }
+                            ShareLink(item: url) {
+                                Image("ep-detail-share-icon")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 40, height: 40)
                             }
                         }
                         
@@ -316,54 +377,107 @@ struct VideoPlayer: View {
                             .foregroundStyle(Color.theme.textGrayColor)
                         }
                         
-                        VaultCommentsCardView(numberOfComments: .constant("\(feedViewModel.seriesEpisodesCommentsModel?.count ?? 0)"),
-                                              profileImage: .constant(feedViewModel.seriesEpisodesCommentsModel?.results.first?.user?.avatar ?? ""),
-                                              comment: .constant(feedViewModel.seriesEpisodesCommentsModel?.results.first?.comment ?? ""))
-                        .onTapGesture {
-                            redirectComment = true
-                        }
-                        .sheet(isPresented: $redirectComment, content: {
-                            CommentView(dismissSheet: $redirectComment, commentOrder: $commentOrder, seriesEpisodeDetailId: $seriesEpisodeDetailId, episodeCategoryID: $episodeCategoryID, bannerUid: $bannerUid)
-                                .presentationDragIndicator(.visible)
-                                .environmentObject(feedViewModel)
+                        if FLUserJourney.shared.isSubscibedUserLoggedIn ?? false {
+                            VaultCommentsCardView(numberOfComments: .constant("\(feedViewModel.seriesEpisodesCommentsModel?.count ?? 0)"),
+                                                  profileImage: .constant(feedViewModel.seriesEpisodesCommentsModel?.results.first?.user?.avatar ?? ""),
+                                                  comment: .constant(feedViewModel.seriesEpisodesCommentsModel?.results.first?.comment ?? ""))
+                            .onTapGesture {
+                                redirectComment = true
+                            }
+                            .sheet(isPresented: $redirectComment, content: {
+                                CommentView(dismissSheet: $redirectComment, commentOrder: $commentOrder, seriesEpisodeDetailId: $seriesEpisodeDetailId, episodeCategoryID: $episodeCategoryID, bannerUid: $bannerUid)
+                                    .presentationDragIndicator(.visible)
+                                    .environmentObject(feedViewModel)
 
-                        })
+                            })
+                        } else {
+                            VStack(alignment: .leading) {
+                                HStack {
+                                   Text("COMMENTS")
+                                        .font(.custom(Font.semiBold, size: 14))
+                                        .foregroundStyle(.white)
+                                }
+                                
+                                Button {
+                                    
+                                } label: {
+                                    HStack {
+                                        Image("lock-icon")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 18, height: 18)
+                                        Text("BECOME A MEMBER TO UNLOCK")
+                                            .font(.custom(Font.bold, size: 16))
+                                        
+                                    }
+                                    .frame(maxWidth: .infinity, alignment: .center)
+                                    .frame(height: 40)
+                                    .background(Color.theme.appGrayColor)
+                                    .foregroundColor(Color.white)
+                                    .cornerRadius(8)
+                                }
+                            }
+                            .padding(10)
+                            .frame(maxWidth: .infinity)
+                            .background(Color.theme.tabbarColor)
+                            .cornerRadius(10)
+                        }
                     }
                     .padding(.top, 5)
                     
                     VStack(alignment: .leading, spacing: 20) {
-                        Segments(selectedTab: $selectedTab)
-                        
-                        if selectedTab == .EPISODES {
-                            LazyVStack {
-                                ForEach(feedViewModel.feedCategorySeriesDetailModel?.sessions ?? [], id: \.uid) { data in
-                                    ForEach(data.episodes ?? [], id: \.uid) { episode in
-                                        EpisodesView(seriesImage: episode.thumbnail, episode: "S\(episode.session_number):E\(episode.episode_number)", title: episode.title, description: episode.description, icon: "download") { 
-                                            reloadVideo = true
-                                            episodeSeriesUid = episode.uid
+                        if FLUserJourney.shared.isSubscibedUserLoggedIn ?? false {
+                            Segments(selectedTab: $selectedTab)
+
+                            if selectedTab == .EPISODES {
+                                LazyVStack {
+                                    ForEach(feedViewModel.feedCategorySeriesDetailModel?.sessions ?? [], id: \.uid) { data in
+                                        ForEach(data.episodes ?? [], id: \.uid) { episode in
+                                            EpisodesView(seriesImage: episode.thumbnail, episode: "S\(episode.session_number):E\(episode.episode_number)", title: episode.title, description: episode.description, icon: "download") {
+                                                reloadVideo = true
+                                                episodeSeriesUid = episode.uid
+                                            }
                                         }
                                     }
                                 }
+                            } else if selectedTab == .RECOMMENDED {
+                                
+                                ForEach(feedViewModel.feedSearchModel?.results ?? [], id: \.uid) { data in
+                                    EpisodesView(seriesImage: data.thumbnail, episode: "S\(data.sessionNumber ?? 0):E\(data.episodeNumber ?? 0)", title: data.title, description: data.description, icon: "download") {
+                                        //                                    episodeCategoryID = data.uid
+                                    }
+                                    //                                NavigationLink(isActive: $redirectVideoPlayer) {
+                                    //                                    VideoPlayerView(seriesDetailID: $seriesDetailID, episodeCategoryID: episodeCategoryID, feedSearchEpisodeId: data)
+                                    //                                        .environmentObject(feedViewModel)
+                                    //                                        .navigationBarBackButtonHidden(true)
+                                    //                                } label: {
+                                    //                                    EmptyView()
+                                    //                                }
+                                }
                             }
-                        } else if selectedTab == .RECOMMENDED {
-                            
+                        } else {
+                            VStack(spacing: 3) {
+                                Text("RECOMMENDED")
+                                    .font(.custom(Font.semiBold, size: 18))
+                                    .foregroundColor(.white)
+
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .fill(Color.red)
+                                        .frame(width: 80, height: 3)
+                            }
                             ForEach(feedViewModel.feedSearchModel?.results ?? [], id: \.uid) { data in
                                 EpisodesView(seriesImage: data.thumbnail, episode: "S\(data.sessionNumber ?? 0):E\(data.episodeNumber ?? 0)", title: data.title, description: data.description, icon: "download") {
-//                                    episodeCategoryID = data.uid
+                                    //                                    episodeCategoryID = data.uid
                                 }
                                 
-//                                NavigationLink(isActive: $redirectVideoPlayer) {
-//                                    VideoPlayerView(seriesDetailID: $seriesDetailID, episodeCategoryID: episodeCategoryID, feedSearchEpisodeId: data)
-//                                        .environmentObject(feedViewModel)
-//                                        .navigationBarBackButtonHidden(true)
-//                                } label: {
-//                                    EmptyView()
-//                                }
+                                //                                NavigationLink(isActive: $redirectVideoPlayer) {
+                                //                                    VideoPlayerView(seriesDetailID: $seriesDetailID, episodeCategoryID: episodeCategoryID, feedSearchEpisodeId: data)
+                                //                                        .environmentObject(feedViewModel)
+                                //                                        .navigationBarBackButtonHidden(true)
+                                //                                } label: {
+                                //                                    EmptyView()
+                                //                                }
                             }
-                            
-//                            ForEach(1...5, id: \.self) { _ in
-//                                EpisodesView(seriesImage: "series-image", episode: "S1:E1", title: "The Fellas & W2S Get Drunk", description: "The Fellas head to the city of Amsterdam for some absolute CARNAGE! 24 hours was more than enough and you'll see why")
-//                            }
                         }
                     }
                     .padding(.top)
@@ -454,20 +568,6 @@ struct VideoPlayer: View {
         }
         .ignoresSafeArea()
     }
-    
-//    func currentQuality() -> String {
-//        // Retrieve the current quality (resolution) from the player
-//        guard let asset = player.currentItem?.asset as? AVURLAsset else { return "Unknown" }
-//        let bitrate = asset.tracks.first?.estimatedDataRate ?? 0
-//        return "\(bitrate / 1000) kbps"
-//    }
-//    
-//    func currentCaption() -> String {
-//        // Retrieve the current caption (subtitles) from the player
-//        guard let group = player.currentItem?.asset.mediaSelectionGroup(forMediaCharacteristic: .legible) else { return "None" }
-//        let selectedOption = player.currentItem?.currentMediaSelection.selectedMediaOption(in: group)
-//        return selectedOption?.displayName ?? "None"
-//    }
     
     @ViewBuilder
     func seekerThumbnailView(_ videoSize: CGSize) -> some View {

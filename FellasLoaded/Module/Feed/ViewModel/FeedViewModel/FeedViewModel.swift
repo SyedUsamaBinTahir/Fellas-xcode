@@ -294,7 +294,6 @@ extension FeedViewModel: FeedDataProvider {
                     }
                 }
             } receiveValue: { FeedSearchData in
-                print(FeedSearchData)
                 self.feedSearchModel = FeedSearchData
             }
             .store(in: &subscriptions)

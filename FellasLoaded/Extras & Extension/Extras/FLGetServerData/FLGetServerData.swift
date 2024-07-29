@@ -25,7 +25,9 @@ extension GetServerData {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "content-type")
-        request.setValue("Bearer \(UserDefaults.standard.string(forKey: FLUserDefaultKeys.accesstoken.rawValue) ?? "N/A")", forHTTPHeaderField: "Authorization")
+        if let isLoggedIn = FLUserJourney.shared.isSubscibedUserLoggedIn, isLoggedIn {
+            request.setValue("Bearer \(UserDefaults.standard.string(forKey: FLUserDefaultKeys.accesstoken.rawValue) ?? "N/A")", forHTTPHeaderField: "Authorization")
+        }
         
         print("\(request.httpMethod!) \(request.url!)")
         print(request.allHTTPHeaderFields!)

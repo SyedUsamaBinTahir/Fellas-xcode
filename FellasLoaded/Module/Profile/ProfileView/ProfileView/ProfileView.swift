@@ -25,32 +25,24 @@ struct ProfileView: View {
                     
                     MembershipCardView {  }
                     
-                    VStack(spacing: 14) {
-                        SettingsNavigatorView(icon: "download", title: "Downloads", description: nil, forwardIcon: "chevron-icon") {
-                            redirectDownloads = true
+                    if FLUserJourney.shared.isSubscibedUserLoggedIn ?? false {
+                        VStack(spacing: 14) {
+                            SettingsNavigatorView(icon: "download", title: "Downloads", description: nil, forwardIcon: "chevron-icon") {
+                                redirectDownloads = true
+                            }
+                            SettingsNavigatorView(icon: "watchlist-icon", title: "Watchlist ", description: nil, forwardIcon: "chevron-icon") {
+                                redirectWatchlist = true
+                            }
+                            
+                            ConfesstionBoxButtonView {  }
+                                .disabled(true)
+                            
                         }
-                        SettingsNavigatorView(icon: "watchlist-icon", title: "Watchlist ", description: nil, forwardIcon: "chevron-icon") {
-                            redirectWatchlist = true
-                        }
-                        
-                        ConfesstionBoxButtonView {  }
-                            .disabled(true)
-                        
+                        .padding(.top)
                     }
-                    .padding(.top)
                 }
                 .frame(width: horizontalSizeClass == .regular ? 472 : nil)
                 .padding(horizontalSizeClass == .regular ? 140 : 20)
-                
-                //                .navigationDestination(isPresented: $redirectSettings) {
-                //                    SettingsView().navigationBarBackButtonHidden(true)
-                //                }
-                //                .navigationDestination(isPresented: $redirectDownloads) {
-                //                    DownloadsView().navigationBarBackButtonHidden(true)
-                //                }
-                //                .navigationDestination(isPresented: $redirectWatchlist) {
-                //                    WatchlistView().navigationBarBackButtonHidden(true)
-                //                }
                 
                 NavigationLink(isActive: $redirectSettings) {
                     SettingsView(userEmail: .constant(feedViewModel.userDetailModel?.email ?? "")).navigationBarBackButtonHidden(true)

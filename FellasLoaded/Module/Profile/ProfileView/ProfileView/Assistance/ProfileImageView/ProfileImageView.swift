@@ -14,19 +14,18 @@ struct ProfileImageView: View {
     
     var body: some View {
         VStack(alignment: .center) {
-//            Image("default-profile-icon")
-//                .resizable()
-//                .scaledToFit()
-//                .frame(width: 108, height: 108, alignment: .center)
-//                .frame(maxWidth: .infinity, alignment: .center)
-//                .overlay {
-//                    Circle()
-//                        .stroke(Color.white)
-//                }
+
             KFImage.init(URL(string: profileImage))
                 .placeholder({ progress in
-                    Circle()
-                        .stroke(Color.white)
+                    Image("default-profile-icon")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 108, height: 108, alignment: .center)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .overlay {
+                            Circle()
+                                .stroke(Color.white)
+                        }
                 })
                 .loadDiskFileSynchronously()
                 .cacheMemoryOnly()

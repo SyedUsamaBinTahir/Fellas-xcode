@@ -63,19 +63,52 @@ struct VaultView: View {
                             }
                             )
                             
-                            VaultCommentsCardView(numberOfComments: .constant("\(data.commentCounts)"),
-                                                  profileImage: .constant(data.topComment.user.avatar ?? ""),
-                                                  comment: .constant(data.topComment.comment))
-                            .onTapGesture {
-                                postId = data.uid
-                                redirectComment = true
-                            }
-                            .sheet(isPresented: $redirectComment, content: {
-                                VaultCommentView(dismissSheet: $redirectComment,
-                                            commentOrder: .constant(""),
-                                            postId: $postId)
+                            if FLUserJourney.shared.isSubscibedUserLoggedIn ?? false {
+                                VaultCommentsCardView(numberOfComments: .constant("\(data.commentCounts)"),
+                                                      profileImage: .constant(data.topComment.user.avatar ?? ""),
+                                                      comment: .constant(data.topComment.comment))
+                                .onTapGesture {
+                                    postId = data.uid
+                                    redirectComment = true
+                                }
+                                .sheet(isPresented: $redirectComment, content: {
+                                    VaultCommentView(dismissSheet: $redirectComment,
+                                                     commentOrder: .constant(""),
+                                                     postId: $postId)
                                     .environmentObject(vaultViewModel)
-                            })
+                                })
+                            } else {
+                                VStack(alignment: .leading) {
+                                    HStack {
+                                       Text("COMMENTS")
+                                            .font(.custom(Font.semiBold, size: 14))
+                                            .foregroundStyle(.white)
+                                    }
+                                    
+                                    Button {
+                                        
+                                    } label: {
+                                        HStack {
+                                            Image("lock-icon")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 18, height: 18)
+                                            Text("BECOME A MEMBER TO UNLOCK")
+                                                .font(.custom(Font.bold, size: 16))
+                                            
+                                        }
+                                        .frame(maxWidth: .infinity, alignment: .center)
+                                        .frame(height: 40)
+                                        .background(Color.theme.appGrayColor)
+                                        .foregroundColor(Color.white)
+                                        .cornerRadius(8)
+                                    }
+                                }
+                                .padding(10)
+                                .frame(maxWidth: .infinity)
+                                .background(Color.theme.tabbarColor)
+                                .cornerRadius(10)
+                            }
                             
                         }
                         .padding(horizontalSizeClass == .regular ? 0 : 10)

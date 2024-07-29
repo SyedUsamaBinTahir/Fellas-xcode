@@ -28,10 +28,27 @@ struct VideoPlayerView: View {
                 let size = $0.size
                 let safeArea = $0.safeAreaInsets
                 
-                if let videoURL = videoURL {
+                if FLUserJourney.shared.isSubscibedUserLoggedIn ?? false {
+                    if let videoURL = videoURL {
+                        VideoPlayer(size: size,
+                                    safeArea: safeArea,
+                                    url: videoURL,
+                                    commentOrder: $commentOrder,
+                                    seriesEpisodeDetailId: .constant(seriesEpisodeDetailId?.uid ?? ""),
+                                    episodeCategoryID: .constant(episodeCategoryID ?? ""),
+                                    bannerUid: .constant(bannerUid?.object_uid ?? ""),
+                                    reloadVideo: $reloadVideo,
+                                    episodeSeriesUid: $episodeSeriesUid)
+                        .environmentObject(feedViewModel)
+                        .ignoresSafeArea()
+                    }
+                    else {
+                        FLLoader()
+                    }
+                } else {
                     VideoPlayer(size: size,
                                 safeArea: safeArea,
-                                url: videoURL,
+                                url: videoURL ?? URL(fileURLWithPath: ""),
                                 commentOrder: $commentOrder,
                                 seriesEpisodeDetailId: .constant(seriesEpisodeDetailId?.uid ?? ""),
                                 episodeCategoryID: .constant(episodeCategoryID ?? ""),
@@ -40,9 +57,6 @@ struct VideoPlayerView: View {
                                 episodeSeriesUid: $episodeSeriesUid)
                     .environmentObject(feedViewModel)
                     .ignoresSafeArea()
-                }
-                else {
-                    FLLoader()
                 }
                 
             }
@@ -129,15 +143,17 @@ struct VideoPlayerView: View {
                 print("Episode Detail ID -->", episodeCategoryID ?? "")
             }
             
-            if seriesEpisodeDetailId != nil {
-                feedViewModel.getSeriesEpisodesComments(id: seriesEpisodeDetailId?.uid ?? "", commentOrderBy: commentOrder)
-                print("Series Episode Comments ID -->", seriesEpisodeDetailId?.uid ?? "")
-            } else if bannerUid != nil {
-                feedViewModel.getSeriesEpisodesComments(id: bannerUid?.object_uid ?? "", commentOrderBy: commentOrder)
-                print("Series comments banner uid -->", bannerUid?.object_uid ?? "")
-            } else {
-                feedViewModel.getSeriesEpisodesComments(id: episodeCategoryID ?? "", commentOrderBy: commentOrder)
-                print("Episode Comments ID -->", episodeCategoryID ?? "")
+            if FLUserJourney.shared.isSubscibedUserLoggedIn ?? false {
+                if seriesEpisodeDetailId != nil {
+                    feedViewModel.getSeriesEpisodesComments(id: seriesEpisodeDetailId?.uid ?? "", commentOrderBy: commentOrder)
+                    print("Series Episode Comments ID -->", seriesEpisodeDetailId?.uid ?? "")
+                } else if bannerUid != nil {
+                    feedViewModel.getSeriesEpisodesComments(id: bannerUid?.object_uid ?? "", commentOrderBy: commentOrder)
+                    print("Series comments banner uid -->", bannerUid?.object_uid ?? "")
+                } else {
+                    feedViewModel.getSeriesEpisodesComments(id: episodeCategoryID ?? "", commentOrderBy: commentOrder)
+                    print("Episode Comments ID -->", episodeCategoryID ?? "")
+                }
             }
             
             if seriesUid != nil {

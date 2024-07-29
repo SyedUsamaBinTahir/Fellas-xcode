@@ -8,58 +8,60 @@
 import SwiftUI
 
 struct WatchlistAndShareButtonView: View {
+    let url = URL(string: "https://www.hackingwithswift.com")!
     @Binding var Loader: Bool
     @Binding var watchlistAdded: Bool
     @State var watchlistAction: () -> Void = {}
-    @State var shareAction: () -> Void = {}
     @State var removeWatchlist: () -> Void = {}
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack(spacing: 16) {
-                if !watchlistAdded {
-                    Button (action: watchlistAction) {
-                        if Loader {
-                            ZStack {
-                                FLButtonLoader(color: .constant(Color.white))
-                            }
-                            .padding(10)
-                            .background(Color.theme.appGrayColor)
-                            .clipShape(.circle)
-                            .frame(width: 40, height: 40)
-                        } else {
-                            Image("add-to-watchlist-icon")
-                                .resizable()
-                                .scaledToFit()
+                if FLUserJourney.shared.isSubscibedUserLoggedIn ?? false {
+                    if !watchlistAdded {
+                        Button (action: watchlistAction) {
+                            if Loader {
+                                ZStack {
+                                    FLButtonLoader(color: .constant(Color.white))
+                                }
+                                .padding(10)
+                                .background(Color.theme.appGrayColor)
+                                .clipShape(.circle)
                                 .frame(width: 40, height: 40)
-                        }
-                    }
-                } else {
-                    Button (action: removeWatchlist) {
-                        if Loader {
-                            ZStack {
-                                FLButtonLoader(color: .constant(Color.white))
-                            }
-                            .padding(10)
-                            .background(Color.theme.appGrayColor)
-                            .clipShape(.circle)
-                            .frame(width: 40, height: 40)
-                        } else {
-                            ZStack {
-                                Image("watchlist-added-icon")
+                            } else {
+                                Image("add-to-watchlist-icon")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 24, height: 24)
+                                    .frame(width: 40, height: 40)
                             }
-                            .padding(10)
-                            .background(Color.theme.appGrayColor)
-                            .clipShape(.circle)
-                            .frame(width: 40, height: 40)
+                        }
+                    } else {
+                        Button (action: removeWatchlist) {
+                            if Loader {
+                                ZStack {
+                                    FLButtonLoader(color: .constant(Color.white))
+                                }
+                                .padding(10)
+                                .background(Color.theme.appGrayColor)
+                                .clipShape(.circle)
+                                .frame(width: 40, height: 40)
+                            } else {
+                                ZStack {
+                                    Image("watchlist-added-icon")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 24, height: 24)
+                                }
+                                .padding(10)
+                                .background(Color.theme.appGrayColor)
+                                .clipShape(.circle)
+                                .frame(width: 40, height: 40)
+                            }
                         }
                     }
                 }
                 
-                Button (action: shareAction) {
+                ShareLink(item: url) {
                     Image("ep-detail-share-icon")
                         .resizable()
                         .scaledToFit()
