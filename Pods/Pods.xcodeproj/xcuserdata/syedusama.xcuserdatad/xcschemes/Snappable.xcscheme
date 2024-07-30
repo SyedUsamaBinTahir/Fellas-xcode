@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "21D8FFDA2B0D5E8538AC02AB3AD1E5FD"
-               BuildableName = "MahsaHLSParser.framework"
-               BlueprintName = "MahsaHLSParser"
+               BlueprintIdentifier = "A70312AF62E6E323D574253CD30A3C06"
+               BuildableName = "Snappable.framework"
+               BlueprintName = "Snappable"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

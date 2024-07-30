@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double MahsaHLSParserVersionNumber;
-FOUNDATION_EXPORT const unsigned char MahsaHLSParserVersionString[];
+FOUNDATION_EXPORT double SnappableVersionNumber;
+FOUNDATION_EXPORT const unsigned char SnappableVersionString[];
 

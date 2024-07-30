@@ -45,6 +45,8 @@ extension FLAPIs {
     static let seriesEpisodesLikeComments = "/series/episodes/like/comments/"
     static let seriesEpisodesDeleteLikeComments = "/series/episodes/delete/like/comments/"
     // History Endpoints
+    static let watchlaterSeries = "/history/watch-later/series/"
+    static let watchLaterEpisodes = "/history/watch-later/episodes/"
     static let addSeriesWatchLater = "/history/add-series-watch-later/"
     static let addWatchLater = "/history/add-watch-later/"
     static let removerSeriesWatchLater = "/history/remove-watch-later-series/"

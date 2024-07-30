@@ -58,11 +58,15 @@ struct VideoPlayer: View {
     
     @State private var expandDescription = false
     @State private var redirectComment = false
+    @State private var redirectVideoPlayer = false
+    @State private var redirectSeriesDetail = false
     @State private var selectedTab: SegmentsTab = .EPISODES
     
     @State private var showSleepTimer = false
     @State private var showVidoQualityLisit = false
     @State private var showDownlaodUrlsList = false
+    
+    @State private var seriesDetailID: String = ""
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -443,16 +447,23 @@ struct VideoPlayer: View {
                             } else if selectedTab == .RECOMMENDED {
                                 
                                 ForEach(feedViewModel.feedSearchModel?.results ?? [], id: \.uid) { data in
-                                    EpisodesView(seriesImage: data.thumbnail, episode: "S\(data.sessionNumber ?? 0):E\(data.episodeNumber ?? 0)", title: data.title, description: data.description, icon: "download") {
-                                        //                                    episodeCategoryID = data.uid
+                                    EpisodesView(seriesImage: data.thumbnail, episode: "S\(data.sessionNumber ?? 0):E\(data.episodeNumber ?? 0)", title: data.title, description: data.description, icon: data.recommendedType == "episode" ? "download" : "chevron-icon") {
+                                        if data.recommendedType == "episode" {
+                                            reloadVideo = true
+                                            episodeSeriesUid = data.uid
+                                        } else if data.recommendedType == "series" {
+                                            seriesDetailID = data.uid
+                                            redirectSeriesDetail = true
+                                        }
                                     }
-                                    //                                NavigationLink(isActive: $redirectVideoPlayer) {
-                                    //                                    VideoPlayerView(seriesDetailID: $seriesDetailID, episodeCategoryID: episodeCategoryID, feedSearchEpisodeId: data)
-                                    //                                        .environmentObject(feedViewModel)
-                                    //                                        .navigationBarBackButtonHidden(true)
-                                    //                                } label: {
-                                    //                                    EmptyView()
-                                    //                                }
+                                    
+                                    NavigationLink(isActive: $redirectSeriesDetail) {
+                                        EpisodeDetailView(seriesDetailID: $seriesDetailID)
+                                            .environmentObject(feedViewModel)
+                                            .navigationBarBackButtonHidden(true)
+                                    } label: {
+                                        EmptyView()
+                                    }
                                 }
                             }
                         } else {
@@ -466,7 +477,7 @@ struct VideoPlayer: View {
                                         .frame(width: 80, height: 3)
                             }
                             ForEach(feedViewModel.feedSearchModel?.results ?? [], id: \.uid) { data in
-                                EpisodesView(seriesImage: data.thumbnail, episode: "S\(data.sessionNumber ?? 0):E\(data.episodeNumber ?? 0)", title: data.title, description: data.description, icon: "download") {
+                                EpisodesView(seriesImage: data.thumbnail, episode: "S\(data.sessionNumber ?? 0):E\(data.episodeNumber ?? 0)", title: data.title, description: data.description, icon: data.recommendedType == "episode" ? "download" : "chevron-icon") {
                                     //                                    episodeCategoryID = data.uid
                                 }
                                 

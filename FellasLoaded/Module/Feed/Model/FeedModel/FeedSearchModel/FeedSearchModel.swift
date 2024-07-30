@@ -28,7 +28,7 @@ struct FeedSearchModel: Codable {
 // MARK: - Result
 struct FeedSearchResults: Codable {
     let uid, title, description: String
-    let recommendedType: RecommendedType
+    let recommendedType: String
     let thumbnail: String
     let seriesUid, sessionUid: String?
     let createdAt: String

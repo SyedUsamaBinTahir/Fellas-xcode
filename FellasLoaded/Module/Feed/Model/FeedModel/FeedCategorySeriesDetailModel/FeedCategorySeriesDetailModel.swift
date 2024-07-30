@@ -10,7 +10,7 @@ import Foundation
 struct FeedCategorySeriesDetailModel: Codable {
     let uid: String
     let title: String
-    let description: String
+    let description: String?
     let cover_art: String?
     let thumbnail: String
     let horizontal_thumbnail: String
@@ -23,7 +23,7 @@ struct FeedCategorySeriesDetailModel: Codable {
     let episodes_count: Int
     let hosts: [FeedCategorySeriesDetailHosts]?
     let genre: FeedCategorySeriesDetailGenre?
-    let sessions: [FeedCategorySeriesDetailSessions]
+    let sessions: [FeedCategorySeriesDetailSessions]?
     let is_watch_later: Bool
     let watch_later_count: Int
     let is_notification_subscribed: Bool

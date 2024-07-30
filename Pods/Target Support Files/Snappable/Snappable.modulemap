@@ -1,0 +1,6 @@
+framework module Snappable {
+  umbrella header "Snappable-umbrella.h"
+
+  export *
+  module * { export * }
+}

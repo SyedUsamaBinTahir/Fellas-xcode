@@ -13,6 +13,7 @@ struct SearchView: View {
     @State var search: String = ""
     @State var isSearching: Bool = false
     @State private var redirectVideoPlayer = false
+    @State private var redirectSeriesDetail = false
     @State private var seriesDetailID: String = ""
     @State private var episodeCategoryID: String = ""
     
@@ -29,18 +30,31 @@ struct SearchView: View {
                     ScrollView {
                         VStack(spacing: 20) {
                             ForEach(feedViewModel.feedSearchModel?.results ?? [], id: \.uid) { data in
-                                EpisodesView(seriesImage: data.thumbnail, episode: "S\(data.sessionNumber ?? 0):E\(data.episodeNumber ?? 0)", title: data.title, description: data.description, icon: "download") {
-                                    redirectVideoPlayer = true
-                                    episodeCategoryID = data.uid
+                                EpisodesView(seriesImage: data.thumbnail, episode: "S\(data.sessionNumber ?? 0):E\(data.episodeNumber ?? 0)", title: data.title, description: data.description, icon: data.recommendedType == "episode" ? "download" : "chevron-icon") {
+                                    if data.recommendedType == "episode" {
+                                        redirectVideoPlayer = true
+                                        episodeCategoryID = data.uid
+                                    } else if data.recommendedType == "series" {
+                                        redirectSeriesDetail = true
+                                        seriesDetailID = data.uid
+                                    }
                                 }
                                 
-//                                NavigationLink(isActive: $redirectVideoPlayer) {
-//                                    VideoPlayerView(seriesDetailID: $seriesDetailID, episodeCategoryID: episodeCategoryID, feedSearchEpisodeId: data)
-//                                        .environmentObject(feedViewModel)
-//                                        .navigationBarBackButtonHidden(true)
-//                                } label: {
-//                                    EmptyView()
-//                                }
+                                NavigationLink(isActive: $redirectVideoPlayer) {
+                                    VideoPlayerView(seriesDetailID: $seriesDetailID, episodeCategoryID: episodeCategoryID, feedSearchEpisodeId: data)
+                                        .environmentObject(feedViewModel)
+                                        .navigationBarBackButtonHidden(true)
+                                } label: {
+                                    EmptyView()
+                                }
+                                
+                                NavigationLink(isActive: $redirectSeriesDetail) {
+                                    EpisodeDetailView(seriesDetailID: $seriesDetailID)
+                                        .environmentObject(feedViewModel)
+                                        .navigationBarBackButtonHidden(true)
+                                } label: {
+                                    EmptyView()
+                                }
                             }
                         }
                     }

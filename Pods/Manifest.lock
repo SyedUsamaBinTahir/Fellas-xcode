@@ -7,11 +7,11 @@ PODS:
   - IQKeyboardManager (6.5.19)
   - Kingfisher (7.11.0)
   - M3UKit (0.8.1)
-  - MahsaHLSParser (1.0)
   - Protobuf (3.26.1)
   - SDWebImage (5.19.2):
     - SDWebImage/Core (= 5.19.2)
   - SDWebImage/Core (5.19.2)
+  - Snappable (0.3.0)
   - SPIndicator (1.6.4)
   - StripeApplePay (23.27.2):
     - StripeCore (= 23.27.2)
@@ -41,8 +41,8 @@ DEPENDENCIES:
   - IQKeyboardManager
   - Kingfisher
   - M3UKit (from `https://github.com/omaralbeik/M3UKit.git`, tag `0.8.1`)
-  - MahsaHLSParser
   - SDWebImage
+  - Snappable (~> 0.3.0)
   - SPIndicator
   - StripePaymentSheet
 
@@ -53,9 +53,9 @@ SPEC REPOS:
     - google-cast-sdk
     - IQKeyboardManager
     - Kingfisher
-    - MahsaHLSParser
     - Protobuf
     - SDWebImage
+    - Snappable
     - SPIndicator
     - StripeApplePay
     - StripeCore
@@ -82,9 +82,9 @@ SPEC CHECKSUMS:
   IQKeyboardManager: c8665b3396bd0b79402b4c573eac345a31c7d485
   Kingfisher: b9c985d864d43515f404f1ef4a8ce7d802ace3ac
   M3UKit: 1304621548518d4865245f3214d341e96693f184
-  MahsaHLSParser: e8b0f4ee9cfda61118928bfb48522c28a3b4245a
   Protobuf: a53f5173a603075b3522a5c50be63a67a5f3353a
   SDWebImage: dfe95b2466a9823cf9f0c6d01217c06550d7b29a
+  Snappable: 8db31258d36c7fba14e951134e0d14592a0f3ba9
   SPIndicator: 93e0a4fb23de51294ac48e874c0f081a5e293e4f
   StripeApplePay: 55e0fe7095d18bc6d8390cab176692c801d865c6
   StripeCore: 55c1fb4ec4edd61243c59839cef592b0ac4c469a
@@ -94,6 +94,6 @@ SPEC CHECKSUMS:
   StripeUICore: 436db87a21e3bb45b7a6a90c114a6d21c35b4be0
   SwiftUIIntrospect: 434b406dc6f5e30744bb6e180f90343f6a8eba8c
 
-PODFILE CHECKSUM: c8238a8bfcaec9140e0dbedba7eb4dfe1b5eae2d
+PODFILE CHECKSUM: 809a9b11ac770fd1bb1c7eb87ac0e88a3715e09c
 
 COCOAPODS: 1.15.2

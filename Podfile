@@ -14,6 +14,6 @@ target 'FellasLoaded' do
   pod 'Alamofire'
   pod 'StripePaymentSheet'
   pod 'Kingfisher'
-  pod 'MahsaHLSParser'
   pod 'M3UKit', :git => 'https://github.com/omaralbeik/M3UKit.git', :tag => '0.8.1'
+  pod 'Snappable', '~> 0.3.0'
 end
