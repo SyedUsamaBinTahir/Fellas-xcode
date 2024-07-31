@@ -28,7 +28,7 @@ struct SearchView: View {
                     SearchResultAndRecommentdTextView(isSearching: $isSearching)
                     
                     ScrollView {
-                        VStack(spacing: 20) {
+                        VStack(spacing: 6) {
                             ForEach(feedViewModel.feedSearchModel?.results ?? [], id: \.uid) { data in
                                 EpisodesView(seriesImage: data.thumbnail, episode: "S\(data.sessionNumber ?? 0):E\(data.episodeNumber ?? 0)", title: data.title, description: data.description, icon: data.recommendedType == "episode" ? "download" : "chevron-icon") {
                                     if data.recommendedType == "episode" {

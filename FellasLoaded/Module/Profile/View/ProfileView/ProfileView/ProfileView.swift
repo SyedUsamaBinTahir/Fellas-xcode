@@ -57,7 +57,7 @@ struct ProfileView: View {
                 }
                 
                 NavigationLink(isActive: $redirectWatchlist) {
-                    WatchlistView().navigationBarBackButtonHidden(true)
+                    WatchlistSeriesView().navigationBarBackButtonHidden(true)
                 } label: {
                     EmptyView()
                 }

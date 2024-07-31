@@ -9,12 +9,14 @@ import SwiftUI
 
 struct VideoPlayerView: View {
     @EnvironmentObject var feedViewModel: FeedViewModel
+    @EnvironmentObject var profileViewModel: ProfileViewModel
     @State var videoURL: URL?
     @State var seriesEpisodeDetailId: FeedCategoryEpisodesResults?
     @State var commentOrder: String = ""
     @Binding var seriesDetailID: String
     @State private var episodeDetail: SeriesEpisodeDetailModel? = nil
     @State var episodeCategoryID: String?
+    @State var watchlistSeriesId: FeedCategoryEpisodesResults?
     @State var seriesUid: CategoriesResults?
     @State var feedCategoryEpisodeId: FeedCategoryEpisodesResults?
     @State var feedSearchEpisodeId: FeedSearchResults?
@@ -172,6 +174,10 @@ struct VideoPlayerView: View {
                 // Feed banner Episodes List
                 feedViewModel.getFeedCategorySeriesDetail(id: "6c9fd73e-59c6-4018-9cea-afcfd995f78f")
                 print("Series Detail ID -->", seriesDetailID)
+            } else if watchlistSeriesId != nil {
+                // watchlist Series id
+                feedViewModel.getFeedCategorySeriesDetail(id: watchlistSeriesId?.series_uid ?? "")
+                print("Series ID -->",  watchlistSeriesId?.series_uid ?? "")
             } else {
                 // Feed Series Episodes list
                 feedViewModel.getFeedCategorySeriesDetail(id: seriesDetailID)

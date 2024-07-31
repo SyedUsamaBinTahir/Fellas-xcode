@@ -56,7 +56,24 @@ extension ProfileViewModel: ProfileDataProvider {
     }
     
     func getWatchLaterEpisodes(id: String) {
-        
+        dataService.getServerData(url: FLAPIs.baseURL + FLAPIs.watchLaterEpisodes + "?series_uid=" + id, type: WatchLaterEpisodesModel.self)
+            .sink { [weak self] completion in
+                DispatchQueue.main.async {
+                    switch completion {
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                        self?.showAlert = true
+                        self?.alertMessage = error.localizedDescription
+                        self?.showLoader = false
+                    case .finished:
+                        print("watch later series Success")
+                        self?.showLoader = false
+                    }
+                }
+            } receiveValue: { watchLaterEpisodesData in
+                self.watchLaterEpisodesModel = watchLaterEpisodesData
+            }
+            .store(in: &subscriptions)
     }
     
     

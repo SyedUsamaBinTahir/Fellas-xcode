@@ -53,6 +53,7 @@
 		859ADCB72C3D7876006AD042 /* AddEpisodeWatchLaterAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859ADCB62C3D7876006AD042 /* AddEpisodeWatchLaterAPIService.swift */; };
 		859ADCBB2C3D8DB4006AD042 /* SeriesEpisodeLikeCommentsAPIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859ADCBA2C3D8DB4006AD042 /* SeriesEpisodeLikeCommentsAPIRequest.swift */; };
 		859ADCBE2C3D8ED2006AD042 /* SeriesEpisodeLikeCommentsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859ADCBD2C3D8ED2006AD042 /* SeriesEpisodeLikeCommentsAPIService.swift */; };
+		859F22502C5A570B009CA8C4 /* WatchListEpisodesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859F224F2C5A570B009CA8C4 /* WatchListEpisodesView.swift */; };
 		85A0DDCD2C2C395B00B8769B /* FeedSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A0DDCC2C2C395B00B8769B /* FeedSearchModel.swift */; };
 		85A17E6E2C53D8F0006F3014 /* VaultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A17E272C53D8F0006F3014 /* VaultViewModel.swift */; };
 		85A17E6F2C53D8F0006F3014 /* VaultLikeCommentApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A17E2A2C53D8F0006F3014 /* VaultLikeCommentApiService.swift */; };
@@ -183,7 +184,7 @@
 		9BC95FB12C0DD48600BCC606 /* SubscribeTerms&ConditionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC95FB02C0DD48600BCC606 /* SubscribeTerms&ConditionsView.swift */; };
 		9BC9F1DD2BF745F300B0EE8E /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC9F1DC2BF745F300B0EE8E /* SearchView.swift */; };
 		9BC9F1EA2BF7A9A500B0EE8E /* DownloadsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC9F1E92BF7A9A500B0EE8E /* DownloadsView.swift */; };
-		9BC9F1EC2BF7AB2000B0EE8E /* WatchlistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC9F1EB2BF7AB2000B0EE8E /* WatchlistView.swift */; };
+		9BC9F1EC2BF7AB2000B0EE8E /* WatchListSeriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC9F1EB2BF7AB2000B0EE8E /* WatchListSeriesView.swift */; };
 		9BCED20E2BF4B17A007D02B3 /* CustomTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCED20D2BF4B17A007D02B3 /* CustomTabbar.swift */; };
 		9BCED2112BF4C6EA007D02B3 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCED2102BF4C6EA007D02B3 /* ProfileView.swift */; };
 		9BCED2132BF4D3C6007D02B3 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCED2122BF4D3C6007D02B3 /* FeedView.swift */; };
@@ -287,6 +288,7 @@
 		859ADCB62C3D7876006AD042 /* AddEpisodeWatchLaterAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEpisodeWatchLaterAPIService.swift; sourceTree = "<group>"; };
 		859ADCBA2C3D8DB4006AD042 /* SeriesEpisodeLikeCommentsAPIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesEpisodeLikeCommentsAPIRequest.swift; sourceTree = "<group>"; };
 		859ADCBD2C3D8ED2006AD042 /* SeriesEpisodeLikeCommentsAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesEpisodeLikeCommentsAPIService.swift; sourceTree = "<group>"; };
+		859F224F2C5A570B009CA8C4 /* WatchListEpisodesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListEpisodesView.swift; sourceTree = "<group>"; };
 		85A0DDCC2C2C395B00B8769B /* FeedSearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSearchModel.swift; sourceTree = "<group>"; };
 		85A17E272C53D8F0006F3014 /* VaultViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VaultViewModel.swift; sourceTree = "<group>"; };
 		85A17E2A2C53D8F0006F3014 /* VaultLikeCommentApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VaultLikeCommentApiService.swift; sourceTree = "<group>"; };
@@ -424,7 +426,7 @@
 		9BC95FB02C0DD48600BCC606 /* SubscribeTerms&ConditionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubscribeTerms&ConditionsView.swift"; sourceTree = "<group>"; };
 		9BC9F1DC2BF745F300B0EE8E /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		9BC9F1E92BF7A9A500B0EE8E /* DownloadsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsView.swift; sourceTree = "<group>"; };
-		9BC9F1EB2BF7AB2000B0EE8E /* WatchlistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistView.swift; sourceTree = "<group>"; };
+		9BC9F1EB2BF7AB2000B0EE8E /* WatchListSeriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListSeriesView.swift; sourceTree = "<group>"; };
 		9BCED20D2BF4B17A007D02B3 /* CustomTabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabbar.swift; sourceTree = "<group>"; };
 		9BCED2102BF4C6EA007D02B3 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		9BCED2122BF4D3C6007D02B3 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
@@ -929,6 +931,22 @@
 				859ADCBD2C3D8ED2006AD042 /* SeriesEpisodeLikeCommentsAPIService.swift */,
 			);
 			path = SeriesEpisodeLikeCommentsAPIService;
+			sourceTree = "<group>";
+		};
+		859F224D2C5A56B2009CA8C4 /* WatchListSeriesView */ = {
+			isa = PBXGroup;
+			children = (
+				9BC9F1EB2BF7AB2000B0EE8E /* WatchListSeriesView.swift */,
+			);
+			path = WatchListSeriesView;
+			sourceTree = "<group>";
+		};
+		859F224E2C5A56F1009CA8C4 /* WatchListEpisodesView */ = {
+			isa = PBXGroup;
+			children = (
+				859F224F2C5A570B009CA8C4 /* WatchListEpisodesView.swift */,
+			);
+			path = WatchListEpisodesView;
 			sourceTree = "<group>";
 		};
 		85A0DDCB2C2C394A00B8769B /* FeedSearchModel */ = {
@@ -2462,7 +2480,8 @@
 		9BC9F1E82BF7A99300B0EE8E /* WatchlistView */ = {
 			isa = PBXGroup;
 			children = (
-				9BC9F1EB2BF7AB2000B0EE8E /* WatchlistView.swift */,
+				859F224E2C5A56F1009CA8C4 /* WatchListEpisodesView */,
+				859F224D2C5A56B2009CA8C4 /* WatchListSeriesView */,
 			);
 			path = WatchlistView;
 			sourceTree = "<group>";
@@ -3112,7 +3131,7 @@
 				855359D62C5933840043DB3B /* WatchLaterEpisodesModel.swift in Sources */,
 				85A9470F2C49243F00284FCE /* DownloadProgressView.swift in Sources */,
 				85A478842C3BE350005B438B /* SeriesEpisodesCreateRepliesRequest.swift in Sources */,
-				9BC9F1EC2BF7AB2000B0EE8E /* WatchlistView.swift in Sources */,
+				9BC9F1EC2BF7AB2000B0EE8E /* WatchListSeriesView.swift in Sources */,
 				859ADCAD2C3D315F006AD042 /* AddSeriesWatchLaterAPIService.swift in Sources */,
 				85A17E842C53D8F0006F3014 /* DropDownPicker.swift in Sources */,
 				9B160A292C0E194D0073B3F1 /* InAppPurchaseModel.swift in Sources */,
@@ -3196,6 +3215,7 @@
 				85A17E772C53D8F0006F3014 /* VaultAddCommentModel.swift in Sources */,
 				9B7289522BFE125200EB1A90 /* ResetPasswordFieldAndButtonView.swift in Sources */,
 				85981DB22C51687F001847DB /* EditProfile.swift in Sources */,
+				859F22502C5A570B009CA8C4 /* WatchListEpisodesView.swift in Sources */,
 				85981DC32C51687F001847DB /* MediaUpdatesView.swift in Sources */,
 				9BEE716D2BFCD2CA0055760C /* Segments.swift in Sources */,
 				9BEE716B2BFC993E0055760C /* CMTime+.swift in Sources */,
