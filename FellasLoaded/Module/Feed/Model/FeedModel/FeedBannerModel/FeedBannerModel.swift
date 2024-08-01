@@ -15,7 +15,7 @@ struct FeedBannerModel: Codable {
     let results: [FeedBannerResults]
 }
 
-struct FeedBannerResults: Codable, Identifiable {
+struct FeedBannerResults: Codable/*, Identifiable*/ {
     let uid: String
     let object_uid: String
     let title: String
@@ -24,5 +24,5 @@ struct FeedBannerResults: Codable, Identifiable {
     let cover_art: String?
     let web_desktop_cover_art: String
     let created_at: String
-    var id: String { uid }
+//    var id: String { uid }
 }

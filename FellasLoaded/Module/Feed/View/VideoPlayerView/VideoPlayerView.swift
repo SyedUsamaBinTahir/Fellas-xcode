@@ -39,7 +39,7 @@ struct VideoPlayerView: View {
                                     seriesEpisodeDetailId: .constant(seriesEpisodeDetailId?.uid ?? ""),
                                     episodeCategoryID: .constant(episodeCategoryID ?? ""),
                                     bannerUid: .constant(bannerUid?.object_uid ?? ""),
-                                    reloadVideo: $reloadVideo,
+//                                    reloadVideo: $reloadVideo,
                                     episodeSeriesUid: $episodeSeriesUid)
                         .environmentObject(feedViewModel)
                         .ignoresSafeArea()
@@ -55,7 +55,6 @@ struct VideoPlayerView: View {
                                 seriesEpisodeDetailId: .constant(seriesEpisodeDetailId?.uid ?? ""),
                                 episodeCategoryID: .constant(episodeCategoryID ?? ""),
                                 bannerUid: .constant(bannerUid?.object_uid ?? ""),
-                                reloadVideo: $reloadVideo,
                                 episodeSeriesUid: $episodeSeriesUid)
                     .environmentObject(feedViewModel)
                     .ignoresSafeArea()
@@ -112,19 +111,19 @@ struct VideoPlayerView: View {
                 print("Episode Comments ID -->", episodeCategoryID ?? "")
             }
         }
-        .onChange(of: reloadVideo) { _ in
-            // issue: video url is not changing
-            feedViewModel.showLoader = true
-            feedViewModel.getSeriesEpisodeDetail(id: episodeSeriesUid ?? "") { url in
-                self.videoURL = url
-            }
-            print("reload url -->", self.videoURL ?? "")
-            print("Episode series Uid -->", episodeSeriesUid ?? "")
-            reloadVideo = false
-            
-            feedViewModel.getSeriesEpisodesComments(id: episodeSeriesUid ?? "", commentOrderBy: commentOrder)
-            print("Series Episode Comments ID -->", episodeSeriesUid ?? "")
-        }
+//        .onChange(of: reloadVideo) { _ in
+//            // issue: video url is not changing
+//            feedViewModel.showLoader = true
+//            feedViewModel.getSeriesEpisodeDetail(id: episodeSeriesUid ?? "") { url in
+//                self.videoURL = url
+//            }
+//            print("reload url -->", self.videoURL ?? "")
+//            print("Episode series Uid -->", episodeSeriesUid ?? "")
+//            reloadVideo = false
+//            
+//            feedViewModel.getSeriesEpisodesComments(id: episodeSeriesUid ?? "", commentOrderBy: commentOrder)
+//            print("Series Episode Comments ID -->", episodeSeriesUid ?? "")
+//        }
         .onAppear {
             feedViewModel.showLoader = true
             if seriesEpisodeDetailId != nil {
@@ -172,7 +171,7 @@ struct VideoPlayerView: View {
                 print("Series ID -->",  feedSearchEpisodeId?.seriesUid ?? "")
             } else if bannerUid != nil {
                 // Feed banner Episodes List
-                feedViewModel.getFeedCategorySeriesDetail(id: "6c9fd73e-59c6-4018-9cea-afcfd995f78f")
+                feedViewModel.getFeedCategorySeriesDetail(id: "bda4d128-f663-40f3-ad0f-29a9edcc55f9")
                 print("Series Detail ID -->", seriesDetailID)
             } else if watchlistSeriesId != nil {
                 // watchlist Series id

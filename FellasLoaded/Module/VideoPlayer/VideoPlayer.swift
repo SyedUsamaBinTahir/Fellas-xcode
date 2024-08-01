@@ -24,10 +24,9 @@ struct VideoPlayer: View {
     @Binding var seriesEpisodeDetailId: String
     @Binding var episodeCategoryID: String
     @Binding var bannerUid: String
-    @Binding var reloadVideo: Bool
     @Binding var episodeSeriesUid: String?
     @State private var player: AVPlayer
-    init(size: CGSize, safeArea: EdgeInsets?, url: URL, commentOrder: Binding<String>, seriesEpisodeDetailId: Binding<String>, episodeCategoryID: Binding<String>, bannerUid: Binding<String>, reloadVideo: Binding<Bool>, episodeSeriesUid: Binding<String?>) {
+    init(size: CGSize, safeArea: EdgeInsets?, url: URL, commentOrder: Binding<String>, seriesEpisodeDetailId: Binding<String>, episodeCategoryID: Binding<String>, bannerUid: Binding<String>, episodeSeriesUid: Binding<String?>) {
         self.size = size
         self.safeArea = safeArea
         self._url = State(initialValue: url)
@@ -35,7 +34,6 @@ struct VideoPlayer: View {
         self._seriesEpisodeDetailId = seriesEpisodeDetailId
         self._episodeCategoryID = episodeCategoryID
         self._bannerUid = bannerUid
-        self._reloadVideo = reloadVideo
         self._episodeSeriesUid = episodeSeriesUid
         self._player = State(initialValue: AVPlayer(url: url))
     }
@@ -60,6 +58,8 @@ struct VideoPlayer: View {
     @State private var redirectComment = false
     @State private var redirectVideoPlayer = false
     @State private var redirectSeriesDetail = false
+    @State private var redirectRecommendedVideoPlayer = false
+    @State private var redirectSubscriptionView = false
     @State private var selectedTab: SegmentsTab = .EPISODES
     
     @State private var showSleepTimer = false
@@ -144,13 +144,13 @@ struct VideoPlayer: View {
                                 CastButtonRepresentable()
                                     .frame(width: 32, height: 32)
                                     .foregroundColor(.white)
-                                Button {
-                                    showSleepTimer.toggle()
-                                } label: {
-                                    Image(systemName: "clock")
-                                        .frame(width: 32, height: 32)
-                                        .foregroundColor(.white)
-                                }
+//                                Button {
+//                                    showSleepTimer.toggle()
+//                                } label: {
+//                                    Image(systemName: "clock")
+//                                        .frame(width: 32, height: 32)
+//                                        .foregroundColor(.white)
+//                                }
                                 
                                 //                                Button {
                                 ////                                    viewModel.fetchResolutions(urlString: "\(url)")
@@ -223,22 +223,32 @@ struct VideoPlayer: View {
                             Color.black.opacity(0.6)
                         })
                         .overlay {
-                            HStack(spacing: 10) {
-                                Image("lock-icon")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 16, height: 16)
-                                    .padding(.leading, 10)
-                                
-                                Text("BECOME A MEMBER TO WATCH")
-                                    .font(.custom(Font.bold, size: 12))
-                                    .padding(.trailing, 10)
+                            Button {
+                                redirectSubscriptionView = true
+                            } label: {
+                                HStack(spacing: 10) {
+                                    Image("lock-icon")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 16, height: 16)
+                                        .padding(.leading, 10)
+                                    
+                                    Text("BECOME A MEMBER TO WATCH")
+                                        .font(.custom(Font.bold, size: 12))
+                                        .padding(.trailing, 10)
+                                }
+                                .frame(height: 36)
+                                .background(Color.black.opacity(0.9))
+                                .foregroundColor(Color.white)
+                                .cornerRadius(6)
                             }
-                            .frame(height: 36)
-                            .background(Color.black.opacity(0.9))
-                            .foregroundColor(Color.white)
-                            .cornerRadius(6)
                         }
+                    
+                    NavigationLink(isActive: $redirectSubscriptionView) {
+                        ManageSubscriptionsView().navigationBarBackButtonHidden(true)
+                    } label: {
+                        EmptyView()
+                    }
                     
                     Button {
                         presentationMode.wrappedValue.dismiss()
@@ -345,12 +355,12 @@ struct VideoPlayer: View {
                             .fill(Color.theme.appGrayColor.opacity(0.4))
                             .frame(maxWidth: .infinity, maxHeight: 2)
                     }
-                    .sheet(isPresented: $showDownlaodUrlsList) {
-                        DownloadVideoUrlsView(isPresented: $showDownlaodUrlsList)
-                        .presentationDetents([.medium])
-                        .presentationDragIndicator(.visible)
-                        .environmentObject(feedViewModel)
-                    }
+//                    .sheet(isPresented: $showDownlaodUrlsList) {
+//                        DownloadVideoUrlsView(isPresented: $showDownlaodUrlsList)
+//                        .presentationDetents([.medium])
+//                        .presentationDragIndicator(.visible)
+//                        .environmentObject(feedViewModel)
+//                    }
                     
                     VStack(alignment: .leading, spacing: 14) {
                         Text("S\(feedViewModel.seriesEpisodeDetailModel?.session_number ?? 0): E\(feedViewModel.seriesEpisodeDetailModel?.episode_number ?? 0) • 2022")
@@ -403,7 +413,7 @@ struct VideoPlayer: View {
                                 }
                                 
                                 Button {
-                                    
+                                    redirectSubscriptionView = true
                                 } label: {
                                     HStack {
                                         Image("lock-icon")
@@ -425,6 +435,12 @@ struct VideoPlayer: View {
                             .frame(maxWidth: .infinity)
                             .background(Color.theme.tabbarColor)
                             .cornerRadius(10)
+                            
+                            NavigationLink(isActive: $redirectSubscriptionView) {
+                                ManageSubscriptionsView().navigationBarBackButtonHidden(true)
+                            } label: {
+                                EmptyView()
+                            }
                         }
                     }
                     .padding(.top, 5)
@@ -434,12 +450,20 @@ struct VideoPlayer: View {
                             Segments(selectedTab: $selectedTab)
 
                             if selectedTab == .EPISODES {
-                                LazyVStack {
+                                LazyVStack (spacing: 10) {
                                     ForEach(feedViewModel.feedCategorySeriesDetailModel?.sessions ?? [], id: \.uid) { data in
                                         ForEach(data.episodes ?? [], id: \.uid) { episode in
                                             EpisodesView(seriesImage: episode.thumbnail, episode: "S\(episode.session_number):E\(episode.episode_number)", title: episode.title, description: episode.description, icon: "download") {
-                                                reloadVideo = true
+                                                redirectVideoPlayer = true
                                                 episodeSeriesUid = episode.uid
+                                            }
+                                            
+                                            NavigationLink(isActive: $redirectVideoPlayer) {
+                                                VideoPlayerView(seriesDetailID: $seriesDetailID, episodeCategoryID: episodeSeriesUid/*, seriesUid: episode*/)
+                                                    .environmentObject(feedViewModel)
+                                                    .navigationBarBackButtonHidden(true)
+                                            } label: {
+                                                EmptyView()
                                             }
                                         }
                                     }
@@ -449,7 +473,7 @@ struct VideoPlayer: View {
                                 ForEach(feedViewModel.feedSearchModel?.results ?? [], id: \.uid) { data in
                                     EpisodesView(seriesImage: data.thumbnail, episode: "S\(data.sessionNumber ?? 0):E\(data.episodeNumber ?? 0)", title: data.title, description: data.description, icon: data.recommendedType == "episode" ? "download" : "chevron-icon") {
                                         if data.recommendedType == "episode" {
-                                            reloadVideo = true
+                                            redirectRecommendedVideoPlayer = true
                                             episodeSeriesUid = data.uid
                                         } else if data.recommendedType == "series" {
                                             seriesDetailID = data.uid
@@ -459,6 +483,14 @@ struct VideoPlayer: View {
                                     
                                     NavigationLink(isActive: $redirectSeriesDetail) {
                                         EpisodeDetailView(seriesDetailID: $seriesDetailID)
+                                            .environmentObject(feedViewModel)
+                                            .navigationBarBackButtonHidden(true)
+                                    } label: {
+                                        EmptyView()
+                                    }
+                                    
+                                    NavigationLink(isActive: $redirectRecommendedVideoPlayer) {
+                                        VideoPlayerView(seriesDetailID: $seriesDetailID, episodeCategoryID: episodeSeriesUid/*, seriesUid: episode*/)
                                             .environmentObject(feedViewModel)
                                             .navigationBarBackButtonHidden(true)
                                     } label: {
@@ -562,18 +594,18 @@ struct VideoPlayer: View {
                 .autohideIn(3)
                 .appearFrom(.top)
         }
-        .popup(isPresented: $feedViewModel.showAlert) {
-            FLToastAlert(image: .constant("popup-failure-icon"), message: .constant(feedViewModel.alertMessage))
-        } customize: {
-            $0
-                .type(.floater(useSafeAreaInset: true))
-                .position(.top)
-                .animation(.spring())
-                .closeOnTapOutside(true)
-                .backgroundColor(.black.opacity(0.5))
-                .autohideIn(3)
-                .appearFrom(.top)
-        }
+//        .popup(isPresented: $feedViewModel.showAlert) {
+//            FLToastAlert(image: .constant("popup-failure-icon"), message: .constant(feedViewModel.alertMessage))
+//        } customize: {
+//            $0
+//                .type(.floater(useSafeAreaInset: true))
+//                .position(.top)
+//                .animation(.spring())
+//                .closeOnTapOutside(true)
+//                .backgroundColor(.black.opacity(0.5))
+//                .autohideIn(3)
+//                .appearFrom(.top)
+//        }
         .background {
             LinearGradient(gradient: Gradient(colors: [Color.black, Color.theme.appColor, Color.black]), startPoint: .topLeading, endPoint: .bottomTrailing)
         }

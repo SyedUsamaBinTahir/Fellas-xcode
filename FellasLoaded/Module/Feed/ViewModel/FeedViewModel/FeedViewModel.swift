@@ -75,6 +75,8 @@ class FeedViewModel: ObservableObject {
     var seriesEpisodesCommentsDetailModel: SeriesEpisodesCommentsDetailModel?
     var seriesEpisodesModel: SeriesEpisodesModel?
     var feedSearchModel: FeedSearchModel?
+    var watchlaterSeriesModel: WatchLaterSeriesModel? = nil
+    var watchLaterEpisodesModel: WatchLaterEpisodesModel? = nil
     
     var userDetailModel: UserDetailModel?
     
@@ -547,5 +549,47 @@ extension FeedViewModel: FeedDataProvider {
                 
             }
             .store(in: &self.subscriptions)
+    }
+    
+    func getWatchLaterSeries() {
+        dataService.getServerData(url: FLAPIs.baseURL + FLAPIs.watchlaterSeries, type: WatchLaterSeriesModel.self)
+            .sink { [weak self] completion in
+                DispatchQueue.main.async {
+                    switch completion {
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                        self?.showAlert = true
+                        self?.alertMessage = error.localizedDescription
+                        self?.showLoader = false
+                    case .finished:
+                        print("watch later series Success")
+                        self?.showLoader = false
+                    }
+                }
+            } receiveValue: { watchLaterSeriesData in
+                self.watchlaterSeriesModel = watchLaterSeriesData
+            }
+            .store(in: &subscriptions)
+    }
+    
+    func getWatchLaterEpisodes(id: String) {
+        dataService.getServerData(url: FLAPIs.baseURL + FLAPIs.watchLaterEpisodes + "?series_uid=" + id, type: WatchLaterEpisodesModel.self)
+            .sink { [weak self] completion in
+                DispatchQueue.main.async {
+                    switch completion {
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                        self?.showAlert = true
+                        self?.alertMessage = error.localizedDescription
+                        self?.showLoader = false
+                    case .finished:
+                        print("watch later series Success")
+//                        self?.showLoader = false
+                    }
+                }
+            } receiveValue: { watchLaterEpisodesData in
+                self.watchLaterEpisodesModel = watchLaterEpisodesData
+            }
+            .store(in: &subscriptions)
     }
 }

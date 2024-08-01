@@ -13,6 +13,7 @@ struct ProfileView: View {
     @State private var redirectSettings = false
     @State private var redirectDownloads = false
     @State private var redirectWatchlist = false
+    @State private var redirectManageSubscription = false
     
     var body: some View {
         VStack {
@@ -23,7 +24,7 @@ struct ProfileView: View {
                     ProfileImageView(profileImage: .constant(feedViewModel.userDetailModel?.avatar ?? ""),
                                      name: .constant(feedViewModel.userDetailModel?.name ?? ""))
                     
-                    MembershipCardView {  }
+                    MembershipCardView { redirectManageSubscription = true }
                     
                     if FLUserJourney.shared.isSubscibedUserLoggedIn ?? false {
                         VStack(spacing: 14) {
@@ -58,6 +59,12 @@ struct ProfileView: View {
                 
                 NavigationLink(isActive: $redirectWatchlist) {
                     WatchlistSeriesView().navigationBarBackButtonHidden(true)
+                } label: {
+                    EmptyView()
+                }
+                
+                NavigationLink(isActive: $redirectManageSubscription) {
+                    ManageSubscriptionsView().navigationBarBackButtonHidden(true)
                 } label: {
                     EmptyView()
                 }

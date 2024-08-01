@@ -53,7 +53,7 @@ struct SettingsView: View {
                                 SettingsNavigatorView(icon: "terms", title: "Terms & conditions", description: nil, forwardIcon: "chevron.right") { }
                                     .padding(.top)
                                 SettingsNavigatorView(icon: "privacy-policy", title: "Privacy policy", description: nil, forwardIcon: "chevron.right") { }
-                                SettingsNavigatorView(icon: "logout", title: "Exit", description: nil, forwardIcon: "chevron.right") {
+                                SettingsNavigatorView(icon: "Logout", title: "Exit", description: nil, forwardIcon: "chevron.right") {
                                     withAnimation(.easeInOut(duration: 0.2)) {
                                         self.viewControllerHolder?.present(style: .overFullScreen) {
                                             WelcomeScreen()

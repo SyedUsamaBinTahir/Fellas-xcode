@@ -20,6 +20,7 @@ struct CommentCardView: View {
     @Binding var likes: Int
     @Binding var replies: Int
     @Binding var likeAdded: Bool
+    var seriesImage: String = ""
     @State var action: () -> Void
     @State var addLikeAction: () -> Void = {}
     @State var deleteLikeAction: () -> Void = {}
@@ -61,6 +62,17 @@ struct CommentCardView: View {
                             Text(displayName)
                                 .font(.custom(Font.regular, size: 14))
                                 .foregroundStyle(Color.theme.textGrayColor)
+                            KFImage.init(URL(string: seriesImage))
+                                .placeholder({ _ in
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .fill(Color.theme.appCardsColor)
+                                })
+                                .loadDiskFileSynchronously()
+                                .cacheMemoryOnly()
+                                .fade(duration: 0.50)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 8, height: 18)
                             Image("dot-icon")
                                 .resizable()
                                 .scaledToFit()
