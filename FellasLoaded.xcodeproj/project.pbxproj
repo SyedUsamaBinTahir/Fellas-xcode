@@ -3472,7 +3472,7 @@
 				CODE_SIGN_ENTITLEMENTS = FellasLoaded/FellasLoaded.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_ASSET_PATHS = "\"FellasLoaded/Preview Content\"";
 				DEVELOPMENT_TEAM = HAG8AD6Y2K;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -3521,7 +3521,7 @@
 				CODE_SIGN_ENTITLEMENTS = FellasLoaded/FellasLoaded.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_ASSET_PATHS = "\"FellasLoaded/Preview Content\"";
 				DEVELOPMENT_TEAM = HAG8AD6Y2K;
 				ENABLE_HARDENED_RUNTIME = YES;

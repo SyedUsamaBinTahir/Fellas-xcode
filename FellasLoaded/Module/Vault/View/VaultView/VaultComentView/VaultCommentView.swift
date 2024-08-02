@@ -40,7 +40,7 @@ struct VaultCommentView: View {
     @State private var redirectReply = false
     @State private var commentid: String = ""
     @Binding var dismissSheet: Bool
-    @Binding var commentOrder: String
+    @State var commentOrder: String = ""
     @State var isRecieved: Bool = false
     @Binding var postId: String
     @State var isLike: Bool = false
@@ -177,12 +177,16 @@ struct VaultCommentView: View {
                 keyboardFocus = false
                 //                vaultViewModel.showLoader = true
                 print("STATUS ---> \(vaultViewModel.isSuccess)")
-                vaultViewModel.vaultCommentsDetails(postId: postId)
+                vaultViewModel.vaultCommentsDetails(postId: postId, commentOrderBy: commentOrder)
                 print("ID ---> \(postId)")
             }
             .onReceive(vaultViewModel.$isSuccess){ _ in
-                vaultViewModel.vaultCommentsDetails(postId: postId)
+                vaultViewModel.vaultCommentsDetails(postId: postId, commentOrderBy: commentOrder)
             }
+            onChange(of: commentOrder, perform: { _ in
+                vaultViewModel.showLoader = true
+                vaultViewModel.vaultCommentsDetails(postId: postId, commentOrderBy: commentOrder)
+            })
         }
     }
 }

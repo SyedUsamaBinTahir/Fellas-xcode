@@ -16,7 +16,10 @@ struct EpisodesView: View {
     var description: String = ""
     var icon: String = ""
     var action: () -> Void = {}
-    
+    var selectedWatchLaterIdAction: () -> Void = {}
+    var downloadAction: () -> Void = {}
+    @State var selectWathList = false
+
     var body: some View {
         Button (action: action) {
             HStack(spacing: 16) {
@@ -52,10 +55,15 @@ struct EpisodesView: View {
                     }
                 }
                 Spacer()
-                Image("\(icon)")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 24, height: 23)
+                Button(action: {
+                    selectWathList.toggle()
+                    selectedWatchLaterIdAction()
+                })  {
+                    Image(selectWathList ? "selected-watch-later" : "\(icon)")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 24, height: 23)
+                }
             }
         }
 

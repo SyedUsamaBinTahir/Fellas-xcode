@@ -73,7 +73,6 @@ struct VaultView: View {
                                     }
                                     .sheet(isPresented: $redirectComment, content: {
                                         VaultCommentView(dismissSheet: $redirectComment,
-                                                         commentOrder: .constant(""),
                                                          postId: $postId)
                                         .environmentObject(vaultViewModel)
                                     })

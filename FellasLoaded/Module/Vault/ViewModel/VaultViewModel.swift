@@ -10,7 +10,7 @@ import Combine
 
 protocol VaultDataProvider {
     func vaultPostDetails()
-    func vaultCommentsDetails(postId: String)
+    func vaultCommentsDetails(postId: String, commentOrderBy: String)
     func vaultCommentsReply(commentId: String)
     func vaultCreateComment(comment: String, post: String)
     func vaultCreateReply(comment: String, post: String, parent: String, reply_to: String)
@@ -74,8 +74,8 @@ extension VaultViewModel : VaultDataProvider {
             .store(in: &subscription)
     }
     
-    func vaultCommentsDetails(postId: String) {
-        dataService.getServerData(url: FLAPIs.baseURL + FLAPIs.vaultComments + "\(postId)/", type: VaultCommentsModel.self)
+    func vaultCommentsDetails(postId: String, commentOrderBy: String) {
+        dataService.getServerData(url: FLAPIs.baseURL + FLAPIs.vaultComments + postId + "/?order_by=\(commentOrderBy)", type: VaultCommentsModel.self)
             .sink {[weak self] completion in
                 DispatchQueue.main.async {
                     switch completion {

@@ -594,18 +594,18 @@ struct VideoPlayer: View {
                 .autohideIn(3)
                 .appearFrom(.top)
         }
-//        .popup(isPresented: $feedViewModel.showAlert) {
-//            FLToastAlert(image: .constant("popup-failure-icon"), message: .constant(feedViewModel.alertMessage))
-//        } customize: {
-//            $0
-//                .type(.floater(useSafeAreaInset: true))
-//                .position(.top)
-//                .animation(.spring())
-//                .closeOnTapOutside(true)
-//                .backgroundColor(.black.opacity(0.5))
-//                .autohideIn(3)
-//                .appearFrom(.top)
-//        }
+        .popup(isPresented: $feedViewModel.showAlert) {
+            FLToastAlert(image: .constant("popup-failure-icon"), message: .constant(feedViewModel.alertMessage))
+        } customize: {
+            $0
+                .type(.floater(useSafeAreaInset: true))
+                .position(.top)
+                .animation(.spring())
+                .closeOnTapOutside(true)
+                .backgroundColor(.black.opacity(0.5))
+                .autohideIn(3)
+                .appearFrom(.top)
+        }
         .background {
             LinearGradient(gradient: Gradient(colors: [Color.black, Color.theme.appColor, Color.black]), startPoint: .topLeading, endPoint: .bottomTrailing)
         }
