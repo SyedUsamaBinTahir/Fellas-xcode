@@ -71,7 +71,7 @@ class FeedViewModel: ObservableObject {
     var feedCategoryEpisodesModel: FeedCategoryEpisodesModel?
     var feedCategorySeriesDetailModel: FeedCategorySeriesDetailModel?
     var seriesEpisodeDetailModel: SeriesEpisodeDetailModel?
-    var seriesEpisodesCommentsModel: SeriesEpisodesCommentsModel?
+    @Published var seriesEpisodesCommentsModel: SeriesEpisodesCommentsModel?
     var seriesEpisodesCommentsDetailModel: SeriesEpisodesCommentsDetailModel?
     var seriesEpisodesModel: SeriesEpisodesModel?
     var feedSearchModel: FeedSearchModel?
@@ -87,6 +87,7 @@ extension FeedViewModel: FeedDataProvider {
     func getFeedBanners() {
         showLoader = true
         dataService.getServerData(url: FLAPIs.baseURL + FLAPIs.feedBanner, type: FeedBannerModel.self)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 DispatchQueue.main.async {
                     switch completion {
@@ -108,6 +109,7 @@ extension FeedViewModel: FeedDataProvider {
     
     func getFeedCategories() {
         dataService.getServerData(url: FLAPIs.baseURL + FLAPIs.feedCategoriesGroup, type: FeedCategoriesModel.self)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 DispatchQueue.main.async {
                     switch completion {
@@ -129,6 +131,7 @@ extension FeedViewModel: FeedDataProvider {
     
     func getFeedCategorySeries(id: String) {
         dataService.getServerData(url: FLAPIs.baseURL + FLAPIs.feedCategorySeries + id, type: FeedCategorySeriesModel.self)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 DispatchQueue.main.async {
                     switch completion {
@@ -150,6 +153,7 @@ extension FeedViewModel: FeedDataProvider {
     
     func getCategoryEpisodes(id: String) {
         dataService.getServerData(url: FLAPIs.baseURL + FLAPIs.feedCategoryEpisodes + id, type: FeedCategoryEpisodesModel.self)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 DispatchQueue.main.async {
                     switch completion {
@@ -171,6 +175,7 @@ extension FeedViewModel: FeedDataProvider {
     
     func getFeedCategorySeriesDetail(id: String) {
         dataService.getServerData(url: FLAPIs.baseURL + FLAPIs.feedCategorySeriesDetail + id, type: FeedCategorySeriesDetailModel.self)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 DispatchQueue.main.async {
                     switch completion {
@@ -192,6 +197,7 @@ extension FeedViewModel: FeedDataProvider {
     
     func getFeedSeriesEpisodes(id: String) {
         dataService.getServerData(url: FLAPIs.baseURL + FLAPIs.seriesEpisodes + id, type: SeriesEpisodesModel.self)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 DispatchQueue.main.async {
                     switch completion {
@@ -213,6 +219,7 @@ extension FeedViewModel: FeedDataProvider {
     
     func getSeriesEpisodeDetail(id: String, completion: @escaping (URL?) -> Void) {
         dataService.getServerData(url: FLAPIs.baseURL + FLAPIs.seriesEpisodeDetail + id + "/", type: SeriesEpisodeDetailModel.self)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 DispatchQueue.main.async {
                     switch completion {
@@ -240,6 +247,7 @@ extension FeedViewModel: FeedDataProvider {
     
     func getSeriesEpisodesComments(id: String, commentOrderBy: String) {
         dataService.getServerData(url: FLAPIs.baseURL + FLAPIs.seriesEpisodesComments + id + "/?order_by=\(commentOrderBy)", type: SeriesEpisodesCommentsModel.self)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 DispatchQueue.main.async {
                     switch completion {
@@ -261,6 +269,7 @@ extension FeedViewModel: FeedDataProvider {
     
     func getSeriesEpisodesCommentsDetail(id: String) {
         dataService.getServerData(url: FLAPIs.baseURL + FLAPIs.seriesEpisodesCommentsDetail + id + "/", type: SeriesEpisodesCommentsDetailModel.self)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 DispatchQueue.main.async {
                     switch completion {
@@ -282,6 +291,7 @@ extension FeedViewModel: FeedDataProvider {
     
     func getFeedSearchList(searchParam: String) {
         dataService.getServerData(url: FLAPIs.baseURL + FLAPIs.feedSearch + searchParam, type: FeedSearchModel.self)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 DispatchQueue.main.async {
                     switch completion {
@@ -303,6 +313,7 @@ extension FeedViewModel: FeedDataProvider {
     
     func getUserDetail() {
         dataService.getServerData(url: FLAPIs.baseURL + FLAPIs.userDetails, type: UserDetailModel.self)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 DispatchQueue.main.async {
                     switch completion {
@@ -553,6 +564,7 @@ extension FeedViewModel: FeedDataProvider {
     
     func getWatchLaterSeries() {
         dataService.getServerData(url: FLAPIs.baseURL + FLAPIs.watchlaterSeries, type: WatchLaterSeriesModel.self)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 DispatchQueue.main.async {
                     switch completion {
@@ -574,6 +586,7 @@ extension FeedViewModel: FeedDataProvider {
     
     func getWatchLaterEpisodes(id: String) {
         dataService.getServerData(url: FLAPIs.baseURL + FLAPIs.watchLaterEpisodes + "?series_uid=" + id, type: WatchLaterEpisodesModel.self)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 DispatchQueue.main.async {
                     switch completion {

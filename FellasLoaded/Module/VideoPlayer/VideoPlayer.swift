@@ -447,22 +447,28 @@ struct VideoPlayer: View {
                     
                     VStack(alignment: .leading, spacing: 20) {
                         if FLUserJourney.shared.isSubscibedUserLoggedIn ?? false {
-                            Segments(selectedTab: $selectedTab)
+                            Segments(episodeCount: .constant(feedViewModel.feedCategorySeriesDetailModel?.sessions?.first?.episodes?.count ?? 0), action: { value in
+                                self.selectedTab = value
+                            })
 
                             if selectedTab == .EPISODES {
                                 LazyVStack (spacing: 10) {
                                     ForEach(feedViewModel.feedCategorySeriesDetailModel?.sessions ?? [], id: \.uid) { data in
                                         ForEach(data.episodes ?? [], id: \.uid) { episode in
-                                            EpisodesView(seriesImage: episode.thumbnail, episode: "S\(episode.session_number):E\(episode.episode_number)", title: episode.title, description: episode.description, icon: "download") {
-                                                redirectVideoPlayer = true
-                                                episodeSeriesUid = episode.uid
-                                            }
-                                            
-                                            NavigationLink(isActive: $redirectVideoPlayer) {
-                                                VideoPlayerView(seriesDetailID: $seriesDetailID, episodeCategoryID: episodeSeriesUid/*, seriesUid: episode*/)
-                                                    .environmentObject(feedViewModel)
-                                                    .navigationBarBackButtonHidden(true)
-                                            } label: {
+                                            if episode.uid != self.seriesEpisodeDetailId {
+                                                EpisodesView(seriesImage: episode.thumbnail, episode: "S\(episode.session_number):E\(episode.episode_number)", title: episode.title, description: episode.description, icon: "download") {
+                                                    redirectVideoPlayer = true
+                                                    episodeSeriesUid = episode.uid
+                                                }
+                                                
+                                                NavigationLink(isActive: $redirectVideoPlayer) {
+                                                    VideoPlayerView(seriesDetailID: $seriesDetailID, episodeCategoryID: episodeSeriesUid/*, seriesUid: episode*/)
+                                                        .environmentObject(feedViewModel)
+                                                        .navigationBarBackButtonHidden(true)
+                                                } label: {
+                                                    EmptyView()
+                                                }
+                                            } else {
                                                 EmptyView()
                                             }
                                         }

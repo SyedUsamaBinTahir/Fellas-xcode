@@ -13,13 +13,20 @@ enum SegmentsTab: String, CaseIterable {
 }
 
 struct Segments: View {
-    @Binding var selectedTab: SegmentsTab
-    private var selectedSegment: String {
-        selectedTab.rawValue
+    @State private var selectedTab: SegmentsTab = .EPISODES
+    @State private var allTabs: [SegmentsTab] = [.EPISODES, .RECOMMENDED]
+    
+    @Binding var episodeCount: Int
+    
+    var action: (SegmentsTab) -> Void
+    
+    init(episodeCount: Binding<Int>, action: @escaping (SegmentsTab) -> Void) {
+        self._episodeCount = episodeCount
+        self.action = action
     }
     var body: some View {
         HStack(spacing: 20){
-            ForEach (SegmentsTab.allCases, id: \.rawValue) { tab in
+            ForEach (allTabs, id: \.rawValue) { tab in
                 VStack(spacing: 3) {
                     Text(tab.rawValue)
                         .font(.custom(Font.semiBold, size: 18))
@@ -35,13 +42,37 @@ struct Segments: View {
                     }
                 }
                 .onTapGesture {
-                        selectedTab = tab
+                    selectedTab = tab
                 }
+            }
+        }
+        .onChange(of: self.episodeCount, perform: { value in
+            switch value {
+            case 0, 1:
+                self.allTabs.remove(at: 0)
+                self.selectedTab = .RECOMMENDED
+                
+            default:
+                self.allTabs = SegmentsTab.allCases
+            }
+        })
+        .onChange(of: self.selectedTab, perform: { value in
+            self.action(value)
+        })
+        .onAppear {
+            switch episodeCount {
+            case 0, 1:
+                self.allTabs.removeFirst()
+                self.selectedTab = .RECOMMENDED
+                
+            default:
+                self.allTabs = SegmentsTab.allCases
+                
             }
         }
     }
 }
 
-#Preview {
-    Segments(selectedTab: .constant(.EPISODES))
-}
+//#Preview {
+//    Segments(selectedTab: .constant(.EPISODES))
+//}

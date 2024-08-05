@@ -41,14 +41,14 @@ struct RepliesView: View {
                 ScrollView {
                     
                     CommentCardView(/*isPinned: $isPinned,*/ expandDescription: $expandDescription,
-                                                             showReportComment: showReportComment,
                                                              redirectReply: $redirectReply,
-                                                             profileImage: .constant(feedViewModel.seriesEpisodesCommentsDetailModel?.parent.user?.avatar ?? ""),
-                                                             displayName: .constant(feedViewModel.seriesEpisodesCommentsDetailModel?.parent.user?.name ?? ""),
-                                                             commentDuration: .constant(""),
-                                                             comment: .constant(feedViewModel.seriesEpisodesCommentsDetailModel?.parent.comment ?? ""),
-                                                             likes: .constant(feedViewModel.seriesEpisodesCommentsDetailModel?.parent.like_count ?? 0),
-                                                             replies: .constant(feedViewModel.seriesEpisodesCommentsDetailModel?.parent.replies_count ?? 0), likeAdded: $likeAdded,
+                                                             profileImage: feedViewModel.seriesEpisodesCommentsDetailModel?.parent.user?.avatar ?? "",
+                                                             displayName: feedViewModel.seriesEpisodesCommentsDetailModel?.parent.user?.name ?? "",
+                                                             commentDuration: "",
+                                                             comment: feedViewModel.seriesEpisodesCommentsDetailModel?.parent.comment ?? "",
+                                                             likes: feedViewModel.seriesEpisodesCommentsDetailModel?.parent.like_count ?? 0,
+                                                             replies: feedViewModel.seriesEpisodesCommentsDetailModel?.parent.replies_count ?? 0,
+                                                             likeAdded: feedViewModel.seriesEpisodesCommentsDetailModel?.parent.liked_by_me ?? false,
                                                              action: {
                         
                     })
@@ -57,14 +57,14 @@ struct RepliesView: View {
                     
                     ForEach(feedViewModel.seriesEpisodesCommentsDetailModel?.replies?.reversed() ?? [], id: \.uid) { reply in
                         CommentCardView(/*isPinned: $isPinned,*/ expandDescription: $expandDescription,
-                                                                 showReportComment: showReportComment,
                                                                  redirectReply: $redirectReply,
-                                                                 profileImage: .constant(reply.user?.avatar ?? ""),
-                                                                 displayName: .constant(reply.user?.name ?? ""),
-                                                                 commentDuration: .constant( ""),
-                                                                 comment: .constant(reply.comment),
-                                                                 likes: .constant(reply.like_count),
-                                                                 replies: .constant(reply.replies_count), likeAdded: $replyLikeAdded, action: {
+                                                                 profileImage: reply.user?.avatar ?? "",
+                                                                 displayName: reply.user?.name ?? "",
+                                                                 commentDuration: "",
+                                                                 comment: reply.comment,
+                                                                 likes: reply.like_count,
+                                                                 replies: reply.replies_count,
+                                                                 likeAdded: reply.liked_by_me, action: {
                             
                         }, deleteCommentAction: {
                             feedViewModel.deleteComment(commentUid: reply.uid)

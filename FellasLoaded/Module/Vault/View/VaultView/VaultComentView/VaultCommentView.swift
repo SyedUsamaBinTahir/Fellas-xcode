@@ -15,6 +15,17 @@ enum VaultCommentsState: Int, CaseIterable {
     case nowest
     case oldest
     
+    var title: String {
+        switch self {
+        case .top:
+            return "TOP"
+        case .nowest:
+            return "NEWEST"
+        case .oldest:
+            return "OLDEST"
+        }
+    }
+    
     var state: String {
         switch self {
         case .top:
@@ -58,7 +69,7 @@ struct VaultCommentView: View {
                         VStack(alignment: .leading) {
                             HStack(spacing: 6) {
                                 ForEach(CommentsState.allCases, id: \.rawValue) { type in
-                                    Text(type.state.uppercased())
+                                    Text(type.title)
                                         .padding(.vertical, 5)
                                         .padding(.horizontal, 10)
                                         .font(.custom(Font.bold, size: 14))
@@ -67,7 +78,7 @@ struct VaultCommentView: View {
                                         .cornerRadius(5)
                                         .onTapGesture {
                                             selectedComment = type
-                                            commentOrder = type.state.description
+                                            commentOrder = type.state
                                         }
                                 }
                                 Spacer()
@@ -87,24 +98,24 @@ struct VaultCommentView: View {
                             VaultsCommentsCard(/*isPinned: $isPinned,*/ expandDescription: $expandDescription,
                                                                         showReportComment: $showReportComment,
                                                                         redirectReply: $redirectReply,
-                                                                        profileImage: .constant(data.user?.avatar ?? ""),
-                                                                        displayName: .constant(data.user?.name ?? ""),
-                                                                        commentDuration: .constant(""),
-                                                                        comment: .constant(data.comment),
-                                                                        likes: .constant(data.like_count),
-                                                                        replies: .constant(data.replies_count),
-                                                                        isLike: $isLike,
+                                                                        profileImage: data.user?.avatar ?? "",
+                                                                        displayName: data.user?.name ?? "",
+                                                                        commentDuration: "",
+                                                                        comment: data.comment,
+                                                                        likes: data.like_count,
+                                                                        replies: data.replies_count,
+                                                                        likeAdded: data.liked_by_me ?? false,
                                                                         action: {
                                 commentid = data.uid
                                 redirectReply = true
                             },
                                                                         likeAction: {
                                 vaultViewModel.vaultCommentLike(commentId: data.uid)
-                                isLike.toggle()
+//                                isLike.toggle()
                             },
                                                                         dislikeAction:  {
                                 vaultViewModel.vaultCommentDislike(commentId: data.uid)
-                            },
+                            }, selection1: "",
                                                                         commentDeleteAction: .constant {
                                 vaultViewModel.vaultDeleteComment(commentId: data.uid)
                             },
@@ -123,13 +134,13 @@ struct VaultCommentView: View {
                         
                     }
                     
-                    NavigationLink(isActive: $redirectReply) {
-                        VaultRepliesView(dismissSheet: $redirectReply, isRecieved: $vaultViewModel.isSuccess , commentData: $commentid, postId: $postId)
-                            .environmentObject(vaultViewModel)
-                            .navigationBarBackButtonHidden(true)
-                    } label: {
-                        EmptyView()
-                    }
+//                    NavigationLink(isActive: $redirectReply) {
+//                        VaultRepliesView(dismissSheet: $redirectReply, isRecieved: $vaultViewModel.isSuccess , commentData: $commentid, postId: $postId)
+//                            .environmentObject(vaultViewModel)
+//                            .navigationBarBackButtonHidden(true)
+//                    } label: {
+//                        EmptyView()
+//                    }
                     
                     AddCommentView(addComment: $addComment, loader: .constant(false), keyboardFocused: $keyboardFocus) {
                         withAnimation(.snappy) {

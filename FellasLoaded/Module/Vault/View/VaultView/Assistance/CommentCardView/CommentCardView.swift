@@ -13,19 +13,51 @@ struct CommentCardView: View {
     @Binding var expandDescription: Bool
     @State var showReportComment: Bool = false
     @Binding var redirectReply: Bool
-    @Binding var profileImage: String
-    @Binding var displayName: String
-    @Binding var commentDuration: String
-    @Binding var comment: String
-    @Binding var likes: Int
-    @Binding var replies: Int
-    @Binding var likeAdded: Bool
+    @State private var profileImage: String = ""
+    @State private var displayName: String = ""
+    @State private var commentDuration: String = ""
+    @State private var comment: String = ""
+    @State private var likes: Int = 0
+    @State private var replies: Int = 0
+    @State private var likeAdded: Bool = false
     var seriesImage: String = ""
-    @State var action: () -> Void
-    @State var addLikeAction: () -> Void = {}
-    @State var deleteLikeAction: () -> Void = {}
-    @State var deleteCommentAction: () -> Void = {}
-        @State var editCommentAction: () -> Void = {}
+    var action: () -> Void
+    var addLikeAction: () -> Void
+    var deleteLikeAction: () -> Void
+    var deleteCommentAction: () -> Void
+    var editCommentAction: () -> Void
+    
+    init(expandDescription: Binding<Bool>,
+         redirectReply: Binding<Bool>,
+         profileImage: String,
+         displayName: String,
+         commentDuration: String,
+         comment: String,
+         likes: Int,
+         replies: Int,
+         likeAdded: Bool,
+         seriesImage: String = "",
+         action: (() -> Void)? = nil,
+         addLikeAction: (() -> Void)? = nil,
+         deleteLikeAction: (() -> Void)? = nil,
+         deleteCommentAction: (() -> Void)? = nil,
+         editCommentAction: (() -> Void)? = nil) {
+        self._expandDescription = expandDescription
+        self._redirectReply = redirectReply
+        self.profileImage = profileImage
+        self.displayName = displayName
+        self.commentDuration = commentDuration
+        self.comment = comment
+        self.likes = likes
+        self.replies = replies
+        self.likeAdded = likeAdded
+        self.seriesImage = seriesImage
+        self.action = action ?? {}
+        self.addLikeAction = addLikeAction ?? {}
+        self.deleteLikeAction = deleteLikeAction ?? {}
+        self.deleteCommentAction = deleteCommentAction ?? {}
+        self.editCommentAction = editCommentAction ?? {}
+    }
     
     var body: some View {
         HStack {
@@ -45,17 +77,6 @@ struct CommentCardView: View {
                     .frame(width: 24, height: 24, alignment: .center)
                 
                 VStack(alignment: .leading, spacing: 10) {
-                    //                    HStack {
-                    //                        if isPinned {
-                    //                            Image("pin-icon")
-                    //                                .resizable()
-                    //                                .scaledToFit()
-                    //                                .frame(width: 18, height: 18)
-                    //                        }
-                    //                        Text("Pinned by Cal")
-                    //                            .font(.custom(Font.regular, size: 14))
-                    //                            .foregroundStyle(Color.theme.textGrayColor)
-                    //                    }
                     
                     VStack(alignment: .leading) {
                         HStack {
@@ -100,13 +121,16 @@ struct CommentCardView: View {
                         // remove like comment ////
                         Button (action: {
                             if !likeAdded {
+                                likes += 1
                                 addLikeAction()
                             } else {
+                                likes -= 1
                                 deleteLikeAction()
                             }
+                            likeAdded.toggle()
                         }) {
                             HStack(spacing: 10) {
-                                Image("like-icon")
+                                Image(likeAdded ? "like-added-icon" : "like-icon")
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 16, height: 16)
@@ -182,6 +206,6 @@ struct CommentCardView: View {
     }
 }
 
-#Preview {
-    CommentCardView(/*isPinned: .constant(true), */expandDescription: .constant(false), redirectReply: .constant(false), profileImage: .constant(""), displayName: .constant(""), commentDuration: .constant(""), comment: .constant(""), likes: .constant(0), replies: .constant(0), likeAdded: .constant(false), action: {}, addLikeAction: {})
-}
+//#Preview {
+//    CommentCardView(/*isPinned: .constant(true), */expandDescription: .constant(false), redirectReply: .constant(false), profileImage: .constant(""), displayName: .constant(""), commentDuration: .constant(""), comment: .constant(""), likes: .constant(0), replies: .constant(0), likeAdded: .constant(false), action: {}, addLikeAction: {})
+//}

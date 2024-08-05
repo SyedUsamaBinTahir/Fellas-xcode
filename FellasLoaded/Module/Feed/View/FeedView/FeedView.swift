@@ -32,6 +32,8 @@ struct FeedView: View {
     @State private var selectedBannerUid: FeedBannerResults? = nil
     @State var watchlistEpisodeId =  ""
     
+    @State private var feedBannerId: FeedBannerResults? = nil
+    
     // services model properties
     @StateObject var feedViewModel = FeedViewModel(_dataService: GetServerData.shared)
     @StateObject var viewModel = ProfileViewModel(_dataService: GetServerData.shared)
@@ -47,6 +49,17 @@ struct FeedView: View {
                     ScrollView(showsIndicators: false) {
 //                        CarousalView(redirectVideoPlayer: $redirectVideoPlayer)
 //                            .environmentObject(feedViewModel)
+                        
+                        if let bannerId = self.feedBannerId {
+                            NavigationLink(isActive: $redirectBannerVideoPlayer) {
+                                VideoPlayerView(seriesDetailID: $seriesDetailID, bannerUid: bannerId)
+                                    .environmentObject(feedViewModel)
+                                    .navigationBarBackButtonHidden(true)
+                            } label: {
+                                
+                            }
+                        }
+                        
                         let itemHeight: CGFloat = horizontalSizeClass == .regular ? UIScreen.main.bounds.height * 0.33 : UIScreen.main.bounds.height * 0.23
                         let views = feedViewModel.feedBannerModel?.results.map { item -> AnyView in
                             AnyView(
@@ -69,19 +82,13 @@ struct FeedView: View {
                                                 .stroke(Color.theme.appGrayColor, lineWidth: 0.3)
                                         }
                                         .onTapGesture(perform: {
-                                            selectedBannerUid = item
-                                            print("selected banner id ----> " ,selectedBannerUid)
+                                            feedBannerId = item
+                                            print("selected banner id ----> " ,feedBannerId)
                                             redirectBannerVideoPlayer = true
                                             
                                         })
                                     
-                                    NavigationLink(isActive: $redirectBannerVideoPlayer) {
-                                        VideoPlayerView(seriesDetailID: $seriesDetailID, bannerUid: item)
-                                            .environmentObject(feedViewModel)
-                                            .navigationBarBackButtonHidden(true)
-                                    } label: {
-                                        
-                                    }
+                                    
                                 }
                             )
                         } ?? []

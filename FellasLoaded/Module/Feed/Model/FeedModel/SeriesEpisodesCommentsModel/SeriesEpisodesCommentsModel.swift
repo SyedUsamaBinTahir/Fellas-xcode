@@ -9,10 +9,10 @@ import Foundation
 
 struct SeriesEpisodesCommentsModel: Codable {
     let count: Int
-    let results: [SeriesEpisodesCommentsResults]
+    var results: [SeriesEpisodesCommentsResults]
 }
 
-struct SeriesEpisodesCommentsResults: Codable {
+struct SeriesEpisodesCommentsResults: Codable, Equatable {
     let uid: String
     let parent_user_name: String?
     let user: User?
@@ -20,11 +20,15 @@ struct SeriesEpisodesCommentsResults: Codable {
     let is_pinned: Bool
     let pinned_by: String?
     let is_mine: Bool
-    let liked_by_me: Bool
+    var liked_by_me: Bool
     let comment: String
     let replies_count: Int
     let like_count: Int
     let reports_count: Int
+    
+    static func == (lhs: SeriesEpisodesCommentsResults, rhs: SeriesEpisodesCommentsResults) -> Bool {
+        return lhs.uid == rhs.uid && lhs.liked_by_me == rhs.liked_by_me && lhs.like_count == rhs.like_count
+    }
 }
 
 struct User: Codable {

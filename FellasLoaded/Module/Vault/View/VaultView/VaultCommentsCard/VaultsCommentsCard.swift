@@ -14,13 +14,13 @@ struct VaultsCommentsCard: View {
     @Binding var expandDescription: Bool
     @Binding var showReportComment: Bool
     @Binding var redirectReply: Bool
-    @Binding var profileImage: String
-    @Binding var displayName: String
-    @Binding var commentDuration: String
-    @Binding var comment: String
-    @Binding var likes: Int
-    @Binding var replies: Int
-    @Binding var isLike: Bool
+    @State private var profileImage: String = ""
+    @State private var displayName: String = ""
+    @State private var commentDuration: String = ""
+    @State private var comment: String = ""
+    @State private var likes: Int = 0
+    @State private var replies: Int = 0
+    @State private var likeAdded: Bool = false
     @State var action: () -> Void
     @State var likeAction: () -> Void
     @State var dislikeAction: () -> Void
@@ -30,6 +30,43 @@ struct VaultsCommentsCard: View {
     @Binding var reportCommentAction: () -> Void
     @Binding var tap: Bool
 
+    init(expandDescription: Binding<Bool>,
+         showReportComment: Binding<Bool>,
+         redirectReply: Binding<Bool>,
+         profileImage: String,
+         displayName: String,
+         commentDuration: String,
+         comment: String,
+         likes: Int,
+         replies: Int,
+         likeAdded: Bool,
+         action: (() -> Void)? = nil,
+         likeAction: (() -> Void)? = nil,
+         dislikeAction: (() -> Void)? = nil,
+         selection1: String? = nil,
+         commentDeleteAction: Binding<() -> Void>,
+         editCommentAction: Binding<() -> Void>,
+         reportCommentAction: Binding<() -> Void>,
+         tap: Binding<Bool>) {
+        self._expandDescription = expandDescription
+        self._showReportComment = showReportComment
+        self._redirectReply = redirectReply
+        self.profileImage = profileImage
+        self.displayName = displayName
+        self.commentDuration = commentDuration
+        self.comment = comment
+        self.likes = likes
+        self.replies = replies
+        self.likeAdded = likeAdded
+        self.action = action ?? {}
+        self.likeAction = likeAction ?? {}
+        self.dislikeAction = dislikeAction ?? {}
+        self.selection1 = selection1
+        self._commentDeleteAction = commentDeleteAction
+        self._editCommentAction = editCommentAction
+        self._reportCommentAction = reportCommentAction
+        self._tap = tap
+    }
     
     var body: some View {
         HStack {
@@ -90,9 +127,18 @@ struct VaultsCommentsCard: View {
                     }
                     
                     HStack {
-                        Button(action: /*likeAction*/  dislikeAction) {
+                        Button(action: {
+                            if !likeAdded {
+                                likes += 1
+                                likeAction()
+                            } else {
+                                likes -= 1
+                                dislikeAction()
+                            }
+                            likeAdded.toggle()
+                        }) {
                             HStack(spacing: 10) {
-                                Image(systemName: isLike ? "hand.thumbsup.fill" : "hand.thumbsup")
+                                Image(likeAdded ? "like-added-icon" : "like-icon")
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 16, height: 16)

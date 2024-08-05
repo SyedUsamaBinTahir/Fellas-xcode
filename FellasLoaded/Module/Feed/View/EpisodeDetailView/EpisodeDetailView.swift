@@ -14,12 +14,24 @@ struct EpisodeDetailView: View {
     @StateObject var feedViewModel = FeedViewModel(_dataService: GetServerData.shared)
     @State var feedCategorySeriesDetailModel: FeedCategorySeriesDetailModel?
     @State private var redirectVideoPlayer = false
-    @State private var redirectVideoPlayerWithEpisode = false
+//    @State private var redirectVideoPlayerWithEpisode = false
     @State var seriesEpisodeDetailId: String = ""
     @Binding var seriesDetailID: String
     
+    @State private var selectedEpisode: FeedCategoryEpisodesResults? = nil
+    
     var body: some View {
         VStack {
+            
+            if let episode = self.selectedEpisode {
+                NavigationLink(isActive: $redirectVideoPlayer) {
+                    VideoPlayerView(seriesEpisodeDetailId: episode, seriesDetailID: $seriesDetailID)
+                        .environmentObject(feedViewModel)
+                        .navigationBarBackButtonHidden(true)
+                } label: {
+                    EmptyView()
+                }
+            }
 //            if feedViewModel.showLoader {
 //                FLLoader()
 //            } else {
@@ -61,7 +73,10 @@ struct EpisodeDetailView: View {
                         if horizontalSizeClass != .regular {
                             if FLUserJourney.shared.isSubscibedUserLoggedIn ?? false {
                                 Button {
-                                    redirectVideoPlayerWithEpisode = true
+                                    self.selectedEpisode = feedViewModel.feedCategorySeriesDetailModel?.sessions?.first?.episodes?.first
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                        redirectVideoPlayer = true
+                                    }
                                     
                                 } label: {
                                     HStack {
@@ -123,24 +138,28 @@ struct EpisodeDetailView: View {
                                     ForEach(data.episodes ?? [], id: \.uid) { episode in
                                         EpisodesView(seriesImage: episode.thumbnail, episode: "S\(episode.session_number):E\(episode.episode_number)", title: episode.title, description: episode.description, icon: "download") {
                                             redirectVideoPlayer = true
+                                            self.selectedEpisode = episode
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                                redirectVideoPlayer = true
+                                            }
                                             //                                            seriesEpisodeDetailId = episode.uid
                                         }
                                         
-                                        NavigationLink(isActive: $redirectVideoPlayer) {
-                                            VideoPlayerView(seriesEpisodeDetailId: episode, seriesDetailID: $seriesDetailID)
-                                                .environmentObject(feedViewModel)
-                                                .navigationBarBackButtonHidden(true)
-                                        } label: {
-                                            EmptyView()
-                                        }
-                                        
-                                        NavigationLink(isActive: $redirectVideoPlayerWithEpisode) {
-                                            VideoPlayerView(seriesEpisodeDetailId: data.episodes?.first, seriesDetailID: $seriesDetailID)
-                                                .environmentObject(feedViewModel)
-                                                .navigationBarBackButtonHidden(true)
-                                        } label: {
-                                            EmptyView()
-                                        }
+//                                        NavigationLink(isActive: $redirectVideoPlayer) {
+//                                            VideoPlayerView(seriesEpisodeDetailId: episode, seriesDetailID: $seriesDetailID)
+//                                                .environmentObject(feedViewModel)
+//                                                .navigationBarBackButtonHidden(true)
+//                                        } label: {
+//                                            EmptyView()
+//                                        }
+//                                        
+//                                        NavigationLink(isActive: $redirectVideoPlayerWithEpisode) {
+//                                            VideoPlayerView(seriesEpisodeDetailId: data.episodes?.first, seriesDetailID: $seriesDetailID)
+//                                                .environmentObject(feedViewModel)
+//                                                .navigationBarBackButtonHidden(true)
+//                                        } label: {
+//                                            EmptyView()
+//                                        }
                                     }
                                 }
                             }

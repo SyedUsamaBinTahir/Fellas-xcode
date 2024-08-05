@@ -13,6 +13,17 @@ enum CommentsState: Int, CaseIterable {
     case nowest
     case oldest
     
+    var title: String {
+        switch self {
+        case .top:
+            return "TOP"
+        case .nowest:
+            return "NEWEST"
+        case .oldest:
+            return "OLDEST"
+        }
+    }
+    
     var state: String {
         switch self {
         case .top:
@@ -32,7 +43,7 @@ struct CommentView: View {
     @State private var isPinned = true
     @State private var expandDescription = false
     @State private var commentsToggle = false
-    @State private var selectedComment = CommentsState(rawValue: 0)
+    @State private var selectedComment = CommentsState.top
     @State private var showReportComment = false
     @State private var addComment: String = ""
     @State private var redirectReply = false
@@ -56,7 +67,7 @@ struct CommentView: View {
                         VStack(alignment: .leading) {
                             HStack(spacing: 6) {
                                 ForEach(CommentsState.allCases, id: \.rawValue) { type in
-                                    Text(type.state.uppercased())
+                                    Text(type.title)
                                         .padding(.vertical, 5)
                                         .padding(.horizontal, 10)
                                         .font(.custom(Font.bold, size: 14))
@@ -65,7 +76,7 @@ struct CommentView: View {
                                         .cornerRadius(5)
                                         .onTapGesture {
                                             selectedComment = type
-                                            commentOrder = type.state.description
+                                            commentOrder = type.state
                                         }
                                 }
                                 Spacer()
@@ -82,7 +93,17 @@ struct CommentView: View {
                     } else {
                         ScrollView {
                             ForEach(feedViewModel.seriesEpisodesCommentsModel?.results.reversed() ?? [], id: \.uid) { data in
-                                CommentCardView(/*isPinned: $isPinned,*/ expandDescription: $expandDescription, showReportComment: showReportComment, redirectReply: $redirectReply, profileImage: .constant(data.user?.avatar ?? ""), displayName: .constant(data.user?.name ?? ""), commentDuration: .constant(""), comment: .constant(data.comment), likes: .constant(data.like_count), replies: .constant(data.replies_count), likeAdded: $feedViewModel.likeCommentAdded, seriesImage: data.user?.streak?.image ?? "" ,action: {
+                                CommentCardView(expandDescription: $expandDescription,
+                                                redirectReply: $redirectReply,
+                                                profileImage: data.user?.avatar ?? "",
+                                                displayName: data.user?.name ?? "",
+                                                commentDuration: "",
+                                                comment: data.comment,
+                                                likes: data.like_count,
+                                                replies: data.replies_count,
+                                                likeAdded: data.liked_by_me,
+                                                seriesImage: data.user?.streak?.image ?? "" ,
+                                                action: {
                                     commentid = data.uid
                                     redirectReply = true
                                 }, addLikeAction: {

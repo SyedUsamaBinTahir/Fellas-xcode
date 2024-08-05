@@ -15,13 +15,15 @@ struct EpisodesView: View {
     var title: String = ""
     var description: String = ""
     var icon: String = ""
-    var action: () -> Void = {}
+    var action: () -> Void
     var selectedWatchLaterIdAction: () -> Void = {}
     var downloadAction: () -> Void = {}
     @State var selectWathList = false
 
     var body: some View {
-        Button (action: action) {
+        Button (action: {
+            self.action()
+        }) {
             HStack(spacing: 16) {
                 KFImage.init(URL(string: seriesImage))
                     .placeholder({ _ in
@@ -72,5 +74,5 @@ struct EpisodesView: View {
 }
 
 #Preview {
-    EpisodesView(seriesImage: "series-image", episode: "S1:E1", title: "The Fellas & W2S Get Drunk in Amsterdam The Fellas & W2S Get Drunk in Amsterdam", description: "The Fellas head to the city of Amsterdam for some absolute CARNAGE! 24 hours was more than enough and you'll see why", icon: "download")
+    EpisodesView(seriesImage: "series-image", episode: "S1:E1", title: "The Fellas & W2S Get Drunk in Amsterdam The Fellas & W2S Get Drunk in Amsterdam", description: "The Fellas head to the city of Amsterdam for some absolute CARNAGE! 24 hours was more than enough and you'll see why", icon: "download", action: {})
 }
