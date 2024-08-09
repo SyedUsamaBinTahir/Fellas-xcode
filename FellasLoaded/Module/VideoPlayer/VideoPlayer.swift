@@ -14,6 +14,7 @@ import Kingfisher
 struct VideoPlayer: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @Environment(\.viewController) private var viewControllerHolder: UIViewController?
     @EnvironmentObject var feedViewModel: FeedViewModel
     @StateObject private var viewModel = M3u8ParserViewModel()
     @StateObject var downloadModel = DownloadTaskModel()
@@ -72,13 +73,6 @@ struct VideoPlayer: View {
         VStack(alignment: .leading) {
             let videoPlayerSize: CGSize = .init(width: isRotated ? size.height : size.width, height: isRotated ? size.width : (size.height / 3.5))
             
-            // Custom Video Player
-//            if feedViewModel.showLoader {
-//                FLLoader()
-//                    .frame(width: videoPlayerSize.width, height: videoPlayerSize.height)
-//                    /// To avoid other view expansion set it's native view height
-//                    .frame(width: size.width, height: size.height / 3, alignment: .bottomLeading)
-//            } else {
             if FLUserJourney.shared.isSubscibedUserLoggedIn ?? false {
                 ZStack(alignment: .topLeading) {
                     CustomVideoPlayer(player: player)
@@ -224,7 +218,11 @@ struct VideoPlayer: View {
                         })
                         .overlay {
                             Button {
-                                redirectSubscriptionView = true
+                                withAnimation(.easeInOut(duration: 0.2)) {
+                                    self.viewControllerHolder?.present(style: .overFullScreen) {
+                                        WelcomeScreen()
+                                    }
+                                }
                             } label: {
                                 HStack(spacing: 10) {
                                     Image("lock-icon")
@@ -267,7 +265,6 @@ struct VideoPlayer: View {
                 /// Making it top view
                 .zIndex(10000)
             }
-//            }
             
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading) {
@@ -413,7 +410,11 @@ struct VideoPlayer: View {
                                 }
                                 
                                 Button {
-                                    redirectSubscriptionView = true
+                                    withAnimation(.easeInOut(duration: 0.2)) {
+                                        self.viewControllerHolder?.present(style: .overFullScreen) {
+                                            WelcomeScreen()
+                                        }
+                                    }
                                 } label: {
                                     HStack {
                                         Image("lock-icon")
@@ -475,32 +476,33 @@ struct VideoPlayer: View {
                                     }
                                 }
                             } else if selectedTab == .RECOMMENDED {
-                                
-                                ForEach(feedViewModel.feedSearchModel?.results ?? [], id: \.uid) { data in
-                                    EpisodesView(seriesImage: data.thumbnail, episode: "S\(data.sessionNumber ?? 0):E\(data.episodeNumber ?? 0)", title: data.title, description: data.description, icon: data.recommendedType == "episode" ? "download" : "chevron-icon") {
-                                        if data.recommendedType == "episode" {
-                                            redirectRecommendedVideoPlayer = true
-                                            episodeSeriesUid = data.uid
-                                        } else if data.recommendedType == "series" {
-                                            seriesDetailID = data.uid
-                                            redirectSeriesDetail = true
+                                LazyVStack (spacing: 3) {
+                                    ForEach(feedViewModel.feedSearchModel?.results ?? [], id: \.uid) { data in
+                                        EpisodesView(seriesImage: data.thumbnail, episode: "S\(data.sessionNumber ?? 0):E\(data.episodeNumber ?? 0)", title: data.title, description: data.description, icon: data.recommendedType == "episode" ? "download" : "chevron-icon") {
+                                            if data.recommendedType == "episode" {
+                                                redirectRecommendedVideoPlayer = true
+                                                episodeSeriesUid = data.uid
+                                            } else if data.recommendedType == "series" {
+                                                seriesDetailID = data.uid
+                                                redirectSeriesDetail = true
+                                            }
                                         }
-                                    }
-                                    
-                                    NavigationLink(isActive: $redirectSeriesDetail) {
-                                        EpisodeDetailView(seriesDetailID: $seriesDetailID)
-                                            .environmentObject(feedViewModel)
-                                            .navigationBarBackButtonHidden(true)
-                                    } label: {
-                                        EmptyView()
-                                    }
-                                    
-                                    NavigationLink(isActive: $redirectRecommendedVideoPlayer) {
-                                        VideoPlayerView(seriesDetailID: $seriesDetailID, episodeCategoryID: episodeSeriesUid/*, seriesUid: episode*/)
-                                            .environmentObject(feedViewModel)
-                                            .navigationBarBackButtonHidden(true)
-                                    } label: {
-                                        EmptyView()
+                                        
+                                        NavigationLink(isActive: $redirectSeriesDetail) {
+                                            EpisodeDetailView(seriesDetailID: $seriesDetailID)
+                                                .environmentObject(feedViewModel)
+                                                .navigationBarBackButtonHidden(true)
+                                        } label: {
+                                            EmptyView()
+                                        }
+                                        
+                                        NavigationLink(isActive: $redirectRecommendedVideoPlayer) {
+                                            VideoPlayerView(seriesDetailID: $seriesDetailID, episodeCategoryID: episodeSeriesUid/*, seriesUid: episode*/)
+                                                .environmentObject(feedViewModel)
+                                                .navigationBarBackButtonHidden(true)
+                                        } label: {
+                                            EmptyView()
+                                        }
                                     }
                                 }
                             }

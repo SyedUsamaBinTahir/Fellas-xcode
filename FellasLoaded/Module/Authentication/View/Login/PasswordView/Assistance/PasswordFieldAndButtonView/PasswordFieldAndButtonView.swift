@@ -21,9 +21,11 @@ struct PasswordFieldAndButtonView: View {
         VStack(spacing: 20) {
             AuthPasswordTextFieldView(placeholder: .constant("password"), field: $password)
             if isValidPassword {
-                Text("Password must be atleast 8 symbols and capital latter with special character")
+//                Text("Password must be atleast 8 symbols and capital latter with special character")
+                Text("Min 8 characters")
                     .font(.custom(Font.regular, size: 14))
                     .foregroundStyle(Color.theme.appRedColor)
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
             if showButtonLoader {
                 FLButtonLoader(color: .constant(Color.theme.textGrayColor))

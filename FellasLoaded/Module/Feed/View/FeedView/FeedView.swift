@@ -32,6 +32,8 @@ struct FeedView: View {
     @State private var selectedBannerUid: FeedBannerResults? = nil
     @State var watchlistEpisodeId =  ""
     
+    @State private var isFirstAppear = true
+    
     @State private var feedBannerId: FeedBannerResults? = nil
     
     // services model properties
@@ -40,65 +42,64 @@ struct FeedView: View {
     
     var body: some View {
         VStack {
-            ZStack {
-                VStack {
-                    //                if feedViewModel.showLoader {
-                    //                    FLLoader()
-                    //                } else {
+            VStack {
+                if feedViewModel.showLoader {
+                    FLLoader()
+                } else {
                     FeedHeaderView(redirectSearch: $redirectSearch, redirectNotifications: $redirectNotifications)
                     ScrollView(showsIndicators: false) {
-//                        CarousalView(redirectVideoPlayer: $redirectVideoPlayer)
-//                            .environmentObject(feedViewModel)
+                        CarousalView(redirectVideoPlayer: $redirectVideoPlayer)
+                            .environmentObject(feedViewModel)
                         
-                        if let bannerId = self.feedBannerId {
-                            NavigationLink(isActive: $redirectBannerVideoPlayer) {
-                                VideoPlayerView(seriesDetailID: $seriesDetailID, bannerUid: bannerId)
-                                    .environmentObject(feedViewModel)
-                                    .navigationBarBackButtonHidden(true)
-                            } label: {
-                                
-                            }
-                        }
+                        //                        if let bannerId = self.feedBannerId {
+                        //                            NavigationLink(isActive: $redirectBannerVideoPlayer) {
+                        //                                VideoPlayerView(seriesDetailID: $seriesDetailID, bannerUid: bannerId)
+                        //                                    .environmentObject(feedViewModel)
+                        //                                    .navigationBarBackButtonHidden(true)
+                        //                            } label: {
+                        //
+                        //                            }
+                        //                        }
                         
-                        let itemHeight: CGFloat = horizontalSizeClass == .regular ? UIScreen.main.bounds.height * 0.33 : UIScreen.main.bounds.height * 0.23
-                        let views = feedViewModel.feedBannerModel?.results.map { item -> AnyView in
-                            AnyView(
-                                LazyVStack {
-                                    KFImage(URL(string: item.cover_art ?? ""))
-                                        .placeholder {
-                                            RoundedRectangle(cornerRadius: 10)
-                                                .fill(Color.theme.appCardsColor)
-                                                .frame(width: 358, height: itemHeight)
-                                        }
-                                        .loadDiskFileSynchronously()
-                                        .cacheMemoryOnly()
-                                        .fade(duration: 0.85)
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(height: itemHeight)
-                                        .cornerRadius(10)
-                                        .overlay {
-                                            RoundedRectangle(cornerRadius: 10)
-                                                .stroke(Color.theme.appGrayColor, lineWidth: 0.3)
-                                        }
-                                        .onTapGesture(perform: {
-                                            feedBannerId = item
-                                            print("selected banner id ----> " ,feedBannerId)
-                                            redirectBannerVideoPlayer = true
-                                            
-                                        })
-                                    
-                                    
-                                }
-                            )
-                        } ?? []
-
-                        if views.isEmpty {
-                            
-                        } else {
-                            
-                            CarousalView(itemHeight: itemHeight, views: views)
-                        }
+                        //                        let itemHeight: CGFloat = horizontalSizeClass == .regular ? UIScreen.main.bounds.height * 0.33 : UIScreen.main.bounds.height * 0.23
+                        //                        let views = feedViewModel.feedBannerModel?.results.map { item -> AnyView in
+                        //                            AnyView(
+                        //                                LazyVStack {
+                        //                                    KFImage(URL(string: item.cover_art ?? ""))
+                        //                                        .placeholder {
+                        //                                            RoundedRectangle(cornerRadius: 10)
+                        //                                                .fill(Color.theme.appCardsColor)
+                        //                                                .frame(width: 358, height: itemHeight)
+                        //                                        }
+                        //                                        .loadDiskFileSynchronously()
+                        //                                        .cacheMemoryOnly()
+                        //                                        .fade(duration: 0.85)
+                        //                                        .resizable()
+                        //                                        .scaledToFill()
+                        //                                        .frame(height: itemHeight)
+                        //                                        .cornerRadius(10)
+                        //                                        .overlay {
+                        //                                            RoundedRectangle(cornerRadius: 10)
+                        //                                                .stroke(Color.theme.appGrayColor, lineWidth: 0.3)
+                        //                                        }
+                        //                                        .onTapGesture(perform: {
+                        //                                            feedBannerId = item
+                        //                                            print("selected banner id ----> " ,feedBannerId)
+                        //                                            redirectBannerVideoPlayer = true
+                        //
+                        //                                        })
+                        //
+                        //
+                        //                                }
+                        //                            )
+                        //                        } ?? []
+                        //
+                        //                        if views.isEmpty {
+                        //
+                        //                        } else {
+                        //
+                        //                            CarousalView(itemHeight: itemHeight, views: views)
+                        //                        }
                         
                         VStack(spacing: 20) {
                             ForEach(feedViewModel.feedCategoriesModel?.results ?? [], id: \.uid) { data in
@@ -290,12 +291,13 @@ struct FeedView: View {
                                 }
                             }
                             
-                            VStack(alignment: .leading, spacing: 10) {
-                                if !feedViewModel.showLoader {
-                                    FeedSwiperHeaderView(title: "Watch Later") {
-                                        redirectWatchLater = true
+                            if FLUserJourney.shared.isSubscibedUserLoggedIn ?? false {
+                                VStack(alignment: .leading, spacing: 10) {
+                                    if !feedViewModel.showLoader {
+                                        FeedSwiperHeaderView(title: "Watch Later") {
+                                            redirectWatchLater = true
+                                        }
                                     }
-                                }
                                     
                                     ScrollView(.horizontal, showsIndicators: false) {
                                         LazyHStack(spacing: 3) {
@@ -316,35 +318,37 @@ struct FeedView: View {
                                             }
                                         }
                                     }
-//                                }
+                                }
                             }
                         }
                         .padding()
                     }
-                    //                }
-                }
-                .padding(.top, 30)
-                .onAppear {
-                    feedViewModel.getFeedBanners()
-                    feedViewModel.getFeedCategories()
-                    feedViewModel.getWatchLaterEpisodes(id: "")
-                }
-                NavigationLink(isActive: $redirectSearch) {
-                    SearchView().navigationBarBackButtonHidden(true)
-                } label: {
-                    EmptyView()
-                }
-                
-                NavigationLink(isActive: $redirectWatchLater) {
-                    WatchlistSeriesView().navigationBarBackButtonHidden(true)
-                } label: {
-                    EmptyView()
-                }
-                
-                if feedViewModel.showLoader {
-                    FLLoader()
                 }
             }
+            .padding(.top, 30)
+            
+            NavigationLink(isActive: $redirectSearch) {
+                SearchView().navigationBarBackButtonHidden(true)
+            } label: {
+                EmptyView()
+            }
+            
+            NavigationLink(isActive: $redirectWatchLater) {
+                WatchlistSeriesView().navigationBarBackButtonHidden(true)
+            } label: {
+                EmptyView()
+            }
+        }
+        .onAppear {
+            guard isFirstAppear == true else {
+                return
+            }
+            
+            isFirstAppear = false
+            
+            feedViewModel.getFeedBanners()
+            feedViewModel.getFeedCategories()
+            feedViewModel.getWatchLaterEpisodes(id: "")
         }
         .background {
             LinearGradient(gradient: Gradient(colors: [Color.black, Color.theme.appColor, Color.black]), startPoint: .topLeading, endPoint: .bottomTrailing)

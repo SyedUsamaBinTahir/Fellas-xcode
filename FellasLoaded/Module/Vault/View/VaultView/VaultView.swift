@@ -10,6 +10,7 @@ import Kingfisher
 
 struct VaultView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @Environment(\.viewController) private var viewControllerHolder: UIViewController?
     @State private var expandDescription = false
     @State private var redirectComment = false
     @StateObject var vaultViewModel = VaultViewModel(_dataService: GetServerData.shared)
@@ -85,7 +86,11 @@ struct VaultView: View {
                                         }
                                         
                                         Button {
-                                            
+                                            withAnimation(.easeInOut(duration: 0.2)) {
+                                                self.viewControllerHolder?.present(style: .overFullScreen) {
+                                                    WelcomeScreen()
+                                                }
+                                            }
                                         } label: {
                                             HStack {
                                                 Image("lock-icon")

@@ -11,6 +11,7 @@ import ExytePopupView
 struct EpisodeDetailView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.viewController) private var viewControllerHolder: UIViewController?
     @StateObject var feedViewModel = FeedViewModel(_dataService: GetServerData.shared)
     @State var feedCategorySeriesDetailModel: FeedCategorySeriesDetailModel?
     @State private var redirectVideoPlayer = false
@@ -96,7 +97,11 @@ struct EpisodeDetailView: View {
                                 }
                             } else {
                                 Button {
-                                    
+                                    withAnimation(.easeInOut(duration: 0.2)) {
+                                        self.viewControllerHolder?.present(style: .overFullScreen) {
+                                            WelcomeScreen()
+                                        }
+                                    }
                                 } label: {
                                     HStack {
                                         Image("lock-icon")
@@ -142,24 +147,7 @@ struct EpisodeDetailView: View {
                                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                                                 redirectVideoPlayer = true
                                             }
-                                            //                                            seriesEpisodeDetailId = episode.uid
                                         }
-                                        
-//                                        NavigationLink(isActive: $redirectVideoPlayer) {
-//                                            VideoPlayerView(seriesEpisodeDetailId: episode, seriesDetailID: $seriesDetailID)
-//                                                .environmentObject(feedViewModel)
-//                                                .navigationBarBackButtonHidden(true)
-//                                        } label: {
-//                                            EmptyView()
-//                                        }
-//                                        
-//                                        NavigationLink(isActive: $redirectVideoPlayerWithEpisode) {
-//                                            VideoPlayerView(seriesEpisodeDetailId: data.episodes?.first, seriesDetailID: $seriesDetailID)
-//                                                .environmentObject(feedViewModel)
-//                                                .navigationBarBackButtonHidden(true)
-//                                        } label: {
-//                                            EmptyView()
-//                                        }
                                     }
                                 }
                             }

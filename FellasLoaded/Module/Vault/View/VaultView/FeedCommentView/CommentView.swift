@@ -92,7 +92,7 @@ struct CommentView: View {
                         FLLoader()
                     } else {
                         ScrollView {
-                            ForEach(feedViewModel.seriesEpisodesCommentsModel?.results.reversed() ?? [], id: \.uid) { data in
+                            ForEach(feedViewModel.seriesEpisodesCommentsModel?.results ?? [], id: \.uid) { data in
                                 CommentCardView(expandDescription: $expandDescription,
                                                 redirectReply: $redirectReply,
                                                 profileImage: data.user?.avatar ?? "",

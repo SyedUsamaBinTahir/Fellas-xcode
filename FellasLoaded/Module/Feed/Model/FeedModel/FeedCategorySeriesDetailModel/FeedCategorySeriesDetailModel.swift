@@ -43,7 +43,7 @@ struct FeedCategorySeriesDetailGenre: Codable {
 
 struct FeedCategorySeriesDetailSessions: Codable {
     let uid: String
-    let title: String
+    let title: String?
     let description: String
     let cover_art: String?
     let session_number: Int

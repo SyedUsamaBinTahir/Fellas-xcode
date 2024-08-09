@@ -22,10 +22,17 @@ struct WelcomeScreen: View {
                         .scaledToFill()
                         .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
                 } else {
-                    Image("welcome-image")
-                        .resizable()
-                        .scaledToFit()
+                    ZStack {
+                        Image("welcome-image")
+                            .resizable()
+                            .clipped()
+                        
+                        Image("shadow-image")
+                            .resizable()
+                            .scaledToFill()
+                    }
                 }
+                
                 VStack(spacing: 30) {
                     Image("app-image")
                         .resizable()
@@ -82,7 +89,7 @@ struct WelcomeScreen: View {
                 .frame(width: horizontalSizeClass == .regular ? 440 : nil)
                 
             }
-            .edgesIgnoringSafeArea(.top)
+            .edgesIgnoringSafeArea(.all)
             .background(
                 LinearGradient(colors: [.black, Color.theme.appColor, .black], startPoint: .top, endPoint: .bottom)
             )
